@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 
 export const MAX_HEIGHT = 250;
 

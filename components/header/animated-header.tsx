@@ -1,7 +1,7 @@
 import { LinearGradient } from '@vna-base/components';
 import { createStyleSheet, useStyles, bs } from '@theme';
 import { Colors } from '@theme/type';
-import { WindowWidth } from '@utils';
+import { WindowWidth } from '@vna-base/utils';
 import React, { memo, useCallback, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { LayoutChangeEvent, StyleProp, View, ViewStyle } from 'react-native';

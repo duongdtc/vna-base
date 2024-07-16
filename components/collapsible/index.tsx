@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { sharedTiming, useSharedTransition } from '@utils/animated';
+import { sharedTiming, useSharedTransition } from '@vna-base/utils/animated';
 
 import { styles } from './styles';
 import { CollapsibleProps } from './type';

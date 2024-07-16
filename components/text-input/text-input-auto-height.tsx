@@ -1,7 +1,7 @@
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { HairlineWidth, scale } from '@utils';
+import { HairlineWidth, scale } from '@vna-base/utils';
 import React, {
   forwardRef,
   useImperativeHandle,

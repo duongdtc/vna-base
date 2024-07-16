@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import equals from 'react-fast-compare';
 
-import { onCheckType } from '@utils';
+import { onCheckType } from '@vna-base/utils';
 
 import { styles } from './styles';
 import { SelectItemProps } from './type';

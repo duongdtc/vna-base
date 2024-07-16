@@ -2,7 +2,7 @@ import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { ColorLight } from '@theme/color';
 import { I18nKeys } from '@translations/locales';
-import { ActiveOpacity } from '@utils';
+import { ActiveOpacity } from '@vna-base/utils';
 import React, {
   forwardRef,
   memo,

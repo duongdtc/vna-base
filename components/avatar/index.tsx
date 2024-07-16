@@ -1,5 +1,5 @@
 import { Image } from '@vna-base/components';
-import { onCheckType, scale } from '@utils';
+import { onCheckType, scale } from '@vna-base/utils';
 import React from 'react';
 import { Pressable, StyleProp } from 'react-native';
 import { ImageStyle } from 'react-native-fast-image';

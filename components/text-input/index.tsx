@@ -23,7 +23,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useTheme } from '@theme';
-import { delay, execFunc, HairlineWidth, scale } from '@utils';
+import { delay, execFunc, HairlineWidth, scale } from '@vna-base/utils';
 
 import { Block } from '@vna-base/components/block';
 import { HelperText } from '@vna-base/components/helper-text';

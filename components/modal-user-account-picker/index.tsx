@@ -1,6 +1,6 @@
 import { BottomSheet } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { SnapPoint } from '@utils';
+import { SnapPoint } from '@vna-base/utils';
 import React, {
   forwardRef,
   useImperativeHandle,

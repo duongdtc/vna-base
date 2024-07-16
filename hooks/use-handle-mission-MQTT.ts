@@ -5,7 +5,7 @@ import {
   QualiTyNotification,
   StatusNotification,
 } from '@services/mqtt/types/client';
-import { dispatch } from '@utils';
+import { dispatch } from '@vna-base/utils';
 import { useCallback, useEffect } from 'react';
 
 export const useHandleMissionMQTT = (id?: string | undefined) => {

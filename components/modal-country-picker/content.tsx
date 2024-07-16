@@ -4,7 +4,7 @@ import { useDebounce } from '@vna-base/hooks';
 import { selectLanguage } from '@redux-selector';
 import { CountryCode, CountryRealm } from '@services/realm/models';
 import { useQuery } from '@services/realm/provider';
-import { ActiveOpacity } from '@utils';
+import { ActiveOpacity } from '@vna-base/utils';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ListRenderItem, TouchableOpacity } from 'react-native';

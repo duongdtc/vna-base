@@ -4,7 +4,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import { BarProps } from '../type';
 import { WIDTH_BAR, WIDTH_BAR_CONTAINER } from '..';
-import { abbreviationFare } from '@utils';
+import { abbreviationFare } from '@vna-base/utils';
 
 export const Bar = ({
   onPress,

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Portal } from '@gorhom/portal';
-import { useDismissKeyboard } from '@utils/hooks';
+import { useDismissKeyboard } from '@vna-base/utils/hooks';
 
 import { ModalContent } from './modal-content';
 import { ModalProps } from './type';

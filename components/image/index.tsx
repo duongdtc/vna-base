@@ -5,12 +5,12 @@ import { Blurhash } from 'react-native-blurhash';
 import FastImage, { OnLoadEvent } from 'react-native-fast-image';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-import { useSharedTransition } from '@utils/animated';
-import { execFunc, onCheckType } from '@utils';
+import { useSharedTransition } from '@vna-base/utils/animated';
+import { execFunc, onCheckType } from '@vna-base/utils';
 
 import { styles } from './styles';
 import { ImageProps } from './type';
-import { useAsyncState, useMounted } from '@utils/hooks';
+import { useAsyncState, useMounted } from '@vna-base/utils/hooks';
 
 const ImageComponent = ({
   style: styleOverride = {},

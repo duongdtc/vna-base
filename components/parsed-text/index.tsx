@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { onCheckType } from '@utils';
+import { onCheckType } from '@vna-base/utils';
 
 import { ParsedTextProps } from './type';
 import { PATTERNS, textExtraction } from './utils';

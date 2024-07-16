@@ -8,7 +8,7 @@ import React, { useMemo } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { ToastConfigParams } from 'react-native-toast-message';
 import { NormalProps } from '../type';
-import { WindowWidth } from '@utils';
+import { WindowWidth } from '@vna-base/utils';
 
 export const Normal = ({
   props: { icon, color, t18n, text },

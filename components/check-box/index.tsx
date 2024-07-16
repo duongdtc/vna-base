@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { execFunc } from '@utils';
+import { execFunc } from '@vna-base/utils';
 
 import { styles } from './styles';
 import { CheckboxProps } from './type';

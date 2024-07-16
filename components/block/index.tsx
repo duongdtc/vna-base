@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { getStyle, useTheme } from '@theme';
-import { propsToStyle } from '@utils';
+import { propsToStyle } from '@vna-base/utils';
 
 import { BlockProps } from './type';
 

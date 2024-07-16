@@ -1,5 +1,5 @@
 import { Block, Button, Modal, Text } from '@vna-base/components';
-import { ModalWidth, scale } from '@utils';
+import { ModalWidth, scale } from '@vna-base/utils';
 import React, {
   createRef,
   forwardRef,

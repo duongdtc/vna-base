@@ -1,4 +1,4 @@
-import { HairlineWidth, scale } from '@utils';
+import { HairlineWidth, scale } from '@vna-base/utils';
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet(() => ({

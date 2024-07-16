@@ -7,7 +7,7 @@ import BottomSheet, {
   useBottomSheetDynamicSnapPoints,
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
-import { ActiveOpacity, HitSlop, WindowHeight } from '@utils';
+import { ActiveOpacity, HitSlop, WindowHeight } from '@vna-base/utils';
 import React, {
   forwardRef,
   useCallback,

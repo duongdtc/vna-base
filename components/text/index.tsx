@@ -8,7 +8,7 @@ import {
 
 import { useTranslation } from 'react-i18next';
 
-import { propsToStyle } from '@utils';
+import { propsToStyle } from '@vna-base/utils';
 
 import { TextProps } from './type';
 import { useStyles } from '@theme';

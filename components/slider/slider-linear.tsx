@@ -10,8 +10,8 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { sharedClamp, sharedSpring, useInterpolate } from '@utils/animated';
-import { onCheckType } from '@utils';
+import { sharedClamp, sharedSpring, useInterpolate } from '@vna-base/utils/animated';
+import { onCheckType } from '@vna-base/utils';
 
 import { FIXED_AFTER, LOWER_BOUND, THUMB_SIZE, UPPER_BOUND } from './constants';
 import { styles } from './styles';

@@ -1,5 +1,5 @@
 import { useTheme } from '@theme';
-import { WindowWidth } from '@utils';
+import { WindowWidth } from '@vna-base/utils';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 

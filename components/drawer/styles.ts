@@ -1,4 +1,4 @@
-import { WindowHeight, WindowWidth, scale } from '@utils';
+import { WindowHeight, WindowWidth, scale } from '@vna-base/utils';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({

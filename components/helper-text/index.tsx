@@ -17,7 +17,7 @@ import {
   sharedTiming,
   useInterpolate,
   useSharedTransition,
-} from '@utils/animated';
+} from '@vna-base/utils/animated';
 
 import { Text } from '@vna-base/components/text';
 import { styles } from './styles';

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { HairlineWidth, scale } from '@utils';
+import { HairlineWidth, scale } from '@vna-base/utils';
 
 export const styles = StyleSheet.create({
   labelStyle: {

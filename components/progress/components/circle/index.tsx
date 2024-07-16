@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle, CircleProps } from 'react-native-svg';
 
-import { sharedTiming } from '@utils/animated';
+import { sharedTiming } from '@vna-base/utils/animated';
 
 import { styles } from './styles';
 import { ProgressCircleProps } from './type';

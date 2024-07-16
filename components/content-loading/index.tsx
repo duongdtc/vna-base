@@ -1,6 +1,6 @@
 import { Block } from '@vna-base/components';
 import { useTheme } from '@theme';
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import ContentLoader, { Rect } from 'react-content-loader/native';
 import { useStyles } from './styles';

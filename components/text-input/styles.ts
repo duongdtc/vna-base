@@ -1,6 +1,6 @@
 import { useTheme } from '@theme';
 import { FontDefault, FontStyle } from '@theme/typography';
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 

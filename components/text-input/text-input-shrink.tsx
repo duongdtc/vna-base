@@ -1,7 +1,7 @@
 import { Icon } from '@vna-base/components/icon';
 import { useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 import React, {
   forwardRef,
   useImperativeHandle,

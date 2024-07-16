@@ -16,7 +16,7 @@ import {
   System,
   SystemDetails,
   WindowWidth,
-} from '@utils';
+} from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 import { TouchableOpacity } from 'react-native';

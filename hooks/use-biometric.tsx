@@ -2,7 +2,7 @@ import { IconTypes } from '@assets/icon';
 import { hideModalConfirm, showModalConfirm } from '@vna-base/components';
 import { selectSupportedBiometryType } from '@redux-selector';
 import { FormLoginType } from '@screens/login/type';
-import CustomKeyChain from '@utils/keychain';
+import CustomKeyChain from '@vna-base/utils/keychain';
 import { useCallback, useMemo, useRef } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { BIOMETRY_TYPE } from 'react-native-keychain';

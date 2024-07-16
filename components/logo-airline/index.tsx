@@ -1,5 +1,5 @@
 import { LOGO_URL } from '@env';
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { View } from 'react-native';

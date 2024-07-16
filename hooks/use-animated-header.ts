@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useInterpolate } from '@utils/animated';
+import { useInterpolate } from '@vna-base/utils/animated';
 import { useMemo, useState } from 'react';
 import { LayoutChangeEvent } from 'react-native';
 import {

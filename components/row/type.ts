@@ -4,7 +4,7 @@ import { Colors } from '@theme';
 import { Spacing } from '@theme/type';
 import { FontStyle } from '@theme/typography';
 import { I18nKeys } from '@translations/locales';
-import { SnapPoint } from '@utils';
+import { SnapPoint } from '@vna-base/utils';
 
 export type RowProps =
   | (InputProps & CommonProps)

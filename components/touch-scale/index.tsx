@@ -10,8 +10,8 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { ActiveOpacity, MinScaleButton, onCheckType } from '@utils';
-import { sharedTiming } from '@utils/animated';
+import { ActiveOpacity, MinScaleButton, onCheckType } from '@vna-base/utils';
+import { sharedTiming } from '@vna-base/utils/animated';
 
 import { styles } from './styles';
 import { TouchableScaleProps } from './type';

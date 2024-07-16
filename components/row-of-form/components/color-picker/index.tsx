@@ -6,7 +6,7 @@ import {
 } from '@vna-base/components/row-of-form/type';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTheme } from '@theme';
-import { WindowWidth } from '@utils';
+import { WindowWidth } from '@vna-base/utils';
 import React, { useRef, useState } from 'react';
 import { FieldPath, FieldValues, useController } from 'react-hook-form';
 import { Pressable } from 'react-native';

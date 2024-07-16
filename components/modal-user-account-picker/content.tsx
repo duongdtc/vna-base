@@ -4,7 +4,7 @@ import { useDebounce } from '@vna-base/hooks';
 import { selectAllAccounts } from '@redux-selector';
 import { UserAccount } from '@services/axios/axios-data';
 import { useTheme } from '@theme';
-import { ActiveOpacity } from '@utils';
+import { ActiveOpacity } from '@vna-base/utils';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ListRenderItem, TouchableOpacity } from 'react-native';

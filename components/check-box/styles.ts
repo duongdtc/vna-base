@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { ColorLight } from '@theme/color';
-import { HairlineWidth } from '@utils';
+import { HairlineWidth } from '@vna-base/utils';
 
 const DIMENSIONS = { width: 16, height: 16 };
 

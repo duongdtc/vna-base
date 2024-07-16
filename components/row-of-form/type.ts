@@ -2,7 +2,7 @@ import { TextInputShrinkProps } from '@vna-base/components/text-input/type';
 import { Colors } from '@theme';
 import { FontStyle, Spacing } from '@theme/type';
 import { I18nKeys } from '@translations/locales';
-import { SnapPoint } from '@utils';
+import { SnapPoint } from '@vna-base/utils';
 import {
   ControllerProps,
   FieldPath,

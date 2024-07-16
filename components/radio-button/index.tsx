@@ -6,8 +6,8 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import { execFunc } from '@utils';
-import { useInterpolate, useSharedTransition } from '@utils/animated';
+import { execFunc } from '@vna-base/utils';
+import { useInterpolate, useSharedTransition } from '@vna-base/utils/animated';
 
 import { ACTIVE_COLOR, SIZE, STROKE_WIDTH, UN_ACTIVE_COLOR } from './constants';
 import { styles } from './styles';

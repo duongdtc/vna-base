@@ -1,4 +1,4 @@
-import CustomKeyChain from '@utils/keychain';
+import CustomKeyChain from '@vna-base/utils/keychain';
 import { useEffect, useState } from 'react';
 import { AppState } from 'react-native';
 

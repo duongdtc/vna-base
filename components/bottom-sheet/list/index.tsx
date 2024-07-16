@@ -1,6 +1,6 @@
 import { Block, TextInputWithLeftIcon } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { removeDiacritics, scale } from '@utils';
+import { removeDiacritics, scale } from '@vna-base/utils';
 import React, {
   ForwardedRef,
   forwardRef,

@@ -2,7 +2,7 @@
 import { Icon } from '@vna-base/components/icon';
 import { TouchableScale } from '@vna-base/components/touch-scale';
 import { useStyles } from '@theme';
-import { DisableOpacity, MinScaleButton } from '@utils';
+import { DisableOpacity, MinScaleButton } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 import {

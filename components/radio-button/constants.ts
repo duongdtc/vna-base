@@ -1,5 +1,5 @@
 import { ColorLight } from '@theme/color';
-import { HairlineWidth } from '@utils';
+import { HairlineWidth } from '@vna-base/utils';
 
 export const SIZE = 30;
 

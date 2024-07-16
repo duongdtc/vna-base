@@ -7,7 +7,7 @@ import {
   selectListOrderActivity,
 } from '@redux-selector';
 import { History } from '@services/axios/axios-data';
-import { SnapPoint, dispatch } from '@utils';
+import { SnapPoint, dispatch } from '@vna-base/utils';
 import React, {
   forwardRef,
   memo,

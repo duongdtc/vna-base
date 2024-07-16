@@ -23,8 +23,8 @@ import {
   sharedTiming,
   useInterpolate,
   useMin,
-} from '@utils/animated';
-import { onCheckType } from '@utils';
+} from '@vna-base/utils/animated';
+import { onCheckType } from '@vna-base/utils';
 
 import {
   FIXED_AFTER,

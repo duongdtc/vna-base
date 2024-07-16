@@ -15,7 +15,7 @@ import { CountryCode, CountryRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { useStyles, useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { ActiveOpacity, rxNumber, rxPhone } from '@utils';
+import { ActiveOpacity, rxNumber, rxPhone } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Controller, useController, useFormContext } from 'react-hook-form';

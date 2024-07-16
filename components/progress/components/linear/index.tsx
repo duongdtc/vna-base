@@ -6,7 +6,7 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 
-import { sharedTiming, useInterpolate, useShareClamp } from '@utils/animated';
+import { sharedTiming, useInterpolate, useShareClamp } from '@vna-base/utils/animated';
 
 import { styles } from './styles';
 import { ProgressLinearProps } from './type';

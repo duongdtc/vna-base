@@ -5,7 +5,7 @@ import { CommonProps, Nav as NavProps } from '@vna-base/components/row/type';
 import { useTheme } from '@theme';
 import { Text } from '@vna-base/components/text';
 import { Icon } from '@vna-base/components/icon';
-import { scale } from '@utils';
+import { scale } from '@vna-base/utils';
 import { Block } from '@vna-base/components/block';
 
 export const Nav = (props: NavProps & CommonProps) => {

@@ -5,7 +5,7 @@ import {
   CommonProps,
   Dropdown as DropdownType,
 } from '@vna-base/components/row-of-form/type';
-import { ActiveOpacity, SnapPoint } from '@utils';
+import { ActiveOpacity, SnapPoint } from '@vna-base/utils';
 
 import { SortType } from '@services/axios';
 import React, { useCallback, useMemo, useRef } from 'react';

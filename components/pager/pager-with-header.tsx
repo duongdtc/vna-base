@@ -1,7 +1,7 @@
 import { Child } from '@vna-base/components';
 import { PagerProps, SceneWithTitle } from '@vna-base/components/pager/type';
-import { WindowWidth } from '@utils';
-import { useSharedTransition } from '@utils/animated';
+import { WindowWidth } from '@vna-base/utils';
+import { useSharedTransition } from '@vna-base/utils/animated';
 import React, {
   memo,
   useCallback,

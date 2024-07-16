@@ -2,8 +2,8 @@ import { LottieTypes, lotties } from '@assets/lottie';
 import { Block, Modal, Text } from '@vna-base/components';
 import { useTheme } from '@theme';
 import { I18nKeys } from '@translations/locales';
-import { WindowWidth, delay, scale } from '@utils';
-import { useDisableBackHandler, useDismissKeyboard } from '@utils/hooks';
+import { WindowWidth, delay, scale } from '@vna-base/utils';
+import { useDisableBackHandler, useDismissKeyboard } from '@vna-base/utils/hooks';
 import LottieView from 'lottie-react-native';
 import React, {
   createRef,

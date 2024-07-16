@@ -2,7 +2,7 @@ import { Block } from '@vna-base/components/block';
 import { BottomSheet } from '@vna-base/components/bottom-sheet';
 import { TextInput } from '@vna-base/components/text-input';
 import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
-import { ActiveOpacity } from '@utils';
+import { ActiveOpacity } from '@vna-base/utils';
 import React, { memo, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { TouchableOpacity } from 'react-native';

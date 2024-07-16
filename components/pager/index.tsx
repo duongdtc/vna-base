@@ -1,4 +1,4 @@
-import { WindowWidth } from '@utils';
+import { WindowWidth } from '@vna-base/utils';
 import React, {
   ForwardedRef,
   forwardRef,

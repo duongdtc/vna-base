@@ -11,8 +11,8 @@ import {
   useInterpolate,
   useMix,
   useSharedTransition,
-} from '@utils/animated';
-import { execFunc } from '@utils';
+} from '@vna-base/utils/animated';
+import { execFunc } from '@vna-base/utils';
 
 import {
   BORDER_OFF_COLOR,

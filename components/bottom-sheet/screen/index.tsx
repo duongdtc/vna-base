@@ -4,7 +4,7 @@ import BottomSheet, {
   BottomSheetBackdropProps,
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import { ActiveOpacity, HitSlop } from '@utils';
+import { ActiveOpacity, HitSlop } from '@vna-base/utils';
 import React, {
   forwardRef,
   useCallback,

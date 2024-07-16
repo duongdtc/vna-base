@@ -22,9 +22,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { execFunc, onCheckType } from '@utils';
-import { sharedTiming } from '@utils/animated';
-import { useDisableBackHandler } from '@utils/hooks';
+import { execFunc, onCheckType } from '@vna-base/utils';
+import { sharedTiming } from '@vna-base/utils/animated';
+import { useDisableBackHandler } from '@vna-base/utils/hooks';
 
 import { styles } from './styles';
 import { ModalProps } from './type';

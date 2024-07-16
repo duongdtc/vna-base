@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block } from '@vna-base/components/block';
 import { getStyle } from '@theme';
-import { HairlineWidth } from '@utils';
+import { HairlineWidth } from '@vna-base/utils';
 import React, { memo, useMemo, useState } from 'react';
 import { LayoutRectangle } from 'react-native';
 import { SeparatorProps } from './type';

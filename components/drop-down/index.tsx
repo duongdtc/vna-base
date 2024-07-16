@@ -28,8 +28,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useMix, useRadian, useSharedTransition } from '@utils/animated';
-import { onCheckType } from '@utils';
+import { useMix, useRadian, useSharedTransition } from '@vna-base/utils/animated';
+import { onCheckType } from '@vna-base/utils';
 
 import { DropDownItem } from './drop-down-item';
 import { styles } from './styles';

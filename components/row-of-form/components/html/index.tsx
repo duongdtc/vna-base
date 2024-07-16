@@ -3,7 +3,7 @@ import { Block, Icon, Text, WebViewAutoHeight } from '@vna-base/components';
 import { CommonProps, HTMLProps } from '@vna-base/components/row-of-form/type';
 import { navigate } from '@navigation/navigation-service';
 import { useTheme } from '@theme';
-import { APP_SCREEN } from '@utils';
+import { APP_SCREEN } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { FieldPath, FieldValues, useController } from 'react-hook-form';
 import { Pressable } from 'react-native';
