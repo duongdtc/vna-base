@@ -4,13 +4,14 @@ import { navigate } from '@navigation/navigation-service';
 import { getAccount, selectDetailHistory } from '@redux-selector';
 import { historyActions } from '@redux-slice';
 import { History } from '@services/axios/axios-data';
-import { APP_SCREEN, System, SystemDetails, dispatch, scale } from '@vna-base/utils';
+import { System, SystemDetails, dispatch, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { memo, useCallback, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { LayoutAnimation, Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
 import { DetailItemHistory } from './detail-content-history';
+import { APP_SCREEN } from '@utils';
 
 type Props = {
   item: History;

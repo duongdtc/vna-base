@@ -1,5 +1,5 @@
 import i18n from '@vna-base/translations/i18n';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { translate } from '@vna-base/translations/translate';
 import { PassengerType } from '@vna-base/utils/constant';
 import dayjs, { Dayjs } from 'dayjs';

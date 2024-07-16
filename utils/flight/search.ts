@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Flight, SearchForm } from '@screens/flight/type';
+import { Flight, SearchForm } from '@vna-base/screens/flight/type';
 
 import isEmpty from 'lodash.isempty';
 

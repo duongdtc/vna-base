@@ -1,7 +1,7 @@
 import { IconTypes } from '@assets/icon';
 import { hideModalConfirm, showModalConfirm } from '@vna-base/components';
 import { selectSupportedBiometryType } from '@redux-selector';
-import { FormLoginType } from '@screens/login/type';
+import { FormLoginType } from '@vna-base/screens/login/type';
 import CustomKeyChain from '@vna-base/utils/keychain';
 import { useCallback, useMemo, useRef } from 'react';
 import { UseFormReturn } from 'react-hook-form';

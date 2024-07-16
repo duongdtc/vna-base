@@ -12,7 +12,7 @@ import { UseFormTrigger } from 'react-hook-form';
 import Animated from 'react-native-reanimated';
 
 import { Colors } from '@theme';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { IconTypes } from '@assets/icon';
 import { FontStyle } from '@theme/typography';
 

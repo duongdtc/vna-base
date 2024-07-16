@@ -1,4 +1,4 @@
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 
 export type DateRangePickerConfig = {
   t18nTitle: I18nKeys;

@@ -1,5 +1,5 @@
 import { IconTypes } from '@assets/icon';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { ColorValue } from 'react-native';
 
 export type NormalProps = {

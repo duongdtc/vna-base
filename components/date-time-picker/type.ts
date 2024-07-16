@@ -1,5 +1,5 @@
 import { IOSNativeProps } from '@react-native-community/datetimepicker';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 
 export type DateTimePickerProps = Pick<
   IOSNativeProps,

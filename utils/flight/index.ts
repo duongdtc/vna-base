@@ -4,7 +4,7 @@ import {
   flightResultActions,
   flightSearchActions,
 } from '@redux-slice';
-import { LanguageType } from '@screens/booking-actions/sms-send/type';
+import { LanguageType } from '@vna-base/screens/booking-actions/sms-send/type';
 import { Passenger as PassengerData } from '@services/axios/axios-data';
 import { Passenger } from '@services/axios/axios-ibe';
 import { Colors } from '@theme';

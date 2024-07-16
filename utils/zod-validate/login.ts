@@ -1,4 +1,4 @@
-import { FormLoginType } from '@screens/login/type';
+import { FormLoginType } from '@vna-base/screens/login/type';
 import { stringifyObjectValidate } from '@vna-base/utils/string';
 import { z } from 'zod';
 

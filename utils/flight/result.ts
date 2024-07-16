@@ -7,7 +7,7 @@ import {
   FilterForm,
   Passengers,
   Sort,
-} from '@screens/flight/type';
+} from '@vna-base/screens/flight/type';
 import {
   AirOption,
   FareOption,

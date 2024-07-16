@@ -1,4 +1,4 @@
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 
 export type TitleContainerProps = {
   titles: Array<{ t18n: I18nKeys; disable?: boolean }>;

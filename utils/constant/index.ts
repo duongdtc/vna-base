@@ -5,7 +5,7 @@ import {
   BookingStatusDetail,
   GenderTypeDetail,
   PassengerTypeDetail,
-} from '@screens/booking-detail/type';
+} from '@vna-base/screens/booking-detail/type';
 import {
   FareFilter,
   OptionFlightEnum,
@@ -13,10 +13,10 @@ import {
   SeatClassEnum,
   SubmitOption,
   SystemDetail,
-} from '@screens/flight/type';
-import { OrderStatusDetail } from '@screens/order/type';
+} from '@vna-base/screens/flight/type';
+import { OrderStatusDetail } from '@vna-base/screens/order/type';
 import { Colors } from '@theme';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { WindowWidth } from '@vna-base/utils/scale';
 import { StyleSheet } from 'react-native';
 

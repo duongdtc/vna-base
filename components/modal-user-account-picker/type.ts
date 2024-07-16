@@ -1,4 +1,4 @@
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 
 export type ModalUserAccountPickerRef = {
   present: (selectedId?: string | null) => void;

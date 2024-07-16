@@ -2,7 +2,7 @@ import { images } from '@assets/image';
 import { BlockProps } from '@vna-base/components/block/type';
 import { Colors } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { StyleProp, ViewStyle, ImageStyle } from 'react-native';
 
 export type EmptyListProps = {

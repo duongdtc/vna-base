@@ -1,6 +1,6 @@
 import { LottieTypes } from '@assets/lottie';
 import { Colors } from '@theme';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 

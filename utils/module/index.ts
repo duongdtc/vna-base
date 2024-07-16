@@ -1,6 +1,6 @@
 import { IconTypes } from '@assets/icon';
 import { UserModule } from '@services/axios/axios-data';
-import { APP_SCREEN } from '@vna-base/utils';
+import { APP_SCREEN } from '@utils';
 
 export const processSideBarModule = (
   processedListModule: Array<

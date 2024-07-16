@@ -10,7 +10,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { ModalCountryPickerRef } from '@vna-base/components/modal-country-picker/type';
-import { PassengerForm } from '@screens/flight/type';
+import { PassengerForm } from '@vna-base/screens/flight/type';
 import { CountryCode, CountryRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { useStyles, useTheme } from '@theme';

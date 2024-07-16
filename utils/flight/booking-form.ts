@@ -8,7 +8,7 @@ import {
   ContactInfo,
   Passenger,
   PassengerForm,
-} from '@screens/flight/type';
+} from '@vna-base/screens/flight/type';
 import {
   Ancillary,
   BookFlightReq,
@@ -18,7 +18,7 @@ import {
 } from '@services/axios/axios-ibe';
 import { CountryRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
-import { I18nKeys } from '@vna-base/translations/locales';
+import { I18nKeys } from '@translations/locales';
 import {
   convertStringToNumber,
   Gender,
