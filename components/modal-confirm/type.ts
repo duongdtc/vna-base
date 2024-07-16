@@ -1,0 +1,31 @@
+import { LottieTypes } from '@assets/lottie';
+import { Colors } from '@theme';
+import { I18nKeys } from '@translations/locales';
+import { ColorValue, StyleProp, ViewStyle } from 'react-native';
+import { SvgProps } from 'react-native-svg';
+
+export type ModalConfirmComponentProps = {
+  iconName?: any;
+  iconSize?: number;
+  iconColor?: number | ColorValue;
+  svg?: React.FC<SvgProps>;
+  t18nTitle?: I18nKeys;
+  t18nSubtitle?: I18nKeys;
+  t18nOk?: I18nKeys;
+  themeColorOK?: keyof Colors;
+  themeColorTextOK?: keyof Colors;
+  t18nCancel?: I18nKeys;
+  themeColorCancel?: keyof Colors;
+  themeColorTextCancel?: keyof Colors;
+  t18nOptionThird?: I18nKeys;
+  themeColorOptionThird?: keyof Colors;
+  themeColorTextOptionThird?: keyof Colors;
+  hideWhenDone?: boolean;
+  onOk?: () => void;
+  onCancel?: () => void;
+  optionThird?: () => void;
+  flexDirection?: 'column' | 'row';
+  lottie?: LottieTypes;
+  lottieStyle?: StyleProp<ViewStyle>;
+  renderBody?: () => JSX.Element;
+};
