@@ -5,7 +5,7 @@ import {
   TextStyle,
 } from 'react-native';
 
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { FontStyle, Colors } from '@theme/type';
 
 type TextAlign = 'auto' | 'left' | 'right' | 'center' | 'justify';

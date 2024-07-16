@@ -3,7 +3,7 @@ import { Block, Icon, Text } from '@vna-base/components';
 import { BlockProps } from '@vna-base/components/block/type';
 import { Colors } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 

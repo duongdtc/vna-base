@@ -1,6 +1,6 @@
 import { IconTypes } from '@assets/icon';
 import { Action, StringSubject } from '@services/casl/type';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { APP_SCREEN } from './screen-types';
 
 export type MenuModuleType = {

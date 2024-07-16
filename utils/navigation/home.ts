@@ -1,5 +1,5 @@
 import { IconTypes } from '@assets/icon';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { APP_SCREEN } from './screen-types';
 import { Colors } from '@theme';
 

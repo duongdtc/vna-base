@@ -1,5 +1,5 @@
 import { CountryCode } from '@services/realm/models';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 
 export type ModalCountryPickerRef = {
   present: (selected?: CountryCode | undefined) => void;

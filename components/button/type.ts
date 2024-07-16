@@ -2,7 +2,7 @@ import { IconTypes } from '@assets/icon';
 
 import { Colors, FontStyle, Spacing } from '@theme/type';
 
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import {
   FlexAlignType,
   StyleProp,

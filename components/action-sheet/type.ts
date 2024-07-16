@@ -1,7 +1,7 @@
 import { IconTypes } from '@assets/icon';
 import { Colors } from '@theme';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 
 export interface OptionData<T = string> {
   /**

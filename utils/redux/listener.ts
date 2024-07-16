@@ -12,7 +12,7 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '@store/all-reducers';
 import { AppDispatch } from '@store/store';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 
 export const listenerMiddleware = createListenerMiddleware();
 const startAppListening = listenerMiddleware.startListening;

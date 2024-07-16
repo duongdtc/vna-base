@@ -2,7 +2,7 @@
 import { Block, Icon, Text, TextInputShrink } from '@vna-base/components';
 import { CommonProps, InputProps } from '@vna-base/components/row-of-form/type';
 import { SortType } from '@services/axios';
-import { translate } from '@translations/translate';
+import { translate } from '@vna-base/translations/translate';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { FieldPath, FieldValues, useController } from 'react-hook-form';
 import { Pressable, TextInput } from 'react-native';

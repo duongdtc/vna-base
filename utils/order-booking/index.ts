@@ -1,5 +1,5 @@
 import { IconTypes } from '@assets/icon';
-import { translate } from '@translations/translate';
+import { translate } from '@vna-base/translations/translate';
 import { System, SystemDetails } from '@vna-base/utils/constant';
 import { rxSpitStringToArr } from '@vna-base/utils/regex';
 

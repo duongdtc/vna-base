@@ -1,6 +1,6 @@
 import { Insets, StyleProp, ViewStyle } from 'react-native';
 
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { Colors } from '@theme';
 
 export interface CheckboxProps {

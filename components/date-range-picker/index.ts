@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DateRangePickerModule } from '@native-module';
-import { translate } from '@translations/translate';
+import { translate } from '@vna-base/translations/translate';
 import { StorageKey, getState, load } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import { Platform } from 'react-native';

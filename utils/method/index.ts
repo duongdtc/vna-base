@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Alert, Platform } from 'react-native';
 
-import { I18nKeys } from '@translations/locales';
-import { translate } from '@translations/translate';
+import { I18nKeys } from '@vna-base/translations/locales';
+import { translate } from '@vna-base/translations/translate';
 
 import { StorageKey, remove } from '@vna-base/utils';
 import { dispatch } from '../redux';

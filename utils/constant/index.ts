@@ -16,7 +16,7 @@ import {
 } from '@screens/flight/type';
 import { OrderStatusDetail } from '@screens/order/type';
 import { Colors } from '@theme';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { WindowWidth } from '@vna-base/utils/scale';
 import { StyleSheet } from 'react-native';
 

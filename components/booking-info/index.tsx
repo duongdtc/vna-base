@@ -7,8 +7,8 @@ import { Booking } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { useTheme } from '@theme';
-import { I18nKeys } from '@translations/locales';
-import { translate } from '@translations/translate';
+import { I18nKeys } from '@vna-base/translations/locales';
+import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
   BookingStatus,

@@ -3,7 +3,7 @@ import { TextInputShrinkProps } from '@vna-base/components/text-input/type';
 import { Colors } from '@theme';
 import { Spacing } from '@theme/type';
 import { FontStyle } from '@theme/typography';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { SnapPoint } from '@vna-base/utils';
 
 export type RowProps =

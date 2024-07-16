@@ -3,7 +3,7 @@ import {
   KEYBOARD_BEHAVIOR,
   KEYBOARD_INPUT_MODE,
 } from '@gorhom/bottom-sheet';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import React, { ReactElement } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 

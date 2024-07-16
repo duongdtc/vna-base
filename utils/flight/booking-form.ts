@@ -18,7 +18,7 @@ import {
 } from '@services/axios/axios-ibe';
 import { CountryRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import {
   convertStringToNumber,
   Gender,

@@ -1,4 +1,4 @@
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { StyleProp, ViewProps, ViewStyle } from 'react-native';
 export type Scene = {
   tabKey: string;

@@ -1,4 +1,4 @@
-import { I18nKeys } from '@translations/locales';
+import { I18nKeys } from '@vna-base/translations/locales';
 import { DatePickerProps } from 'react-native-date-picker';
 
 export type DatePickerCustomProp = Pick<

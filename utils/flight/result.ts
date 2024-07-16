@@ -14,7 +14,7 @@ import {
   FlightOption,
   OptionGroup,
 } from '@services/axios/axios-ibe';
-import { translate } from '@translations/translate';
+import { translate } from '@vna-base/translations/translate';
 import {
   convertHalf2Hour,
   convertStringToNumber,
