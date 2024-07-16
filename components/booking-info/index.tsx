@@ -1,6 +1,6 @@
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, LinearGradient, Text, showToast } from '@components';
-import { BlockProps } from '@components/block/type';
+import { Block, Icon, LinearGradient, Text, showToast } from '@vna-base/components';
+import { BlockProps } from '@vna-base/components/block/type';
 import { LOGO_URL } from '@env';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Booking } from '@services/axios/axios-ibe';

@@ -1,4 +1,4 @@
-import { Block, Icon, Text } from '@components';
+import { Block, Icon, Text } from '@vna-base/components';
 import { History, HistoryChange } from '@services/axios/axios-data';
 import { useTheme } from '@theme';
 import React, { memo } from 'react';

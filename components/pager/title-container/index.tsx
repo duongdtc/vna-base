@@ -1,4 +1,4 @@
-import { LinearGradient, Text } from '@components';
+import { LinearGradient, Text } from '@vna-base/components';
 import { ActiveOpacity, scale } from '@utils';
 import React, {
   forwardRef,

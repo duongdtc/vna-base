@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block } from '@components/block';
+import { Block } from '@vna-base/components/block';
 import { getStyle } from '@theme';
 import { HairlineWidth } from '@utils';
 import React, { memo, useMemo, useState } from 'react';

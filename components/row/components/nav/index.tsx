@@ -1,12 +1,12 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { useStyles } from '../../styles';
-import { CommonProps, Nav as NavProps } from '@components/row/type';
+import { CommonProps, Nav as NavProps } from '@vna-base/components/row/type';
 import { useTheme } from '@theme';
-import { Text } from '@components/text';
-import { Icon } from '@components/icon';
+import { Text } from '@vna-base/components/text';
+import { Icon } from '@vna-base/components/icon';
 import { scale } from '@utils';
-import { Block } from '@components/block';
+import { Block } from '@vna-base/components/block';
 
 export const Nav = (props: NavProps & CommonProps) => {
   const {

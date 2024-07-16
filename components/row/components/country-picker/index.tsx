@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, ModalCountryPicker, Text } from '@components';
-import { ModalCountryPickerRef } from '@components/modal-country-picker/type';
+import { Block, Icon, ModalCountryPicker, Text } from '@vna-base/components';
+import { ModalCountryPickerRef } from '@vna-base/components/modal-country-picker/type';
 import {
   CommonProps,
   CountryPicker as CountryPickerType,
-} from '@components/row-of-form/type';
+} from '@vna-base/components/row-of-form/type';
 import { selectLanguage } from '@redux-selector';
 import { SortType } from '@services/axios';
 import { CountryCode, CountryRealm } from '@services/realm/models';

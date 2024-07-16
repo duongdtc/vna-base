@@ -1,5 +1,5 @@
-import { Child } from '@components';
-import { PagerProps, SceneWithTitle } from '@components/pager/type';
+import { Child } from '@vna-base/components';
+import { PagerProps, SceneWithTitle } from '@vna-base/components/pager/type';
 import { WindowWidth } from '@utils';
 import { useSharedTransition } from '@utils/animated';
 import React, {

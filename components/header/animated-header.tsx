@@ -1,4 +1,4 @@
-import { LinearGradient } from '@components';
+import { LinearGradient } from '@vna-base/components';
 import { createStyleSheet, useStyles, bs } from '@theme';
 import { Colors } from '@theme/type';
 import { WindowWidth } from '@utils';

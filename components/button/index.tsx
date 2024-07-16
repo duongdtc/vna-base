@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Icon } from '@components/icon';
-import { TouchableScale } from '@components/touch-scale';
+import { Icon } from '@vna-base/components/icon';
+import { TouchableScale } from '@vna-base/components/touch-scale';
 import { useStyles } from '@theme';
 import { DisableOpacity, MinScaleButton } from '@utils';
 import React, { memo, useMemo } from 'react';
@@ -16,7 +16,7 @@ import {
 import { Text } from '../text';
 import { styleSheet } from './styles';
 import { ButtonProps, stylesText } from './type';
-import { LinearGradient } from '@components';
+import { LinearGradient } from '@vna-base/components';
 import { Opacity } from '@theme/color';
 
 export const Button = memo((props: ButtonProps) => {

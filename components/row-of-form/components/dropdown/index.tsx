@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, BottomSheet, Icon, Text } from '@components';
-import { ListRef, ListRenderItemParams } from '@components/bottom-sheet/type';
+import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
+import { ListRef, ListRenderItemParams } from '@vna-base/components/bottom-sheet/type';
 import {
   CommonProps,
   Dropdown as DropdownType,
-} from '@components/row-of-form/type';
+} from '@vna-base/components/row-of-form/type';
 import { ActiveOpacity, SnapPoint } from '@utils';
 
 import { SortType } from '@services/axios';

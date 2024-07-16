@@ -6,7 +6,7 @@ import { execFunc } from '@utils';
 import { styles } from './styles';
 import { CheckboxProps } from './type';
 
-import { Icon } from '@components/icon';
+import { Icon } from '@vna-base/components/icon';
 
 export const CheckBox = ({
   // text,

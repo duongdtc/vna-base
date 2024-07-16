@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Switch as SwitchBase, Text } from '@components';
-import { CommonProps, Switch as SwitchType } from '@components/row/type';
+import { Block, Switch as SwitchBase, Text } from '@vna-base/components';
+import { CommonProps, Switch as SwitchType } from '@vna-base/components/row/type';
 import { getStyle, useTheme } from '@theme';
 import React from 'react';
 import { Pressable } from 'react-native';

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, RadioButton, Text } from '@components';
-import { CommonProps, Radio as RadioType } from '@components/row-of-form/type';
+import { Block, RadioButton, Text } from '@vna-base/components';
+import { CommonProps, Radio as RadioType } from '@vna-base/components/row-of-form/type';
 import { useTheme } from '@theme';
 import React from 'react';
 import { FieldPath, FieldValues, useController } from 'react-hook-form';

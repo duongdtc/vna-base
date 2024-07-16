@@ -1,4 +1,4 @@
-import { LinearGradient, NormalHeader } from '@components';
+import { LinearGradient, NormalHeader } from '@vna-base/components';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { StyleSheet, View } from 'react-native';

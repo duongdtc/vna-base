@@ -1,4 +1,4 @@
-import { BottomSheet } from '@components';
+import { BottomSheet } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { SnapPoint } from '@utils';
 import React, {

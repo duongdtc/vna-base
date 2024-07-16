@@ -5,12 +5,12 @@ import {
   Icon,
   Text,
   DateTimePicker as DateTimePickerBase,
-} from '@components';
-import { DatePickerRef } from '@components/date-picker/type';
+} from '@vna-base/components';
+import { DatePickerRef } from '@vna-base/components/date-picker/type';
 import {
   CommonProps,
   DatePicker as DatePickerType,
-} from '@components/row-of-form/type';
+} from '@vna-base/components/row-of-form/type';
 import { SortType } from '@services/axios';
 import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useRef } from 'react';

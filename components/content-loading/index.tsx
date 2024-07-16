@@ -1,4 +1,4 @@
-import { Block } from '@components';
+import { Block } from '@vna-base/components';
 import { useTheme } from '@theme';
 import { scale } from '@utils';
 import React, { memo } from 'react';

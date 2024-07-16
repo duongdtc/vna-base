@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Text, TextInputShrink } from '@components';
-import { CommonProps, InputProps } from '@components/row/type';
+import { Block, Text, TextInputShrink } from '@vna-base/components';
+import { CommonProps, InputProps } from '@vna-base/components/row/type';
 import { translate } from '@translations/translate';
 import React, { useMemo, useRef } from 'react';
 import { Pressable, TextInput } from 'react-native';

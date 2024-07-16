@@ -19,7 +19,7 @@ import {
   useSharedTransition,
 } from '@utils/animated';
 
-import { Text } from '@components/text';
+import { Text } from '@vna-base/components/text';
 import { styles } from './styles';
 import { HelperTextProps } from './type';
 

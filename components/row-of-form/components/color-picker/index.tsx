@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, BottomSheet, Icon, Text } from '@components';
+import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
 import {
   ColorPicker as ColorPickerType,
   CommonProps,
-} from '@components/row-of-form/type';
+} from '@vna-base/components/row-of-form/type';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTheme } from '@theme';
 import { WindowWidth } from '@utils';

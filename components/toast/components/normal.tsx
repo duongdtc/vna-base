@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-unused-styles */
-import { Block } from '@components/block';
-import { Icon } from '@components/icon';
-import { Text } from '@components/text';
+import { Block } from '@vna-base/components/block';
+import { Icon } from '@vna-base/components/icon';
+import { Text } from '@vna-base/components/text';
 import { useTheme } from '@theme';
 import { Opacity } from '@theme/color';
 import React, { useMemo } from 'react';

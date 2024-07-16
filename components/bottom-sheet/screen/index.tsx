@@ -1,4 +1,4 @@
-import { Block, Icon, Text } from '@components';
+import { Block, Icon, Text } from '@vna-base/components';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,

@@ -1,6 +1,6 @@
-import { Block } from '@components/block';
-import { BottomSheet } from '@components/bottom-sheet';
-import { TextInput } from '@components/text-input';
+import { Block } from '@vna-base/components/block';
+import { BottomSheet } from '@vna-base/components/bottom-sheet';
+import { TextInput } from '@vna-base/components/text-input';
 import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { ActiveOpacity } from '@utils';
 import React, { memo, useRef } from 'react';

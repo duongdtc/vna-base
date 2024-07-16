@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 
-import { Block } from '@components/block';
-import { Modal } from '@components/modal';
+import { Block } from '@vna-base/components/block';
+import { Modal } from '@vna-base/components/modal';
 import { BlurView } from '@react-native-community/blur';
 import { SlideInRight, SlideOutRight } from 'react-native-reanimated';
 import { styles } from './styles';

@@ -1,4 +1,4 @@
-import { Block } from '@components/block';
+import { Block } from '@vna-base/components/block';
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import { LazyPlaceholderProps } from './type';

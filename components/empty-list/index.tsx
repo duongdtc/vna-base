@@ -1,6 +1,6 @@
 import React from 'react';
 import { EmptyListProps } from './type';
-import { Text, Block } from '@components';
+import { Text, Block } from '@vna-base/components';
 import { images } from '@assets/image';
 import { Image } from 'react-native';
 

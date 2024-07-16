@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Text } from '@components';
+import { Text } from '@vna-base/components';
 import { findAll } from 'highlight-words-core';
 import { HighLightTextProps } from './type';
 

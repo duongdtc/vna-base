@@ -1,5 +1,5 @@
 import { images } from '@assets/image';
-import { Block, Button, Icon, Image, Text } from '@components';
+import { Block, Button, Icon, Image, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
 import { getAccount, selectDetailHistory } from '@redux-selector';
 import { historyActions } from '@redux-slice';

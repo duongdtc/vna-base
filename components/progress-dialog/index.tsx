@@ -1,5 +1,5 @@
 import { LottieTypes, lotties } from '@assets/lottie';
-import { Block, Modal, Text } from '@components';
+import { Block, Modal, Text } from '@vna-base/components';
 import { useTheme } from '@theme';
 import { I18nKeys } from '@translations/locales';
 import { WindowWidth, delay, scale } from '@utils';

@@ -1,4 +1,4 @@
-import { Image } from '@components';
+import { Image } from '@vna-base/components';
 import { onCheckType, scale } from '@utils';
 import React from 'react';
 import { Pressable, StyleProp } from 'react-native';

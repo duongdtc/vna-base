@@ -1,5 +1,5 @@
 import { IconTypes } from '@assets/icon';
-import { Icon } from '@components/icon';
+import { Icon } from '@vna-base/components/icon';
 import { Colors, useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
 import { scale } from '@utils';

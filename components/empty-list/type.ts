@@ -1,5 +1,5 @@
 import { images } from '@assets/image';
-import { BlockProps } from '@components/block/type';
+import { BlockProps } from '@vna-base/components/block/type';
 import { Colors } from '@theme';
 import { FontStyle } from '@theme/typography';
 import { I18nKeys } from '@translations/locales';

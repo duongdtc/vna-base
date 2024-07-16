@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Text, WebViewAutoHeight } from '@components';
-import { CommonProps, HTMLProps } from '@components/row-of-form/type';
+import { Block, Icon, Text, WebViewAutoHeight } from '@vna-base/components';
+import { CommonProps, HTMLProps } from '@vna-base/components/row-of-form/type';
 import { navigate } from '@navigation/navigation-service';
 import { useTheme } from '@theme';
 import { APP_SCREEN } from '@utils';

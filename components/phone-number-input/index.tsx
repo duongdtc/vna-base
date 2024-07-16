@@ -8,8 +8,8 @@ import {
   RowOfForm,
   Separator,
   Text,
-} from '@components';
-import { ModalCountryPickerRef } from '@components/modal-country-picker/type';
+} from '@vna-base/components';
+import { ModalCountryPickerRef } from '@vna-base/components/modal-country-picker/type';
 import { PassengerForm } from '@screens/flight/type';
 import { CountryCode, CountryRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';

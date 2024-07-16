@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Text, TextInputShrink } from '@components';
-import { CommonProps, InputProps } from '@components/row-of-form/type';
+import { Block, Icon, Text, TextInputShrink } from '@vna-base/components';
+import { CommonProps, InputProps } from '@vna-base/components/row-of-form/type';
 import { SortType } from '@services/axios';
 import { translate } from '@translations/translate';
 import React, { useCallback, useMemo, useRef } from 'react';

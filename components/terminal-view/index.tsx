@@ -1,4 +1,4 @@
-import { Block, Button, LinearGradient, showToast } from '@components';
+import { Block, Button, LinearGradient, showToast } from '@vna-base/components';
 import dayjs from 'dayjs';
 import React, { useRef } from 'react';
 import { Platform, StyleSheet } from 'react-native';

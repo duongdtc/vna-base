@@ -1,4 +1,4 @@
-import { Block, BottomSheet, Icon, Text } from '@components';
+import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { ColorLight } from '@theme/color';
 import { I18nKeys } from '@translations/locales';

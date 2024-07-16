@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Switch as SwitchBase, Text } from '@components';
+import { Block, Switch as SwitchBase, Text } from '@vna-base/components';
 import {
   CommonProps,
   Switch as SwitchType,
-} from '@components/row-of-form/type';
+} from '@vna-base/components/row-of-form/type';
 import { getStyle, useTheme } from '@theme';
 import React from 'react';
 import { FieldPath, FieldValues, useController } from 'react-hook-form';

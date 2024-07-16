@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BottomSheet, LazyPlaceholder, Separator, Text } from '@components';
+import { BottomSheet, LazyPlaceholder, Separator, Text } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import {
   selectIsLoadingListHistory,
@@ -20,7 +20,7 @@ import isEqual from 'react-fast-compare';
 import { ListRenderItem } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import { NormalRef } from '@components/bottom-sheet/type';
+import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { historyActions, orderActions } from '@redux-slice';
 import { ItemHistory } from './item-history';
 import { useStyles } from './style';

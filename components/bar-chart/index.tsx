@@ -1,4 +1,4 @@
-import { Block } from '@components/block';
+import { Block } from '@vna-base/components/block';
 import { useTheme } from '@theme';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';

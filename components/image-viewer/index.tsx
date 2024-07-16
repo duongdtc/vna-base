@@ -1,4 +1,4 @@
-import { showModalConfirm } from '@components/modal-confirm';
+import { showModalConfirm } from '@vna-base/components/modal-confirm';
 import React, { forwardRef, memo, useImperativeHandle, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import ImageView from 'react-native-image-viewing';

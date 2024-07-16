@@ -1,4 +1,4 @@
-import { BottomSheet } from '@components/bottom-sheet';
+import { BottomSheet } from '@vna-base/components/bottom-sheet';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import dayjs from 'dayjs';
 import React, {

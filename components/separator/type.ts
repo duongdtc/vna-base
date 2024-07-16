@@ -1,4 +1,4 @@
-import { BlockProps } from '@components/block/type';
+import { BlockProps } from '@vna-base/components/block/type';
 import { Spacing } from '@theme/type';
 
 export type SeparatorProps = {

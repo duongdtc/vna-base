@@ -1,5 +1,5 @@
-import { Block } from '@components/block';
-import { Text } from '@components/text';
+import { Block } from '@vna-base/components/block';
+import { Text } from '@vna-base/components/text';
 import React from 'react';
 import { Pressable } from 'react-native';
 import { BarProps } from '../type';

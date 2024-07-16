@@ -1,4 +1,4 @@
-import { Block, Icon, Text, TextInputWithLeftIcon } from '@components';
+import { Block, Icon, Text, TextInputWithLeftIcon } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { useDebounce } from '@hooks';
 import { selectAllAccounts } from '@redux-selector';

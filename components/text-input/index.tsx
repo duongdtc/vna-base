@@ -25,8 +25,8 @@ import Animated, {
 import { useTheme } from '@theme';
 import { delay, execFunc, HairlineWidth, scale } from '@utils';
 
-import { Block } from '@components/block';
-import { HelperText } from '@components/helper-text';
+import { Block } from '@vna-base/components/block';
+import { HelperText } from '@vna-base/components/helper-text';
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import isEmpty from 'lodash.isempty';
 import isEqual from 'react-fast-compare';

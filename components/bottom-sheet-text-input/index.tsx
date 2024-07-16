@@ -3,7 +3,7 @@ import React, { memo, useRef } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { BottomSheetTextInputProps } from './type';
-import { Icon } from '@components/icon';
+import { Icon } from '@vna-base/components/icon';
 import { useTheme } from '@theme';
 
 export const BottomSheetTextInput = memo(

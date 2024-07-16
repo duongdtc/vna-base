@@ -1,5 +1,5 @@
 import { IconTypes } from '@assets/icon';
-import { TextInputShrinkProps } from '@components/text-input/type';
+import { TextInputShrinkProps } from '@vna-base/components/text-input/type';
 import { Colors } from '@theme';
 import { Spacing } from '@theme/type';
 import { FontStyle } from '@theme/typography';
