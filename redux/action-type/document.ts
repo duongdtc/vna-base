@@ -1,0 +1,8 @@
+import { SLICE_NAME } from '@redux/action-slice/constant';
+
+export const GET_LIST_DOCUMENT_BY_AGENT_ID =
+  SLICE_NAME.DOCUMENT + 'GET_LIST_DOCUMENT_BY_AGENT_ID';
+
+export const GET_DOCUMENT = SLICE_NAME.DOCUMENT + 'GET_DOCUMENT';
+
+export const DELETE_DOCUMENT = SLICE_NAME.DOCUMENT + 'DELETE_DOCUMENT';

@@ -1,0 +1,6 @@
+import { SLICE_NAME } from '@redux/action-slice/constant';
+
+export const GET_SEAT_MAPS = SLICE_NAME.FLIGHT_BOOKING_FORM + 'GET_SEAT_MAP';
+export const GET_ANCILLARIES =
+  SLICE_NAME.FLIGHT_BOOKING_FORM + 'GET_ANCILLARIES';
+export const BOOK_FLIGHT = SLICE_NAME.FLIGHT_BOOKING_FORM + 'BOOK_FLIGHT';

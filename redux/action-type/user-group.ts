@@ -1,0 +1,9 @@
+import { SLICE_NAME } from '@redux/action-slice/constant';
+
+export const GET_LIST_USER_GROUP =
+  SLICE_NAME.USER_GROUP + 'GET_LIST_USER_GROUP';
+
+export const GET_USER_GROUP_DETAIL_BY_ID =
+  SLICE_NAME.USER_GROUP + 'GET_USER_GROUP_DETAIL_BY_ID';
+
+export const GET_ALL_USER_GROUP = SLICE_NAME.USER_GROUP + 'GET_ALL_USER_GROUP';

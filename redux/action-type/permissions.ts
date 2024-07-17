@@ -1,0 +1,7 @@
+import { SLICE_NAME } from '@redux/action-slice/constant';
+
+export const GET_ACCOUNT_PERMISSION =
+  SLICE_NAME.AUTHENTICATION + 'GET_ACCOUNT_PERMISSION';
+
+export const GET_ALL_PERMISSION =
+  SLICE_NAME.AUTHENTICATION + 'GET_ALL_PERMISSION';
