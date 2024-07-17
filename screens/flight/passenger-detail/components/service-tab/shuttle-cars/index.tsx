@@ -4,7 +4,7 @@ import {
   FlightOfPassengerForm,
   PassengerForm,
 } from '@vna-base/screens/flight/type';
-import { ActiveOpacity, HairlineWidth } from '@vna-base/utils';
+import { ActiveOpacity, HairlineWidth, scale } from '@vna-base/utils';
 import React, { useCallback, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import {
@@ -36,12 +36,9 @@ export const ShuttleCars = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
 
   const renderFlight = useCallback<ListRenderItem<FlightOfPassengerForm>>(
     ({ item, index }) => {
-      const hideHeader = flights.length === 1 && item.ListSegment?.length === 1;
-      return (
-        <ShuttleCarItem hideHeader={hideHeader} item={item} index={index} />
-      );
+      return <ShuttleCarItem item={item} index={index} />;
     },
-    [flights.length],
+    [],
   );
 
   return (
@@ -72,6 +69,9 @@ export const ShuttleCars = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
           renderItem={renderFlight}
           scrollEnabled={false}
           keyExtractor={(_, index) => index.toString()}
+          style={{
+            marginTop: scale(8),
+          }}
         />
       </Block>
     </Block>

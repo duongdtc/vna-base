@@ -18,24 +18,29 @@ import {
   ItemCustom,
   ModalCustomPickerRef,
 } from '@vna-base/screens/order-detail/components/modal-custom-picker/type';
-import { HairlineWidth, SnapPoint } from '@vna-base/utils';
+import { HairlineWidth, scale, SnapPoint } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { memo, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FlatList, Pressable, View } from 'react-native';
-import { BusDetails, NumberBusDetails, TripDetails } from './dummy';
+import {
+  Bus,
+  BusDetails,
+  NumberBus,
+  NumberBusDetails,
+  TripDetails,
+} from './dummy';
 import { ModalPicker } from '../modal-picker';
 import { Item, ModalPickerRef } from '../modal-picker/type';
 import { I18nKeys } from '@translations/locales';
 
 type Props = {
-  hideHeader: boolean;
   item: FlightOfPassengerForm;
   index: number;
 };
 
-export const ShuttleCarItem = memo(({ hideHeader, item, index }: Props) => {
+export const ShuttleCarItem = memo(({ item, index }: Props) => {
   const { styles } = useStyles(styleSheet);
 
   const { control } = useFormContext<PassengerForm>();
@@ -54,12 +59,7 @@ export const ShuttleCarItem = memo(({ hideHeader, item, index }: Props) => {
   return (
     <>
       <View
-        style={[
-          hideHeader
-            ? styles.flightItemContainerNoWrap
-            : styles.flightItemContainer,
-          !hideHeader && styles.flightItemContainerCommon,
-        ]}>
+        style={[styles.flightItemContainer, styles.flightItemContainerCommon]}>
         <FlatList
           data={item.ListSegment}
           keyExtractor={(item, index) => `${item.SegmentId}_${index}`}
@@ -222,9 +222,17 @@ export const ShuttleCarItem = memo(({ hideHeader, item, index }: Props) => {
                               alignItems="center"
                               columnGap={4}>
                               <Text
-                                text={value ? selected?.t18n : 'Chưa chọn'}
+                                text={
+                                  value && selected?.key !== NumberBus.ZERO
+                                    ? selected?.t18n
+                                    : 'Chưa chọn'
+                                }
                                 fontStyle="Body14Med"
-                                colorTheme={value ? 'success500' : 'neutral100'}
+                                colorTheme={
+                                  value && selected?.key !== NumberBus.ZERO
+                                    ? 'success500'
+                                    : 'neutral100'
+                                }
                               />
                               <Icon
                                 icon="arrow_ios_down_fill"
@@ -260,9 +268,10 @@ export const ShuttleCarItem = memo(({ hideHeader, item, index }: Props) => {
                         <Pressable
                           onPress={() => {
                             bottomTypeBusRef.current?.present(String(value));
-                          }}>
+                          }}
+                          style={{ paddingVertical: scale(12) }}>
                           <Block
-                            padding={12}
+                            paddingHorizontal={12}
                             flexDirection="row"
                             alignItems="center"
                             justifyContent="space-between">
@@ -276,17 +285,46 @@ export const ShuttleCarItem = memo(({ hideHeader, item, index }: Props) => {
                               alignItems="center"
                               columnGap={4}>
                               <Text
-                                text={value ? selected?.t18n : 'Chưa chọn'}
+                                text={
+                                  value && selected?.key !== Bus.ZERO
+                                    ? 'Giá'
+                                    : 'Chưa chọn'
+                                }
                                 fontStyle="Body14Med"
-                                colorTheme={value ? 'success500' : 'neutral100'}
+                                colorTheme={
+                                  value && selected?.key !== Bus.ZERO
+                                    ? 'success500'
+                                    : 'neutral100'
+                                }
                               />
-                              <Icon
-                                icon="arrow_ios_down_fill"
-                                size={16}
-                                colorTheme="neutral100"
-                              />
+                              {!value ||
+                                (selected?.key === Bus.ZERO && (
+                                  <Icon
+                                    icon={'arrow_ios_down_fill'}
+                                    size={16}
+                                    colorTheme="neutral100"
+                                  />
+                                ))}
                             </Block>
                           </Block>
+                          {value && selected?.key !== Bus.ZERO && (
+                            <Block
+                              paddingHorizontal={12}
+                              flexDirection="row"
+                              alignItems="center"
+                              justifyContent="space-between">
+                              <Text
+                                text={selected?.t18n}
+                                fontStyle="Body12Bold"
+                                colorTheme={'success500'}
+                              />
+                              <Text
+                                text={selected?.price?.currencyFormat()}
+                                fontStyle="Body12Bold"
+                                colorTheme={'price'}
+                              />
+                            </Block>
+                          )}
                         </Pressable>
                         <ModalPicker
                           ref={bottomTypeBusRef}

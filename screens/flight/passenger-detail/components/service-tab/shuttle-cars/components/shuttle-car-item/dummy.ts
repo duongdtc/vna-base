@@ -36,7 +36,7 @@ export const TripDetails: Record<TRIP, TripDetail> = {
   },
 };
 
-enum NumberBus {
+export enum NumberBus {
   ZERO = 'ZERO',
   ONE = 'ONE',
   TWO = 'TWO',
@@ -88,7 +88,7 @@ export const NumberBusDetails: Record<NumberBus, NumberBusDetail> = {
   },
 };
 
-enum Bus {
+export enum Bus {
   ZERO = 'ZERO',
   ONE = 'ONE',
   TWO = 'TWO',
@@ -97,7 +97,7 @@ enum Bus {
 
 export type BusDetail = {
   t18n: I18nKeys;
-  key: string | null;
+  key: Bus;
   image?: string;
   description?: string | null;
   price?: number;
