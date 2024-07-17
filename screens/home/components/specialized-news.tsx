@@ -1,22 +1,27 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { images } from '@assets/image';
-import { EmptyList, Image, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
+import { Content } from '@services/axios/axios-email';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { APP_SCREEN } from '@utils';
+import { EmptyList, Image, Text } from '@vna-base/components';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import {
   selectListSpecializeNews,
   selectLoadingSpecializeNews,
 } from '@vna-base/redux/selector';
-import { dbsContentActions } from '@vna-base/redux/action-slice';
-import { Content } from '@services/axios/axios-email';
-import { createStyleSheet, useStyles, bs } from '@theme';
-import { SeparatorWidth, WindowWidth, dispatch, scale } from '@vna-base/utils';
+import {
+  SeparatorWidth,
+  WindowWidth,
+  dispatch,
+  getImageUrl,
+  scale,
+} from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ContentLoader, { Rect } from 'react-content-loader/native';
 import isEqual from 'react-fast-compare';
 import { FlatList, ListRenderItem, Pressable, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { APP_SCREEN } from '@utils';
 
 export const SpecializedNews = memo(() => {
   const {
@@ -73,7 +78,7 @@ export const SpecializedNews = memo(() => {
           <View style={[bs.rowGap_8, styles.itemContentContainer]}>
             <View style={[bs.borderRadius_12, styles.itemContent]}>
               <Image
-                source={item.Image ?? images.image_default}
+                source={getImageUrl(item.Image, 'image_default_news')}
                 style={{ width: '100%', height: '100%' }}
                 resizeMode="cover"
               />

@@ -5,6 +5,7 @@ import { DocumentPickerResponse } from 'react-native-document-picker';
 import { Process, UploadFileResponse } from '@redux/type';
 import { Platform } from 'react-native';
 import { Image } from 'react-native-image-crop-picker';
+import { ImageTypes } from '@assets/image';
 
 export enum PathInServer {
   MISSION = 'mission/document',
@@ -121,4 +122,25 @@ export function getNameOfPhoto(photo: Image, newExt?: string): string {
   }
 
   return filename;
+}
+
+export function getImageUrl(
+  urlOrPath: string | number | null | undefined,
+  defaultImage?: ImageTypes,
+) {
+  if (!urlOrPath) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    return images[defaultImage];
+  }
+
+  if (typeof urlOrPath === 'number') {
+    return urlOrPath;
+  }
+
+  if (urlOrPath.startsWith('http')) {
+    return urlOrPath;
+  }
+
+  return UPLOAD_FILE_URL + urlOrPath;
 }

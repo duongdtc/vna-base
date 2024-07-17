@@ -1,14 +1,20 @@
-import { images } from '@assets/image';
-import { Image } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
+import { Content } from '@services/axios/axios-email';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { APP_SCREEN } from '@utils';
+import { Image } from '@vna-base/components';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import {
   selectLoadingSpecializeNews,
   selectOutStandingPolicy,
 } from '@vna-base/redux/selector';
-import { dbsContentActions } from '@vna-base/redux/action-slice';
-import { Content } from '@services/axios/axios-email';
-import { createStyleSheet, useStyles, bs } from '@theme';
-import { ActiveOpacity, WindowWidth, dispatch, scale } from '@vna-base/utils';
+import {
+  ActiveOpacity,
+  WindowWidth,
+  dispatch,
+  getImageUrl,
+  scale,
+} from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ContentLoader, { Rect } from 'react-content-loader/native';
@@ -20,7 +26,6 @@ import Carousel, {
   Pagination,
 } from 'react-native-reanimated-carousel';
 import { useSelector } from 'react-redux';
-import { APP_SCREEN } from '@utils';
 
 const Height = (WindowWidth - scale(24)) * (160 / 366);
 
@@ -84,7 +89,7 @@ export const Banner = memo(() => {
           }}>
           <Image
             resizeMode="stretch"
-            source={item.Image ?? images.image_default}
+            source={getImageUrl(item.Image, 'image_default_news')}
             containerStyle={styles.img}
           />
         </TouchableOpacity>
