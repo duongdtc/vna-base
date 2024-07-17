@@ -6,7 +6,7 @@ import { translate } from '@vna-base/translations/translate';
 
 import { StorageKey, remove } from '@vna-base/utils';
 import { dispatch } from '../redux';
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 
 type TypesBase =
   | 'bigint'

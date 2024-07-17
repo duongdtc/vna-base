@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { SISetState, SISetType } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { SISetForm } from '@vna-base/screens/agent/type';

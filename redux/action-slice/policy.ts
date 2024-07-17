@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { PolicyState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { FilterForm } from '@vna-base/screens/policy/type';

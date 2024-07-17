@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ConfigEmailState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { ConfigEmailForm } from '@vna-base/screens/config-email/type';

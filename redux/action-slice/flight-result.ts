@@ -1,5 +1,5 @@
 import { FareRuleParams } from '@navigation/type';
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { CustomFeeTotal, FlightResultState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import {

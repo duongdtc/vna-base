@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ConfigPaymentState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { PayMethod } from '@services/axios/axios-data';

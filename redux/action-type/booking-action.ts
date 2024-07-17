@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_FLIGHT_ACTIONS_BY_BOOKING_ID =
   SLICE_NAME.BOOKING_ACTION + 'GET_FLIGHT_ACTIONS_BY_BOOKING_ID';

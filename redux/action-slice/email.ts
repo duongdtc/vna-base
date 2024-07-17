@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { EmailState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { ETicket, EmailModel } from '@services/axios/axios-email';

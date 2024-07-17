@@ -2,7 +2,7 @@ import { FlightReportState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { ReportLst } from '@services/axios/axios-data';
 import { SLICE_NAME } from './constant';
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { GetFlightReportMode } from '@vna-base/utils';
 
 const initialState: FlightReportState = {

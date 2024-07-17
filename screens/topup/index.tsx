@@ -13,7 +13,7 @@ import {
 } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
 import { bankActions } from '@vna-base/redux/action-slice';
-import { selectAllBankAccountsOfParent } from '@redux/selector/bank';
+import { selectAllBankAccountsOfParent } from '@vna-base/redux/selector/bank';
 import {
   convertStringToNumber,
   dispatch,

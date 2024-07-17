@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { FlightBookingFormState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FlightOfPassengerForm, PassengerForm } from '@vna-base/screens/flight/type';

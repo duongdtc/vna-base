@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { IAppState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ThemeType } from '@theme';

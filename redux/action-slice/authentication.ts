@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { AuthenticationState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FormLoginType } from '@vna-base/screens/login/type';

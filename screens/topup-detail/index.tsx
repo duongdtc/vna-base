@@ -18,7 +18,7 @@ import { topupActions } from '@vna-base/redux/action-slice';
 import {
   selectAllBankAccountsOfParent,
   selectTransactionStatus,
-} from '@redux/selector/bank';
+} from '@vna-base/redux/selector/bank';
 import { TransactionStatus } from '@vna-base/screens/pay/hooks/use-handle-topup-mqtt';
 import { TypeIdMessage } from '@services/mqtt/constants';
 import { removeFunOnMessage } from '@services/mqtt/provider';

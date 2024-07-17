@@ -15,7 +15,7 @@ import {
   iosRequestReadWriteGalleryPermission,
 } from '@react-native-camera-roll/camera-roll';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { selectAllBankAccountsOfParent, selectQR } from '@redux/selector/bank';
+import { selectAllBankAccountsOfParent, selectQR } from '@vna-base/redux/selector/bank';
 import { TypeIdMessage } from '@services/mqtt/constants';
 import { removeFunOnMessage } from '@services/mqtt/provider';
 import { useTheme } from '@theme';

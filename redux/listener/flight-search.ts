@@ -10,7 +10,7 @@ import {
   OptionGroup,
 } from '@services/axios/axios-ibe';
 import { RootState } from '@store/all-reducers';
-import { AppDispatch } from '@store/store';
+import { AppDispatch } from '@vna-base/redux/store/store';
 import {
   StorageKey,
   clearSearchFlightResult,

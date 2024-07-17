@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_FARE_RULE = SLICE_NAME.FLIGHT_RESULT + 'GET_FARE_RULE';
 export const GET_MIN_FARE = SLICE_NAME.FLIGHT_RESULT + 'GET_MIN_FARE';

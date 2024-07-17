@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { BalanceInfo, CurrentAccountState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserAccount } from '@services/axios/axios-data';

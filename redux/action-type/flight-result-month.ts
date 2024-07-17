@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const CHANGE_VIEW_CHART =
   SLICE_NAME.FLIGHT_RESULT_MONTH + 'CHANGE_VIEW_CHART';

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { Agent, AgentGroup, AgentState, AgentType } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { FormNewAgentType } from '@vna-base/screens/add-new-agent/type';

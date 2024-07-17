@@ -4,7 +4,7 @@ import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { SLICE_NAME } from './constant';
 import { StorageKey, load } from '@vna-base/utils';
 import { MinPrice } from '@services/axios/axios-ibe';
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ResultMonthFilterForm } from '@vna-base/screens/flight/type';
 
 const initialState: FlightMonthState = {

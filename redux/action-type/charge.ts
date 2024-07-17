@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_CHARGE_BY_ORDER_ID =
   SLICE_NAME.CHARGE + 'GET_CHARGE_BY_ORDER_ID';

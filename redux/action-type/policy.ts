@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_LIST_POLICY = SLICE_NAME.POLICY + 'GET_LIST_POLICY';
 

@@ -1,6 +1,6 @@
 import { replace } from '@navigation/navigation-service';
 import { bankActions } from '@vna-base/redux/action-slice';
-import { selectQR } from '@redux/selector/bank';
+import { selectQR } from '@vna-base/redux/selector/bank';
 import { TypeIdMessage } from '@services/mqtt/constants';
 import { useMQTTContext } from '@services/mqtt/provider';
 import { APP_SCREEN } from '@utils';

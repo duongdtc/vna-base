@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ListData, PaymentState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PaymentHistoryFilterForm } from '@vna-base/screens/payment-history/type';

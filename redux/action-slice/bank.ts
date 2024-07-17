@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { Account, BankState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TransactionStatus } from '@vna-base/screens/pay/hooks/use-handle-topup-mqtt';

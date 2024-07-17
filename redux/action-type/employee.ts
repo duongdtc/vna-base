@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_LIST_EMPLOYEE_BY_AGENT =
   SLICE_NAME.EMPLOYEE + 'GET_LIST_EMPLOYEE_BY_AGENT';

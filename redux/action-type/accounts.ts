@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_LIST_ACCOUNT = SLICE_NAME.LIST_ACCOUNTS + 'GET_LIST_ACCOUNT';
 

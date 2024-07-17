@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_LIST_USER_SUB_AGET =
   SLICE_NAME.USER_SUB_AGENT + 'GET_LIST_USER_SUB_AGET';

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ConfigTicketState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { ConfigTicketForm } from '@vna-base/screens/config-ticket/type';

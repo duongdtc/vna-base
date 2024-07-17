@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const GET_LIST_PAYMENT_EXPENSE =
   SLICE_NAME.PAYMENT + 'GET_LIST_PAYMENT_EXPENSE';

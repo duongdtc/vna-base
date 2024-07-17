@@ -1,4 +1,4 @@
-import { SLICE_NAME } from '@redux/action-slice/constant';
+import { SLICE_NAME } from '@vna-base/redux/action-slice/constant';
 
 export const CONTENT_INSERT_OR_UPDATE =
   SLICE_NAME.CONTENT + 'CONTENT_INSERT_OR_UPDATE';

@@ -1,4 +1,4 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { ContentState } from '@redux/type';
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { Content } from '@services/axios/axios-data';

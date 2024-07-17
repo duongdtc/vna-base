@@ -11,7 +11,7 @@ import {
   createListenerMiddleware,
 } from '@reduxjs/toolkit';
 import { RootState } from '@store/all-reducers';
-import { AppDispatch } from '@store/store';
+import { AppDispatch } from '@vna-base/redux/store/store';
 import { I18nKeys } from '@translations/locales';
 
 export const listenerMiddleware = createListenerMiddleware();

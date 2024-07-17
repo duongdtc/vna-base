@@ -1,8 +1,7 @@
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { BookingState, ListData } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FilterForm } from '@vna-base/screens/booking/type';
-import { ResearchBookingForm } from '@vna-base/screens/home/components/main-content/components/bottom-sheet-research-booking/type';
 import { Booking } from '@services/axios/axios-data';
 import { SLICE_NAME } from './constant';
 
@@ -83,7 +82,7 @@ const getBookingByIdOrBookingCode = createAction(
     data: {
       id?: string;
       system: string;
-    } & ResearchBookingForm,
+    } ,
     option?: { isViewing?: boolean; withLoading?: boolean; force?: boolean },
     cb?: (
       isSuccess: boolean,

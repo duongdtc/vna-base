@@ -1,7 +1,7 @@
 import { ModuleSideBar, ModuleState } from '@redux/type';
 import { PayloadAction, createAction, createSlice } from '@reduxjs/toolkit';
 import { SLICE_NAME } from './constant';
-import Actions from '@redux-action-type';
+import Actions from '@vna-base/redux/action-type';
 import { UserModule } from '@services/axios/axios-data';
 
 const initialState: ModuleState = {
