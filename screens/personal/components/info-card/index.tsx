@@ -6,8 +6,8 @@ import {
   selectBalanceInfo,
   selectCurrentAccount,
   selectIsShowBalance,
-} from '@redux-selector';
-import { currentAccountActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { currentAccountActions } from '@vna-base/redux/action-slice';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,

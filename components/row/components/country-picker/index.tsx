@@ -5,7 +5,7 @@ import {
   CommonProps,
   CountryPicker as CountryPickerType,
 } from '@vna-base/components/row-of-form/type';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { SortType } from '@services/axios';
 import { CountryCode, CountryRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';

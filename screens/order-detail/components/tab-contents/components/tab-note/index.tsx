@@ -7,8 +7,8 @@ import {
   Text,
   TextInputAutoHeight,
 } from '@vna-base/components';
-import { getAccount, selectListOrderRemark } from '@redux-selector';
-import { orderActions } from '@redux-slice';
+import { getAccount, selectListOrderRemark } from '@vna-base/redux/selector';
+import { orderActions } from '@vna-base/redux/action-slice';
 import { Remark } from '@services/axios/axios-data';
 import { useTheme } from '@theme';
 import { translate } from '@vna-base/translations/translate';

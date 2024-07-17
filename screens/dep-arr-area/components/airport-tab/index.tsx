@@ -2,7 +2,7 @@
 import { Block, EmptyList, Highlighter, Icon, TextInput } from '@vna-base/components';
 import { useDebounce } from '@vna-base/hooks';
 import { goBack } from '@navigation/navigation-service';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { AirportRealm, CountryRealm } from '@services/realm/models';
 import { useQuery, useRealm } from '@services/realm/provider';
 import { ActiveOpacity } from '@vna-base/utils';

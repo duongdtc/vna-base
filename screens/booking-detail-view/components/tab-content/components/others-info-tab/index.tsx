@@ -1,5 +1,5 @@
 import { Block, Text } from '@vna-base/components';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';

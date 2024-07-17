@@ -13,7 +13,7 @@ import {
 import { PREFIX_FARE_REPORT_NAME } from '@env';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectListRoute, selectSearchForm } from '@redux-selector';
+import { selectListRoute, selectSearchForm } from '@vna-base/redux/selector';
 import { Route } from '@redux/type';
 import { AirOption } from '@services/axios/axios-ibe';
 import { useStyles } from '@theme';

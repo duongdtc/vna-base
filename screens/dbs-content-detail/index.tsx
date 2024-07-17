@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectDetailDBSContent } from '@redux-selector';
-import { dbsContentActions } from '@redux-slice';
+import { selectDetailDBSContent } from '@vna-base/redux/selector';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import { useTheme } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import { HitSlop, WindowWidth, dispatch } from '@vna-base/utils';

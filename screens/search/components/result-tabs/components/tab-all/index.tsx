@@ -1,5 +1,5 @@
 import { Block, EmptyList, Text } from '@vna-base/components';
-import { selectResultSearch } from '@redux-selector';
+import { selectResultSearch } from '@vna-base/redux/selector';
 import { BookingItem } from '@vna-base/screens/booking/components';
 import { Item } from '@vna-base/screens/flight-ticket/components';
 import { OrderItem } from '@vna-base/screens/order/components';

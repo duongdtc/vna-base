@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, Icon, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import {
   AircraftRealm,

@@ -1,5 +1,5 @@
 import { Block, EmptyList } from '@vna-base/components';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { Ancillary, Passenger } from '@services/axios/axios-data';
 import { PassengerType } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';

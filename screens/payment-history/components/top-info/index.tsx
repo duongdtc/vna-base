@@ -6,7 +6,7 @@ import {
   RangeDate,
   Text,
 } from '@vna-base/components';
-import { selectBalanceInfo } from '@redux-selector';
+import { selectBalanceInfo } from '@vna-base/redux/selector';
 import { PaymentHistoryFilterForm } from '@vna-base/screens/payment-history/type';
 import { translate } from '@vna-base/translations/translate';
 import { CurrencyDetails } from '@vna-base/utils';

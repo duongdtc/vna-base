@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { selectIsLoadingAncillaries, selectServices } from '@redux-selector';
+import { selectIsLoadingAncillaries, selectServices } from '@vna-base/redux/selector';
 import { Ancillary } from '@services/axios/axios-ibe';
 import React, { useCallback, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';

@@ -6,7 +6,7 @@ import {
   selectAgentGroup,
   selectAgentType,
   selectLanguage,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Agent, AgentGroup, AgentType } from '@services/axios/axios-data';
 import { translate } from '@vna-base/translations/translate';
 import { APP_SCREEN } from '@utils';

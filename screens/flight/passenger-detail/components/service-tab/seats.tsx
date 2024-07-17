@@ -1,4 +1,4 @@
-import { selectIsLoadingSeatMaps, selectSeatMaps } from '@redux-selector';
+import { selectIsLoadingSeatMaps, selectSeatMaps } from '@vna-base/redux/selector';
 import React, { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Service } from '.';

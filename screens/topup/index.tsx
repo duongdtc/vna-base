@@ -12,7 +12,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { bankActions } from '@redux-slice';
+import { bankActions } from '@vna-base/redux/action-slice';
 import { selectAllBankAccountsOfParent } from '@redux/selector/bank';
 import {
   convertStringToNumber,

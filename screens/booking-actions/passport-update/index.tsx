@@ -2,7 +2,7 @@
 import { Button, NormalHeader, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { bookingActionActions } from '@redux-slice';
+import { bookingActionActions } from '@vna-base/redux/action-slice';
 import { Booking } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

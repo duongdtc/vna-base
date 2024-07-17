@@ -1,8 +1,8 @@
 import { Button, Icon, NormalHeader, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectDetailDBSContent } from '@redux-selector';
-import { dbsContentActions } from '@redux-slice';
+import { selectDetailDBSContent } from '@vna-base/redux/selector';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import { createStyleSheet, useStyles, bs } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import { HitSlop, WindowWidth, dispatch, scale } from '@vna-base/utils';

@@ -6,8 +6,8 @@ import {
   selectCustomFeeTotal,
   selectListRoute,
   selectSearchDone,
-} from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { createStyleSheet, useStyles } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import {

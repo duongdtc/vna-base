@@ -1,5 +1,5 @@
 import { Block, Text } from '@vna-base/components';
-import { selectListRoute, selectSearchForm } from '@redux-selector';
+import { selectListRoute, selectSearchForm } from '@vna-base/redux/selector';
 import { CustomFeeForm } from '@vna-base/screens/flight/type';
 import { translate } from '@vna-base/translations/translate';
 import { calTotalCustomFee } from '@vna-base/utils';

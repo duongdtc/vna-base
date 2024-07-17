@@ -2,7 +2,7 @@
 import { ActionSheet, showToast } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { configEmailActions, contentActions } from '@redux-slice';
+import { configEmailActions, contentActions } from '@vna-base/redux/action-slice';
 import { TitleAndRemarkForm } from '@vna-base/screens/title-and-remark-of-ticket/type';
 import { dispatch } from '@vna-base/utils';
 import React, { forwardRef, memo } from 'react';

@@ -1,6 +1,6 @@
 import { images } from '@assets/image';
 import { Block, Image, Separator, Text } from '@vna-base/components';
-import { selectBalanceInfo, selectCurrentAccount } from '@redux-selector';
+import { selectBalanceInfo, selectCurrentAccount } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { CurrencyDetails } from '@vna-base/utils';
 import React from 'react';

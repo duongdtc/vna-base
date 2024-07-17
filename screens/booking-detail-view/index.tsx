@@ -1,6 +1,6 @@
 import { Block, Screen } from '@vna-base/components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { bookingActions } from '@redux-slice';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import React, { useEffect } from 'react';

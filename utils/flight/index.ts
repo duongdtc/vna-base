@@ -3,7 +3,7 @@ import {
   flightBookingFormActions,
   flightResultActions,
   flightSearchActions,
-} from '@redux-slice';
+} from '@vna-base/redux/action-slice';
 import { LanguageType } from '@vna-base/screens/booking-actions/sms-send/type';
 import { Passenger as PassengerData } from '@services/axios/axios-data';
 import { Passenger } from '@services/axios/axios-ibe';

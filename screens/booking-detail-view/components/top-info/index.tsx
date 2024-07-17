@@ -8,7 +8,7 @@ import {
 } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { PREFIX_BOOKING_VIEW } from '@env';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import {
   ActiveOpacity,
   BookingStatus,

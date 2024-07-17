@@ -1,7 +1,13 @@
 import { RowOfForm, Separator } from '@vna-base/components';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectAllAgentGroup, selectAllAgentType } from '@redux-selector';
-import { FilterFormInBottomSheet, statusActive } from '@vna-base/screens/agent/type';
+import {
+  selectAllAgentGroup,
+  selectAllAgentType,
+} from '@vna-base/redux/selector';
+import {
+  FilterFormInBottomSheet,
+  statusActive,
+} from '@vna-base/screens/agent/type';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useSelector } from 'react-redux';

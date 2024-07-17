@@ -1,5 +1,5 @@
 import { Button } from '@vna-base/components';
-import { flightSearchActions } from '@redux-slice';
+import { flightSearchActions } from '@vna-base/redux/action-slice';
 import { SearchForm, SubmitButtonProps } from '@vna-base/screens/flight/type';
 import { bs } from '@theme';
 import { dispatch } from '@vna-base/utils';

@@ -1,5 +1,5 @@
 import { Block, Row, Separator, Text } from '@vna-base/components';
-import { selectCurrentAccount, selectUserGroupById } from '@redux-selector';
+import { selectCurrentAccount, selectUserGroupById } from '@vna-base/redux/selector';
 import { useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
 import { isIos, scale } from '@vna-base/utils';

@@ -1,4 +1,4 @@
-import { emailActions } from '@redux-slice';
+import { emailActions } from '@vna-base/redux/action-slice';
 import { EmailType, dispatch } from '@vna-base/utils';
 import { useEffect } from 'react';
 import { UseFormReturn, useWatch } from 'react-hook-form';

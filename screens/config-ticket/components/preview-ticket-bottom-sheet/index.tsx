@@ -20,7 +20,7 @@ import {
 
 import { BottomSheet } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { selectConfigTicketLanguages } from '@redux-selector';
+import { selectConfigTicketLanguages } from '@vna-base/redux/selector';
 import {
   ConfigTicketForm,
   PreviewTicketBottomSheetRef,

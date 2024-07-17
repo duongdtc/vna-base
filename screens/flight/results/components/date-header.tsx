@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Icon } from '@vna-base/components';
-import { selectCurrentStage, selectListRoute } from '@redux-selector';
+import { selectCurrentStage, selectListRoute } from '@vna-base/redux/selector';
 import { FareFilter } from '@vna-base/screens/flight/type';
 import { bs } from '@theme';
 import React, { memo, useCallback, useRef } from 'react';

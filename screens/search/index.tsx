@@ -1,5 +1,5 @@
 import { Screen } from '@vna-base/components';
-import { commonSearchActions } from '@redux-slice';
+import { commonSearchActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import React, { useEffect } from 'react';
 import { AnimatedHeader, ResultSearch } from './components';

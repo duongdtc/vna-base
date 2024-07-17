@@ -7,7 +7,7 @@ import { Pressable } from 'react-native';
 import { Policy } from '@services/axios/axios-data';
 import { translate } from '@vna-base/translations/translate';
 import { useSelector } from 'react-redux';
-import { selectAllAgentGroup, selectAllAirGroups } from '@redux-selector';
+import { selectAllAgentGroup, selectAllAirGroups } from '@vna-base/redux/selector';
 import { navigate } from '@navigation/navigation-service';
 import {
   ServiceFeeFormulaDetails,

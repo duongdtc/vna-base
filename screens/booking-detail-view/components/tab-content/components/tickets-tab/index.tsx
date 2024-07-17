@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, EmptyList, Text } from '@vna-base/components';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { Ticket } from '@services/axios/axios-data';
 import { System, SystemDetails } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';

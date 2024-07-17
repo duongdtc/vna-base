@@ -1,6 +1,6 @@
 import { BottomSheetHistory, BottomSheetHistoryRef, Screen } from '@vna-base/components';
-import { selectConfigEmail } from '@redux-selector';
-import { configEmailActions } from '@redux-slice';
+import { selectConfigEmail } from '@vna-base/redux/selector';
+import { configEmailActions } from '@vna-base/redux/action-slice';
 import { ObjectHistoryTypes, TicketMimeType, dispatch } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useEffect, useRef } from 'react';

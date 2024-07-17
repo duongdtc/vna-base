@@ -1,6 +1,6 @@
 import { images } from '@assets/image';
 import { Block, Button, Image, Text, showModalConfirm } from '@vna-base/components';
-import { activityActions } from '@redux-slice';
+import { activityActions } from '@vna-base/redux/action-slice';
 import { Activity } from '@services/axios/axios-data';
 import { translate } from '@vna-base/translations/translate';
 import { dispatch } from '@vna-base/utils';

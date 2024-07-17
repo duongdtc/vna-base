@@ -1,5 +1,5 @@
 import { goBack } from '@navigation/navigation-service';
-import { bookingActionActions } from '@redux-slice';
+import { bookingActionActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';

@@ -1,6 +1,6 @@
 import { LinearGradient, Text } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { Airport } from '@redux/type';
 import { Flight } from '@vna-base/screens/flight/type';
 import {

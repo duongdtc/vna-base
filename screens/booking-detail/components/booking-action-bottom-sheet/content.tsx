@@ -6,8 +6,8 @@ import { navigate } from '@navigation/navigation-service';
 import {
   selectFlightActionsByBookingId,
   selectLanguage,
-} from '@redux-selector';
-import { bookingActionActions, bookingActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { bookingActionActions, bookingActions } from '@vna-base/redux/action-slice';
 import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { Action } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';

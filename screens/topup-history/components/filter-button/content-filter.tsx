@@ -1,6 +1,6 @@
 import { RowOfForm, Separator } from '@vna-base/components';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectAllTypeTopup } from '@redux-selector';
+import { selectAllTypeTopup } from '@vna-base/redux/selector';
 import { selectAllBankAccounts } from '@redux/selector/bank';
 import { FilterFormInBottomSheet } from '@vna-base/screens/topup-history/type';
 import React from 'react';

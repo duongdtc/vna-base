@@ -1,7 +1,7 @@
 import { Button, NormalHeader, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@redux-selector';
-import { agentActions } from '@redux-slice';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { FormAgentInfoType } from '@vna-base/screens/agent-info/type';
 import { dispatch } from '@vna-base/utils';
 import React from 'react';

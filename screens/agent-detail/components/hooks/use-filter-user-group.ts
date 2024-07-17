@@ -1,8 +1,8 @@
 import {
   selectLoadingFilterUserGroup,
   selectResultListUserGroup,
-} from '@redux-selector';
-import { userGroupActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { userGroupActions } from '@vna-base/redux/action-slice';
 import { FilterFormUserGroup } from '@vna-base/screens/agent-detail/type';
 import { SortType } from '@services/axios';
 import { UserGroup } from '@services/axios/axios-data';

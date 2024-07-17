@@ -3,7 +3,7 @@ import { ArgsChangeRange, FilterForm } from '@vna-base/screens/flight/type';
 import React, { memo } from 'react';
 import { useController, useFormContext, useWatch } from 'react-hook-form';
 import { RangeSelectorFare } from './range-selector-fare';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { useSelector } from 'react-redux';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { View } from 'react-native';

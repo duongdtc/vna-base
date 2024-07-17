@@ -1,5 +1,5 @@
 import { Icon, Separator, Switch, Text } from '@vna-base/components';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { FilterForm } from '@vna-base/screens/flight/type';
 import { ActiveOpacity, HitSlop } from '@vna-base/utils';
 import React, { memo } from 'react';

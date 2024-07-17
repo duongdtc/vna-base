@@ -1,5 +1,5 @@
 import { Block, Text } from '@vna-base/components';
-import { selectBalanceInfo, selectListPaymentExpense } from '@redux-selector';
+import { selectBalanceInfo, selectListPaymentExpense } from '@vna-base/redux/selector';
 import { Payment } from '@services/axios/axios-data';
 import { useTheme } from '@theme';
 import { translate } from '@vna-base/translations/translate';

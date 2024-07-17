@@ -12,8 +12,8 @@ import {
   selectAllAgentGroup,
   selectAllAirGroups,
   selectPolicyDetail,
-} from '@redux-selector';
-import { policyActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { policyActions } from '@vna-base/redux/action-slice';
 import {
   CurrencyDetails,
   ObjectHistoryTypes,

@@ -1,6 +1,6 @@
 import { Screen } from '@vna-base/components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { agentActions } from '@redux-slice';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import React, { useEffect } from 'react';
@@ -9,7 +9,7 @@ import { Header, MainContent } from './components';
 import { useStyles } from './style';
 import { CreditInfoForm } from './type';
 import { useSelector } from 'react-redux';
-import { selectAgentDetailById } from '@redux-selector';
+import { selectAgentDetailById } from '@vna-base/redux/selector';
 
 export const CreditInfo = ({
   route,

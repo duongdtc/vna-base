@@ -8,7 +8,7 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { configEmailActions } from '@redux-slice';
+import { configEmailActions } from '@vna-base/redux/action-slice';
 import { ConfigEmailForm } from '@vna-base/screens/config-email/type';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { useCallback, useRef } from 'react';

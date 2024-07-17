@@ -1,5 +1,5 @@
 import { Block, RowOfForm, Separator } from '@vna-base/components';
-import { selectAllSIset } from '@redux-selector';
+import { selectAllSIset } from '@vna-base/redux/selector';
 import { FormAgentDetail } from '@vna-base/screens/agent-detail/type';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';

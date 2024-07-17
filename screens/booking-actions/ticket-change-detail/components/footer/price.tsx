@@ -1,5 +1,5 @@
 import { Block, Separator, Text } from '@vna-base/components';
-import { selectPriceExchangeTicket } from '@redux-selector';
+import { selectPriceExchangeTicket } from '@vna-base/redux/selector';
 import React from 'react';
 import { useSelector } from 'react-redux';
 

@@ -2,8 +2,8 @@
 import { BottomSheet, Separator, Text } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectCharges, selectViewingOrderId } from '@redux-selector';
-import { chargeActions } from '@redux-slice';
+import { selectCharges, selectViewingOrderId } from '@vna-base/redux/selector';
+import { chargeActions } from '@vna-base/redux/action-slice';
 import { Charge } from '@services/axios/axios-data';
 import { dispatch, SnapPoint } from '@vna-base/utils';
 import React, {

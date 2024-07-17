@@ -13,8 +13,8 @@ import {
   selectListSpecializeNews,
   selectLoadingPolicy,
   selectLoadingSpecializeNews,
-} from '@redux-selector';
-import { dbsContentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import { Content } from '@services/axios/axios-email';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import { APP_SCREEN, RootStackParamList } from '@utils';

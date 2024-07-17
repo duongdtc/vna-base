@@ -2,8 +2,8 @@ import { Block, Icon, Text } from '@vna-base/components';
 import {
   selectAgentDetailById,
   selectListContactByAgentId,
-} from '@redux-selector';
-import { contactActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { contactActions } from '@vna-base/redux/action-slice';
 import { Contact } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';
 import React, { useCallback, useEffect, useRef, useState } from 'react';

@@ -6,7 +6,7 @@ import { HeaderAgentInfo, MainInfo, TopInfo } from './components';
 import { useStyles } from './style';
 import { FormAgentInfoType } from './type';
 import { useSelector } from 'react-redux';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 
 export const AgentInfo = () => {
   const styles = useStyles();

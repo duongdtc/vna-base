@@ -6,8 +6,8 @@ import {
   selectListRoute,
   selectSearchDone,
   selectSearchForm,
-} from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import {
   ActiveOpacity,

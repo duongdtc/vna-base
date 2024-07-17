@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, Icon, Text, TouchableScale } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { FormOrderDetailType } from '@vna-base/screens/order-detail/type';
 import { OrderRealm as OrderRealm } from '@services/realm/models/order';
 import { useObject } from '@services/realm/provider';

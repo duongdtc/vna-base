@@ -1,6 +1,6 @@
 import { Button, NormalHeader, Text, showToast } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { flightTicketActions } from '@redux-slice';
+import { flightTicketActions } from '@vna-base/redux/action-slice';
 import { FilterForm } from '@vna-base/screens/flight-ticket/type';
 import { HitSlop, dispatch, getState } from '@vna-base/utils';
 import React from 'react';

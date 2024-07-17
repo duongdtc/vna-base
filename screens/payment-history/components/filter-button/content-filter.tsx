@@ -1,6 +1,6 @@
 import { RowOfForm, Separator } from '@vna-base/components';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectAllAgent } from '@redux-selector';
+import { selectAllAgent } from '@vna-base/redux/selector';
 import { FilterFormInBottomSheet } from '@vna-base/screens/payment-history/type';
 import { SnapPoint, SystemDetails, TicketTypePaymentDetails } from '@vna-base/utils';
 import React from 'react';

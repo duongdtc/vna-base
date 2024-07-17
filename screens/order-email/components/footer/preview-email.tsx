@@ -2,7 +2,7 @@
 import { Block } from '@vna-base/components/block';
 import { LazyPlaceholder } from '@vna-base/components/lazy-placeholder';
 
-import { selectViewingOrderId } from '@redux-selector';
+import { selectViewingOrderId } from '@vna-base/redux/selector';
 import { EmailForm } from '@vna-base/screens/order-email/type';
 import { BookingRealm } from '@services/realm/models/booking';
 import { OrderRealm } from '@services/realm/models/order';

@@ -4,7 +4,7 @@ import {
   selectCharges,
   selectIsLoadingCharges,
   selectViewingOrderId,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { OrderRealm as OrderRealm } from '@services/realm/models/order';
 import { useObject } from '@services/realm/provider';
 import { useTheme } from '@theme';

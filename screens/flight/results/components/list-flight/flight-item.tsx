@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { selectIsCryptic } from '@redux-selector';
+import { selectIsCryptic } from '@vna-base/redux/selector';
 
 import { FlightItemProps } from '@vna-base/screens/flight/type';
 import React, { memo } from 'react';

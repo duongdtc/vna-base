@@ -1,5 +1,5 @@
 import { Block, LazyPlaceholder, Text } from '@vna-base/components';
-import { selectIsLoadingPriceChangeFlight } from '@redux-selector';
+import { selectIsLoadingPriceChangeFlight } from '@vna-base/redux/selector';
 import { CurrencyDetails, WindowWidth } from '@vna-base/utils';
 import React from 'react';
 import { useSelector } from 'react-redux';

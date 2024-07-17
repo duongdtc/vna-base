@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Icon, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectAccount, selectLanguage } from '@redux-selector';
+import { selectAccount, selectLanguage } from '@vna-base/redux/selector';
 import { Ticket } from '@services/axios/axios-data';
 import { AirlineRealm, FlightTicketInList } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';

@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { selectAccount, selectCurrentAccount } from '@redux-selector';
-import { orderActions } from '@redux-slice';
+import { selectAccount, selectCurrentAccount } from '@vna-base/redux/selector';
+import { orderActions } from '@vna-base/redux/action-slice';
 import { FormOrderDetailType, listOption } from '@vna-base/screens/order-detail/type';
 import { OrderRealm as OrderRealm } from '@services/realm/models/order';
 import { useObject } from '@services/realm/provider';

@@ -1,7 +1,7 @@
 import { Block, Icon, Separator, Text } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import React, { memo, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { Pressable } from 'react-native';

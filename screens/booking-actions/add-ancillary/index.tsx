@@ -2,8 +2,8 @@
 import { Button, NormalHeader, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectEncodeFlightInfoAncillary } from '@redux-selector';
-import { flightBookingFormActions } from '@redux-slice';
+import { selectEncodeFlightInfoAncillary } from '@vna-base/redux/selector';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

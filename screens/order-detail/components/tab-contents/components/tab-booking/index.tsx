@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Block } from '@vna-base/components';
 
-import { chargeActions, paymentActions } from '@redux-slice';
+import { chargeActions, paymentActions } from '@vna-base/redux/action-slice';
 import { FlightActionBottomSheet } from '@vna-base/screens/booking-detail/components';
 import {
   FlightActionBottomSheetRef,

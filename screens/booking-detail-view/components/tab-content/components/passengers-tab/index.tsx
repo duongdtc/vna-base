@@ -1,5 +1,5 @@
 import { Block } from '@vna-base/components';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { Passenger } from '@services/axios/axios-data';
 import React, { useCallback } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';

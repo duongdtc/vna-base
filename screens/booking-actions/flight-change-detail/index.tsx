@@ -11,7 +11,7 @@ import {
 } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { selectListSelectedFlight } from '@redux-selector';
+import { selectListSelectedFlight } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { useEffect, useRef } from 'react';
@@ -28,7 +28,7 @@ import {
 import { useStyles } from './styles';
 import { FlightChangeForm } from './type';
 import { generateInitialForm } from './utils';
-import { flightBookingFormActions } from '@redux-slice';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { AddPreSeatForm } from '../add-pre-seat/type';
 import { useWatchCancelFlight } from './hooks';
 import { APP_SCREEN } from '@utils';

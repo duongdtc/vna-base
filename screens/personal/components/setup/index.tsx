@@ -1,7 +1,7 @@
 import { Block, Row, Separator, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectLanguage, selectThemeOption } from '@redux-selector';
-import { appActions } from '@redux-slice';
+import { selectLanguage, selectThemeOption } from '@vna-base/redux/selector';
+import { appActions } from '@vna-base/redux/action-slice';
 import { ThemeOptions } from '@theme/type';
 import { I18nKeys } from '@translations/locales';
 import { SnapPoint, dispatch } from '@vna-base/utils';

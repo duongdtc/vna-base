@@ -10,7 +10,7 @@ import {
   selectAllUserGroups,
   selectCurrentAccount,
   selectUserAccount,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { rxEmail, rxPhone } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';

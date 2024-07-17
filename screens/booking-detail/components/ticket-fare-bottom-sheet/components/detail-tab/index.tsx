@@ -1,7 +1,7 @@
 import { Block, EmptyList, Separator } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectCharges, selectViewingBookingId } from '@redux-selector';
-import { chargeActions } from '@redux-slice';
+import { selectCharges, selectViewingBookingId } from '@vna-base/redux/selector';
+import { chargeActions } from '@vna-base/redux/action-slice';
 import { Charge } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { dispatch } from '@vna-base/utils';

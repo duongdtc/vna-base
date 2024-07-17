@@ -1,6 +1,6 @@
 import { BottomSheetHistory, BottomSheetHistoryRef, Screen } from '@vna-base/components';
-import { selectConfigTicket } from '@redux-selector';
-import { configTicketActions } from '@redux-slice';
+import { selectConfigTicket } from '@vna-base/redux/selector';
+import { configTicketActions } from '@vna-base/redux/action-slice';
 import { ObjectHistoryTypes, TEMPLATE_E_TICKET, dispatch } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useEffect, useRef } from 'react';

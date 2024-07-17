@@ -2,7 +2,7 @@
 import { Button, PagerWithHeader } from '@vna-base/components';
 import { SceneWithTitle } from '@vna-base/components/pager/type';
 import { navigate } from '@navigation/navigation-service';
-import { selectNotification, selectSearchForm } from '@redux-selector';
+import { selectNotification, selectSearchForm } from '@vna-base/redux/selector';
 import { Airport } from '@redux/type';
 import {
   AirportPickerContext,

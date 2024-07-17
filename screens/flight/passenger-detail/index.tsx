@@ -13,8 +13,8 @@ import {
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { PagerRef } from '@vna-base/components/pager/type';
 import { navigate } from '@navigation/navigation-service';
-import { selectListSelectedFlight, selectSession } from '@redux-selector';
-import { flightBookingFormActions, flightResultActions } from '@redux-slice';
+import { selectListSelectedFlight, selectSession } from '@vna-base/redux/selector';
+import { flightBookingFormActions, flightResultActions } from '@vna-base/redux/action-slice';
 import { BookFlightRes } from '@services/axios/axios-ibe';
 import { createStyleSheet, useStyles } from '@theme';
 import {

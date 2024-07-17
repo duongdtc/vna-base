@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { Passenger, PassengerForm } from '@vna-base/screens/flight/type';
 import { Ancillary, Seat, Segment } from '@services/axios/axios-ibe';
 import { CountryRealm } from '@services/realm/models';

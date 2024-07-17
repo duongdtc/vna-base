@@ -13,7 +13,7 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { FlightItem } from '../flight-item';
 import { useSelector } from 'react-redux';
 import { System } from '@vna-base/utils';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { realmRef } from '@services/realm/provider';
 import { BookingRealm } from '@services/realm/models/booking';
 

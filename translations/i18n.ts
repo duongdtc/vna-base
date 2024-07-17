@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import { DEFAULT_FALLBACK_LNG_I18n } from '@env';
 import i18n, { LanguageDetectorAsyncModule, Resource } from 'i18next';
 
-import { appActions } from '@redux-slice';
+import { appActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import { load, save } from '@vna-base/utils/storage';
 import { StorageKey } from '@vna-base/utils/storage/constants';

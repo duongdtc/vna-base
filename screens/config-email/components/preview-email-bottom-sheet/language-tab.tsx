@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectConfigEmailTemplates } from '@redux-selector';
+import { selectConfigEmailTemplates } from '@vna-base/redux/selector';
 import { LanguageTabProps } from '@vna-base/screens/config-email/type';
 import { ObjectField, WIDTH_OF_PRINTER_PAGE, WindowWidth } from '@vna-base/utils';
 import React, { memo, useEffect, useMemo, useState } from 'react';

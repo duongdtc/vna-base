@@ -1,8 +1,8 @@
 import {
   selectLoadingFilterAgent,
   selectResultFilterAgent,
-} from '@redux-selector';
-import { agentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { Agent } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';
 import { useCallback, useEffect, useMemo } from 'react';

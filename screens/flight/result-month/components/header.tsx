@@ -1,13 +1,13 @@
 import { Button, NormalHeader, Switch, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { flightResultMonthActions } from '@redux-slice';
+import { flightResultMonthActions } from '@vna-base/redux/action-slice';
 import { ActiveOpacity, HitSlop, dispatch } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
-import { selectViewChart } from '@redux-selector';
+import { selectViewChart } from '@vna-base/redux/selector';
 
 export const Header = memo(() => {
   const styles = useStyles();

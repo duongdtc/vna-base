@@ -1,5 +1,5 @@
 import { Block, Icon, Separator, Text } from '@vna-base/components';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import { Passenger } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';

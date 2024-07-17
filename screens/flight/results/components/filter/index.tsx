@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BottomSheet, Button, Icon, Text } from '@vna-base/components';
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectFilterForm } from '@redux-selector';
+import { selectFilterForm } from '@vna-base/redux/selector';
 import { FilterForm } from '@vna-base/screens/flight/type';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { ActiveOpacity, SnapPoint, delay } from '@vna-base/utils';

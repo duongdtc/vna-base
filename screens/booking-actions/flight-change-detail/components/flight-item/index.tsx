@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, CheckBox, Icon, Text, RadioButton } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { AirlineRealm } from '@services/realm/models';
 import { useObject } from '@services/realm/provider';
 import { useTheme } from '@theme';

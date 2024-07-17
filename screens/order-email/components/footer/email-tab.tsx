@@ -1,6 +1,6 @@
 import { WebViewAutoHeight } from '@vna-base/components/web-view-auto-height';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectEmail } from '@redux-selector';
+import { selectEmail } from '@vna-base/redux/selector';
 import { useTheme } from '@theme';
 import React, { useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

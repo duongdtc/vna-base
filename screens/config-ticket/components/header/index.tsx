@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { selectConfigTicket } from '@redux-selector';
-import { configTicketActions } from '@redux-slice';
+import { selectConfigTicket } from '@vna-base/redux/selector';
+import { configTicketActions } from '@vna-base/redux/action-slice';
 import { ConfigTicketForm } from '@vna-base/screens/config-ticket/type';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { memo, useCallback, useRef } from 'react';

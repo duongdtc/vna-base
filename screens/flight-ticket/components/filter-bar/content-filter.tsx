@@ -5,7 +5,7 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
-import { selectAllAccounts } from '@redux-selector';
+import { selectAllAccounts } from '@vna-base/redux/selector';
 import { UserAccount } from '@services/axios/axios-data';
 
 export const ContentFilter = ({

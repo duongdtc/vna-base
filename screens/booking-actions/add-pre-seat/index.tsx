@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectEncodeFlightInfoPreSeat } from '@redux-selector';
-import { flightBookingFormActions } from '@redux-slice';
+import { selectEncodeFlightInfoPreSeat } from '@vna-base/redux/selector';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { HitSlop, dispatch, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { showToast } from '@vna-base/components';
 import { PREFIX_ORDER_XLSX_NAME } from '@env';
-import { getAccount } from '@redux-selector';
+import { getAccount } from '@vna-base/redux/selector';
 import { bookingActions, orderActions } from '@vna-base/redux/action-slice';
 import { FormOrderDetailType } from '@vna-base/screens/order-detail/type';
 import { Data, SortType } from '@services/axios';

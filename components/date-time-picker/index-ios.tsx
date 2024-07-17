@@ -15,7 +15,7 @@ import React, {
 import { useStyles } from './styles';
 import { DateTimePickerProps, DateTimePickerRef } from './type';
 import { useSelector } from 'react-redux';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 
 export const DateTimePickerIOS = memo(
   forwardRef<DateTimePickerRef, DateTimePickerProps>((props, ref) => {

@@ -1,6 +1,6 @@
 import { Text } from '@vna-base/components';
-import { selectCustomFeeTotal, selectLanguage } from '@redux-selector';
-import { flightSearchActions } from '@redux-slice';
+import { selectCustomFeeTotal, selectLanguage } from '@vna-base/redux/selector';
+import { flightSearchActions } from '@vna-base/redux/action-slice';
 import { FareFilter } from '@vna-base/screens/flight/type';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { dispatch, scale } from '@vna-base/utils';

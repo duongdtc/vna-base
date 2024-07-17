@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { AirOption, Flight } from '@services/axios/axios-ibe';
 import { getFlightNumber } from '@vna-base/utils';
 import dayjs from 'dayjs';

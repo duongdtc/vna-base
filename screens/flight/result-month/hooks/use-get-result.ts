@@ -1,4 +1,4 @@
-import { selectMinPrices, selectResultMonthFilterForm } from '@redux-selector';
+import { selectMinPrices, selectResultMonthFilterForm } from '@vna-base/redux/selector';
 import { ResultMonthFilterForm } from '@vna-base/screens/flight/type';
 import { MinPrice } from '@services/axios/axios-ibe';
 import { useCallback, useEffect, useState } from 'react';

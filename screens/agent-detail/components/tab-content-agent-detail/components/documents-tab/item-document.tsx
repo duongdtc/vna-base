@@ -1,5 +1,5 @@
 import { Block, Button, Icon, Text } from '@vna-base/components';
-import { documentActions } from '@redux-slice';
+import { documentActions } from '@vna-base/redux/action-slice';
 import { Document } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';
 import React, { useCallback } from 'react';

@@ -1,6 +1,6 @@
 import { Block } from '@vna-base/components/block';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectETickets } from '@redux-selector';
+import { selectETickets } from '@vna-base/redux/selector';
 import { ETicket } from '@services/axios/axios-email';
 import React from 'react';
 import { ListRenderItem } from 'react-native';

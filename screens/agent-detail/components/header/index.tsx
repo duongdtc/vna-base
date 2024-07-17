@@ -12,8 +12,8 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { selectAgentDetailById } from '@redux-selector';
-import { agentActions } from '@redux-slice';
+import { selectAgentDetailById } from '@vna-base/redux/selector';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { listOptionUploadImg } from '@vna-base/screens/add-new-agent/type';
 import { FormAgentDetail, listOption } from '@vna-base/screens/agent-detail/type';
 import { translate } from '@vna-base/translations/translate';

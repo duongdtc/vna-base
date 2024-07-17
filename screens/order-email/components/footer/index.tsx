@@ -1,6 +1,6 @@
 import { Block, BottomSheet, Button, showModalConfirm } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { emailActions } from '@redux-slice';
+import { emailActions } from '@vna-base/redux/action-slice';
 import { EmailForm } from '@vna-base/screens/order-email/type';
 import { SnapPoint, dispatch } from '@vna-base/utils';
 import React, { memo, useRef } from 'react';
@@ -10,7 +10,7 @@ import { PreviewEmail } from './preview-email';
 import { useStyles } from './styles';
 import { goBack } from '@navigation/navigation-service';
 import { useSelector } from 'react-redux';
-import { selectIsLoadingEmail } from '@redux-selector';
+import { selectIsLoadingEmail } from '@vna-base/redux/selector';
 
 export const Footer = memo(() => {
   const styles = useStyles();

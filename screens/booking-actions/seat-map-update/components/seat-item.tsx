@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectCurrentFeature, selectLanguage } from '@redux-selector';
+import { selectCurrentFeature, selectLanguage } from '@vna-base/redux/selector';
 import { Passenger } from '@vna-base/screens/flight/type';
 import { Seat } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';

@@ -9,8 +9,8 @@ import {
   showModalConfirm,
 } from '@vna-base/components';
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectViewingBookingId } from '@redux-selector';
-import { chargeActions } from '@redux-slice';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
+import { chargeActions } from '@vna-base/redux/action-slice';
 import { FeeForm, FeeModalRef } from '@vna-base/screens/booking-detail/type';
 import { ModalCustomPicker } from '@vna-base/screens/order-detail/components';
 import {

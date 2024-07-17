@@ -1,7 +1,7 @@
 import { images } from '@assets/image';
 import { Avatar, Block, Button, Icon, Image, Text } from '@vna-base/components';
 import { navigate, useDrawer } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { useTheme } from '@theme';
 import { ActiveOpacity, HitSlop, getState } from '@vna-base/utils';
 import React from 'react';

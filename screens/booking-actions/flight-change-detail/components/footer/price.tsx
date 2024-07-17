@@ -1,6 +1,6 @@
 import { Block, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectPriceChangeFlight } from '@redux-selector';
+import { selectPriceChangeFlight } from '@vna-base/redux/selector';
 import React from 'react';
 import { useSelector } from 'react-redux';
 

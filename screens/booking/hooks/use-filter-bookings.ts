@@ -2,8 +2,8 @@
 import {
   selectLoadingFilterBooking,
   selectResultFilterBooking,
-} from '@redux-selector';
-import { bookingActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { SortType } from '@services/axios';
 import { dispatch } from '@vna-base/utils';
 import dayjs from 'dayjs';

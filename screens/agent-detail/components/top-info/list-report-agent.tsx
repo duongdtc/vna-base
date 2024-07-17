@@ -1,5 +1,5 @@
 import { Block } from '@vna-base/components';
-import { selectResultListFLReport } from '@redux-selector';
+import { selectResultListFLReport } from '@vna-base/redux/selector';
 import { ListKeyFlReport, ReportAgt } from '@vna-base/screens/agent-detail/type';
 import React, { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';

@@ -2,8 +2,8 @@
 import {
   selectIsLoadingFilterPolicy,
   selectResultFilterPolicy,
-} from '@redux-selector';
-import { policyActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { policyActions } from '@vna-base/redux/action-slice';
 import { SortType } from '@services/axios';
 import { Policy } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';

@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectFareRule } from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+import { selectFareRule } from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { FareRule as FareRuleType } from '@services/axios/axios-ibe';
 import { useTheme } from '@theme';
 import { APP_SCREEN, RootStackParamList } from '@utils';

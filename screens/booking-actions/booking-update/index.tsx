@@ -12,7 +12,7 @@ import {
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { bookingActions } from '@redux-slice';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
 import { FontStyle } from '@theme/typography';

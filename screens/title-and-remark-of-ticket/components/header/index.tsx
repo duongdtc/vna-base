@@ -7,7 +7,7 @@ import {
   showToast,
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { configTicketActions, contentActions } from '@redux-slice';
+import { configTicketActions, contentActions } from '@vna-base/redux/action-slice';
 import { TitleAndRemarkForm } from '@vna-base/screens/title-and-remark-of-ticket/type';
 import {
   HitSlop,

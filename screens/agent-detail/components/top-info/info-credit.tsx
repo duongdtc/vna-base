@@ -1,6 +1,6 @@
 import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectAgentDetailById } from '@redux-selector';
+import { selectAgentDetailById } from '@vna-base/redux/selector';
 import { convertStringToNumber, CurrencyDetails } from '@vna-base/utils';
 import React, { memo, useMemo, useState } from 'react';
 import isEqual from 'react-fast-compare';

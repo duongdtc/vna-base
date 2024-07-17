@@ -4,12 +4,12 @@ import {
   Screen,
 } from '@vna-base/components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectAgentDetailById } from '@redux-selector';
+import { selectAgentDetailById } from '@vna-base/redux/selector';
 import {
   agentActions,
   flightReportActions,
   historyActions,
-} from '@redux-slice';
+} from '@vna-base/redux/action-slice';
 import {
   GetFlightReportMode,
   ObjectHistoryTypes,

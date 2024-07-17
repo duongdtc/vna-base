@@ -1,7 +1,7 @@
 import { Block, Button, Icon } from '@vna-base/components';
 import { useDebounce } from '@vna-base/hooks';
 import { goBack } from '@navigation/navigation-service';
-import { commonSearchActions } from '@redux-slice';
+import { commonSearchActions } from '@vna-base/redux/action-slice';
 import { useTheme } from '@theme';
 import { ColorLight } from '@theme/color';
 import { translate } from '@vna-base/translations/translate';
@@ -16,7 +16,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
-import { selectLoadingCommonSearch } from '@redux-selector';
+import { selectLoadingCommonSearch } from '@vna-base/redux/selector';
 
 const Timing = 200;
 const InputMaxWidth = WindowWidth - 24 - 32 - 8;

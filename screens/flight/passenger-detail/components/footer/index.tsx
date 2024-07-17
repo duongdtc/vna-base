@@ -3,7 +3,7 @@ import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import {
   selectCustomFeeTotal,
   selectIsLoadingVerifiedFlights,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { ActiveOpacity, WindowHeight, WindowWidth } from '@vna-base/utils';
 import React, { useMemo } from 'react';

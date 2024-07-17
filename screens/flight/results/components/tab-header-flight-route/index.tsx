@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { LazyPlaceholder, Text } from '@vna-base/components';
-import { selectListRoute } from '@redux-selector';
+import { selectListRoute } from '@vna-base/redux/selector';
 import { Route } from '@redux/type';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { Opacity } from '@theme/color';

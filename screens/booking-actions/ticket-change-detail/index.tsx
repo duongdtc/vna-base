@@ -1,6 +1,6 @@
 import { Button, NormalHeader, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectListSelectedFlight } from '@redux-selector';
+import { selectListSelectedFlight } from '@vna-base/redux/selector';
 import { HitSlop } from '@vna-base/utils';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

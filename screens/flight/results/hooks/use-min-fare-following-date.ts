@@ -6,7 +6,7 @@ import {
   selectListRoute,
   selectMinFares,
   selectSearchForm,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { FareFilter } from '@vna-base/screens/flight/type';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';

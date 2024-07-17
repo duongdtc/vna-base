@@ -1,5 +1,5 @@
 import { Block, LazyPlaceholder, Text } from '@vna-base/components';
-import { selectViewingBookingId } from '@redux-selector';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { I18nKeys } from '@translations/locales';
 import { ActiveOpacity, WindowWidth } from '@vna-base/utils';
 import React, { memo, useCallback, useState } from 'react';

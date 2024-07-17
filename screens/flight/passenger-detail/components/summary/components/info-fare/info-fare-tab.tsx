@@ -1,5 +1,5 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectVerifiedFlights } from '@redux-selector';
+import { selectVerifiedFlights } from '@vna-base/redux/selector';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RouteItem } from './route-item';

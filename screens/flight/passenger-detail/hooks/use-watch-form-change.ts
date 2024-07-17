@@ -1,4 +1,4 @@
-import { flightBookingFormActions } from '@redux-slice';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { dispatch } from '@vna-base/utils';
 import throttle from 'lodash.throttle';

@@ -10,7 +10,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectEmail, selectViewingOrderId } from '@redux-selector';
+import { selectEmail, selectViewingOrderId } from '@vna-base/redux/selector';
 import {
   CurrencyDetails,
   Currency as CurrencyType,

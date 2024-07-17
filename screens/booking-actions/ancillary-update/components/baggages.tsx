@@ -1,7 +1,7 @@
 import {
   selectBaggagesActionBooking,
   selectIsLoadingAncillariesActionBooking,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Ancillary } from '@services/axios/axios-ibe';
 import React, { useRef } from 'react';
 import { useFormContext } from 'react-hook-form';

@@ -1,5 +1,5 @@
 import { BUNDLE_IDENTIFIER_IOS, BUNDLE_IDENTIFIER_ANDROID } from '@env';
-import { appActions } from '@redux-slice';
+import { appActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils/redux';
 import { Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';

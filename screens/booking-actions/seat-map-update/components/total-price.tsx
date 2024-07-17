@@ -5,7 +5,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { SeatMapUpdateForm } from '../type';
 import { useSelector } from 'react-redux';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { realmRef } from '@services/realm/provider';
 import { BookingRealm } from '@services/realm/models/booking';
 

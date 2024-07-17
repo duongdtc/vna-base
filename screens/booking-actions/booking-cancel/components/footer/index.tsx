@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { goBack } from '@navigation/navigation-service';
-import { bookingActionActions, bookingActions } from '@redux-slice';
+import { bookingActionActions, bookingActions } from '@vna-base/redux/action-slice';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import { dispatch } from '@vna-base/utils';

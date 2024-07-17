@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { agentActions } from '@redux-slice';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { dispatch } from '@vna-base/utils';
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

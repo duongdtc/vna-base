@@ -4,7 +4,7 @@ import {
   selectCurrentFeature,
   selectIsLoadingAncillariesActionBooking,
   selectServicesActionBooking,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import { Ancillary } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';

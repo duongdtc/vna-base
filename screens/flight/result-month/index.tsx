@@ -1,7 +1,7 @@
 import { Block, Screen, hideLoading, showLoading } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectListRoute } from '@redux-selector';
-import { flightSearchActions } from '@redux-slice';
+import { selectListRoute } from '@vna-base/redux/selector';
+import { flightSearchActions } from '@vna-base/redux/action-slice';
 import { Route } from '@redux/type';
 import { MinPrice } from '@services/axios/axios-ibe';
 import { delay, dispatch } from '@vna-base/utils';

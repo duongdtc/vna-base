@@ -6,8 +6,8 @@ import {
 } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectViewingBookingId } from '@redux-selector';
-import { bookingActions } from '@redux-slice';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
 import {

@@ -18,7 +18,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   selectFlightActionsByBookingId,
   selectLanguage,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Ticket } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
 import {
@@ -34,7 +34,7 @@ import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { useObject } from '@services/realm/provider';
-import { bookingActions } from '@redux-slice';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 
 export const Success = ({

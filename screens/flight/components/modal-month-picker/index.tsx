@@ -7,7 +7,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { BottomSheetModal, BottomSheetSectionList } from '@gorhom/bottom-sheet';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import {
   ModalMonthPickerProps,
   ModalMonthPickerRef,

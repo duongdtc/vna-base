@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PassengerUpdateForm } from '../../type';
 import { dispatch } from '@vna-base/utils';
-import { bookingActionActions } from '@redux-slice';
+import { bookingActionActions } from '@vna-base/redux/action-slice';
 import { goBack } from '@navigation/navigation-service';
 import { ContentModalCalculateFee } from '../content-modal-calculate-fee';
 import { UpdatePassengerReq } from '@services/axios/axios-ibe';

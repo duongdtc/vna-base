@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Icon, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectCustomFeeTotal, selectFareType } from '@redux-selector';
+import { selectCustomFeeTotal, selectFareType } from '@vna-base/redux/selector';
 import { FlightItemProps } from '@vna-base/screens/flight/type';
 import {
   ActiveOpacity,

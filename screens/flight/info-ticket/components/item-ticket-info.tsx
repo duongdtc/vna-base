@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { Block, Separator, Text } from '@vna-base/components';
-import { selectCustomFeeTotal, selectLanguage } from '@redux-selector';
+import { selectCustomFeeTotal, selectLanguage } from '@vna-base/redux/selector';
 import { ApplyFlightFee, ApplyPassengerFee } from '@vna-base/screens/flight/type';
 import { FareOption, FarePax } from '@services/axios/axios-ibe';
 import { I18nKeys } from '@translations/locales';

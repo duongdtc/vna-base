@@ -1,6 +1,6 @@
 import { Block, Button, showModalConfirm } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { bookingActionActions, bookingActions } from '@redux-slice';
+import { bookingActionActions, bookingActions } from '@vna-base/redux/action-slice';
 import { Ticket } from '@services/axios/axios-data';
 import { RefundTicketReq } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';

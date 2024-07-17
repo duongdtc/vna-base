@@ -1,6 +1,6 @@
 import { Icon, Separator, Switch, Text } from '@vna-base/components';
 import { LogoAirline } from '@vna-base/components/logo-airline';
-import { selectCustomFeeTotal, selectLanguage } from '@redux-selector';
+import { selectCustomFeeTotal, selectLanguage } from '@vna-base/redux/selector';
 import { FilterForm } from '@vna-base/screens/flight/type';
 import { AirlineRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';

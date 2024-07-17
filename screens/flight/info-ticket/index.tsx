@@ -9,7 +9,7 @@ import {
 } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectCustomFeeTotal } from '@redux-selector';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { FarePax } from '@services/axios/axios-ibe';
 import { useTheme } from '@theme';
 import { HairlineWidth, WindowWidth } from '@vna-base/utils';

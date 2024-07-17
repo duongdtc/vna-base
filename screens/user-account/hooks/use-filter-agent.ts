@@ -1,4 +1,4 @@
-import { userAccountActions } from '@redux-slice';
+import { userAccountActions } from '@vna-base/redux/action-slice';
 import { UserAccount } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -9,7 +9,7 @@ import { SortType } from '@services/axios';
 import {
   selectLoadingFilterUserAccount,
   selectResultFilterUserAccount,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 
 export const DefaultForm: FilterForm = {
   OrderBy: 'LastLoginDate',

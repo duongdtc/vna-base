@@ -3,7 +3,7 @@
 import { BottomSheet } from '@vna-base/components';
 import { CommonProps } from '@vna-base/components/bottom-sheet/type';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { selectSession } from '@redux-selector';
+import { selectSession } from '@vna-base/redux/selector';
 import {
   AirOptionCustom,
   BottomSheetFareOptionRef,

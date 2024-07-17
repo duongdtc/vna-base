@@ -4,8 +4,8 @@ import {
   selectIsLoadingVerifiedFlights,
   selectListSelectedFlight,
   selectVerifiedFlights,
-} from '@redux-selector';
-import { flightBookingFormActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import {
   AirOptionCustom,
   BottomSheetContentFlightRef,

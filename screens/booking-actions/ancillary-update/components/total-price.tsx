@@ -6,7 +6,7 @@ import { DEFAULT_CURRENCY } from '@env';
 import { AncillaryUpdateForm } from '../type';
 import { useObject } from '@services/realm/provider';
 import { BookingRealm } from '@services/realm/models/booking';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { useSelector } from 'react-redux';
 import { ANCILLARY_TYPE } from '@vna-base/utils';
 

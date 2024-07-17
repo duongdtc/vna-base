@@ -5,7 +5,7 @@ import { FilterButton } from './filter-button';
 import { SortButton } from './sort-button';
 import { translate } from '@vna-base/translations/translate';
 import { useSelector } from 'react-redux';
-import { selectResultFilterPolicy } from '@redux-selector';
+import { selectResultFilterPolicy } from '@vna-base/redux/selector';
 
 type Props = { showFilterBottomSheet: () => void };
 

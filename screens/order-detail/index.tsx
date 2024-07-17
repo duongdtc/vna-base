@@ -6,7 +6,7 @@ import {
 } from '@vna-base/components';
 import { ModalUserAccountPickerRef } from '@vna-base/components/modal-user-account-picker/type';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { orderActions } from '@redux-slice';
+import { orderActions } from '@vna-base/redux/action-slice';
 import { OrderRealm as OrderRealm } from '@services/realm/models/order';
 import { useObject } from '@services/realm/provider';
 import {

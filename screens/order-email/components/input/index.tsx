@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
-import { selectIsLoadingEmail } from '@redux-selector';
+import { selectIsLoadingEmail } from '@vna-base/redux/selector';
 import { ColorLight } from '@theme/color';
 
 type Props = TextInputProps & {

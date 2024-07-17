@@ -1,6 +1,6 @@
 import { Block, Button, Icon, Separator, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectViewingBookingId } from '@redux-selector';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
 import React, { memo } from 'react';

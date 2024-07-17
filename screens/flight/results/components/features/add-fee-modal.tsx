@@ -1,6 +1,6 @@
 import { Block, Button, Modal, Text, TextInput } from '@vna-base/components';
-import { selectSearchForm } from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+import { selectSearchForm } from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import {
   ApplyFlightFee,
   ApplyPassengerFee,

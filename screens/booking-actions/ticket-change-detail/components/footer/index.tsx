@@ -1,7 +1,7 @@
 import { Block, Button, showModalConfirm } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectCurrentFeature } from '@redux-selector';
-import { bookingActionActions } from '@redux-slice';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
+import { bookingActionActions } from '@vna-base/redux/action-slice';
 import {
   ExchangeTicketReq,
   Ticket,

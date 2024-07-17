@@ -3,7 +3,7 @@ import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import {
   selectBaggagesActionBooking,
   selectIsLoadingAncillariesActionBooking,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Ancillary } from '@services/axios/axios-ibe';
 import { ColorLight } from '@theme/color';
 import { ActiveOpacity } from '@vna-base/utils';

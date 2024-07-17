@@ -5,7 +5,7 @@ import {
   RangeDate,
   Text,
 } from '@vna-base/components';
-import { selectViewChart } from '@redux-selector';
+import { selectViewChart } from '@vna-base/redux/selector';
 import { Route } from '@redux/type';
 import { ColorLight } from '@theme/color';
 import { translate } from '@vna-base/translations/translate';
@@ -24,7 +24,7 @@ import {
 } from './detail-min-price-bottom-sheet';
 import { ModalMonthPicker } from '@vna-base/screens/flight/components';
 import { ModalMonthPickerRef } from '@vna-base/screens/flight/type';
-import { flightSearchActions } from '@redux-slice';
+import { flightSearchActions } from '@vna-base/redux/action-slice';
 import { MinPrice } from '@services/axios/axios-ibe';
 
 export const RouteItem = memo(

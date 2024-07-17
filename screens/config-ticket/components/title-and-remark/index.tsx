@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, Button, Row, Separator, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectConfigTicketLanguages } from '@redux-selector';
+import { selectConfigTicketLanguages } from '@vna-base/redux/selector';
 import { ConfigTicketForm } from '@vna-base/screens/config-ticket/type';
 import { LanguageSystem, LanguageSystemDetails } from '@vna-base/utils';
 import { APP_SCREEN } from '@utils';

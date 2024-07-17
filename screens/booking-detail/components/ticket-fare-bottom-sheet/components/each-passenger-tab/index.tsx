@@ -2,7 +2,7 @@
 import { Block, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectViewingBookingId } from '@redux-selector';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { FlightPassengerWithCharge } from '@vna-base/screens/booking-detail/type';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

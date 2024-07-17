@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Button, showModalConfirm, Text } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import {
   bookingActionActions,
   bookingActions,
   chargeActions,
-} from '@redux-slice';
+} from '@vna-base/redux/action-slice';
 import { Booking } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

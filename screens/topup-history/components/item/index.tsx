@@ -2,7 +2,7 @@
 import { IconTypes } from '@assets/icon';
 import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectAllTypeTopup } from '@redux-selector';
+import { selectAllTypeTopup } from '@vna-base/redux/selector';
 import { TopupRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { Colors } from '@theme';

@@ -4,8 +4,8 @@ import {
   selectAllAgentGroup,
   selectAllAgentType,
   selectAllOffice,
-} from '@redux-selector';
-import { agentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { FormAgentDetail } from '@vna-base/screens/agent-detail/type';
 import { useTheme } from '@theme';
 import { rxEmail, rxPhone, dispatch } from '@vna-base/utils';

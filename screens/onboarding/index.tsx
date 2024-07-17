@@ -1,8 +1,8 @@
 import { images } from '@assets/image';
 import { Block, Button, Image, Screen } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectLanguage } from '@redux-selector';
-import { appActions } from '@redux-slice';
+import { selectLanguage } from '@vna-base/redux/selector';
+import { appActions } from '@vna-base/redux/action-slice';
 import { ScreenHeight, dispatch } from '@vna-base/utils';
 import React from 'react';
 import { useSelector } from 'react-redux';

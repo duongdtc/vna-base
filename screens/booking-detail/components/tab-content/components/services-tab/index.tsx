@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, EmptyList } from '@vna-base/components';
-import { selectViewingBookingId } from '@redux-selector';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { Ancillary, Booking, Passenger } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

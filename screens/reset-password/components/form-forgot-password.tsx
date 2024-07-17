@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { PresentType } from '@vna-base/components/text-input/type';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { selectErrorMsgResetPassword } from '@redux-selector';
-import { currentAccountActions } from '@redux-slice';
+import { selectErrorMsgResetPassword } from '@vna-base/redux/selector';
+import { currentAccountActions } from '@vna-base/redux/action-slice';
 import { FormLoginType } from '@vna-base/screens/login/type';
 import { translate } from '@vna-base/translations/translate';
 import { dispatch, logout, scale } from '@vna-base/utils';

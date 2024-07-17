@@ -7,7 +7,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {
   selectLoadingBooking,
   selectLoadingFlightAction,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { AirlineRealm } from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';

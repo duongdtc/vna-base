@@ -8,8 +8,8 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
-import { selectPolicyDetail } from '@redux-selector';
-import { policyActions } from '@redux-slice';
+import { selectPolicyDetail } from '@vna-base/redux/selector';
+import { policyActions } from '@vna-base/redux/action-slice';
 import { PolicyDetailForm } from '@vna-base/screens/policy-detail/type';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { memo, useCallback, useMemo, useRef } from 'react';

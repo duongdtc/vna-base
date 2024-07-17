@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block } from '@vna-base/components';
-import { selectIsLoadingAncillaries, selectServices } from '@redux-selector';
+import { selectIsLoadingAncillaries, selectServices } from '@vna-base/redux/selector';
 import { ModalServicePickerRef, PassengerForm } from '@vna-base/screens/flight/type';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';

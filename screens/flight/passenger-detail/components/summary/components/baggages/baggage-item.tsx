@@ -1,5 +1,5 @@
 import { Block, Icon, Separator, Text } from '@vna-base/components';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { useWatchName } from '@vna-base/screens/flight/passenger-detail/hooks';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { bs } from '@theme';

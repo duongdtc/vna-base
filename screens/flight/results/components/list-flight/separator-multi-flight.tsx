@@ -1,5 +1,5 @@
 import { LinearGradient, Text } from '@vna-base/components';
-import { selectSearchForm } from '@redux-selector';
+import { selectSearchForm } from '@vna-base/redux/selector';
 import { bs } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import React, { memo } from 'react';

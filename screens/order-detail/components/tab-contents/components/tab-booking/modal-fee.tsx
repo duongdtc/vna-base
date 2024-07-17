@@ -9,7 +9,7 @@ import {
   showModalConfirm,
 } from '@vna-base/components';
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { chargeActions } from '@redux-slice';
+import { chargeActions } from '@vna-base/redux/action-slice';
 import { ModalCustomPicker } from '@vna-base/screens/order-detail/components/modal-custom-picker';
 import {
   ItemCustom,
@@ -49,7 +49,7 @@ import {
   listOptionPassengers,
   listOptionRoutes,
 } from './type';
-import { selectViewingOrderId } from '@redux-selector';
+import { selectViewingOrderId } from '@vna-base/redux/selector';
 import { useObject } from '@services/realm/provider';
 import { OrderRealm } from '@services/realm/models/order';
 

@@ -14,7 +14,7 @@ import {
   selectIsLoadingSeatMapsActionBooking,
   selectSeatMaps,
   selectSeatMapsActionBooking,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { Seat } from '@services/axios/axios-ibe';
 import {
   FlashList,

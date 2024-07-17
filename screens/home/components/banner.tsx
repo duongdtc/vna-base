@@ -4,8 +4,8 @@ import { navigate } from '@navigation/navigation-service';
 import {
   selectLoadingSpecializeNews,
   selectOutStandingPolicy,
-} from '@redux-selector';
-import { dbsContentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { dbsContentActions } from '@vna-base/redux/action-slice';
 import { Content } from '@services/axios/axios-email';
 import { createStyleSheet, useStyles, bs } from '@theme';
 import { ActiveOpacity, WindowWidth, dispatch, scale } from '@vna-base/utils';

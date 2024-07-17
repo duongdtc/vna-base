@@ -10,8 +10,8 @@ import {
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { selectCurrentAccount, selectUserAccount } from '@redux-selector';
-import { userAccountActions, userSubAgentActions } from '@redux-slice';
+import { selectCurrentAccount, selectUserAccount } from '@vna-base/redux/selector';
+import { userAccountActions, userSubAgentActions } from '@vna-base/redux/action-slice';
 import {
   PersonalInfoForm,
   listOptionItemSubAgtAcc,

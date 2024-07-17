@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PREFIX_FLIGHT_TICKET_XLSX_NAME } from '@env';
-import { getAccount } from '@redux-selector';
+import { getAccount } from '@vna-base/redux/selector';
 import { flightTicketActions } from '@vna-base/redux/action-slice';
 import { Data, SortType } from '@services/axios';
 import {

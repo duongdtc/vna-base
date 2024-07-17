@@ -1,7 +1,7 @@
 import { LinearGradient, Screen } from '@vna-base/components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectIsCryptic } from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+import { selectIsCryptic } from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { clearSearchFlightResult, dispatch, scale } from '@vna-base/utils';
 import React, { useEffect } from 'react';

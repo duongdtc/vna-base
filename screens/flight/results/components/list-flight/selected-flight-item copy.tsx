@@ -6,7 +6,7 @@ import {
   selectFareType,
   selectLanguage,
   selectMultiFlights,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { SelectedFlightItemProps } from '@vna-base/screens/flight/type';
 import { FareOption } from '@services/axios/axios-ibe';
 import { AircraftRealm, AirlineRealm } from '@services/realm/models';

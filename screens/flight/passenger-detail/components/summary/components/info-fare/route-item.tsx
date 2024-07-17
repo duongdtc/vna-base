@@ -8,7 +8,7 @@ import {
   selectCustomFeeTotal,
   selectListRoute,
   selectVerifiedFlights,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { FlightFare } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';

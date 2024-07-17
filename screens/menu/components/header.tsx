@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Avatar, Button, Text } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { createStyleSheet, useStyles } from '@theme';
 import { HitSlop, scale } from '@vna-base/utils';
 import { APP_SCREEN } from '@utils';

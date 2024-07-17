@@ -14,8 +14,8 @@ import {
   selectCurrentAccount,
   selectUserAccount,
   selectUserSubAgent,
-} from '@redux-selector';
-import { userAccountActions, userSubAgentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { userAccountActions, userSubAgentActions } from '@vna-base/redux/action-slice';
 import { I18nKeys } from '@translations/locales';
 import { translate } from '@vna-base/translations/translate';
 import { ObjectHistoryTypes, dispatch, scale } from '@vna-base/utils';

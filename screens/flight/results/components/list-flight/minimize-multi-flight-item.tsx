@@ -7,7 +7,7 @@ import {
   selectCustomFeeTotal,
   selectFareType,
   selectMultiFlights,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import {
   BottomSheetContentFlightRef,
   FlightItemProps,

@@ -1,5 +1,5 @@
 import { Block, Separator, Text } from '@vna-base/components';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import React from 'react';

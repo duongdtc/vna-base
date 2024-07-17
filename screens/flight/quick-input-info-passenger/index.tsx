@@ -1,6 +1,6 @@
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { flightBookingFormActions } from '@redux-slice';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { useTheme } from '@theme';
 import {
   Block,

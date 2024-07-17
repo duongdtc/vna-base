@@ -1,6 +1,6 @@
 import { Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { Segment } from '@services/axios/axios-ibe';
 import {
   AircraftRealm,

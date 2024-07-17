@@ -1,6 +1,6 @@
 import { Block, Button, Icon, NormalHeader, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { AirlineRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { HitSlop, System, SystemDetails } from '@vna-base/utils';

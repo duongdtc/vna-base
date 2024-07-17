@@ -8,7 +8,7 @@ import {
   showToast,
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { paymentActions } from '@redux-slice';
+import { paymentActions } from '@vna-base/redux/action-slice';
 import { useTheme } from '@theme';
 import { dispatch, HitSlop } from '@vna-base/utils';
 import React, { useCallback } from 'react';

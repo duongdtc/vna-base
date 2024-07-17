@@ -1,7 +1,7 @@
 import { Block, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { FlightPassengerWithCharge } from '@vna-base/screens/booking-detail/type';
 import { FareCode } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';

@@ -11,7 +11,7 @@ import {
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { bookingActionActions, orderActions } from '@redux-slice';
+import { bookingActionActions, orderActions } from '@vna-base/redux/action-slice';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
 import {

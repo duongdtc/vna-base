@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { Passenger } from '@vna-base/screens/flight/type';
 import { Seat } from '@services/axios/axios-ibe';
 import { ActiveOpacity, getFullNameOfPassenger } from '@vna-base/utils';

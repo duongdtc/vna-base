@@ -7,7 +7,7 @@ import {
   Text,
   showModalConfirm,
 } from '@vna-base/components';
-import { contactActions } from '@redux-slice';
+import { contactActions } from '@vna-base/redux/action-slice';
 import { Contact } from '@services/axios/axios-data';
 import { translate } from '@vna-base/translations/translate';
 import { dispatch } from '@vna-base/utils';

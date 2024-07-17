@@ -1,5 +1,5 @@
 import { Block } from '@vna-base/components';
-import { flightBookingFormActions } from '@redux-slice';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { I18nKeys } from '@translations/locales';
 import { dispatch } from '@vna-base/utils';

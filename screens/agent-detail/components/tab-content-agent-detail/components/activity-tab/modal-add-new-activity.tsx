@@ -7,8 +7,8 @@ import {
   TextInput as TextInputCP,
 } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { selectAgentDetailById, selectAllEmployee } from '@redux-selector';
-import { activityActions } from '@redux-slice';
+import { selectAgentDetailById, selectAllEmployee } from '@vna-base/redux/selector';
+import { activityActions } from '@vna-base/redux/action-slice';
 import { ModalCustomPicker } from '@vna-base/screens/order-detail/components';
 import {
   ItemCustom,

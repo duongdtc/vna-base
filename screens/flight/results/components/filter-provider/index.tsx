@@ -13,8 +13,8 @@ import {
   selectSearchDone,
   selectSearchForm,
   selectSort,
-} from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { SearchForm } from '@vna-base/screens/flight/components';
 import {
   AirOptionCustom,

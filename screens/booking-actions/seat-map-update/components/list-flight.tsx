@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block } from '@vna-base/components';
-import { selectCurrentFeature } from '@redux-selector';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import React, { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';

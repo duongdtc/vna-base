@@ -4,7 +4,7 @@ import {
   selectAllAgentType,
   selectAllOffice,
   selectAllSIset,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { FormNewAgentType } from '@vna-base/screens/add-new-agent/type';
 import { useTheme } from '@theme';
 import { rxEmail, rxPhone, convertStringToNumber } from '@vna-base/utils';

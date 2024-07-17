@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, EmptyList, Text } from '@vna-base/components';
-import { selectViewingBookingId } from '@redux-selector';
+import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { Booking, Ticket } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

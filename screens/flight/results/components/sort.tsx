@@ -1,7 +1,7 @@
 import { BottomSheet, Icon, Text } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { selectSort } from '@redux-selector';
-import { flightResultActions } from '@redux-slice';
+import { selectSort } from '@vna-base/redux/selector';
+import { flightResultActions } from '@vna-base/redux/action-slice';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { ActiveOpacity, ListFieldSort, dispatch } from '@vna-base/utils';
 import React, { memo, useCallback, useRef } from 'react';

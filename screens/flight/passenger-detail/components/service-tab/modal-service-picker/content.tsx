@@ -1,6 +1,6 @@
 import { Block, Button, Icon, Separator, Text } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectIsLoadingAncillaries, selectServices } from '@redux-selector';
+import { selectIsLoadingAncillaries, selectServices } from '@vna-base/redux/selector';
 import { FlightOfPassengerForm } from '@vna-base/screens/flight/type';
 import { Ancillary } from '@services/axios/axios-ibe';
 import { ActiveOpacity } from '@vna-base/utils';

@@ -1,5 +1,5 @@
 import { Block, EmptyList } from '@vna-base/components';
-import { selectResultSearch } from '@redux-selector';
+import { selectResultSearch } from '@vna-base/redux/selector';
 import { Item } from '@vna-base/screens/flight-ticket/components';
 import { Ticket } from '@services/axios/axios-data';
 import { scale } from '@vna-base/utils';

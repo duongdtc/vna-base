@@ -3,7 +3,7 @@
 import { BottomSheet } from '@vna-base/components';
 import { CommonProps } from '@vna-base/components/bottom-sheet/type';
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectSearchForm } from '@redux-selector';
+import { selectSearchForm } from '@vna-base/redux/selector';
 import {
   AirOptionCustom,
   BottomSheetContentFlightRef,

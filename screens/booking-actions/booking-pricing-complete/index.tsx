@@ -11,8 +11,8 @@ import {
   Text,
 } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectBookingPricingCompleted } from '@redux-selector';
-import { bookingActions, chargeActions } from '@redux-slice';
+import { selectBookingPricingCompleted } from '@vna-base/redux/selector';
+import { bookingActions, chargeActions } from '@vna-base/redux/action-slice';
 import { FarePax } from '@services/axios/axios-ibe';
 import { translate } from '@vna-base/translations/translate';
 import { Currency, dispatch } from '@vna-base/utils';

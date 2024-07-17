@@ -1,8 +1,8 @@
 import { images } from '@assets/image';
 import { Block, Button, Icon, Image, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { getAccount, selectDetailHistory } from '@redux-selector';
-import { historyActions } from '@redux-slice';
+import { getAccount, selectDetailHistory } from '@vna-base/redux/selector';
+import { historyActions } from '@vna-base/redux/action-slice';
 import { History } from '@services/axios/axios-data';
 import { System, SystemDetails, dispatch, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';

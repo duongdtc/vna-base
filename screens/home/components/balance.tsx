@@ -1,5 +1,5 @@
 import { Icon, Text } from '@vna-base/components';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { bs, useStyles } from '@theme';
 import { ActiveOpacity, CurrencyDetails, HitSlop } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';

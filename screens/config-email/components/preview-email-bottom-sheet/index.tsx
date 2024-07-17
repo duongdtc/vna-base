@@ -27,7 +27,7 @@ import {
 import { LanguageTab } from './language-tab';
 import { TabBar } from './tab-bar';
 import { useSelector } from 'react-redux';
-import { selectConfigEmailLanguages } from '@redux-selector';
+import { selectConfigEmailLanguages } from '@vna-base/redux/selector';
 
 export const PreviewEmailBottomSheet = forwardRef<
   PreviewEmailBottomSheetRef,

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, BottomSheet, Button, Icon, Switch, Text } from '@vna-base/components';
 import { ListRef, ListRenderItemParams } from '@vna-base/components/bottom-sheet/type';
-import { selectDiscounts } from '@redux-selector';
+import { selectDiscounts } from '@vna-base/redux/selector';
 import { Discount } from '@redux/type';
 import { OptionsForm } from '@vna-base/screens/flight/type';
 import { I18nKeys } from '@translations/locales';

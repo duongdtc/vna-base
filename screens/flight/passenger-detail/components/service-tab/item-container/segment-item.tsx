@@ -1,6 +1,6 @@
 import { Block, Icon, Separator, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
-import { selectLanguage } from '@redux-selector';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { Segment } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';

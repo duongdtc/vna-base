@@ -1,7 +1,7 @@
 import { images } from '@assets/image';
 import { Button, Image, NormalHeaderGradient, showToast } from '@vna-base/components';
 import { useDrawer } from '@navigation/navigation-service';
-import { bookingActions } from '@redux-slice';
+import { bookingActions } from '@vna-base/redux/action-slice';
 import { FilterForm } from '@vna-base/screens/booking/type';
 import { ColorLight } from '@theme/color';
 import { HitSlop, dispatch, getState } from '@vna-base/utils';

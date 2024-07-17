@@ -1,6 +1,6 @@
 import { RowOfForm, Separator } from '@vna-base/components';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { selectAllUserGroups } from '@redux-selector';
+import { selectAllUserGroups } from '@vna-base/redux/selector';
 import { FilterFormInBottomSheet } from '@vna-base/screens/user-account/type';
 import { SnapPoint } from '@vna-base/utils';
 import React from 'react';

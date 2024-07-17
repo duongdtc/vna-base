@@ -13,8 +13,8 @@ import {
 import { goBack } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectAllTypeTopup } from '@redux-selector';
-import { topupActions } from '@redux-slice';
+import { selectAllTypeTopup } from '@vna-base/redux/selector';
+import { topupActions } from '@vna-base/redux/action-slice';
 import {
   selectAllBankAccountsOfParent,
   selectTransactionStatus,

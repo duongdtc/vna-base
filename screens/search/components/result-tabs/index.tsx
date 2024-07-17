@@ -13,7 +13,7 @@ import {
 import { useStyles } from '../../styles';
 import { TabAll, TabBooking, TabOrder, TabTicket } from './components';
 import { useSelector } from 'react-redux';
-import { selectResultSearch } from '@redux-selector';
+import { selectResultSearch } from '@vna-base/redux/selector';
 const TabName = {
   ALL: 'ALL',
   ORDER: 'ORDER',

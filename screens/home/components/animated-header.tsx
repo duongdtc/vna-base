@@ -1,6 +1,6 @@
 import { Avatar, Button, Icon } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@redux-selector';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { createStyleSheet, useStyles, bs } from '@theme';
 import { HitSlop, scale } from '@vna-base/utils';
 import { useInterpolateColor } from '@vna-base/utils/animated';

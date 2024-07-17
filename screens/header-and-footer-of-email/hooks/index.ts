@@ -1,4 +1,4 @@
-import { selectConfigEmailLanguages } from '@redux-selector';
+import { selectConfigEmailLanguages } from '@vna-base/redux/selector';
 import { Content } from '@services/axios/axios-data';
 import { LanguageSystem, ObjectField } from '@vna-base/utils';
 import { useEffect } from 'react';

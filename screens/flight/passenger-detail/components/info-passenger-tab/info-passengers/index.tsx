@@ -6,7 +6,7 @@ import {
   TouchableScale,
 } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectListSelectedFlight } from '@redux-selector';
+import { selectListSelectedFlight } from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import {
   ActiveOpacity,

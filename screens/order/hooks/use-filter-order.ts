@@ -2,8 +2,8 @@
 import {
   selectLoadingFilterOrder,
   selectResultFilterOrder,
-} from '@redux-selector';
-import { orderActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { orderActions } from '@vna-base/redux/action-slice';
 import { SortType } from '@services/axios';
 import { dispatch } from '@vna-base/utils';
 import dayjs from 'dayjs';

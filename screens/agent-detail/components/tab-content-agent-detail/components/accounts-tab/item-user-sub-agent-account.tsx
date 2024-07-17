@@ -7,7 +7,7 @@ import {
   Text,
   showModalConfirm,
 } from '@vna-base/components';
-import { userSubAgentActions } from '@redux-slice';
+import { userSubAgentActions } from '@vna-base/redux/action-slice';
 import { UserAccount } from '@services/axios/axios-data';
 import { translate } from '@vna-base/translations/translate';
 import { delay, dispatch, scale } from '@vna-base/utils';

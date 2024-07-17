@@ -1,7 +1,7 @@
 import { Button, NormalHeader, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectAgentDetailById } from '@redux-selector';
-import { agentActions } from '@redux-slice';
+import { selectAgentDetailById } from '@vna-base/redux/selector';
+import { agentActions } from '@vna-base/redux/action-slice';
 import { CreditInfoForm } from '@vna-base/screens/credit-info/type';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React from 'react';

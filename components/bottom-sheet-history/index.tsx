@@ -5,7 +5,7 @@ import {
   selectIsLoadingListHistory,
   selectListHistory,
   selectListOrderActivity,
-} from '@redux-selector';
+} from '@vna-base/redux/selector';
 import { History } from '@services/axios/axios-data';
 import { SnapPoint, dispatch } from '@vna-base/utils';
 import React, {
@@ -21,7 +21,7 @@ import { ListRenderItem } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { historyActions, orderActions } from '@redux-slice';
+import { historyActions, orderActions } from '@vna-base/redux/action-slice';
 import { ItemHistory } from './item-history';
 import { useStyles } from './style';
 import isEmpty from 'lodash.isempty';

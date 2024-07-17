@@ -13,8 +13,8 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {
   selectAgentDetailById,
   selectListUserSubAgentAccount,
-} from '@redux-selector';
-import { userSubAgentActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { userSubAgentActions } from '@vna-base/redux/action-slice';
 import { listOptionItemSubAgtAcc } from '@vna-base/screens/agent-detail/type';
 import { UserAccount } from '@services/axios/axios-data';
 import { useTheme } from '@theme';

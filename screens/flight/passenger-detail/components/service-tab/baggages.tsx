@@ -1,5 +1,5 @@
 import { Block } from '@vna-base/components';
-import { selectBaggages, selectIsLoadingAncillaries } from '@redux-selector';
+import { selectBaggages, selectIsLoadingAncillaries } from '@vna-base/redux/selector';
 import { ModalBaggagePickerRef, PassengerForm } from '@vna-base/screens/flight/type';
 import { Ancillary } from '@services/axios/axios-ibe';
 import React, { useMemo, useRef } from 'react';

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block } from '@vna-base/components';
-import { selectViewingBookingVersion } from '@redux-selector';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import { scale } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';

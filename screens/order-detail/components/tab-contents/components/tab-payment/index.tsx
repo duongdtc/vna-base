@@ -1,5 +1,5 @@
 import { Block, Icon, RowOfForm, Separator, Text } from '@vna-base/components';
-import { selectAllPayMethod } from '@redux-selector';
+import { selectAllPayMethod } from '@vna-base/redux/selector';
 import { ModalInputMoneyPayment } from '@vna-base/screens/order-detail/components/modal-input-money-payment';
 import { ModalInputMoneyPaymentRef } from '@vna-base/screens/order-detail/components/modal-input-money-payment/type';
 import { FormOrderDetailType } from '@vna-base/screens/order-detail/type';

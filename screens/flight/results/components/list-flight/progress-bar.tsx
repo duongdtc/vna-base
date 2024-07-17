@@ -1,4 +1,4 @@
-import { selectSearchDone } from '@redux-selector';
+import { selectSearchDone } from '@vna-base/redux/selector';
 import { useStyles } from '@theme';
 import { scale } from '@vna-base/utils';
 import { useInterpolate } from '@vna-base/utils/animated';

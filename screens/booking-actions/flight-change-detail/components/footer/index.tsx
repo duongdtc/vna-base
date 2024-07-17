@@ -1,7 +1,7 @@
 import { Block, Button, showModalConfirm } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
-import { selectCurrentFeature } from '@redux-selector';
-import { bookingActionActions, bookingActions } from '@redux-slice';
+import { selectCurrentFeature } from '@vna-base/redux/selector';
+import { bookingActionActions, bookingActions } from '@vna-base/redux/action-slice';
 import { ChangeFlightReq } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';

@@ -1,5 +1,5 @@
 import { Block, Icon, Text } from '@vna-base/components';
-import { selectAllAgent } from '@redux-selector';
+import { selectAllAgent } from '@vna-base/redux/selector';
 import { PaymentHistoryInList } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { translate } from '@vna-base/translations/translate';

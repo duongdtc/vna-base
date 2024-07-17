@@ -1,7 +1,7 @@
 import { Block, EmptyList, Separator } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectViewingBookingVersion } from '@redux-selector';
-import { chargeActions } from '@redux-slice';
+import { selectViewingBookingVersion } from '@vna-base/redux/selector';
+import { chargeActions } from '@vna-base/redux/action-slice';
 import { Charge } from '@services/axios/axios-data';
 import { dispatch } from '@vna-base/utils';
 import React, { useCallback, useEffect } from 'react';

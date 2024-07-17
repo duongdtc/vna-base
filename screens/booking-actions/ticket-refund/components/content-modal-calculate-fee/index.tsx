@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Block, Text } from '@vna-base/components';
-import { selectRefundDoc } from '@redux-selector';
+import { selectRefundDoc } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { CurrencyDetails, WindowWidth } from '@vna-base/utils';
 import React, { useMemo } from 'react';

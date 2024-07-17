@@ -1,4 +1,4 @@
-import { selectSearchForm } from '@redux-selector';
+import { selectSearchForm } from '@vna-base/redux/selector';
 import { WindowWidth, scale } from '@vna-base/utils';
 import { useEffect } from 'react';
 import Animated, {

@@ -1,7 +1,7 @@
 import { images } from '@assets/image';
 import { Block, Icon, Image, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectUserGroupById } from '@redux-selector';
+import { selectUserGroupById } from '@vna-base/redux/selector';
 import { UserGroup } from '@redux/type';
 import { UserAccount } from '@services/axios/axios-data';
 import { APP_SCREEN } from '@utils';

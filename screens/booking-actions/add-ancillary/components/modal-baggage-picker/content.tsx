@@ -1,6 +1,6 @@
 import { Block, Text } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { selectBaggages, selectIsLoadingAncillaries } from '@redux-selector';
+import { selectBaggages, selectIsLoadingAncillaries } from '@vna-base/redux/selector';
 import { Ancillary } from '@services/axios/axios-ibe';
 import { ColorLight } from '@theme/color';
 import { ActiveOpacity } from '@vna-base/utils';

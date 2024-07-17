@@ -1,5 +1,5 @@
 import { Button } from '@vna-base/components';
-import { selectIsCryptic } from '@redux-selector';
+import { selectIsCryptic } from '@vna-base/redux/selector';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import React, { memo } from 'react';
 import { View } from 'react-native';

@@ -16,7 +16,7 @@ import {
 } from '@vna-base/components/bottom-sheet/type';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectCACodes } from '@redux-selector';
+import { selectCACodes } from '@vna-base/redux/selector';
 import { CACode } from '@redux/type';
 import { OptionsForm, SeatClassEnum } from '@vna-base/screens/flight/type';
 import { createStyleSheet, useStyles, bs } from '@theme';

@@ -3,8 +3,8 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import {
   selectResultMonthAirlines,
   selectResultMonthFilterForm,
-} from '@redux-selector';
-import { flightResultMonthActions } from '@redux-slice';
+} from '@vna-base/redux/selector';
+import { flightResultMonthActions } from '@vna-base/redux/action-slice';
 import { AirlineRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { translate } from '@vna-base/translations/translate';
