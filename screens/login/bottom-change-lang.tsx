@@ -33,7 +33,7 @@ export const BottomChangeLangugae = (props: Props) => {
           type="common"
           t18n="login_screen:forgot_password"
           textFontStyle="Body16Bold"
-          textColorTheme="primaryColor"
+          textColorTheme="primaryPressed"
           alignSelf="center"
           onPress={_goToForgotPasswordScreen}
         />
@@ -65,7 +65,7 @@ export const BottomChangeLangugae = (props: Props) => {
             {
               borderBottomColor:
                 currentLanguage === 'en'
-                  ? colors.primaryColor
+                  ? colors.primaryPressed
                   : colors.neutral10,
             },
           ]}>

@@ -1,7 +1,7 @@
-import { bs } from '@theme';
+import { bs, useStyles } from '@theme';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import { StyleSheet, View } from 'react-native';
+import { ColorValue, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NormalHeaderType } from './type';
 
@@ -13,12 +13,29 @@ export const NormalHeader = memo((props: NormalHeaderType) => {
     zIndex = 9,
     leftContentStyle,
     style,
+    shadow,
+    colorTheme,
     ...rest
   } = props;
   const { top } = useSafeAreaInsets();
+  const {
+    theme: { colors, shadows },
+  } = useStyles();
 
   return (
-    <View style={[{ paddingTop: top, zIndex: zIndex }, style]} {...rest}>
+    <View
+      style={[
+        {
+          paddingTop: top,
+          zIndex: zIndex,
+          backgroundColor: (colorTheme
+            ? colors[colorTheme]
+            : undefined) as ColorValue,
+        },
+        !!shadow && shadows[shadow],
+        style,
+      ]}
+      {...rest}>
       <View
         style={[
           {

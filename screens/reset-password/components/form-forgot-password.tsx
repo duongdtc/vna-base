@@ -10,7 +10,7 @@ import { PresentType } from '@vna-base/components/text-input/type';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { selectErrorMsgResetPassword } from '@vna-base/redux/selector';
 import { currentAccountActions } from '@vna-base/redux/action-slice';
-import { FormLoginType } from '@vna-base/screens/login/type';
+import { FormLoginType } from '@screens/login/type';
 import { translate } from '@vna-base/translations/translate';
 import { dispatch, logout, scale } from '@vna-base/utils';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -150,7 +150,7 @@ export const FormResetPassword = () => {
               <Button
                 fullWidth
                 disabled={value === '' || value === undefined}
-                buttonColorTheme="primary500"
+                buttonColorTheme="gra5"
                 t18n="common:update"
                 onPress={onSubmitKey}
               />

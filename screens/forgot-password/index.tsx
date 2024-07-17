@@ -1,11 +1,19 @@
 import { images } from '@assets/image';
-import { Block, Button, Image, NormalHeader, Screen, Text } from '@vna-base/components';
+import {
+  Block,
+  Button,
+  Image,
+  NormalHeader,
+  Screen,
+  Text,
+} from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { useTheme } from '@theme';
 import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useStyles } from './style';
-import { FormForgotPassword } from './components/form-forgot-password';
+import { Form } from './components/form-forgot-password';
+import { scale } from '@vna-base/utils';
 
 export const ForgotPassword = () => {
   const { colors } = useTheme();
@@ -29,9 +37,9 @@ export const ForgotPassword = () => {
         }
         centerContent={
           <Image
-            source={images.logo}
-            style={{ width: 132, height: 16 }}
-            resizeMode="center"
+            source={images.logo_color}
+            style={{ width: scale(212), height: scale(28) }}
+            resizeMode="cover"
           />
         }
       />
@@ -40,17 +48,19 @@ export const ForgotPassword = () => {
           showsVerticalScrollIndicator={false}
           enableOnAndroid>
           <Text
-            fontStyle="Display24Bold"
-            colorTheme={'neutral900'}
+            textAlign="center"
+            fontStyle="H224Semi"
+            colorTheme="primaryPressed"
             t18n="forgot_password_screen:reset_pass"
             style={styles.welcomeTitle}
           />
           <Text
-            fontStyle="Body14Reg"
-            colorTheme={'neutral900'}
-            t18n="forgot_password_screen:note_input"
+            textAlign="center"
+            fontStyle="Body14Med"
+            colorTheme="neutral80"
+            t18n="forgot_password_screen:description"
           />
-          <FormForgotPassword />
+          <Form />
         </KeyboardAwareScrollView>
       </Block>
     </Screen>
