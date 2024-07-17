@@ -1,27 +1,30 @@
-import { flightResultMonthActions } from '@redux-slice';
+import { flightResultMonthActions } from '@vna-base/redux/action-slice';
 import { StorageKey, delay, save } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 
-takeLatestListeners(true)({
-  actionCreator: flightResultMonthActions.changeViewChart,
-  effect: async (_, listenerApi) => {
-    await delay(100);
+export const runFlightResultMonthListener = () => {
 
-    const { viewChart } = listenerApi.getState().flightResultMonth;
-    listenerApi.dispatch(flightResultMonthActions.saveViewChart(!viewChart));
+  takeLatestListeners(true)({
+    actionCreator: flightResultMonthActions.changeViewChart,
+    effect: async (_, listenerApi) => {
+      await delay(100);
 
-    save(StorageKey.VIEW_CHART, !viewChart);
-    await delay(200);
-  },
-});
+      const { viewChart } = listenerApi.getState().flightResultMonth;
+      listenerApi.dispatch(flightResultMonthActions.saveViewChart(!viewChart));
 
-takeLatestListeners(true)({
-  actionCreator: flightResultMonthActions.changeFilterForm,
-  effect: async (action, listenerApi) => {
-    await delay(100);
+      save(StorageKey.VIEW_CHART, !viewChart);
+      await delay(200);
+    },
+  });
 
-    listenerApi.dispatch(
-      flightResultMonthActions.saveFilterForm(action.payload),
-    );
-  },
-});
+  takeLatestListeners(true)({
+    actionCreator: flightResultMonthActions.changeFilterForm,
+    effect: async (action, listenerApi) => {
+      await delay(100);
+
+      listenerApi.dispatch(
+        flightResultMonthActions.saveFilterForm(action.payload),
+      );
+    },
+  });
+}

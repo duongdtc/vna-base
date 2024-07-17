@@ -1,51 +1,52 @@
-import { flightBookingFormActions } from '@redux-slice';
+import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { Ibe } from '@services/axios';
 import { Ancillary, SeatMap } from '@services/axios/axios-ibe';
 import { BookFlight, prepareFormForSubmission, scale } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 
-takeLatestListeners()({
-  actionCreator: flightBookingFormActions.getSeatMaps,
-  effect: async (action, listenerApi) => {
-    listenerApi.dispatch(
-      flightBookingFormActions.changeIsLoadingSeatMaps(true),
-    );
+export const runFlightBookingFormListener = () =>
+  takeLatestListeners()({
+    actionCreator: flightBookingFormActions.getSeatMaps,
+    effect: async (action, listenerApi) => {
+      listenerApi.dispatch(
+        flightBookingFormActions.changeIsLoadingSeatMaps(true),
+      );
 
-    const { session } = listenerApi.getState().flightResult;
+      const { session } = listenerApi.getState().flightResult;
 
-    const res = await Promise.allSettled(
-      action.payload.map(async flight => {
-        const subRes = await Ibe.flightGetSeatMapCreate({
-          SessionInfo: {
-            AirlineOptionId: flight.AirlineOptionId,
-            FareOptionId: flight.FareOption?.OptionId,
-            FlightOptionId: flight.FlightOptionId,
-            Session: session,
-          },
-          System: flight.System,
-        });
+      const res = await Promise.allSettled(
+        action.payload.map(async flight => {
+          const subRes = await Ibe.flightGetSeatMapCreate({
+            SessionInfo: {
+              AirlineOptionId: flight.AirlineOptionId,
+              FareOptionId: flight.FareOption?.OptionId,
+              FlightOptionId: flight.FlightOptionId,
+              Session: session,
+            },
+            System: flight.System,
+          });
 
-        return subRes.data;
-      }),
-    );
+          return subRes.data;
+        }),
+      );
 
-    const data: Record<string, Array<SeatMap>> = {};
+      const data: Record<string, Array<SeatMap>> = {};
 
-    res.forEach((subRes, index) => {
-      if (subRes.status === 'fulfilled') {
-        data[index.toString()] = subRes?.value?.ListSeatMap ?? [];
-      } else {
-        data[index.toString()] = [];
-      }
-    });
+      res.forEach((subRes, index) => {
+        if (subRes.status === 'fulfilled') {
+          data[index.toString()] = subRes?.value?.ListSeatMap ?? [];
+        } else {
+          data[index.toString()] = [];
+        }
+      });
 
-    listenerApi.dispatch(flightBookingFormActions.saveSeatMaps(data));
+      listenerApi.dispatch(flightBookingFormActions.saveSeatMaps(data));
 
-    listenerApi.dispatch(
-      flightBookingFormActions.changeIsLoadingSeatMaps(false),
-    );
-  },
-});
+      listenerApi.dispatch(
+        flightBookingFormActions.changeIsLoadingSeatMaps(false),
+      );
+    },
+  });
 
 takeLatestListeners()({
   actionCreator: flightBookingFormActions.getAncillaries,
@@ -136,3 +137,4 @@ takeLatestListeners(true, {
     });
   },
 });
+}
