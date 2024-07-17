@@ -2,10 +2,10 @@ import {
   AnimatedBg,
   AnimatedHeader,
   Balance,
+  CustomScreen,
   ProcessingTask,
 } from '@screens/home/components';
 import { useStyles } from '@theme';
-import { Screen } from '@vna-base/components';
 import { scale } from '@vna-base/utils';
 import React, { useRef } from 'react';
 import Animated, {
@@ -69,9 +69,7 @@ export const Home = () => {
   );
 
   return (
-    <Screen
-      backgroundColor={styles.container.backgroundColor}
-      statusBarStyle="light-content">
+    <CustomScreen backgroundColor={styles.container.backgroundColor}>
       <AnimatedBg scrollSharedValue={scrollSharedValue} />
       <AnimatedHeader sharedValue={scrollSharedValue} />
       <Animated.ScrollView
@@ -86,7 +84,7 @@ export const Home = () => {
         <Banner />
         <SpecializedNews />
       </Animated.ScrollView>
-    </Screen>
+    </CustomScreen>
   );
 };
 
