@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Button, PagerWithHeader } from '@vna-base/components';
+import { Button } from '@vna-base/components';
 import { SceneWithTitle } from '@vna-base/components/pager/type';
 import { navigate } from '@navigation/navigation-service';
 import { selectNotification, selectSearchForm } from '@vna-base/redux/selector';
@@ -31,6 +31,7 @@ import { OneStage } from './one-stage';
 import { RoundStage } from './round-stage';
 import { ScrollView } from './scroll-view';
 import { SubmitButton } from '@screens/flight/components';
+import { PagerWithHeader } from '@components/pager-with-header/pager-with-header';
 
 const TabKey = {
   ONE_STAGE: 'ONE_STAGE',
