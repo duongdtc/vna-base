@@ -1,12 +1,13 @@
 import { Button, Text } from '@vna-base/components';
 import { VERSION_CODE, VERSION_NAME } from '@env';
 import { createStyleSheet, useStyles } from '@theme';
-import { MenuModules, logout, scale } from '@vna-base/utils';
+import { logout, scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { Block } from './block';
+import { MenuModules } from '@utils';
 
 export const Body = memo(() => {
   const { styles } = useStyles(styleSheet);

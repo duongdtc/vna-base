@@ -1,34 +1,28 @@
-import { LinearGradient, Screen } from '@vna-base/components';
+import {
+  AnimatedBg,
+  AnimatedHeader,
+  Balance,
+  ProcessingTask,
+} from '@screens/home/components';
 import { useStyles } from '@theme';
+import { Screen } from '@vna-base/components';
 import { scale } from '@vna-base/utils';
 import React, { useRef } from 'react';
 import Animated, {
-  Extrapolate,
-  interpolate,
   runOnJS,
   runOnUI,
   scrollTo,
   useAnimatedRef,
   useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
 import { createStyleSheet } from 'react-native-unistyles';
-import {
-  AnimatedHeader,
-  Balance,
-  Banner,
-  ProcessingTask,
-  SpecializedNews,
-} from './components';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Banner, SpecializedNews } from './components';
 
 export const Home = () => {
   const { styles } = useStyles(styleSheet);
-  const { top } = useSafeAreaInsets();
 
   const scrollSharedValue = useSharedValue(0);
   const animatedRef = useAnimatedRef<ScrollView>();
@@ -74,26 +68,11 @@ export const Home = () => {
     [],
   );
 
-  const linearGradientOpacity = useDerivedValue(() =>
-    interpolate(scrollSharedValue.value, [0, 70], [1, 0], Extrapolate.CLAMP),
-  );
-
-  const animatedStyleLinearGradient = useAnimatedStyle(() => ({
-    opacity: linearGradientOpacity.value,
-  }));
-
   return (
     <Screen
       backgroundColor={styles.container.backgroundColor}
       statusBarStyle="light-content">
-      <Animated.View
-        style={[
-          styles.linearContainer,
-          { height: scale(96) + top },
-          animatedStyleLinearGradient,
-        ]}>
-        <LinearGradient type="gra1" style={styles.bgLinear} />
-      </Animated.View>
+      <AnimatedBg scrollSharedValue={scrollSharedValue} />
       <AnimatedHeader sharedValue={scrollSharedValue} />
       <Animated.ScrollView
         ref={animatedRef}
@@ -113,14 +92,6 @@ export const Home = () => {
 
 const styleSheet = createStyleSheet(({ colors }) => ({
   container: { backgroundColor: colors.neutral10 },
-  linearContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: colors.neutral100,
-  },
-  bgLinear: { flex: 1 },
   contentContainer: {
     paddingTop: scale(8),
     rowGap: scale(12),
