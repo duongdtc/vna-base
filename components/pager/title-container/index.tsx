@@ -26,7 +26,7 @@ import { createStyleSheet, useStyles } from '@theme';
 
 export const TitleContainer = memo(
   forwardRef<TitleContainerRef, TitleContainerProps>(
-    ({ titles, onClick, widthTab, type }, ref) => {
+    ({ titles, onClick, widthTab }, ref) => {
       const { styles } = useStyles(styleSheet);
       const btnWidth = (widthTab - 4) / titles.length;
       const sharedValue = useSharedValue(0);
@@ -91,7 +91,7 @@ export const TitleContainer = memo(
                 styles.animatedBtnContainer,
                 animatedBtnContainerStyle,
               ]}>
-              <LinearGradient style={StyleSheet.absoluteFill} type={type} />
+              <LinearGradient style={StyleSheet.absoluteFill} type="gra1" />
               <Text
                 fontStyle="Body16Bold"
                 colorTheme="neutral10"

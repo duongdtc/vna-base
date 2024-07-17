@@ -19,7 +19,6 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/reani
 import { useStyles } from './styles';
 import { TitleContainer } from './title-container';
 import { TitleContainerRef } from './title-container/type';
-import { GradientProps } from '../linear-gradient/type';
 
 export const PagerWithHeader = memo(
   ({
@@ -27,8 +26,7 @@ export const PagerWithHeader = memo(
     style,
     onChangeTab,
     initTab = 0,
-    type,
-  }: PagerProps<SceneWithTitle> & Pick<GradientProps, 'type'>) => {
+  }: PagerProps<SceneWithTitle>) => {
     const styles = useStyles();
     const scrollViewRef = useRef<AnimatedScrollView>(null);
     const heightChildren = useRef(Array(renderScene.length).fill(0));
@@ -87,7 +85,6 @@ export const PagerWithHeader = memo(
     return (
       <Animated.View style={[styles.container, style]}>
         <TitleContainer
-          type={type}
           ref={titleContainerRef}
           titles={renderScene.map(scene => ({
             t18n: scene.t18n,

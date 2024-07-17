@@ -1,5 +1,4 @@
 import { IconTypes } from '@assets/icon';
-import { DateRangePickerMode, RangeDate } from '@vna-base/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Airport, Discount, Route } from '@redux/type';
 import {
@@ -16,7 +15,9 @@ import {
 import { CountryCode } from '@services/realm/models';
 import { FlashList } from '@shopify/flash-list';
 import { Colors } from '@theme';
+import { FontStyle } from '@theme/type';
 import { I18nKeys } from '@translations/locales';
+import { DateRangePickerMode, RangeDate } from '@vna-base/components';
 import {
   BookFlight,
   FareType,
@@ -28,8 +29,6 @@ import {
 import { StyleProp, ViewStyle } from 'react-native';
 import { ICalendarEventBase } from 'react-native-big-calendar';
 import { SharedValue } from 'react-native-reanimated';
-import { GradientProps } from '@vna-base/components/linear-gradient/type';
-import { FontStyle } from '@theme/type';
 
 // economy - Phổ thông
 // business - Thương gia
@@ -161,7 +160,7 @@ export type DatePickerProps = {
 export type SubmitButtonProps = {
   style?: StyleProp<ViewStyle>;
   callback?: (byMont?: boolean) => void;
-} & Pick<GradientProps, 'type'>;
+};
 
 export type OptionsForm = Pick<
   SearchForm,
