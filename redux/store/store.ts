@@ -3,12 +3,11 @@ import { allReducer } from '@store/all-reducers';
 import reduxDebugger from 'redux-flipper';
 import { persistReducer, persistStore } from 'redux-persist';
 
-import { listenerMiddleware } from '../listener';
-
 /**
  * Use this instead storage of reduxPersist
  */
 import { reduxPersistStorage } from '@vna-base/utils';
+import { listenerMiddleware } from '@vna-base/utils/redux/listener';
 
 const persistedReducer = persistReducer(
   {
