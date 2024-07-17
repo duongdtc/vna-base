@@ -114,7 +114,7 @@ export const BusDetails: Record<Bus, BusDetail> = {
     key: Bus.ONE,
     image: images.imgCar1,
     capacity: 5,
-    description: '16.000 VND/km (Dự kiến)',
+    description: '• 16.000 VND/km (Dự kiến)',
     price: 190_000,
   },
   [Bus.TWO]: {
@@ -122,7 +122,7 @@ export const BusDetails: Record<Bus, BusDetail> = {
     key: Bus.TWO,
     image: images.imgCar2,
     capacity: 7,
-    description: '16.000 VND/km (Dự kiến)',
+    description: '• 16.000 VND/km (Dự kiến)',
     price: 210_000,
   },
   [Bus.THREE]: {
@@ -130,7 +130,7 @@ export const BusDetails: Record<Bus, BusDetail> = {
     key: Bus.THREE,
     image: images.imgCar3,
     capacity: 16,
-    description: '16.000 VND/km (Dự kiến)',
+    description: '• 16.000 VND/km (Dự kiến)',
     price: 350_000,
   },
 };
