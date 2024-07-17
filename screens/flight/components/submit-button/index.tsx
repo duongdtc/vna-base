@@ -7,7 +7,11 @@ import React, { useMemo } from 'react';
 import { useFormContext, useFormState, useWatch } from 'react-hook-form';
 import { View } from 'react-native';
 
-export const SubmitButton = ({ callback, style }: SubmitButtonProps) => {
+export const SubmitButton = ({
+  callback,
+  style,
+  type: bgColor = 'gra1',
+}: SubmitButtonProps) => {
   const { handleSubmit, control } = useFormContext<SearchForm>();
 
   const { isValid } = useFormState<SearchForm>({ control: control });
@@ -54,7 +58,7 @@ export const SubmitButton = ({ callback, style }: SubmitButtonProps) => {
         t18n="flight:search"
         fullWidth
         onPress={submit}
-        buttonColorTheme="gra1"
+        buttonColorTheme={bgColor}
         textColorTheme="white"
         disabled={!_isValid}
       />

@@ -9,7 +9,6 @@ import {
   ModalAirportPicker,
   Notification,
   PassengerPicker,
-  SubmitButton,
 } from '@vna-base/screens/flight/components';
 import {
   Flight,
@@ -31,6 +30,7 @@ import { MultiStage } from './multi-stage';
 import { OneStage } from './one-stage';
 import { RoundStage } from './round-stage';
 import { ScrollView } from './scroll-view';
+import { SubmitButton } from '@screens/flight/components';
 
 const TabKey = {
   ONE_STAGE: 'ONE_STAGE',

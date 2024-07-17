@@ -28,6 +28,7 @@ import {
 import { StyleProp, ViewStyle } from 'react-native';
 import { ICalendarEventBase } from 'react-native-big-calendar';
 import { SharedValue } from 'react-native-reanimated';
+import { GradientProps } from '@vna-base/components/linear-gradient/type';
 import { FontStyle } from '@theme/type';
 
 // economy - Phổ thông
@@ -160,7 +161,7 @@ export type DatePickerProps = {
 export type SubmitButtonProps = {
   style?: StyleProp<ViewStyle>;
   callback?: (byMont?: boolean) => void;
-};
+} & Pick<GradientProps, 'type'>;
 
 export type OptionsForm = Pick<
   SearchForm,
