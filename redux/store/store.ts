@@ -7,8 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
  * Use this instead storage of reduxPersist
  */
 import { reduxPersistStorage } from '@vna-base/utils';
-import { listenerMiddleware } from '@vna-base/utils/redux/listener';
-
+import { listenerMiddleware } from '@redux/listener';
 const persistedReducer = persistReducer(
   {
     key: 'root',
@@ -18,7 +17,6 @@ const persistedReducer = persistReducer(
   allReducer,
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const middleware = [] as any[];
 
 if (__DEV__) {

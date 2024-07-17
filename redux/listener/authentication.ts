@@ -7,14 +7,18 @@ import { StorageKey } from '@vna-base/utils/storage/constants';
 import { authenticationActions } from '../action-slice/authentication';
 
 export const runAuthenticationListener = () => {
+  console.log('log here');
+
   takeLatestListeners(true)({
     actionCreator: authenticationActions.login,
     effect: async (action, listenerApi) => {
       const { body, onFailure, isRemember } = action.payload;
+      console.log('🚀 ~ effect: ~ body:', body);
 
       const response = await Data.userAccountUserAccountLoginCreate({
-        ...body,
         AgentCode: 'DC10899',
+        Username: 'Hungtk',
+        Password: '123456',
         Remember: true,
       });
 

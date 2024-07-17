@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { showModalConfirm, showToast } from '@vna-base/components';
-import { currentAccountActions } from '@vna-base/redux/action-slice';
-import { userAccountActions } from '@redux/action-slice/user-account';
+import {
+  currentAccountActions,
+  userAccountActions,
+} from '@vna-base/redux/action-slice';
 import { Data } from '@services/axios';
 import { UserAccountLst } from '@services/axios/axios-data';
 import { I18nKeys } from '@translations/locales';
@@ -258,7 +260,9 @@ export const runUserAccountListener = () => {
 
       if (validResponse(response)) {
         // load lại data mới
-        listenerApi.dispatch(userAccountActions.getListUserAccount(filterForm!));
+        listenerApi.dispatch(
+          userAccountActions.getListUserAccount(filterForm!),
+        );
 
         // // nếu là tài khoản đang login thì call cả api để lấy lại current account
         // if (Id === currId) {
@@ -299,7 +303,9 @@ export const runUserAccountListener = () => {
           themeColorCancel: 'neutral50',
           themeColorTextCancel: 'neutral900',
         });
-        listenerApi.dispatch(userAccountActions.getListUserAccount(filterForm!));
+        listenerApi.dispatch(
+          userAccountActions.getListUserAccount(filterForm!),
+        );
       } else {
         showToast({
           type: 'error',
@@ -345,8 +351,10 @@ export const runUserAccountListener = () => {
 
       if (validResponse(res)) {
         cb();
-        listenerApi.dispatch(userAccountActions.getListUserAccount(filterForm!));
+        listenerApi.dispatch(
+          userAccountActions.getListUserAccount(filterForm!),
+        );
       }
     },
   });
-}
+};

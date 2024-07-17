@@ -1,7 +1,7 @@
 import Actions from '@vna-base/redux/action-type';
 import { AuthenticationState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FormLoginType } from '@vna-base/screens/login/type';
+import { FormLoginType } from '@screens/login/type';
 import { SLICE_NAME } from './constant';
 
 const initialState: AuthenticationState = {
