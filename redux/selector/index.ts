@@ -73,5 +73,3 @@ export * from './current-account';
 export * from './common-search';
 
 export * from './payment';
-
-export * from './splash';

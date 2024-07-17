@@ -7,8 +7,6 @@ import { StorageKey } from '@vna-base/utils/storage/constants';
 import { authenticationActions } from '../action-slice/authentication';
 
 export const runAuthenticationListener = () => {
-  console.log('log here');
-
   takeLatestListeners(true)({
     actionCreator: authenticationActions.login,
     effect: async (action, listenerApi) => {
