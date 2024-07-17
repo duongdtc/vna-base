@@ -1,6 +1,7 @@
 import { FlightOfPassengerForm } from '@vna-base/screens/flight/type';
 import { Service } from '.';
 import { I18nKeys } from '@translations/locales';
+import { Ancillary } from '@services/axios/axios-ibe';
 
 export type ItemContainerProps = Pick<Service, 't18nTitle'> & {
   renderSegment?: boolean;
@@ -45,5 +46,23 @@ export type ServiceItemProps = {
     passengerIndex: number;
     segmentIndex: number;
     flight: FlightOfPassengerForm & { index: number };
+  }) => void;
+};
+
+export type ModalShuttleCarPickerRef = {
+  present: (data: {
+    listSelected: Array<string> | null | undefined;
+    passengerIndex: number;
+    segmentIndex: number;
+    flight: FlightOfPassengerForm & { index: number };
+  }) => void;
+};
+
+export type ModalShuttleCarPickerProps = {
+  onDone: (data: {
+    services: Array<Ancillary>;
+    passengerIndex: number;
+    flightIndex: number;
+    segmentIndex: number;
   }) => void;
 };

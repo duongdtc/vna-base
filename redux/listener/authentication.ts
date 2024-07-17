@@ -11,7 +11,6 @@ export const runAuthenticationListener = () => {
     actionCreator: authenticationActions.login,
     effect: async (action, listenerApi) => {
       const { body, onFailure, isRemember } = action.payload;
-      console.log('🚀 ~ effect: ~ body:', body);
 
       const response = await Data.userAccountUserAccountLoginCreate({
         AgentCode: 'DC10899',

@@ -16,7 +16,6 @@ import {
 import { CountryCode } from '@services/realm/models';
 import { FlashList } from '@shopify/flash-list';
 import { Colors } from '@theme';
-import { FontStyle } from '@theme/typography';
 import { I18nKeys } from '@translations/locales';
 import {
   BookFlight,
@@ -29,6 +28,7 @@ import {
 import { StyleProp, ViewStyle } from 'react-native';
 import { ICalendarEventBase } from 'react-native-big-calendar';
 import { SharedValue } from 'react-native-reanimated';
+import { FontStyle } from '@theme/type';
 
 // economy - Phổ thông
 // business - Thương gia
@@ -461,6 +461,7 @@ export type Passenger = {
   PreSeats: Array<Array<Seat | null | undefined>>;
   Baggages: Array<Ancillary>;
   Services: Array<Array<Array<Ancillary>>>;
+
   Title?: string;
 
   Passport?: Passport;
@@ -528,6 +529,20 @@ export type SubmitOption = {
   ReceivePriceFluctuationNotifications: boolean;
 };
 
+export type ShuttleBus = {
+  dateTime: Date | undefined;
+  trip?: string;
+  numberBus?: number | null;
+  type?: string | null;
+};
+
+export type Hotel = {
+  dateTime: Date | undefined;
+  numberPassenger?: number | null;
+  numberRoom?: number | null;
+  nameHotel?: string | null;
+};
+
 export type PassengerForm = {
   Passengers: Array<Passenger>;
   FLights: Array<FlightOfPassengerForm>;
@@ -539,6 +554,9 @@ export type PassengerForm = {
   SubmitOption: SubmitOption;
 
   VerifiedSessions: Array<string>;
+
+  ShuttleBuses: Array<ShuttleBus>;
+  Hotels: Array<Hotel>;
 };
 
 export enum SeatType {

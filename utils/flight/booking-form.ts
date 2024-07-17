@@ -214,7 +214,7 @@ export const generateInitialPassengerFormData = (
 
   //@ts-ignore
   const tempInitData: PassengerForm = {
-    Insurance: false,
+    Insurance: true,
     Passengers: !passengersForm?.Passengers
       ? []
       : cloneDeep(passengersForm?.Passengers),
@@ -229,6 +229,9 @@ export const generateInitialPassengerFormData = (
       AutomaticallyIssueTicketsUponExpiration: false,
       ReceivePriceFluctuationNotifications: false,
     },
+
+    ShuttleBus: [],
+    Hotel: [],
 
     //@ts-ignore
     ContactInfo: passengersForm?.ContactInfo,
