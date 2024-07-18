@@ -96,46 +96,50 @@ export const Success = ({
   };
 
   const renderTicket = useCallback<ListRenderItem<Ticket>>(
-    ({ item }) => (
-      <Block
-        flexDirection="row"
-        alignItems="center"
-        padding={12}
-        justifyContent="space-between">
-        <Block flex={1}>
-          <Text
-            text={item.TicketNumber as string}
-            fontStyle="Body12Bold"
-            colorTheme="neutral900"
-          />
-          <Text
-            text={`${item.FullName}${
-              isShowRemark && item.Remark && item.Remark !== ''
-                ? ` - ${item.Remark}`
-                : ''
-            }`}
-            fontStyle="Body12Med"
-            colorTheme="neutral600"
-            numberOfLines={2}
-            ellipsizeMode="tail"
-          />
+    ({ item }) => {
+      console.log('🚀 ~ item:', item);
+
+      return (
+        <Block
+          flexDirection="row"
+          alignItems="center"
+          padding={12}
+          justifyContent="space-between">
+          <Block flex={1}>
+            <Text
+              text={item.TicketNumber as string}
+              fontStyle="Body12Bold"
+              colorTheme="neutral900"
+            />
+            <Text
+              text={`${item.FullName}${
+                isShowRemark && item.Remark && item.Remark !== ''
+                  ? ` - ${item.Remark}`
+                  : ''
+              }`}
+              fontStyle="Body12Med"
+              colorTheme="neutral600"
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            />
+          </Block>
+          <Block flex={0.5} alignItems="flex-end">
+            <Text
+              t18n={TicketTypeDetails[item.TicketType as TicketType]?.t18n}
+              fontStyle="Body12Med"
+              colorTheme={
+                TicketTypeDetails[item.TicketType as TicketType]?.colorTheme
+              }
+            />
+            <Text
+              text={`${item?.StartPoint?.Code}-${item?.EndPoint?.Code}`}
+              fontStyle="Body12Reg"
+              colorTheme="neutral600"
+            />
+          </Block>
         </Block>
-        <Block flex={0.5} alignItems="flex-end">
-          <Text
-            t18n={TicketTypeDetails[item.TicketType as TicketType]?.t18n}
-            fontStyle="Body12Med"
-            colorTheme={
-              TicketTypeDetails[item.TicketType as TicketType]?.colorTheme
-            }
-          />
-          <Text
-            text={`${bookingDetail?.StartPoint}-${bookingDetail?.EndPoint}`}
-            fontStyle="Body12Reg"
-            colorTheme="neutral600"
-          />
-        </Block>
-      </Block>
-    ),
+      );
+    },
     [bookingDetail?.EndPoint, bookingDetail?.StartPoint, isShowRemark],
   );
 
@@ -197,12 +201,12 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={bookingDetail?.BookingCode as string}
+              text={'5XGQTY'}
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[
                   bookingDetail?.BookingStatus as BookingStatus
-                ].iconColorTheme
+                ]?.iconColorTheme
               }
             />
             <Block style={styles.copyIcon}>
