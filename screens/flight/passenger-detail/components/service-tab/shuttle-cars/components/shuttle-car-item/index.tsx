@@ -106,7 +106,7 @@ export const ShuttleCarItem = memo(({ item, index }: Props) => {
                                     ? dayjs(value).format('HH:mm DD/MM/YYYY')
                                     : 'Thời gian đón'
                                 }
-                                fontStyle="Body14Semi"
+                                fontStyle="Body12Med"
                                 colorTheme="neutral100"
                               />
                               <Icon
@@ -297,14 +297,15 @@ export const ShuttleCarItem = memo(({ item, index }: Props) => {
                                     : 'neutral100'
                                 }
                               />
-                              {!value ||
-                                (selected?.key === Bus.ZERO && (
-                                  <Icon
-                                    icon={'arrow_ios_down_fill'}
-                                    size={16}
-                                    colorTheme="neutral100"
-                                  />
-                                ))}
+                              {(!value ||
+                                value === undefined ||
+                                selected?.key === Bus.ZERO) && (
+                                <Icon
+                                  icon={'arrow_ios_down_fill'}
+                                  size={16}
+                                  colorTheme="neutral100"
+                                />
+                              )}
                             </Block>
                           </Block>
                           {value && selected?.key !== Bus.ZERO && (

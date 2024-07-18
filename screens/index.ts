@@ -131,3 +131,5 @@ export * from './menu';
 export * from './specialize-news-all';
 
 export * from './banner-and-news-detail';
+
+export * from './flight/list-hotel';

@@ -14,6 +14,7 @@ import { Baggages } from './baggages';
 import { Seats } from './seats';
 import { Services } from './services';
 import { ShuttleCars } from './shuttle-cars';
+import { Hotels } from './hotels';
 
 export interface Service {
   key:
@@ -79,7 +80,7 @@ export const ServiceTab = () => {
         return <ShuttleCars t18nTitle={item.t18nTitle} />;
 
       case 'Hotel':
-        return <Services t18nTitle={item.t18nTitle} />;
+        return <Hotels t18nTitle={item.t18nTitle} />;
     }
   }, []);
 

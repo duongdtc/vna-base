@@ -28,6 +28,7 @@ import {
 import { StyleProp, ViewStyle } from 'react-native';
 import { ICalendarEventBase } from 'react-native-big-calendar';
 import { SharedValue } from 'react-native-reanimated';
+import { HotelDetail, RoomDetail } from './list-hotel/dummy';
 
 // economy - Phổ thông
 // business - Thương gia
@@ -541,10 +542,10 @@ export type ShuttleBus = {
 };
 
 export type Hotel = {
-  dateTime: Date | undefined;
-  numberPassenger?: number | null;
+  dateTime?: Date | undefined;
   numberRoom?: number | null;
-  nameHotel?: string | null;
+  hotel?: HotelDetail;
+  room?: RoomDetail;
 };
 
 export type PassengerForm = {
