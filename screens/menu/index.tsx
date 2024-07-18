@@ -1,7 +1,8 @@
 import { Screen } from '@vna-base/components';
 import React from 'react';
 import { createStyleSheet, useStyles } from '@theme';
-import { Body, Header } from './components';
+import { Header } from './components/header';
+import { Body } from '@screens/menu/components/body';
 
 export const Menu = () => {
   const { styles } = useStyles(styleSheet);
