@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { showToast } from '@vna-base/components';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { Ibe } from '@services/axios';
+import { AirOption, MinFare, OptionGroup } from '@services/axios/axios-ibe';
+import { AirportRealm } from '@services/realm/models';
+import { realmRef } from '@services/realm/provider';
+import { showToast } from '@vna-base/components';
 import { flightResultActions } from '@vna-base/redux/action-slice';
 import {
   ApplyFlightFee,
   ApplyPassengerFee,
 } from '@vna-base/screens/flight/type';
-import { Ibe } from '@services/axios';
-import { AirOption, MinFare } from '@services/axios/axios-ibe';
-import { AirportRealm } from '@services/realm/models';
-import { realmRef } from '@services/realm/provider';
 import { translate } from '@vna-base/translations/translate';
 import {
   StorageKey,
@@ -23,6 +23,7 @@ import {
 } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import dayjs, { Dayjs } from 'dayjs';
+import { Route } from '../type';
 
 export const runFlightResultListener = () => {
   takeLatestListeners(true)({
@@ -429,9 +430,12 @@ export const runFlightResultListener = () => {
 
       const { flights, cb } = action.payload;
 
-      const res = await Ibe.flightVerifyFlightCreate({
-        ListSession: flights,
-      });
+      // const res = await Ibe.flightVerifyFlightCreate({
+      //   ListSession: flights,
+      // });
+
+      const { routes } = listenerApi.getState().flightSearch;
+      const res = await fakeVerifyFlight({ routes });
 
       if (validResponse(res)) {
         listenerApi.dispatch(
@@ -481,6 +485,150 @@ async function fakeMinFare({
         EndDate: `${DepartDate.format('YYYY-MM-DD')}T23:10:00`,
       },
       RequestID: 0,
+      ApiQueries: [],
+      StatusCode: '000',
+      Success: true,
+      Expired: false,
+      Message: null,
+      Language: 'vi',
+      CustomProperties: null,
+    },
+  };
+}
+
+async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
+  await delay(500);
+
+  const ListFlightFare = routes.map(
+    ({ StartPoint, EndPoint, DepartDate: dp }, idx) => {
+      const DepartDate = dayjs(dp).format('DDMMYYYY');
+      const StartDate = dayjs(dp).format('YYYY-MM-DD');
+
+      return {
+        Leg: idx,
+        Journey: `${StartPoint}${EndPoint}${dayjs(dp).format('DDMMYYYY')}`,
+        Itinerary: 1,
+        Airline: 'VN',
+        System: 'VN',
+        Remark:
+          'The itinerary price is still available, you can book with the verify result',
+        FareInfo: {
+          OptionId: 0,
+          FareClass: 'N',
+          FareBasis: 'NPXVNF',
+          FareFamily: 'Economy Lite',
+          CabinCode: 'M',
+          CabinName: 'Economy',
+          Refundable: true,
+          Availability: 9,
+          Unavailable: false,
+          ExpiryDate: null,
+          BaseFare: 1639000,
+          PriceAdt: 2440000,
+          NetFare: 2340000,
+          TotalFare: 2440000,
+          Currency: 'VND',
+          System: 'VN',
+          ListFarePax: [
+            {
+              PaxType: 'ADT',
+              PaxNumb: 1,
+              BaseFare: 1639000,
+              NetFare: 2340000,
+              TotalFare: 2440000,
+              ListFareItem: [
+                { Code: 'TICKET_FARE', Amount: 1639000, Name: 'Ticket fare' },
+                { Code: 'TICKET_TAX', Amount: 701000, Name: 'Ticket taxes' },
+                { Code: 'SERVICE_FEE', Amount: 100000, Name: 'Service fee' },
+              ],
+              ListTaxDetail: [
+                { Code: 'YR', Amount: 450000, Name: 'YR' },
+                { Code: 'AX', Amount: 99000, Name: 'AX' },
+                { Code: 'C4', Amount: 20000, Name: 'C4' },
+                { Code: 'UE', Amount: 132000, Name: 'UE' },
+              ],
+              ListFareInfo: [
+                {
+                  SegmentId: '1',
+                  StartPoint,
+                  EndPoint,
+                  FareClass: 'N',
+                  FareBasis: 'NPXVNF',
+                  HandBaggage: '1 piece x 10kg',
+                  FreeBaggage: '1 piece x 23kg',
+                  Availability: 9,
+                },
+              ],
+            },
+          ],
+        },
+        ListFlight: [
+          {
+            Leg: 0,
+            FlightId: '2',
+            Airline: 'VN',
+            Operator: 'BL',
+            StartPoint,
+            EndPoint,
+            StartDate: `${StartDate}T21:10:00`,
+            EndDate: `${StartDate}T23:30:00`,
+            DepartDate: `${DepartDate} 2110`,
+            ArriveDate: `${DepartDate} 2330`,
+            FlightNumber: '6021',
+            StopNum: 0,
+            Duration: 140,
+            ListSegment: [
+              {
+                Leg: 0,
+                SegmentId: '1',
+                Airline: 'VN',
+                Operator: 'BL',
+                StartPoint,
+                EndPoint,
+                StartDate: `${StartDate}T21:10:00`,
+                EndDate: `${StartDate}T23:30:00`,
+                DepartDate: `${DepartDate} 2110`,
+                ArriveDate: `${DepartDate} 2330`,
+                StartTerminal: '1',
+                EndTerminal: '1',
+                FlightNumber: '6021',
+                Equipment: '320',
+                FareClass: null,
+                FareBasis: null,
+                Duration: 140,
+                HasStop: false,
+                StopPoint: null,
+                StopTime: 0,
+                MarriageGrp: null,
+                FlightsMiles: 0,
+                Status: null,
+              },
+            ],
+          },
+        ],
+        Adt: 1,
+        Chd: 0,
+        Inf: 0,
+        AgentId: null,
+        AgentCode: null,
+        AgentType: null,
+        Session: `DTC117-5D92BA25F17844BC99A2C9472816${Math.floor(
+          1000 + Math.random() * 9000,
+        )}`,
+        Status: true,
+        Error: '000',
+        Message: '',
+        Language: 'en',
+        IsNDC: false,
+        NdcInfo: null,
+      };
+    },
+  );
+
+  return {
+    data: {
+      ListFlightFare,
+      RequestID: 38374,
       ApiQueries: [],
       StatusCode: '000',
       Success: true,

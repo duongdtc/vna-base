@@ -465,7 +465,7 @@ async function fakeData({
   await delay(800);
 
   const ListGroup = ListRoute.map(
-    ({ DepartDate: dp, StartPoint, EndPoint }) => {
+    ({ DepartDate: dp, StartPoint, EndPoint }, idx) => {
       const Journey = `${StartPoint}${EndPoint}${dayjs(dp).format('DDMMYYYY')}`;
 
       const DepartDate = dayjs(dp).format('DDMMYYYY');
@@ -473,7 +473,7 @@ async function fakeData({
       const StartDate = dayjs(dp).format('YYYY-MM-DD');
 
       return {
-        Leg: 0,
+        Leg: idx,
         TripType: 'OW',
         Journey,
         StartPoint,
@@ -482,7 +482,7 @@ async function fakeData({
         ListAirOption: [
           {
             OptionId: 0,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -660,7 +660,7 @@ async function fakeData({
           },
           {
             OptionId: 1,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -838,7 +838,7 @@ async function fakeData({
           },
           {
             OptionId: 2,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -1016,7 +1016,7 @@ async function fakeData({
           },
           {
             OptionId: 3,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -1194,7 +1194,7 @@ async function fakeData({
           },
           {
             OptionId: 4,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -1372,7 +1372,7 @@ async function fakeData({
           },
           {
             OptionId: 5,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -1835,7 +1835,7 @@ async function fakeData({
           },
           {
             OptionId: 6,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -2469,7 +2469,7 @@ async function fakeData({
           },
           {
             OptionId: 7,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -2932,7 +2932,7 @@ async function fakeData({
           },
           {
             OptionId: 8,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
@@ -3452,7 +3452,7 @@ async function fakeData({
           },
           {
             OptionId: 9,
-            Leg: 0,
+            Leg: idx,
             Itinerary: 1,
             Airline: 'VN',
             System: 'VN',
