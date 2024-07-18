@@ -116,17 +116,17 @@ export const runFlightResultListener = () => {
       for (const [indexRoute, routeWithDate] of arrDates.entries()) {
         const res = await Promise.allSettled(
           routeWithDate.map(async dateWithRoute => {
-            // const resMinFare = await Ibe.flightSearchMinFareCreate({
-            //   DepartDate: dateWithRoute.date.format('DDMMYYYY'),
-            //   StartPoint: dateWithRoute.StartPoint.Code,
-            //   EndPoint: dateWithRoute.EndPoint.Code,
-            //   System: 'VN',
-            // });
-            const resMinFare = await fakeMinFare({
-              DepartDate: dateWithRoute.date,
+            const resMinFare = await Ibe.flightSearchMinFareCreate({
+              DepartDate: dateWithRoute.date.format('DDMMYYYY'),
               StartPoint: dateWithRoute.StartPoint.Code,
               EndPoint: dateWithRoute.EndPoint.Code,
+              System: 'VN',
             });
+            // const resMinFare = await fakeMinFare({
+            //   DepartDate: dateWithRoute.date,
+            //   StartPoint: dateWithRoute.StartPoint.Code,
+            //   EndPoint: dateWithRoute.EndPoint.Code,
+            // });
 
             return {
               minFare: (resMinFare.data.MinFare ?? {}) as MinFare,

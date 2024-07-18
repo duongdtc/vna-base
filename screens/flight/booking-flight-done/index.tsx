@@ -37,6 +37,8 @@ import {
 import { SvgUri } from 'react-native-svg';
 import { useStyles } from './styles';
 import { APP_SCREEN, RootStackParamList } from '@utils';
+import { NavToOrderDetail } from '@screens/flight/booking-flight-done/footer';
+import { MoreActionButton } from '@screens/flight/booking-flight-done/more-action';
 
 export const BookingFlightDone = ({
   route,
@@ -91,22 +93,6 @@ export const BookingFlightDone = ({
       routes: [
         {
           name: APP_SCREEN.BOTTOM_TAB_NAV,
-        },
-      ],
-    });
-    resetSearchFlight();
-  };
-
-  const navToOrderDetail = () => {
-    reset({
-      index: 1,
-      routes: [
-        {
-          name: APP_SCREEN.BOTTOM_TAB_NAV,
-        },
-        {
-          name: APP_SCREEN.ORDER_DETAIL,
-          params: { id: orderInfo.OrderId! },
         },
       ],
     });
@@ -357,15 +343,8 @@ export const BookingFlightDone = ({
             <Text text="VND" colorTheme="neutral900" />
           </Text>
         </Block>
-        <Button
-          t18n="input_info_passenger:view_order"
-          fullWidth
-          buttonColorTheme="success500"
-          textColorTheme="neutral100"
-          size="medium"
-          paddingVertical={12}
-          onPress={navToOrderDetail}
-        />
+        <NavToOrderDetail orderId={orderInfo.OrderId!} />
+        <MoreActionButton />
       </Block>
     </Screen>
   );

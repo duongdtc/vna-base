@@ -26,10 +26,12 @@ import { createStyleSheet, useStyles } from '@theme';
 import {
   BookFlight,
   ModalWidth,
+  StorageKey,
   WindowHeight,
   WindowWidth,
   dispatch,
   generateInitialPassengerFormData,
+  save,
   scale,
   validatePassengerForm,
 } from '@vna-base/utils';
@@ -104,6 +106,8 @@ export const PassengerDetail = () => {
   // useWatchFormChange(formMethod);
 
   const continuesFlow = () => {
+    save(StorageKey.FORM_BOOKING, formMethod.getValues());
+
     dispatch(
       flightBookingFormActions.bookFlight(
         formMethod.getValues(),

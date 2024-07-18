@@ -14,13 +14,19 @@ import { realmRef } from '@services/realm/provider';
 import {
   ANCILLARY_TYPE,
   BookingStatus,
+  delay,
+  getState,
+  load,
   scale,
+  StorageKey,
   System as SystemType,
   validResponse,
 } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
+import { PassengerForm } from '@vna-base/screens/flight/type';
+import { Route } from '../type';
 
 export const runBookingActionListnener = () => {
   takeLatestListeners()({
@@ -60,20 +66,23 @@ export const runBookingActionListnener = () => {
 
   takeLatestListeners()({
     actionCreator: bookingActionActions.issueTicket,
-    effect: async action => {
+    effect: async (action, listenerApi) => {
       const { id, info, cb } = action.payload;
 
-      const bookingDetail = realmRef.current
-        ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
-        ?.toJSON() as Booking;
+      // const bookingDetail = realmRef.current
+      //   ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
+      //   ?.toJSON() as Booking;
 
-      const res = await Ibe.flightIssueTicketCreate({
-        System: bookingDetail?.System,
-        BookingCode: bookingDetail?.BookingCode,
-        BookingId: id,
-        Tourcode: info.Tourcode,
-        AccountCode: info.AccountCode,
-      });
+      const { routes } = listenerApi.getState().flightSearch;
+
+      const res = await fakeIssueTicket(routes);
+      // const res = await Ibe.flightIssueTicketCreate({
+      //   System: bookingDetail?.System,
+      //   BookingCode: bookingDetail?.BookingCode,
+      //   BookingId: id,
+      //   Tourcode: info.Tourcode,
+      //   AccountCode: info.AccountCode,
+      // });
 
       cb(validResponse(res), {
         listTicket: res.data.Booking?.ListTicket ?? [],
@@ -772,7 +781,7 @@ export const runBookingActionListnener = () => {
 
       const { Confirm } = form;
 
-      let session: string | undefined = undefined;
+      let session: string | undefined;
 
       showLoading({
         lottie: 'loading',
@@ -925,7 +934,7 @@ export const runBookingActionListnener = () => {
 
       const { Confirm } = form;
 
-      let session: string | undefined = undefined;
+      let session: string | undefined;
 
       showLoading({
         lottie: 'loading',
@@ -1057,3 +1066,89 @@ export const runBookingActionListnener = () => {
     },
   });
 };
+
+async function fakeIssueTicket(routes: Route[]) {
+  await delay(1000);
+
+  const formData = load(StorageKey.FORM_BOOKING) as PassengerForm;
+
+  return {
+    data: {
+      Booking: {
+        Source: null,
+        System: 'VN',
+        Airline: 'VN',
+        BookingId: null,
+        OrderCode: null,
+        OrderId: null,
+        GdsCode: '5KBXK4',
+        BookingCode: '5KBXK4',
+        BookingStatus: 'TICKETED',
+        ExpirationTime: null,
+        TimePurchase: null,
+        TotalPrice: 0,
+        Currency: 'VND',
+        BookingPcc: null,
+        BookingSignIn: null,
+        BookingImage:
+          '5KBXK4\r\nWARNING: NOT FOUND PASSENGER DATA!\r\nNO ITINERARY INFO!',
+        ResponseTime: 0,
+        AutoIssue: false,
+        Sandbox: false,
+        StatusCode: null,
+        Message: null,
+        ListContact: [],
+        ListFlightFare: [],
+        ListPassenger: [],
+        ListTicket: routes.map(({ StartPoint, EndPoint, DepartDate }) => ({
+          Index: 0,
+          System: 'VN',
+          Airline: 'VN',
+          BookingCode: '5KBXK4',
+          ConjTktNum: '738',
+          TicketNumber: (
+            Math.floor(Math.random() * 9000000000000) + 1000000000000
+          ).toString(),
+          TicketType: 'OPEN',
+          TicketStatus: 'OPEN',
+          TicketRelated: null,
+          RelatedType: null,
+          ServiceType: 'FLIGHT',
+          ServiceCode: null,
+          PaxType: 'ADT',
+          FullName: formData.Passengers[0].FullName,
+          GivenName: formData.Passengers[0].GivenName,
+          Surname: formData.Passengers[0].Surname,
+          NameId: '2',
+          Fare: 1639000,
+          Tax: 701000,
+          Fee: 0,
+          Vat: 0,
+          Total: 2340000,
+          Currency: 'VND',
+          Itinerary: 1,
+          StartPoint,
+          EndPoint,
+          DepartDate: dayjs(DepartDate).format('DDMMYYYY'),
+          ReturnDate: null,
+          FareClass: 'N',
+          FareBasis: 'NPXVNF',
+          FlightType: 'domestic',
+          Segments: 'VN' + StartPoint + EndPoint,
+          Remark: 'PAX 738-2300011752/ETVN/18JUL24/SGNVN28BM/37980003',
+          TicketImage: null,
+          IssueDate: '2024-07-18T00:00:00',
+        })),
+      },
+      PaidAmount: 0,
+      RequestID: 38406,
+      ApiQueries: [],
+      StatusCode: '000',
+      Success: true,
+      Expired: false,
+      Message: null,
+      Language: 'vi',
+      CustomProperties: null,
+    },
+  };
+}
