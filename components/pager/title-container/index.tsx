@@ -119,7 +119,7 @@ const styleSheet = createStyleSheet(({ colors }) => ({
   },
   btn: {
     flex: 1,
-    paddingVertical: scale(12),
+    paddingVertical: scale(8),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -128,7 +128,7 @@ const styleSheet = createStyleSheet(({ colors }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: scale(6),
-    paddingVertical: scale(12),
+    paddingVertical: scale(8),
     overflow: 'hidden',
   },
 }));

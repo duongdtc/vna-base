@@ -14,8 +14,7 @@ import {
 } from '@services/axios/axios-ibe';
 import { CountryCode } from '@services/realm/models';
 import { FlashList } from '@shopify/flash-list';
-import { Colors } from '@theme';
-import { FontStyle } from '@theme/type';
+import { Colors, FontStyle } from '@theme/type';
 import { I18nKeys } from '@translations/locales';
 import { DateRangePickerMode, RangeDate } from '@vna-base/components';
 import {
@@ -104,7 +103,7 @@ export type SystemDetail = {
 
   priority: number;
 
-  colorTheme: keyof Colors;
+  colorTheme: Colors;
 
   domestic?: boolean;
 };
@@ -160,6 +159,11 @@ export type DatePickerProps = {
 export type SubmitButtonProps = {
   style?: StyleProp<ViewStyle>;
   callback?: (byMont?: boolean) => void;
+};
+
+export type MoreOptionButtonProps = {
+  textColorTheme: Colors;
+  onPress: () => void;
 };
 
 export type OptionsForm = Pick<
@@ -629,7 +633,7 @@ export type CustomFeeForm = Record<keyof typeof PassengerType, string> & {
 
 export type EventResultFlightType = ICalendarEventBase & {
   price?: number;
-  colorTheme?: keyof Colors;
+  colorTheme?: Colors;
   fontStyle?: FontStyle;
 };
 

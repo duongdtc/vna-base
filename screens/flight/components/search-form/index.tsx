@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Button, PagerWithHeader } from '@vna-base/components';
-import { SceneWithTitle } from '@vna-base/components/pager/type';
 import { navigate } from '@navigation/navigation-service';
-import { selectNotification, selectSearchForm } from '@vna-base/redux/selector';
 import { Airport } from '@redux/type';
+import { MoreOptionButton } from '@screens/flight/search/components/more-option-button';
+import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN } from '@utils';
+import { PagerWithHeader } from '@vna-base/components';
+import { SceneWithTitle } from '@vna-base/components/pager/type';
+import { selectNotification, selectSearchForm } from '@vna-base/redux/selector';
 import {
   AirportPickerContext,
   ModalAirportPicker,
@@ -15,11 +18,9 @@ import {
   Flight,
   ModalAirportPickerRef,
   OptionsForm,
-  SearchForm as SearchFormType,
   SearchFormProps,
+  SearchForm as SearchFormType,
 } from '@vna-base/screens/flight/type';
-import { I18nKeys } from '@translations/locales';
-import { APP_SCREEN } from '@utils';
 import { scale } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
@@ -191,16 +192,7 @@ export const SearchForm = ({
               style={{ marginTop: hidePassenger ? 16 : 0 }}
             />
 
-            <Button
-              leftIcon="options_2_fill"
-              textColorTheme="primaryColor"
-              leftIconSize={20}
-              t18n="flight:more_options"
-              fullWidth
-              onPress={navToOptions}
-              buttonColorTheme="neutral20"
-              buttonStyle={styles.btnMore}
-            />
+            <MoreOptionButton onPress={navToOptions} />
 
             {Footer}
           </Animated.View>
@@ -213,7 +205,6 @@ export const SearchForm = ({
 
 const styles = StyleSheet.create({
   pagerWithHeader: { paddingHorizontal: scale(16) },
-  btnMore: { marginHorizontal: scale(16), marginTop: scale(16) },
   // btnSearchByMonth: {
   //   flexDirection: 'row',
   //   justifyContent: 'space-between',

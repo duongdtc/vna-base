@@ -14,7 +14,12 @@ import {
   SearchForm,
 } from '@vna-base/screens/flight/type';
 import { createStyleSheet, useStyles, bs } from '@theme';
-import { ActiveOpacity, getMonthName, getNameDay, scale } from '@vna-base/utils';
+import {
+  ActiveOpacity,
+  getMonthName,
+  getNameDay,
+  scale,
+} from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { memo, useCallback, useRef } from 'react';
 import isEqual from 'react-fast-compare';
@@ -231,12 +236,16 @@ export const DatePicker = memo(
                 <Text
                   text={txtDay(dateFlight.departureDay)}
                   fontStyle="Body12Med"
-                  colorTheme="primaryColor"
+                  colorTheme="primaryPressed"
                 />
               )}
             </View>
             {!roundTrip && !selectBackDayDone && (
-              <Icon icon="calendar_fill" size={24} colorTheme="primaryColor" />
+              <Icon
+                icon="calendar_fill"
+                size={24}
+                colorTheme="primaryPressed"
+              />
             )}
           </View>
           {roundTrip && (
@@ -259,7 +268,7 @@ export const DatePicker = memo(
                       <Text
                         text={txtDay(dateFlight.backDay)}
                         fontStyle="Body12Med"
-                        colorTheme="primaryColor"
+                        colorTheme="primaryPressed"
                       />
                     )}
                   </View>
@@ -269,7 +278,7 @@ export const DatePicker = memo(
                   <Icon
                     icon="calendar_fill"
                     size={24}
-                    colorTheme="primaryColor"
+                    colorTheme="primaryPressed"
                   />
                   <Text
                     t18n={byMonth ? 'flight:end' : 'flight:back_day'}
@@ -290,7 +299,7 @@ export const DatePicker = memo(
                 <Icon
                   icon="calendar_fill"
                   size={24}
-                  colorTheme="primaryColor"
+                  colorTheme="primaryPressed"
                 />
                 <Text
                   t18n={byMonth ? 'flight:end' : 'flight:back_day'}

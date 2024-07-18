@@ -107,7 +107,11 @@ export const AirportPicker = memo(({ style, index }: AirportPickerProps) => {
           ) : (
             <View
               style={[bs.flexDirectionRow, bs.columnGap_12, bs.alignCenter]}>
-              <Icon icon="plane_up_fill" colorTheme="primaryColor" size={24} />
+              <Icon
+                icon="plane_up_fill"
+                colorTheme="primaryPressed"
+                size={24}
+              />
               <Text
                 t18n="flight:departure"
                 fontStyle="H320Semi"
@@ -117,7 +121,11 @@ export const AirportPicker = memo(({ style, index }: AirportPickerProps) => {
           )}
           {airportFlight.takeOff && (
             <View style={styles.icPlaneUp} pointerEvents="none">
-              <Icon icon="plane_up_fill" colorTheme="primaryColor" size={36} />
+              <Icon
+                icon="plane_up_fill"
+                colorTheme="primaryPressed"
+                size={36}
+              />
             </View>
           )}
         </TouchableOpacity>
@@ -132,7 +140,7 @@ export const AirportPicker = memo(({ style, index }: AirportPickerProps) => {
             <View style={styles.icPlaneDown} pointerEvents="none">
               <Icon
                 icon="plane_down_fill"
-                colorTheme="primaryColor"
+                colorTheme="primaryPressed"
                 size={36}
               />
             </View>
@@ -162,7 +170,7 @@ export const AirportPicker = memo(({ style, index }: AirportPickerProps) => {
               style={[bs.flexDirectionRow, bs.columnGap_12, bs.alignCenter]}>
               <Icon
                 icon="plane_down_fill"
-                colorTheme="primaryColor"
+                colorTheme="primaryPressed"
                 size={24}
               />
               <Text
@@ -180,7 +188,7 @@ export const AirportPicker = memo(({ style, index }: AirportPickerProps) => {
           style={styles.btnSwap}
           disabled={!(airportFlight.landing && airportFlight.takeOff)}
           onPress={_reverseValue}>
-          <Icon icon="swap_fill" colorTheme="primaryColor" size={24} />
+          <Icon icon="swap_fill" colorTheme="primaryPressed" size={24} />
         </TouchableScale>
       </View>
     </View>
