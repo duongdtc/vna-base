@@ -1,8 +1,11 @@
-import { LazyPlaceholder, Text } from '@vna-base/components';
+import { SectionContainer } from '@screens/flight/results/components/filter/section-container';
+import { createStyleSheet, useStyles } from '@theme';
+import { LazyPlaceholder } from '@vna-base/components';
 import { FilterForm } from '@vna-base/screens/flight/type';
 import { save, scale, StorageKey, WindowWidth } from '@vna-base/utils';
 import React, { memo, useCallback, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { View } from 'react-native';
 import {
   NavigationState,
   Route,
@@ -12,8 +15,6 @@ import {
 import { ScrollBarTab } from './scroll-bar-tab';
 import { TabBarDepartureTime } from './tab-bar-departure-time';
 import { TimeSlotTab } from './time-slot-tab';
-import { createStyleSheet, useStyles } from '@theme';
-import { View } from 'react-native';
 
 const TabName = {
   TIME_SLOT: 'TIME_SLOT',
@@ -71,14 +72,7 @@ export const DepartureTime = memo(({ initTab }: { initTab: number }) => {
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text
-          t18n="flight:departure_time"
-          fontStyle="Body16Semi"
-          colorTheme="neutral100"
-        />
-      </View>
+    <SectionContainer t18n="flight:departure_time">
       <View style={styles.tabContainer}>
         <TabView
           navigationState={{ index, routes }}
@@ -91,7 +85,7 @@ export const DepartureTime = memo(({ initTab }: { initTab: number }) => {
           renderLazyPlaceholder={() => <LazyPlaceholder height={200} />}
         />
       </View>
-    </View>
+    </SectionContainer>
   );
 });
 

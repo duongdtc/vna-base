@@ -1,15 +1,13 @@
-import { Text } from '@vna-base/components';
+import { SectionContainer } from '@screens/flight/results/components/filter/section-container';
+import { bs } from '@theme';
 import { ArgsChangeRange, FilterForm } from '@vna-base/screens/flight/type';
 import React, { memo } from 'react';
 import { useController } from 'react-hook-form';
-import { RangeSelectorDuration } from './range-selector-duration';
 import { View } from 'react-native';
-import { bs, createStyleSheet, useStyles } from '@theme';
+import { RangeSelectorDuration } from './range-selector-duration';
 
 export const Duration = memo(
   () => {
-    const { styles } = useStyles(styleSheet);
-
     const {
       field: { value, onChange },
     } = useController<FilterForm, 'Duration'>({
@@ -24,14 +22,7 @@ export const Duration = memo(
     };
 
     return (
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text
-            t18n="flight:flight_duration"
-            fontStyle="Body16Semi"
-            colorTheme="neutral90"
-          />
-        </View>
+      <SectionContainer t18n="flight:flight_duration">
         <View style={bs.paddingHorizontal_16}>
           <RangeSelectorDuration
             initialRange={value.range}
@@ -41,23 +32,8 @@ export const Duration = memo(
             duration={value.duration}
           />
         </View>
-      </View>
+      </SectionContainer>
     );
   },
   () => true,
 );
-
-const styleSheet = createStyleSheet(({ colors, spacings, shadows }) => ({
-  container: {
-    backgroundColor: colors.neutral10,
-    marginTop: spacings[12],
-  },
-  titleContainer: {
-    paddingHorizontal: spacings[16],
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacings[12],
-    backgroundColor: colors.neutral10,
-    ...shadows['.3'],
-  },
-}));

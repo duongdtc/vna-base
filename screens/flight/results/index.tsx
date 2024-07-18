@@ -12,12 +12,12 @@ import { useSelector } from 'react-redux';
 import {
   DateHeaderSearchFlight,
   FilterProvider,
-  Footer,
   Header,
   ListFlight,
   TabHeaderFlightRoute,
 } from './components';
 import { APP_SCREEN, RootStackParamList } from '@utils';
+import { Footer } from '@screens/flight/results/components/footer';
 
 export const ResultSearchFlight = ({
   route,

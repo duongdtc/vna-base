@@ -6,6 +6,7 @@ import cloneDeep from 'lodash.clonedeep';
 import React, { memo } from 'react';
 import { useController } from 'react-hook-form';
 import { TouchableOpacity, View } from 'react-native';
+import { SectionContainer } from '@screens/flight/results/components/filter/section-container';
 
 export const StopPoint = memo(
   () => {
@@ -29,21 +30,10 @@ export const StopPoint = memo(
     };
 
     return (
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text
-            t18n="flight:stop_point"
-            fontStyle="Body16Semi"
-            colorTheme="neutral90"
-          />
-          <TouchableOpacity activeOpacity={ActiveOpacity} onPress={selectAll}>
-            <Text
-              t18n="common:select_all"
-              fontStyle="Body14Reg"
-              colorTheme="primaryColor"
-            />
-          </TouchableOpacity>
-        </View>
+      <SectionContainer
+        t18n="flight:stop_point"
+        t18nRight="common:select_all"
+        onPressRight={selectAll}>
         {value.map(({ selected, key, t18n }, i) => {
           const choose = () => {
             const temp = cloneDeep(value);
@@ -68,7 +58,7 @@ export const StopPoint = memo(
             </View>
           );
         })}
-      </View>
+      </SectionContainer>
     );
   },
   () => true,

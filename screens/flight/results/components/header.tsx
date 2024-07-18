@@ -1,18 +1,16 @@
-import { Button, Icon, NormalHeader, Switch, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
+import { RightHeader } from '@screens/flight/results/components/right-header';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { Button, Icon, NormalHeader, Text } from '@vna-base/components';
 import {
   selectCurrentStage,
-  selectIsCryptic,
   selectListRoute,
   selectSearchDone,
   selectSearchForm,
 } from '@vna-base/redux/selector';
-import { flightResultActions } from '@vna-base/redux/action-slice';
-import { bs, createStyleSheet, useStyles } from '@theme';
 import {
   ActiveOpacity,
   HitSlop,
-  dispatch,
   getDateForHeaderResult,
 } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
@@ -26,14 +24,10 @@ export const Header = memo(
     const searchForm = useSelector(selectSearchForm);
     const currentStage = useSelector(selectCurrentStage);
     const listRoute = useSelector(selectListRoute);
-    const isCryptic = useSelector(selectIsCryptic);
+
     const searchDone = useSelector(selectSearchDone);
 
     const { showBottomSheet } = useFilterContext();
-
-    const onToggle = async () => {
-      dispatch(flightResultActions.changeMinimize());
-    };
 
     const _renderSubDesTitleHeader = useMemo(() => {
       if (currentStage === listRoute.length) {
@@ -97,23 +91,12 @@ export const Header = memo(
       </TouchableOpacity>
     );
 
-    const _renderRightContent = (
-      <TouchableOpacity
-        hitSlop={HitSlop.Large}
-        style={styles.rightHeader}
-        activeOpacity={ActiveOpacity}
-        onPress={onToggle}>
-        <Text text={'Cryptic'} colorTheme="white" fontStyle="Body12Reg" />
-        <Switch value={isCryptic} disable opacity={1} />
-      </TouchableOpacity>
-    );
-
     // render
     return (
       <NormalHeader
         zIndex={0}
         leftContent={_renderLeftContent}
-        rightContent={_renderRightContent}
+        rightContent={<RightHeader />}
       />
     );
   },
@@ -131,7 +114,6 @@ const styleSheet = createStyleSheet(({ colors, spacings, radius }) => ({
     alignItems: 'center',
     columnGap: spacings[4],
   },
-  rightHeader: { alignItems: 'center', gap: spacings[4] },
   loadingContainer: {
     position: 'absolute',
     borderRadius: radius[8],

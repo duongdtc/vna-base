@@ -1,7 +1,8 @@
+import { SectionContainer } from '@screens/flight/results/components/filter/section-container';
+import { bs, createStyleSheet, useStyles } from '@theme';
 import { Icon, Separator, Switch, Text } from '@vna-base/components';
 import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { FilterForm } from '@vna-base/screens/flight/type';
-import { ActiveOpacity, HitSlop } from '@vna-base/utils';
 import React, { memo } from 'react';
 import {
   Controller,
@@ -10,9 +11,8 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Pressable, TouchableOpacity, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { bs, createStyleSheet, useStyles } from '@theme';
 
 export const TypeTicket = memo(
   () => {
@@ -50,24 +50,10 @@ export const TypeTicket = memo(
     };
 
     return (
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text
-            t18n="flight:type_ticket"
-            fontStyle="Body16Semi"
-            colorTheme="neutral90"
-          />
-          <TouchableOpacity
-            activeOpacity={ActiveOpacity}
-            onPress={selectAll}
-            hitSlop={HitSlop.Large}>
-            <Text
-              t18n="common:select_all"
-              fontStyle="Body14Reg"
-              colorTheme="primaryColor"
-            />
-          </TouchableOpacity>
-        </View>
+      <SectionContainer
+        t18n="flight:type_ticket"
+        t18nRight="common:select_all"
+        onPressRight={selectAll}>
         {fields.map(({ key }, i) => (
           <View key={key} style={bs.paddingHorizontal_12}>
             {i !== 0 && <Separator type="horizontal" />}
@@ -122,25 +108,13 @@ export const TypeTicket = memo(
             />
           </View>
         ))}
-      </View>
+      </SectionContainer>
     );
   },
   () => true,
 );
 
-const styleSheet = createStyleSheet(({ colors, spacings, shadows }) => ({
-  container: {
-    backgroundColor: colors.neutral10,
-    marginTop: spacings[12],
-  },
-  titleContainer: {
-    paddingHorizontal: spacings[16],
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacings[12],
-    backgroundColor: colors.neutral10,
-    ...shadows['.3'],
-  },
+const styleSheet = createStyleSheet(({ spacings }) => ({
   alContainer: {
     paddingHorizontal: spacings[8],
     flexDirection: 'row',

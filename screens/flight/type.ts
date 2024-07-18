@@ -261,7 +261,7 @@ export type FilterForm = {
    */
   Fare: keyof FareFilter;
   FareRange: { range: [v1: number, v2: number]; fare: FareRangeFilter };
-  Airline: Array<{ key: string; selected: boolean; minFare: MinFareFilter }>;
+  // Airline: Array<{ key: string; selected: boolean; minFare: MinFareFilter }>;
   System: Array<SystemDetail & { selected: boolean }>;
   SeatClass: Array<{ key: string; selected: boolean; minFare: MinFareFilter }>;
   StopNum: Array<{

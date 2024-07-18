@@ -1,32 +1,21 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BottomSheet, Button, Icon, Text } from '@vna-base/components';
-import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { Content } from '@screens/flight/results/components/filter/content';
+import { createStyleSheet, useStyles } from '@theme';
+import { BottomSheet } from '@vna-base/components';
 import { selectFilterForm } from '@vna-base/redux/selector';
 import { FilterForm } from '@vna-base/screens/flight/type';
-import { bs, createStyleSheet, useStyles } from '@theme';
-import { ActiveOpacity, SnapPoint, delay } from '@vna-base/utils';
+import { ActiveOpacity, SnapPoint } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, PropsWithChildren, useEffect, useRef } from 'react';
 import isEqual from 'react-fast-compare';
-import {
-  Controller,
-  FormProvider,
-  UseFormReturn,
-  useForm,
-} from 'react-hook-form';
-import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
+import { useForm } from 'react-hook-form';
+import { TouchableOpacity } from 'react-native';
 import { UnistylesRuntime } from 'react-native-unistyles';
 import { useSelector } from 'react-redux';
 import { useFilterContext } from '../filter-provider';
-import { Airline } from './airline';
-import { DepartureTime } from './departure-time';
-import { Duration } from './duration';
-import { Fare } from './fare';
-import { FareRange } from './fare-range';
-import { StopPoint } from './stop-point';
-import { TypeTicket } from './type-ticket';
 
-export const Filter = memo(() => {
+export const Filter = memo(({ children }: PropsWithChildren) => {
   const { styles } = useStyles(styleSheet);
 
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -76,8 +65,7 @@ export const Filter = memo(() => {
         }}
         activeOpacity={ActiveOpacity}
         style={styles.btnFooterContainer}>
-        <Icon icon="options_2_outline" size={20} colorTheme="primaryColor" />
-        <Text t18n="common:_filter" fontStyle="Body14Reg" />
+        {children}
       </TouchableOpacity>
       <BottomSheet
         snapPoints={[SnapPoint.Full]}
@@ -96,72 +84,6 @@ export const Filter = memo(() => {
     </>
   );
 }, isEqual);
-
-const Content = ({
-  onDone,
-  formMethod,
-}: {
-  formMethod: UseFormReturn<FilterForm, any, undefined>;
-  onDone: () => void;
-}) => {
-  const {
-    styles,
-    theme: { colors },
-  } = useStyles(styleSheet);
-
-  const [isMouted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const mount = async () => {
-      await delay(50);
-      setIsMounted(true);
-    };
-
-    mount();
-  }, []);
-
-  if (!isMouted) {
-    return (
-      <View style={[bs.flex, bs.justifyCenter]}>
-        <ActivityIndicator color={colors.primaryColor} size="large" />
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.container}>
-      <FormProvider {...formMethod}>
-        <BottomSheetScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainerScrollView}>
-          <Fare />
-          <FareRange />
-          <Duration />
-          <Airline />
-          <TypeTicket />
-          <StopPoint />
-          <Controller
-            control={formMethod.control}
-            name="DepartTimeType"
-            render={({ field: { value } }) => (
-              <DepartureTime initTab={value === 'DepartTimeRange' ? 0 : 1} />
-            )}
-          />
-        </BottomSheetScrollView>
-        <View style={styles.footerContainer}>
-          <Button
-            onPress={onDone}
-            buttonStyle={styles.btn}
-            t18n="flight:get_result"
-            buttonColorTheme="successColor"
-            textColorTheme="neutral10"
-            fullWidth
-          />
-        </View>
-      </FormProvider>
-    </View>
-  );
-};
 
 const styleSheet = createStyleSheet(({ colors, spacings, shadows }) => ({
   container: {
