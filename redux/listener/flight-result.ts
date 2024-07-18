@@ -3,7 +3,10 @@
 import { showToast } from '@vna-base/components';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { flightResultActions } from '@vna-base/redux/action-slice';
-import { ApplyFlightFee, ApplyPassengerFee } from '@vna-base/screens/flight/type';
+import {
+  ApplyFlightFee,
+  ApplyPassengerFee,
+} from '@vna-base/screens/flight/type';
 import { Ibe } from '@services/axios';
 import { AirOption, MinFare } from '@services/axios/axios-ibe';
 import { AirportRealm } from '@services/realm/models';
@@ -19,10 +22,9 @@ import {
   validResponse,
 } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 export const runFlightResultListener = () => {
-
   takeLatestListeners(true)({
     actionCreator: flightResultActions.getFareRule,
     effect: async (action, listenerApi) => {
@@ -114,11 +116,16 @@ export const runFlightResultListener = () => {
       for (const [indexRoute, routeWithDate] of arrDates.entries()) {
         const res = await Promise.allSettled(
           routeWithDate.map(async dateWithRoute => {
-            const resMinFare = await Ibe.flightSearchMinFareCreate({
-              DepartDate: dateWithRoute.date.format('DDMMYYYY'),
+            // const resMinFare = await Ibe.flightSearchMinFareCreate({
+            //   DepartDate: dateWithRoute.date.format('DDMMYYYY'),
+            //   StartPoint: dateWithRoute.StartPoint.Code,
+            //   EndPoint: dateWithRoute.EndPoint.Code,
+            //   System: 'VN',
+            // });
+            const resMinFare = await fakeMinFare({
+              DepartDate: dateWithRoute.date,
               StartPoint: dateWithRoute.StartPoint.Code,
               EndPoint: dateWithRoute.EndPoint.Code,
-              System: 'VN',
             });
 
             return {
@@ -208,11 +215,11 @@ export const runFlightResultListener = () => {
         const totalAmountPassenger =
           customFee.applyPassenger === ApplyPassengerFee.All
             ? _amountAdult +
-            (passengers.Chd ? _amountChildren : 0) +
-            (passengers.Inf ? _amountInfant : 0)
+              (passengers.Chd ? _amountChildren : 0) +
+              (passengers.Inf ? _amountInfant : 0)
             : _amountAdult * passengers.Adt +
-            _amountChildren * (passengers.Chd ?? 0) +
-            _amountInfant * (passengers.Inf ?? 0);
+              _amountChildren * (passengers.Chd ?? 0) +
+              _amountInfant * (passengers.Inf ?? 0);
 
         if (customFee.applyFLight === ApplyFlightFee.All) {
           Total = totalAmountPassenger;
@@ -279,7 +286,7 @@ export const runFlightResultListener = () => {
           .concat(
             multiFlight.length > 0
               ? //@ts-ignore
-              [{ type: searchForm.Type }]
+                [{ type: searchForm.Type }]
               : [],
           )
           .concat(multiFlight);
@@ -308,8 +315,10 @@ export const runFlightResultListener = () => {
       result += listRoute.reduce(
         (concatRoute, currRoute) =>
           concatRoute +
-          `${translate('common:route')} ${currRoute.route.StartPoint.CityNameVi
-          } (${currRoute.route.StartPoint.Code}) - ${currRoute.route.EndPoint.CityNameVi
+          `${translate('common:route')} ${
+            currRoute.route.StartPoint.CityNameVi
+          } (${currRoute.route.StartPoint.Code}) - ${
+            currRoute.route.EndPoint.CityNameVi
           } (${currRoute.route.EndPoint.Code})\n` +
           `${translate('common:departure_date')}: ${getDateForHeaderResult(
             currRoute.route.DepartDate,
@@ -325,10 +334,11 @@ export const runFlightResultListener = () => {
               //@ts-ignore
               const isMultiFlight = airOption.type === 'MultiStage';
 
-              const startPointCode = searchForm.Flights[0].airport.takeOff?.Code;
+              const startPointCode =
+                searchForm.Flights[0].airport.takeOff?.Code;
               const endPointCode = isMultiFlight
                 ? searchForm.Flights[searchForm.Flights.length - 1].airport
-                  .takeOff?.Code
+                    .takeOff?.Code
                 : searchForm.Flights[0].airport.landing?.Code;
 
               const startCity =
@@ -337,10 +347,11 @@ export const runFlightResultListener = () => {
                   startPointCode,
                 )?.City;
 
-              const endCity = realmRef.current?.objectForPrimaryKey<AirportRealm>(
-                AirportRealm.schema.name,
-                endPointCode,
-              )?.City;
+              const endCity =
+                realmRef.current?.objectForPrimaryKey<AirportRealm>(
+                  AirportRealm.schema.name,
+                  endPointCode,
+                )?.City;
 
               return (
                 concatAirOption +
@@ -349,10 +360,14 @@ export const runFlightResultListener = () => {
                   'flight:combined_flight',
                 ).upperCaseFirstLetter()} ${translate(
                   isMultiFlight ? 'flight:multi_stage' : 'flight:round_stage',
-                ).toLocaleLowerCase()} ${language === 'vi' ? startCity?.NameVi : startCity?.NameEn
-                }(${startPointCode}) -  ${language === 'vi' ? endCity?.NameVi : endCity?.NameEn
+                ).toLocaleLowerCase()} ${
+                  language === 'vi' ? startCity?.NameVi : startCity?.NameEn
+                }(${startPointCode}) -  ${
+                  language === 'vi' ? endCity?.NameVi : endCity?.NameEn
                 }(${endPointCode})\n` +
-                `${translate('common:departure_date')}: ${getDateForHeaderResult(
+                `${translate(
+                  'common:departure_date',
+                )}: ${getDateForHeaderResult(
                   currRoute.route.DepartDate,
                   searchForm?.Passengers,
                 )}\n\n`
@@ -370,16 +385,19 @@ export const runFlightResultListener = () => {
                       `${getFlightNumber(
                         currSegment.Airline,
                         currSegment.FlightNumber,
-                      )} ${dayjs(currSegment.StartDate).format('DD/MM')} ${dayjs(
-                        currSegment.StartDate,
-                      ).format('HH:mm')} - ${dayjs(currSegment.EndDate).format(
+                      )} ${dayjs(currSegment.StartDate).format(
+                        'DD/MM',
+                      )} ${dayjs(currSegment.StartDate).format(
                         'HH:mm',
-                      )} ${currSegment.StartPoint} ${currSegment.EndPoint} ${currSegmentIdx === 0 && currLFightIdx === 0
-                        ? `${(
-                          (airOption.ListFareOption?.[0].TotalFare ?? 0) +
-                          customFeeTotal[Fare]
-                        ).currencyFormat()}`
-                        : ''
+                      )} - ${dayjs(currSegment.EndDate).format('HH:mm')} ${
+                        currSegment.StartPoint
+                      } ${currSegment.EndPoint} ${
+                        currSegmentIdx === 0 && currLFightIdx === 0
+                          ? `${(
+                              (airOption.ListFareOption?.[0].TotalFare ?? 0) +
+                              customFeeTotal[Fare]
+                            ).currencyFormat()}`
+                          : ''
                       }\n`,
                     '',
                   ),
@@ -431,4 +449,45 @@ export const runFlightResultListener = () => {
       });
     },
   });
+};
+
+async function fakeMinFare({
+  DepartDate,
+  EndPoint,
+  StartPoint,
+}: {
+  DepartDate: Dayjs;
+  StartPoint: string;
+  EndPoint: string;
+}) {
+  await delay(500);
+  return {
+    data: {
+      MinFare: {
+        System: 'VN',
+        Airline: 'VN',
+        StartPoint,
+        EndPoint,
+        DepartDate: `${DepartDate.format('DDMMYYYY')} 2055`,
+        ArrivalDate: `${DepartDate.format('DDMMYYYY')} 2310`,
+        FlightNumber: '787',
+        FareClass: 'H',
+        FareBasis: 'HREGOW',
+        Currency: 'VND',
+        Fare: 628000,
+        Tax: 687640,
+        Total: 1315640,
+        StartDate: `${DepartDate.format('YYYY-MM-DD')}T20:55:00`,
+        EndDate: `${DepartDate.format('YYYY-MM-DD')}T23:10:00`,
+      },
+      RequestID: 0,
+      ApiQueries: [],
+      StatusCode: '000',
+      Success: true,
+      Expired: false,
+      Message: null,
+      Language: 'vi',
+      CustomProperties: null,
+    },
+  };
 }
