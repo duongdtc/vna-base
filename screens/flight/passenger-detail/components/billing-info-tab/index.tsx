@@ -9,7 +9,7 @@ import {
 import { navigate } from '@navigation/navigation-service';
 import { PassengerForm, TaxInfo } from '@vna-base/screens/flight/type';
 import { createStyleSheet, useStyles } from '@theme';
-import { APP_SCREEN, ActiveOpacity, rxEmail } from '@vna-base/utils';
+import { ActiveOpacity, rxEmail } from '@vna-base/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
@@ -17,6 +17,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { APP_SCREEN } from '@utils';
 
 export const BillingInfoTab = () => {
   const {

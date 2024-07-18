@@ -1,11 +1,11 @@
-import { Block, Button, Modal, TerminalView } from '@vna-base/components';
 import { PREFIX_BOOKING_XLSX_NAME } from '@env';
+import { Block, Button, Modal, TerminalView } from '@vna-base/components';
 import {
   ModalSubmitProps,
   ModalSubmitRef,
   PassengerForm,
 } from '@vna-base/screens/flight/type';
-import { ModalMinWidth } from '@vna-base/utils';
+import { scale, WindowHeight, WindowWidth } from '@vna-base/utils';
 import React, {
   forwardRef,
   useCallback,
@@ -14,11 +14,14 @@ import React, {
 } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PreviewInfo } from './preview-info';
 
 export const ModalSubmit = forwardRef<ModalSubmitRef, ModalSubmitProps>(
   ({ onSubmit, onCancel }, ref) => {
     // const styles = useStyles();
+    const { top, bottom } = useSafeAreaInsets();
+
     const [isVisible, setIsVisible] = useState(false);
 
     const { getValues } = useFormContext<PassengerForm>();
@@ -68,7 +71,7 @@ export const ModalSubmit = forwardRef<ModalSubmitRef, ModalSubmitProps>(
         <Block
           colorTheme="neutral100"
           borderRadius={12}
-          minWidth={ModalMinWidth}
+          width={WindowWidth - scale(16)}
           alignSelf="center">
           <Block
             flexDirection="row"
@@ -76,7 +79,7 @@ export const ModalSubmit = forwardRef<ModalSubmitRef, ModalSubmitProps>(
             overflow="hidden"
             borderTopRadius={10}
             margin={2}
-            maxHeight={400}
+            maxHeight={WindowHeight - bottom - top - scale(124)}
             borderBottomRadius={8}>
             <TerminalView prefixExportName={PREFIX_BOOKING_XLSX_NAME}>
               <PreviewInfo form={getValues()} />

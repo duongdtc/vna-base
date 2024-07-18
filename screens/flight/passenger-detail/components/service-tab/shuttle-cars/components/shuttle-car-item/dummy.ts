@@ -3,7 +3,7 @@ import { Colors } from '@theme';
 import { I18nKeys } from '@translations/locales';
 import { images } from '@vna-base/assets/image';
 
-enum TRIP {
+export enum TRIP {
   ONE = 'ONE',
   TWO = 'TWO',
   THREE = 'THREE',

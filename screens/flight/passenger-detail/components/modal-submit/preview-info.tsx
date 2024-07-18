@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Text } from '@vna-base/components';
 import { DEFAULT_CURRENCY } from '@env';
-import { selectCustomFeeTotal } from '@vna-base/redux/selector';
-import { Passenger, PassengerForm } from '@vna-base/screens/flight/type';
 import { Ancillary, Seat, Segment } from '@services/axios/axios-ibe';
 import { CountryRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
+import { Block, Text } from '@vna-base/components';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
+import {
+  HotelEnum,
+  ListHotelDetails,
+  ListRoomDetails,
+} from '@vna-base/screens/flight/list-hotel/dummy';
+import { Passenger, PassengerForm } from '@vna-base/screens/flight/type';
 import {
   getFlightNumber,
   getFullNameOfPassenger,
@@ -17,6 +22,14 @@ import isEmpty from 'lodash.isempty';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { calculateTotalPrice } from '../../utils';
+import {
+  Bus,
+  BusDetails,
+  NumberBus,
+  NumberBusDetails,
+  TRIP,
+  TripDetails,
+} from '../service-tab/shuttle-cars/components/shuttle-car-item/dummy';
 
 export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
   const { Total } = useSelector(selectCustomFeeTotal);
@@ -39,6 +52,31 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
   let Services: Array<
     Ancillary & Pick<Passenger, 'Surname' | 'FullName' | 'GivenName'>
   > = [];
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const tripWithBus = TripDetails[form.ShuttleBuses[0].trip ?? TRIP.ONE];
+
+  const busNumber =
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    NumberBusDetails[form.ShuttleBuses[0].numberBus ?? NumberBus.ONE];
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const busName = BusDetails[form.ShuttleBuses[0].type ?? Bus.ONE];
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const hotel = ListHotelDetails[form.Hotels[0].hotel?.key];
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const roomHotel = ListRoomDetails[form.Hotels[0].room?.key];
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const numberRoomHotel = form.Hotels[0].numberRoom ?? 0;
 
   form.Passengers.forEach(passenger => {
     passenger.PreSeats.forEach((preS, idxFlight) => {
@@ -500,6 +538,80 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
           ))}
         </Block>
       )}
+
+      {/* dịch vụ bus đã chọn */}
+      {(busNumber?.key !== NumberBus.ZERO || busName?.key !== Bus.ZERO) && (
+        <Block>
+          <Block flexDirection="row" alignItems="center">
+            <Text
+              text="SHUTTLE BUS: "
+              fontStyle="Body10RegMono"
+              colorTheme="white"
+            />
+            <Block flexDirection="row" alignItems="center" columnGap={4}>
+              {busNumber?.key !== NumberBus.ZERO && (
+                <Text
+                  text={busNumber?.t18n ?? 'N/A'}
+                  fontStyle="Body10RegMono"
+                  colorTheme="white"
+                />
+              )}
+              {busName?.key !== Bus.ZERO && (
+                <Text
+                  text={' ' + busName?.t18n ?? 'N/A'}
+                  fontStyle="Body10RegMono"
+                  colorTheme="white"
+                />
+              )}
+            </Block>
+          </Block>
+          <Block flexDirection="row" alignItems="center">
+            <Text text="TRIP: " fontStyle="Body10RegMono" colorTheme="white" />
+            <Text
+              text={tripWithBus?.t18n ?? 'N/A'}
+              fontStyle="Body10RegMono"
+              colorTheme="white"
+            />
+          </Block>
+        </Block>
+      )}
+
+      {/* dịch vụ khách sạn đã chọn */}
+      <Block>
+        <Block flexDirection="row" alignItems="center">
+          <Text text="HOTEL: " fontStyle="Body10RegMono" colorTheme="white" />
+          <Block flexDirection="row" alignItems="center" columnGap={4}>
+            {hotel?.key !== HotelEnum.ZERO && (
+              <Text
+                text={hotel?.t18n ?? 'N/A'}
+                fontStyle="Body10RegMono"
+                colorTheme="white"
+              />
+            )}
+            {roomHotel?.key && (
+              <Text
+                text={'- ' + roomHotel?.t18n ?? 'N/A'}
+                fontStyle="Body10RegMono"
+                colorTheme="white"
+              />
+            )}
+          </Block>
+        </Block>
+        {numberRoomHotel !== 0 && (
+          <Block flexDirection="row" alignItems="center">
+            <Text
+              text="NUMBER OF ROOM: "
+              fontStyle="Body10RegMono"
+              colorTheme="white"
+            />
+            <Text
+              text={`${numberRoomHotel}`}
+              fontStyle="Body10RegMono"
+              colorTheme="white"
+            />
+          </Block>
+        )}
+      </Block>
 
       {/* Thông tin liên hệ */}
       <Block>
