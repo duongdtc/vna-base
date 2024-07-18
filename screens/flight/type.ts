@@ -544,8 +544,8 @@ export type ShuttleBus = {
 export type Hotel = {
   dateTime?: Date | undefined;
   numberRoom?: number | null;
-  hotel?: HotelDetail;
-  room?: RoomDetail;
+  hotel: HotelDetail | null;
+  room: RoomDetail | null;
 };
 
 export type PassengerForm = {

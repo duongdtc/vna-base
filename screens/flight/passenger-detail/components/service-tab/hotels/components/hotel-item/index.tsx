@@ -61,7 +61,7 @@ export const HotelItem = memo(({ item, index }: Props) => {
     });
   };
 
-  const { hotel, room } = useWatch({
+  const hotel = useWatch({
     control,
     name: `Hotels.${index}`,
   });
@@ -205,7 +205,7 @@ export const HotelItem = memo(({ item, index }: Props) => {
                 />
                 <Separator size={3} type="horizontal" />
                 <Pressable onPress={navToPickRoomHotel}>
-                  {!hotel && (
+                  {!hotel?.hotel && (
                     <Block
                       padding={12}
                       flexDirection="row"
@@ -235,7 +235,7 @@ export const HotelItem = memo(({ item, index }: Props) => {
                       </Block>
                     </Block>
                   )}
-                  {(hotel || room) && (
+                  {(hotel?.hotel || hotel?.room) && (
                     <Block
                       paddingHorizontal={12}
                       paddingTop={4}
@@ -256,27 +256,27 @@ export const HotelItem = memo(({ item, index }: Props) => {
                           colorTheme="neutral100"
                         />
                       </Block>
-                      {room && (
+                      {hotel?.room && (
                         <Block
                           flexDirection="row"
                           alignItems="center"
                           justifyContent="space-between">
                           <Text
-                            text={room?.t18n}
+                            text={hotel?.room?.t18n}
                             fontStyle="Body12Bold"
                             colorTheme="successColor"
                           />
                           <Text
-                            text={room?.price?.currencyFormat()}
+                            text={hotel?.room?.price?.currencyFormat()}
                             fontStyle="Body12Bold"
                             colorTheme="price"
                           />
                         </Block>
                       )}
-                      {hotel && (
+                      {hotel?.hotel && (
                         <Block>
                           <Text
-                            text={hotel?.t18n}
+                            text={hotel?.hotel?.t18n}
                             fontStyle="Body14Semi"
                             colorTheme="neutral100"
                           />
@@ -290,7 +290,7 @@ export const HotelItem = memo(({ item, index }: Props) => {
                               colorTheme="neutral100"
                             />
                             <Text
-                              text={hotel?.description ?? ''}
+                              text={hotel?.hotel?.description ?? ''}
                               fontStyle="Body10Reg"
                               colorTheme="neutral100"
                             />

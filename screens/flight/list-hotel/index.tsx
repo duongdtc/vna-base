@@ -71,8 +71,8 @@ export const ListHotelScreen = ({
     (key: HotelEnum) => {
       if (key === HotelEnum.ZERO) {
         onDone({
-          hotel: undefined,
-          room: undefined,
+          hotel: null,
+          room: null,
         });
         goBack();
       } else {
