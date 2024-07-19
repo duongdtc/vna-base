@@ -15,10 +15,11 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
-import { AnimatedHeader, PersonalInfo, Setup } from './components';
+import { PersonalInfo, Setup } from './components';
 import { useStyles } from './style';
 import { useCASLContext } from '@services/casl';
 import { InfoCard } from '@screens/personal/components/info-card';
+import { AnimatedHeader } from '@screens/personal/components/animated-header';
 
 export const Personal = () => {
   const styles = useStyles();

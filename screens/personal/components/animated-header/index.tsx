@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { ColorLight } from '@theme/color';
 import { APP_SCREEN } from '@utils';
 import { UnistylesRuntime } from 'react-native-unistyles';
+import { useCASLContext } from '@services/casl';
 
 export const AnimatedHeader = ({
   sharedValue,
@@ -32,6 +33,8 @@ export const AnimatedHeader = ({
   } = useStyles(styleSheet);
   const { open } = useDrawer();
   const [t] = useTranslation();
+
+  const { can } = useCASLContext();
 
   const currentAccount = useSelector(selectCurrentAccount);
 
@@ -181,32 +184,33 @@ export const AnimatedHeader = ({
           </Animated.View>
         </Block>
       </Animated.View>
-
-      <Animated.View style={[styles.bottomHeader, animatedStyleBottomHeader]}>
-        <Pressable onPress={navToAgentInfoScreen}>
-          <Block
-            borderTopWidth={10}
-            borderBottomWidth={10}
-            paddingVertical={10}
-            paddingHorizontal={16}
-            borderColorTheme="neutral200"
-            colorTheme="neutral100"
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="space-between">
-            <Text
-              t18n="system:info_agent"
-              fontStyle="Body12Med"
-              colorTheme="neutral900"
-            />
-            <Icon
-              icon="arrow_ios_right_fill"
-              size={16}
-              colorTheme="neutral900"
-            />
-          </Block>
-        </Pressable>
-      </Animated.View>
+      {can('view', 'agent_info_custom') && (
+        <Animated.View style={[styles.bottomHeader, animatedStyleBottomHeader]}>
+          <Pressable onPress={navToAgentInfoScreen}>
+            <Block
+              borderTopWidth={10}
+              borderBottomWidth={10}
+              paddingVertical={10}
+              paddingHorizontal={16}
+              borderColorTheme="neutral200"
+              colorTheme="neutral100"
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-between">
+              <Text
+                t18n="system:info_agent"
+                fontStyle="Body12Med"
+                colorTheme="neutral900"
+              />
+              <Icon
+                icon="arrow_ios_right_fill"
+                size={16}
+                colorTheme="neutral900"
+              />
+            </Block>
+          </Pressable>
+        </Animated.View>
+      )}
     </>
   );
 };
