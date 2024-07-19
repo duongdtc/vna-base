@@ -35,7 +35,7 @@ export const Bookings = () => {
           data={list}
           keyExtractor={(item, index) => `${item}${index}`}
           renderItem={_renderItem}
-          contentContainerStyle={{ paddingTop: 8, paddingBottom: 32 }}
+          contentContainerStyle={{ padding: 8, paddingBottom: 32 }}
           ItemSeparatorComponent={() => <Block height={8} />}
           refreshControl={
             <RefreshControl refreshing={false} onRefresh={handleRefresh} />

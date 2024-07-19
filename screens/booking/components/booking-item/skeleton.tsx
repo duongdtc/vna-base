@@ -8,10 +8,14 @@ export const Skeleton = () => {
   const { dark } = useTheme();
 
   return (
-    <Block padding={12} colorTheme="neutral100">
+    <Block
+      padding={12}
+      colorTheme="neutral100"
+      borderRadius={12}
+      overflow="hidden">
       <ContentLoader
         speed={1}
-        width={WindowWidth - 24}
+        width={WindowWidth - 40}
         height={86}
         backgroundColor={!dark ? '#EBF2FC' : '#2C3E50'}
         foregroundColor={!dark ? '#BDC3C7' : '#F6FCFF'}>

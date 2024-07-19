@@ -19,8 +19,8 @@ export const useStyles = () => {
           paddingTop: scale(20),
         },
         logo: {
-          width: scale(132),
-          height: scale(16),
+          width: scale(212),
+          height: scale(28),
         },
         avatarAndNameContainer: {
           marginTop: scale(54),

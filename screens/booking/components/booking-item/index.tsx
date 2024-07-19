@@ -1,24 +1,20 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Icon, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
 import { navigate } from '@navigation/navigation-service';
 import { Booking } from '@services/axios/axios-data';
 import { AirlineRealm } from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef, useObject } from '@services/realm/provider';
+import { APP_SCREEN } from '@utils';
+import { Block, Icon, Text } from '@vna-base/components';
 import { translate } from '@vna-base/translations/translate';
 import {
   BookingStatus,
   BookingStatusDetails,
   getIconOfRoute,
-  System,
-  SystemDetails,
 } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Pressable, StyleProp, ViewStyle } from 'react-native';
-import { SvgUri } from 'react-native-svg';
-import { APP_SCREEN } from '@utils';
 
 export type Props = {
   /**
@@ -68,6 +64,7 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
       <Block
         style={customStyle}
         padding={12}
+        borderRadius={12}
         colorTheme="neutral100"
         rowGap={12}>
         <Block
@@ -76,111 +73,99 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
           justifyContent="space-between"
           alignItems="flex-start">
           <Block rowGap={4} flex={1}>
-            <Block flexDirection="row" columnGap={4} alignItems="center">
-              <Text
-                text={bookingDetail?.BookingCode ?? 'FAIL'}
-                fontStyle="Title16Bold"
-                colorTheme={
-                  // eslint-disable-next-line no-nested-ternary
-                  isVisible
-                    ? !bookingDetail?.BookingCode
-                      ? 'error600'
-                      : 'success600'
-                    : 'neutral600'
-                }
-              />
-              <Icon
-                icon={status?.icon}
-                size={13}
-                colorTheme={isVisible ? status?.iconColorTheme : 'neutral600'}
-              />
-              <Text
-                t18n={status?.t18n}
-                fontStyle="Body12Med"
-                colorTheme={isVisible ? 'neutral700' : 'neutral600'}
-              />
-            </Block>
-
-            <Block flexDirection="row" alignItems="center" columnGap={4}>
-              {bookingDetail?.OrderCode && (
-                <Text fontStyle="Capture11Reg" colorTheme="neutral800">
-                  {translate('booking:order')}
-                  {': '}
+            <Block
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-between">
+              <Block flexDirection="row" columnGap={4} alignItems="center">
+                <Text
+                  text={bookingDetail?.BookingCode ?? 'FAIL'}
+                  fontStyle="Title20Bold"
+                  colorTheme={
+                    // eslint-disable-next-line no-nested-ternary
+                    isVisible
+                      ? !bookingDetail?.BookingCode
+                        ? 'error600'
+                        : 'success600'
+                      : 'neutral600'
+                  }
+                />
+                <Icon
+                  icon={status?.icon}
+                  size={13}
+                  colorTheme={isVisible ? status?.iconColorTheme : 'neutral600'}
+                />
+                <Text
+                  t18n={status?.t18n}
+                  fontStyle="Body12Med"
+                  colorTheme={isVisible ? 'neutral700' : 'neutral600'}
+                />
+              </Block>
+              {bookingDetail?.ExpirationDate && (
+                <Block flexDirection="row" columnGap={2} alignItems="center">
                   <Text
-                    text={bookingDetail?.OrderCode ?? ''}
-                    fontStyle="Capture11Bold"
-                  />
-                </Text>
-              )}
-              {bookingDetail?.OrderCode && bookingDetail?.AgentName && (
-                <Block
-                  height={4}
-                  width={4}
-                  borderRadius={2}
-                  colorTheme="neutral600"
-                />
-              )}
-              {bookingDetail?.AgentName && (
-                <Text
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  text={bookingDetail?.AgentName}
-                  fontStyle="Capture11Reg"
-                  colorTheme="neutral800"
-                />
-              )}
-              {bookingDetail?.AgentName && bookingDetail?.Airline && (
-                <Block
-                  height={4}
-                  width={4}
-                  borderRadius={2}
-                  colorTheme="neutral600"
-                />
-              )}
-              {bookingDetail?.Airline && (
-                <Text
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  text={airline}
-                  fontStyle="Capture11Reg"
-                  colorTheme="neutral800"
-                />
+                    colorTheme={isVisible ? 'neutral70' : 'neutral600'}
+                    fontStyle="Capture11Reg">
+                    {`${translate('booking:reservation_deadline')}: `}
+                    <Text
+                      colorTheme={
+                        // eslint-disable-next-line no-nested-ternary
+                        isVisible
+                          ? isExpired
+                            ? 'error600'
+                            : 'success600'
+                          : 'neutral600'
+                      }
+                      fontStyle="Capture11Reg">
+                      {`${dayjs(bookingDetail?.ExpirationDate).format(
+                        'DD/MM/YYYY ',
+                      )}`}
+                      <Text
+                        colorTheme={
+                          // eslint-disable-next-line no-nested-ternary
+                          isVisible
+                            ? isExpired
+                              ? 'error600'
+                              : 'success600'
+                            : 'neutral600'
+                        }
+                        fontStyle="Capture11Bold"
+                        text={dayjs(bookingDetail?.ExpirationDate).format(
+                          ' HH:mm',
+                        )}
+                      />
+                    </Text>
+                  </Text>
+                  {isExpired && (
+                    <Icon
+                      icon="alert_circle_outline"
+                      size={12}
+                      colorTheme="error600"
+                    />
+                  )}
+                </Block>
               )}
             </Block>
           </Block>
+        </Block>
 
-          <Block
-            borderRadius={4}
-            paddingVertical={4}
-            paddingHorizontal={6}
-            colorTheme={
-              isVisible
-                ? SystemDetails[bookingDetail?.System as System]?.colorTheme
-                : 'neutral600'
-            }>
-            <Text fontStyle="Capture11Reg" colorTheme="classicWhite">
-              {translate('booking:system')}
-              {': '}
-              <Text
-                fontStyle="Capture11Bold"
-                colorTheme="classicWhite"
-                text={bookingDetail?.System ?? ''}
-              />
-            </Text>
+        <Block flexDirection="row" alignItems="center" columnGap={4}>
+          <Icon icon="person_fill" size={14} colorTheme="neutral70" />
+          <Text
+            text="Hành khách"
+            fontStyle="Body12Med"
+            colorTheme="neutral70"
+          />
+          <Block flex={1} alignItems="flex-end">
+            <Text
+              text={bookingDetail.PaxName ?? 'NGUYEN THU TRANG'}
+              fontStyle="Body14Semi"
+              colorTheme="neutral100"
+            />
           </Block>
         </Block>
 
         <Block flexDirection="row" alignItems="center" columnGap={6}>
-          <Block width={32} height={32} borderRadius={8} overflow="hidden">
-            {bookingDetail?.Airline && (
-              <SvgUri
-                width={32}
-                height={32}
-                uri={LOGO_URL + bookingDetail?.Airline + '.svg'}
-              />
-            )}
-          </Block>
-
           <Block rowGap={2} flex={1}>
             <Block flexDirection="row" alignItems="center" columnGap={4}>
               <Text
@@ -225,75 +210,6 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
             />
           </Block>
         </Block>
-
-        {!isHideWhenAllExpired && (
-          <Block flexDirection="row" columnGap={4} alignItems="center">
-            {bookingDetail?.ExpirationDate && (
-              <Block flexDirection="row" columnGap={2} alignItems="center">
-                <Text
-                  colorTheme={isVisible ? 'neutral800' : 'neutral600'}
-                  fontStyle="Capture11Reg">
-                  {`${translate('booking:reservation_deadline')}: `}
-                  <Text
-                    colorTheme={
-                      // eslint-disable-next-line no-nested-ternary
-                      isVisible
-                        ? isExpired
-                          ? 'error600'
-                          : 'success600'
-                        : 'neutral600'
-                    }
-                    fontStyle="Capture11Reg">
-                    {`${dayjs(bookingDetail?.ExpirationDate).format(
-                      'DD/MM/YYYY ',
-                    )}`}
-                    <Text
-                      colorTheme={
-                        // eslint-disable-next-line no-nested-ternary
-                        isVisible
-                          ? isExpired
-                            ? 'error600'
-                            : 'success600'
-                          : 'neutral600'
-                      }
-                      fontStyle="Capture11Bold"
-                      text={dayjs(bookingDetail?.ExpirationDate).format(
-                        ' HH:mm',
-                      )}
-                    />
-                  </Text>
-                </Text>
-                {isExpired && (
-                  <Icon
-                    icon="alert_circle_outline"
-                    size={12}
-                    colorTheme="error600"
-                  />
-                )}
-              </Block>
-            )}
-
-            {bookingDetail?.TimePurchase && (
-              <Text
-                colorTheme={isVisible ? 'neutral800' : 'neutral600'}
-                fontStyle="Capture11Reg">
-                {`${translate('booking:price_hold_deadline')}: `}
-                <Text
-                  colorTheme={isVisible ? 'primary600' : 'neutral600'}
-                  fontStyle="Capture11Reg">
-                  {`${dayjs(bookingDetail?.TimePurchase).format(
-                    'DD/MM/YYYY',
-                  )} `}
-                  <Text
-                    colorTheme={isVisible ? 'primary600' : 'neutral600'}
-                    fontStyle="Capture11Bold"
-                    text={dayjs(bookingDetail?.TimePurchase).format('HH:mm')}
-                  />
-                </Text>
-              </Text>
-            )}
-          </Block>
-        )}
       </Block>
     </Pressable>
   );
