@@ -1,9 +1,13 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { goBack, navigate } from '@navigation/navigation-service';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingRealm } from '@services/realm/models/booking';
+import { useObject } from '@services/realm/provider';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   BookingInfo,
   Button,
-  DescriptionsBooking,
   hideLoading,
   Icon,
   NormalHeader,
@@ -15,12 +19,7 @@ import {
   showToast,
   Text,
 } from '@vna-base/components';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { goBack, navigate } from '@navigation/navigation-service';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { bookingActionActions } from '@vna-base/redux/action-slice';
-import { BookingRealm } from '@services/realm/models/booking';
-import { useObject } from '@services/realm/provider';
 import { translate } from '@vna-base/translations/translate';
 import {
   BookingStatusDetails,
@@ -33,11 +32,11 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Pressable } from 'react-native';
 import { Footer } from '../components';
 import { useStyles } from './styles';
-import { APP_SCREEN, RootStackParamList } from '@utils';
 
 export type IssueTicketForm = {
   Tourcode: string | null;
   AccountCode: string | null;
+  sendEmail: boolean;
 };
 
 export const IssueTicket = ({
@@ -53,6 +52,7 @@ export const IssueTicket = ({
     defaultValues: {
       Tourcode: bookingDetail?.Tourcode,
       AccountCode: bookingDetail?.AccountCode,
+      sendEmail: true,
     },
   });
 
@@ -206,7 +206,7 @@ export const IssueTicket = ({
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         zIndex={0}
         leftContent={
           <Button
@@ -241,7 +241,7 @@ export const IssueTicket = ({
             System={bookingDetail?.System}
             BookingStatus={bookingDetail?.BookingStatus}
           />
-          <DescriptionsBooking t18n="issue_ticket:description" />
+          {/* <DescriptionsBooking t18n="issue_ticket:description" /> */}
           <Block colorTheme="neutral100" borderRadius={8} overflow="hidden">
             <RowOfForm<IssueTicketForm>
               t18n="issue_ticket:tour_code"
@@ -258,6 +258,16 @@ export const IssueTicket = ({
               fixedTitleFontStyle
               control={formMethod.control}
             />
+          </Block>
+          <Block colorTheme="neutral100" borderRadius={8} overflow="hidden">
+            <RowOfForm<IssueTicketForm>
+              t18n="Gửi email sau khi xuất vé"
+              name="sendEmail"
+              fixedTitleFontStyle
+              control={formMethod.control}
+              type="switch"
+            />
+            <Separator type="horizontal" size={3} />
           </Block>
         </Block>
         <Footer onSubmit={submit} />

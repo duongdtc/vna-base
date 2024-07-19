@@ -1,6 +1,4 @@
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, LinearGradient, Text, showToast } from '@vna-base/components';
-import { BlockProps } from '@vna-base/components/block/type';
 import { LOGO_URL } from '@env';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Booking } from '@services/axios/axios-ibe';
@@ -8,13 +6,18 @@ import { AirlineRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { useTheme } from '@theme';
 import { I18nKeys } from '@translations/locales';
-import { translate } from '@vna-base/translations/translate';
+import {
+  Block,
+  Icon,
+  LinearGradient,
+  Text,
+  showToast,
+} from '@vna-base/components';
+import { BlockProps } from '@vna-base/components/block/type';
 import {
   ActiveOpacity,
   BookingStatus,
   BookingStatusDetails,
-  System,
-  SystemDetails,
   WindowWidth,
 } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
@@ -97,7 +100,7 @@ export const BookingInfo = memo((props: Props) => {
             colorTheme="neutral900"
           />
         </Block>
-        <Block
+        {/* <Block
           borderRadius={4}
           paddingHorizontal={12}
           paddingVertical={4}
@@ -110,7 +113,7 @@ export const BookingInfo = memo((props: Props) => {
               colorTheme="classicWhite"
             />
           </Text>
-        </Block>
+        </Block> */}
       </Block>
       <Svg height={25} width={WindowWidth - 24}>
         <Circle cx="0" cy="12" r="10" fill={colors.neutral50} />

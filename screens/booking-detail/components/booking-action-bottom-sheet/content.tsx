@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, Text } from '@vna-base/components';
+import { Block, Icon, showToast, Text } from '@vna-base/components';
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { navigate } from '@navigation/navigation-service';
 import {
   selectFlightActionsByBookingId,
   selectLanguage,
 } from '@vna-base/redux/selector';
-import { bookingActionActions, bookingActions } from '@vna-base/redux/action-slice';
+import {
+  bookingActionActions,
+  bookingActions,
+} from '@vna-base/redux/action-slice';
 import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { Action } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
@@ -90,6 +93,15 @@ export const Content = ({
   }, [actions]);
 
   const onPressItem = useCallback(({ FeatureId, System }: Action) => {
+    if (FeatureId !== 'TicketIssue' && FeatureId !== 'CheckInOnline') {
+      showToast({
+        type: 'warning',
+        text: 'Chỉ Demo chức năng Xuất vé và Check in online',
+      });
+
+      return;
+    }
+
     let screen: APP_SCREEN;
 
     closeBottomSheet();

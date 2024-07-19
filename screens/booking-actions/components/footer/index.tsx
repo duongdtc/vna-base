@@ -47,9 +47,9 @@ export function Footer<TFieldValues extends FieldValues = FieldValues>({
           fullWidth
           size="medium"
           t18n="common:cancel"
-          textColorTheme="neutral900"
+          textColorTheme="neutral90"
           textFontStyle="Body14Semi"
-          buttonColorTheme="neutral50"
+          buttonColorTheme="neutral20"
           onPress={() => {
             goBack();
           }}
@@ -62,7 +62,7 @@ export function Footer<TFieldValues extends FieldValues = FieldValues>({
           disabled={disableSubmit}
           size="medium"
           t18n="common:execute"
-          textColorTheme="classicWhite"
+          textColorTheme="white"
           textFontStyle="Body14Semi"
           buttonColorTheme="primary500"
         />

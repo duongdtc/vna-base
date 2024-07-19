@@ -64,19 +64,19 @@ export const Success = ({
   }, [Lng, actions, flightAction]);
 
   const goBack = () => {
-    dispatch(
-      bookingActions.getBookingByIdOrBookingCode(
-        {
-          id: bookingId,
-          bookingCode: bookingDetail!.BookingCode!,
-          system: bookingDetail!.System!,
-          surname: bookingDetail?.Passengers[0]?.Surname,
-        },
-        {
-          force: true,
-        },
-      ),
-    );
+    // dispatch(
+    //   bookingActions.getBookingByIdOrBookingCode(
+    //     {
+    //       id: bookingId,
+    //       bookingCode: bookingDetail!.BookingCode!,
+    //       system: bookingDetail!.System!,
+    //       surname: bookingDetail?.Passengers[0]?.Surname,
+    //     },
+    //     {
+    //       force: true,
+    //     },
+    //   ),
+    // );
 
     let step = 2;
 

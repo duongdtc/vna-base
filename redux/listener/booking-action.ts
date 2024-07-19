@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { hideLoading, showLoading } from '@vna-base/components';
-import { bookingActionActions } from '@vna-base/redux/action-slice';
+import {
+  bookingActionActions,
+  currentAccountActions,
+} from '@vna-base/redux/action-slice';
 import { Data, Ibe } from '@services/axios';
 import { Booking } from '@services/axios/axios-data';
 import {
@@ -68,6 +71,12 @@ export const runBookingActionListnener = () => {
     actionCreator: bookingActionActions.issueTicket,
     effect: async (action, listenerApi) => {
       const { id, info, cb } = action.payload;
+
+      listenerApi.dispatch(
+        currentAccountActions.reduceBalance(
+          Number(load(StorageKey.PRICE_BOOK ?? 0)),
+        ),
+      );
 
       // const bookingDetail = realmRef.current
       //   ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
