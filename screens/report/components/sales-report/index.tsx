@@ -102,12 +102,12 @@ export const SalesReport = memo(() => {
             <Text
               text={translate('report:revenue') + ' (VND)'}
               fontStyle="Capture11Reg"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
             <Text
               text={(100_000_000).currencyFormat()}
               fontStyle="Body14Bold"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
           </Block>
           <Block
@@ -119,12 +119,12 @@ export const SalesReport = memo(() => {
             <Text
               text={translate('report:revenue') + ' (VND)'}
               fontStyle="Capture11Reg"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
             <Text
               text={(100_000_000).currencyFormat()}
               fontStyle="Body14Bold"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
           </Block>
           <Block
@@ -136,12 +136,12 @@ export const SalesReport = memo(() => {
             <Text
               text={translate('report:revenue') + ' (VND)'}
               fontStyle="Capture11Reg"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
             <Text
               text={(100_000_000).currencyFormat()}
               fontStyle="Body14Bold"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
           </Block>
         </Block>
