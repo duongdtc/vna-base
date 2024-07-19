@@ -1,3 +1,6 @@
+import { navigate } from '@navigation/navigation-service';
+import { createStyleSheet, useStyles } from '@theme';
+import { APP_SCREEN } from '@utils';
 import {
   Block,
   Icon,
@@ -6,9 +9,7 @@ import {
   Separator,
   Text,
 } from '@vna-base/components';
-import { navigate } from '@navigation/navigation-service';
 import { PassengerForm, TaxInfo } from '@vna-base/screens/flight/type';
-import { createStyleSheet, useStyles } from '@theme';
 import { ActiveOpacity, rxEmail } from '@vna-base/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -17,13 +18,9 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { APP_SCREEN } from '@utils';
 
 export const BillingInfoTab = () => {
-  const {
-    styles,
-    theme: { colors },
-  } = useStyles(styleSheet);
+  const { styles } = useStyles(styleSheet);
   const { control, getValues, setValue, setFocus } =
     useFormContext<PassengerForm>();
 
@@ -42,7 +39,6 @@ export const BillingInfoTab = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingHorizontal: 12,
-          backgroundColor: colors.neutral20,
         }}>
         <Block
           borderRadius={8}
