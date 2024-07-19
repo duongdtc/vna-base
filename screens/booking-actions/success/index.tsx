@@ -96,7 +96,6 @@ export const Success = ({
   };
 
   const renderTicket = useCallback<ListRenderItem<Ticket>>(({ item }) => {
-    console.log('🚀 ~ item:', item);
     return (
       <Block
         flexDirection="row"

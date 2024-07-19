@@ -442,7 +442,6 @@ export const runFlightSearchListener = () => {
         );
 
         listenerApi.dispatch(flightResultActions.saveSearchDone(true));
-        console.log('first');
         // get min fares
         listenerApi.dispatch(flightResultActions.getMinFares());
       }
