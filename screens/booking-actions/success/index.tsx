@@ -26,6 +26,8 @@ import {
   BookingStatusDetails,
   dispatch,
   HitSlop,
+  load,
+  StorageKey,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
@@ -195,7 +197,7 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={'5XGQTY'}
+              text={load(StorageKey.BOOKING_CODE)}
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[

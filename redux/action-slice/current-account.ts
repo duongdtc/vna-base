@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Actions from '@vna-base/redux/action-type';
 import { BalanceInfo, CurrentAccountState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -24,6 +25,11 @@ const currentAccountSlice = createSlice({
   reducers: {
     saveCurrentAccount: (state, { payload }: PayloadAction<UserAccount>) => {
       state.currentAccount = payload;
+    },
+
+    reduceBalance: (state, { payload }: PayloadAction<number>) => {
+      state.currentAccount.Agent!.Balance =
+        state.currentAccount.Agent!.Balance - payload;
     },
 
     setErrorMsgResetPassword: (

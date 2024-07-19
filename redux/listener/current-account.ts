@@ -24,7 +24,14 @@ export const runCurrentAccountListener = () => {
 
         listenerApi.dispatch(
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          currentAccountActions.saveCurrentAccount(res.data.Item!),
+          currentAccountActions.saveCurrentAccount({
+            ...(res.data.Item ?? {}),
+            Agent: {
+              ...(res.data.Item?.Agent ?? {}),
+              CreditLimit: 40_000_000,
+              Balance: 10_000_000,
+            },
+          }),
         );
 
         listenerApi.dispatch(
