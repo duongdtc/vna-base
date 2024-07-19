@@ -17,10 +17,7 @@ export const StorageKey = {
   VIEW_CHART: 'VIEW_CHART',
   IS_CRYPTIC_FLIGHT: 'IS_CRYPTIC_FLIGHT',
   FORM_BOOKING: 'FORM_BOOKING',
-<<<<<<< Updated upstream
   DETAIL_ORDER_BOOKING: 'DETAIL_ORDER_BOOKING',
-=======
   PRICE_BOOK: 'PRICE_BOOK',
   BOOKING_CODE: 'BOOKING_CODE',
->>>>>>> Stashed changes
 };

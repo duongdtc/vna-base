@@ -5,12 +5,7 @@ import { reset } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavToOrderDetail } from '@screens/flight/booking-flight-done/footer';
 import { MoreActionButton } from '@screens/flight/booking-flight-done/more-action';
-<<<<<<< Updated upstream
-import { Data } from '@services/axios';
-import { Booking, Order } from '@services/axios/axios-data';
-=======
 import { Booking, Order, OrderRes } from '@services/axios/axios-data';
->>>>>>> Stashed changes
 import { AirlineRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { ColorLight } from '@theme/color';
@@ -32,10 +27,7 @@ import {
   HitSlop,
   load,
   resetSearchFlight,
-<<<<<<< Updated upstream
   save,
-=======
->>>>>>> Stashed changes
   StorageKey,
   validResponse,
 } from '@vna-base/utils';
@@ -51,10 +43,7 @@ import {
 } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useStyles } from './styles';
-<<<<<<< Updated upstream
-=======
 import { PassengerForm } from '../type';
->>>>>>> Stashed changes
 
 export const BookingFlightDone = ({
   route,

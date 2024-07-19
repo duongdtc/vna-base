@@ -38,7 +38,7 @@ export const SelectServices = ({
   const [ownerServices, setOwnerServices] = useState<
     Array<Ancillary & { selected?: boolean }>
   >([]);
-  console.log('initData', initData.listSelected);
+
   useEffect(() => {
     if (!initData.listSelected || initData.listSelected.length === 0) {
       setOwnerServices(services[initData.flight.index]);
