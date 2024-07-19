@@ -16,6 +16,7 @@ import { useFormContext } from 'react-hook-form';
 import { SlideInDown, SlideOutDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PreviewInfo } from './preview-info';
+import { ButtonModalSubmit } from '@screens/flight/booking-flight-done/button-modal-submit';
 
 export const ModalSubmit = forwardRef<ModalSubmitRef, ModalSubmitProps>(
   ({ onSubmit, onCancel }, ref) => {
@@ -129,15 +130,7 @@ export const ModalSubmit = forwardRef<ModalSubmitRef, ModalSubmitProps>(
               />
             </Block>
             <Block flex={1}>
-              <Button
-                onPress={_onOk}
-                fullWidth
-                size="medium"
-                t18n="input_info_passenger:submit"
-                type="common"
-                textColorTheme="white"
-                buttonColorTheme="primaryColor"
-              />
+              <ButtonModalSubmit onOk={_onOk} />
             </Block>
           </Block>
         </Block>
