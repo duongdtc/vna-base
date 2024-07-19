@@ -1,9 +1,9 @@
 import { images } from '@assets/image';
-import { Avatar, Block, Button, Icon, Image, Text } from '@vna-base/components';
 import { navigate, useDrawer } from '@navigation/navigation-service';
+import { createStyleSheet, useStyles } from '@theme';
+import { Avatar, Block, Button, Icon, Image, Text } from '@vna-base/components';
 import { selectCurrentAccount } from '@vna-base/redux/selector';
-import { useTheme } from '@theme';
-import { ActiveOpacity, HitSlop, getState } from '@vna-base/utils';
+import { ActiveOpacity, HitSlop, getState, scale } from '@vna-base/utils';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, TouchableOpacity } from 'react-native';
@@ -16,22 +16,22 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 import { useSelector } from 'react-redux';
-import { useStyles } from './style';
+
 import { ColorLight } from '@theme/color';
-import { useCASLContext } from '@services/casl';
 import { APP_SCREEN } from '@utils';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const AnimatedHeader = ({
   sharedValue,
 }: {
   sharedValue: SharedValue<number>;
 }) => {
-  const styles = useStyles();
+  const {
+    styles,
+    theme: { colors },
+  } = useStyles(styleSheet);
   const { open } = useDrawer();
   const [t] = useTranslation();
-  const { colors } = useTheme();
-
-  const { can } = useCASLContext();
 
   const currentAccount = useSelector(selectCurrentAccount);
 
@@ -48,7 +48,7 @@ export const AnimatedHeader = ({
       interpolateColor(
         sharedValue.value,
         [0, 100],
-        ['transparent', colors.neutral100],
+        ['transparent', colors.neutral10],
       ),
     [colors],
   );
@@ -182,33 +182,76 @@ export const AnimatedHeader = ({
         </Block>
       </Animated.View>
 
-      {can('view', 'agent_info_custom') && (
-        <Animated.View style={[styles.bottomHeader, animatedStyleBottomHeader]}>
-          <Pressable onPress={navToAgentInfoScreen}>
-            <Block
-              borderTopWidth={10}
-              borderBottomWidth={10}
-              paddingVertical={10}
-              paddingHorizontal={16}
-              borderColorTheme="neutral200"
-              colorTheme="neutral100"
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="space-between">
-              <Text
-                t18n="system:info_agent"
-                fontStyle="Body12Med"
-                colorTheme="neutral900"
-              />
-              <Icon
-                icon="arrow_ios_right_fill"
-                size={16}
-                colorTheme="neutral900"
-              />
-            </Block>
-          </Pressable>
-        </Animated.View>
-      )}
+      <Animated.View style={[styles.bottomHeader, animatedStyleBottomHeader]}>
+        <Pressable onPress={navToAgentInfoScreen}>
+          <Block
+            borderTopWidth={10}
+            borderBottomWidth={10}
+            paddingVertical={10}
+            paddingHorizontal={16}
+            borderColorTheme="neutral200"
+            colorTheme="neutral100"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="space-between">
+            <Text
+              t18n="system:info_agent"
+              fontStyle="Body12Med"
+              colorTheme="neutral900"
+            />
+            <Icon
+              icon="arrow_ios_right_fill"
+              size={16}
+              colorTheme="neutral900"
+            />
+          </Block>
+        </Pressable>
+      </Animated.View>
     </>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors }) => ({
+  container: { zIndex: 11 },
+  logoContainer: {
+    left: 0,
+    right: 0,
+    top: UnistylesRuntime.insets.top + 20,
+    position: 'absolute',
+  },
+  logo: {
+    width: scale(132),
+    height: scale(16),
+    alignSelf: 'center',
+  },
+  avatarAndNameContainer: {
+    marginTop: scale(54),
+    marginLeft: scale(8),
+    width: '100%',
+    flexDirection: 'row',
+    columnGap: scale(8),
+  },
+  top: {
+    height: UnistylesRuntime.insets.top,
+    backgroundColor: colors.neutral300,
+  },
+  btn: { position: 'absolute', top: 12 },
+  bottomHeader: {
+    zIndex: 9,
+    position: 'absolute',
+    top: UnistylesRuntime.insets.top + 20,
+    left: 0,
+    right: 0,
+  },
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    height: scale(56),
+    overflow: 'hidden',
+  },
+  infoInHeader: {
+    flexDirection: 'row',
+    columnGap: 4,
+    alignItems: 'center',
+  },
+}));

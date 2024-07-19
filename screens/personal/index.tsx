@@ -15,9 +15,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
-import { AnimatedHeader, InfoCard, PersonalInfo, Setup } from './components';
+import { AnimatedHeader, PersonalInfo, Setup } from './components';
 import { useStyles } from './style';
 import { useCASLContext } from '@services/casl';
+import { InfoCard } from '@screens/personal/components/info-card';
 
 export const Personal = () => {
   const styles = useStyles();
@@ -90,7 +91,7 @@ export const Personal = () => {
       statusBarStyle="light-content">
       <Animated.View
         style={[styles.linearContainer, animatedStyleLinearGradient]}>
-        <LinearGradient type="003" style={styles.bgLinear} />
+        <LinearGradient type="gra1" style={styles.bgLinear} />
       </Animated.View>
       <AnimatedHeader sharedValue={scrollSharedValue} />
 

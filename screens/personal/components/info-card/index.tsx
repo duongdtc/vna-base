@@ -90,7 +90,7 @@ export const InfoCard = ({
           activeOpacity={ActiveOpacity}
           onPress={navToPersonalInfoScreen}
           style={styles.topContainer}>
-          <Block colorTheme="classicWhite" padding={2} borderRadius={28}>
+          <Block colorTheme="white" padding={2} borderRadius={28}>
             <Image
               source={currentAccount.Photo ?? images.default_avatar}
               containerStyle={styles.avatar}
@@ -106,17 +106,17 @@ export const InfoCard = ({
                 numberOfLines={1}
                 ellipsizeMode="tail"
                 fontStyle="Title20Semi"
-                colorTheme="classicWhite"
+                colorTheme="white"
                 text={currentAccount.FullName as string}
               />
-              <Icon icon="edit_2_outline" colorTheme="classicWhite" size={20} />
+              <Icon icon="edit_2_outline" colorTheme="white" size={20} />
             </Block>
-            <Text fontStyle="Capture11Reg" colorTheme="classicWhite">
+            <Text fontStyle="Capture11Reg" colorTheme="white">
               {`${t('home:account')} `}
               <Text
                 text={`${currentAccount.UserGroup?.Code}-${currentAccount.UserGroup?.Name}`}
                 fontStyle="Capture11Bold"
-                colorTheme="classicWhite"
+                colorTheme="white"
               />
             </Text>
           </Block>
@@ -126,12 +126,12 @@ export const InfoCard = ({
           <>
             {can('view', 'agent_info_custom') && (
               <Block style={styles.agentNameContainer}>
-                <Text fontStyle="Body12Reg" colorTheme="classicWhite">
+                <Text fontStyle="Body12Reg" colorTheme="white">
                   {`${translate('system:name_agent').toUpperCase()}  `}
                   <Text
                     text={currentAccount.Agent?.AgentName?.toUpperCase()}
                     fontStyle="Body14Semi"
-                    colorTheme="classicWhite"
+                    colorTheme="white"
                   />
                 </Text>
               </Block>
@@ -154,7 +154,7 @@ export const InfoCard = ({
                   }}>
                   <Text
                     fontStyle="Title20Semi"
-                    colorTheme="classicWhite"
+                    colorTheme="white"
                     text={
                       isShowBalance
                         ? `${(creditLimit + balance).currencyFormat()} ${
@@ -165,7 +165,7 @@ export const InfoCard = ({
                   />
                   <Icon
                     icon={isShowBalance ? 'eye_fill' : 'eye_off_fill'}
-                    colorTheme="classicWhite"
+                    colorTheme="white"
                     size={16}
                   />
                 </TouchableOpacity>
@@ -182,7 +182,7 @@ export const InfoCard = ({
                       : ''
                   }
                   fontStyle="Body12Reg"
-                  colorTheme="classicWhite"
+                  colorTheme="white"
                 />
                 {can('view', 'agent_info_custom') && (
                   <TouchableOpacity
@@ -197,12 +197,12 @@ export const InfoCard = ({
                     <Text
                       t18n="system:info_agent"
                       fontStyle="Body12Med"
-                      colorTheme="classicWhite"
+                      colorTheme="white"
                     />
                     <Icon
                       icon="arrow_ios_right_fill"
                       size={16}
-                      colorTheme="classicWhite"
+                      colorTheme="white"
                     />
                   </TouchableOpacity>
                 )}
