@@ -23,3 +23,5 @@ export * from './quick-input-info-passenger';
 export * from './preview-fare-report';
 
 export * from './booking-flight-done';
+
+export * from './select-services';

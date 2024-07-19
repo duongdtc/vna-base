@@ -372,25 +372,25 @@ export const runFlightSearchListener = () => {
 
       listenerApi.dispatch(flightResultActions.saveFilterForms(filterForms));
 
-      // const res = await fakeData({
-      //   ListRoute: listRoute.map(r => ({
-      //     DepartDate: dayjs(r.DepartDate).format('DDMMYYYY'),
-      //     EndPoint: r.EndPoint.Code,
-      //     Leg: r.Leg,
-      //     StartPoint: r.StartPoint.Code,
-      //   })),
-      // });
-      const res = await Ibe.flightSearchFlightCreate({
-        ...form.Passengers,
-        System: 'VN',
+      const res = await fakeData({
         ListRoute: listRoute.map(r => ({
           DepartDate: dayjs(r.DepartDate).format('DDMMYYYY'),
           EndPoint: r.EndPoint.Code,
           Leg: r.Leg,
           StartPoint: r.StartPoint.Code,
         })),
-        Option,
       });
+      // const res = await Ibe.flightSearchFlightCreate({
+      //   ...form.Passengers,
+      //   System: 'VN',
+      //   ListRoute: listRoute.map(r => ({
+      //     DepartDate: dayjs(r.DepartDate).format('DDMMYYYY'),
+      //     EndPoint: r.EndPoint.Code,
+      //     Leg: r.Leg,
+      //     StartPoint: r.StartPoint.Code,
+      //   })),
+      //   Option,
+      // });
       // console.log('res', res);
 
       if (validResponse(res)) {

@@ -117,17 +117,17 @@ export const runFlightResultListener = () => {
       for (const [indexRoute, routeWithDate] of arrDates.entries()) {
         const res = await Promise.allSettled(
           routeWithDate.map(async dateWithRoute => {
-            const resMinFare = await Ibe.flightSearchMinFareCreate({
-              DepartDate: dateWithRoute.date.format('DDMMYYYY'),
-              StartPoint: dateWithRoute.StartPoint.Code,
-              EndPoint: dateWithRoute.EndPoint.Code,
-              System: 'VN',
-            });
-            // const resMinFare = await fakeMinFare({
-            //   DepartDate: dateWithRoute.date,
+            // const resMinFare = await Ibe.flightSearchMinFareCreate({
+            //   DepartDate: dateWithRoute.date.format('DDMMYYYY'),
             //   StartPoint: dateWithRoute.StartPoint.Code,
             //   EndPoint: dateWithRoute.EndPoint.Code,
+            //   System: 'VN',
             // });
+            const resMinFare = await fakeMinFare({
+              DepartDate: dateWithRoute.date,
+              StartPoint: dateWithRoute.StartPoint.Code,
+              EndPoint: dateWithRoute.EndPoint.Code,
+            });
 
             return {
               minFare: (resMinFare.data.MinFare ?? {}) as MinFare,
@@ -430,12 +430,12 @@ export const runFlightResultListener = () => {
 
       const { flights, cb } = action.payload;
 
-      const res = await Ibe.flightVerifyFlightCreate({
-        ListSession: flights,
-      });
+      // const res = await Ibe.flightVerifyFlightCreate({
+      //   ListSession: flights,
+      // });
 
-      // const { routes } = listenerApi.getState().flightSearch;
-      // const res = await fakeVerifyFlight({ routes });
+      const { routes } = listenerApi.getState().flightSearch;
+      const res = await fakeVerifyFlight({ routes });
 
       if (validResponse(res)) {
         listenerApi.dispatch(

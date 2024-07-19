@@ -3,7 +3,10 @@
 
 import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { FlightOfPassengerForm, PassengerForm } from '@vna-base/screens/flight/type';
+import {
+  FlightOfPassengerForm,
+  PassengerForm,
+} from '@vna-base/screens/flight/type';
 import { Seat } from '@services/axios/axios-ibe';
 import { createStyleSheet, useStyles } from '@theme';
 import { ActiveOpacity, scale, getFullNameOfPassenger } from '@vna-base/utils';
@@ -67,7 +70,7 @@ export const ItemContainer = (props: ItemContainerProps) => {
           passenger => passenger?.PreSeats[flightIdx ?? 0]?.[segmentIdx ?? 0],
         );
 
-      navigate(APP_SCREEN .SELECT_SEAT, {
+      navigate(APP_SCREEN.SELECT_SEAT, {
         passengers: passengerData
           .filter(passenger => passenger.Type !== 'INF')
           .map(passenger => ({

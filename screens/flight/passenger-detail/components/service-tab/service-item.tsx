@@ -80,11 +80,11 @@ export const ServiceItem = (props: ServiceItemProps) => {
         )}
       </Block>
       {services && services.length > 0 && (
-        <Block>
+        <Block marginTop={4}>
           {services.map((service, index) => (
             <Block key={service.Value}>
               {index !== 0 && (
-                <View style={(bs.marginVertical_4, bs.paddingHorizontal_4)}>
+                <View style={[bs.marginVertical_4, bs.paddingHorizontal_4]}>
                   <Separator
                     size={2}
                     type="horizontal"

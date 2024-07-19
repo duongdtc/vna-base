@@ -16,10 +16,12 @@ import {
   getFullNameOfPassenger,
   getPassengerTitle,
   removeLeadingZero,
+  save,
+  StorageKey,
 } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { calculateTotalPrice } from '../../utils';
 import {
@@ -143,6 +145,10 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
     form.Passengers.length,
     form.TotalFareFlight,
   );
+
+  useEffect(() => {
+    save(StorageKey.PRICE_BOOK, (total ?? 0) + (Total ?? 0));
+  }, [Total, total]);
 
   return (
     <Block rowGap={10}>
