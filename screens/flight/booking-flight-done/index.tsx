@@ -1,5 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { images } from '@assets/image';
+import { LOGO_URL } from '@env';
+import { reset } from '@navigation/navigation-service';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NavToOrderDetail } from '@screens/flight/booking-flight-done/footer';
+import { MoreActionButton } from '@screens/flight/booking-flight-done/more-action';
+import { Data } from '@services/axios';
+import { Booking, Order } from '@services/axios/axios-data';
+import { AirlineRealm } from '@services/realm/models';
+import { realmRef } from '@services/realm/provider';
+import { ColorLight } from '@theme/color';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   Button,
@@ -10,19 +21,13 @@ import {
   Separator,
   Text,
 } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { reset } from '@navigation/navigation-service';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Data } from '@services/axios';
-import { Booking, Order } from '@services/axios/axios-data';
-import { AirlineRealm } from '@services/realm/models';
-import { realmRef } from '@services/realm/provider';
-import { ColorLight } from '@theme/color';
 import { translate } from '@vna-base/translations/translate';
 import {
   BookFlight,
   HitSlop,
   resetSearchFlight,
+  save,
+  StorageKey,
   validResponse,
 } from '@vna-base/utils';
 import dayjs from 'dayjs';
@@ -36,9 +41,6 @@ import {
 } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useStyles } from './styles';
-import { APP_SCREEN, RootStackParamList } from '@utils';
-import { NavToOrderDetail } from '@screens/flight/booking-flight-done/footer';
-import { MoreActionButton } from '@screens/flight/booking-flight-done/more-action';
 
 export const BookingFlightDone = ({
   route,
@@ -62,6 +64,10 @@ export const BookingFlightDone = ({
 
       if (validResponse(response)) {
         setOrderDetail(response.data.Item as Order);
+        save(StorageKey.DETAIL_ORDER_BOOKING, {
+          price: response.data.Item?.TotalPrice,
+          bookingCode: response.data.Item?.Bookings?.[0]?.BookingCode,
+        });
       }
     };
 
@@ -259,19 +265,16 @@ export const BookingFlightDone = ({
   return (
     <Screen unsafe statusBarStyle="light-content">
       <NormalHeaderGradient
+        gradientType="gra1"
         centerContent={
-          <Text
-            t18n="common:done"
-            fontStyle="Title20Semi"
-            colorTheme="classicWhite"
-          />
+          <Text t18n="common:done" fontStyle="Title20Semi" colorTheme="white" />
         }
         rightContent={
           <Button
             hitSlop={HitSlop.Large}
             leftIcon="home_fill"
             leftIconSize={24}
-            textColorTheme="classicWhite"
+            textColorTheme="white"
             padding={4}
             onPress={backToHome}
           />
