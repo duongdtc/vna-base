@@ -430,12 +430,12 @@ export const runFlightResultListener = () => {
 
       const { flights, cb } = action.payload;
 
-      // const res = await Ibe.flightVerifyFlightCreate({
-      //   ListSession: flights,
-      // });
+      const res = await Ibe.flightVerifyFlightCreate({
+        ListSession: flights,
+      });
 
-      const { routes } = listenerApi.getState().flightSearch;
-      const res = await fakeVerifyFlight({ routes });
+      // const { routes } = listenerApi.getState().flightSearch;
+      // const res = await fakeVerifyFlight({ routes });
 
       if (validResponse(res)) {
         listenerApi.dispatch(

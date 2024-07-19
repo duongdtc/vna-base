@@ -12,7 +12,7 @@ import {
   showToast,
   Text,
 } from '@vna-base/components';
-import { popWithStep } from '@navigation/navigation-service';
+import { navigate, popWithStep } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
@@ -95,53 +95,47 @@ export const Success = ({
     popWithStep(step);
   };
 
-  const renderTicket = useCallback<ListRenderItem<Ticket>>(
-    ({ item }) => {
-      console.log('🚀 ~ item:', item);
-
-      return (
-        <Block
-          flexDirection="row"
-          alignItems="center"
-          padding={12}
-          justifyContent="space-between">
-          <Block flex={1}>
-            <Text
-              text={item.TicketNumber as string}
-              fontStyle="Body12Bold"
-              colorTheme="neutral900"
-            />
-            <Text
-              text={`${item.FullName}${
-                isShowRemark && item.Remark && item.Remark !== ''
-                  ? ` - ${item.Remark}`
-                  : ''
-              }`}
-              fontStyle="Body12Med"
-              colorTheme="neutral600"
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            />
-          </Block>
-          <Block flex={0.5} alignItems="flex-end">
-            <Text
-              t18n={TicketTypeDetails[item.TicketType as TicketType]?.t18n}
-              fontStyle="Body12Med"
-              colorTheme={
-                TicketTypeDetails[item.TicketType as TicketType]?.colorTheme
-              }
-            />
-            <Text
-              text={`${item?.StartPoint?.Code}-${item?.EndPoint?.Code}`}
-              fontStyle="Body12Reg"
-              colorTheme="neutral600"
-            />
-          </Block>
+  const renderTicket = useCallback<ListRenderItem<Ticket>>(({ item }) => {
+    console.log('🚀 ~ item:', item);
+    return (
+      <Block
+        flexDirection="row"
+        alignItems="center"
+        padding={12}
+        justifyContent="space-between">
+        <Block flex={1}>
+          <Text
+            text={item.TicketNumber as string}
+            fontStyle="Body12Bold"
+            colorTheme="neutral900"
+          />
+          <Text
+            text={`${item.FullName}${
+              item.Remark && item.Remark !== '' ? ` - ${item.Remark}` : ''
+            }`}
+            fontStyle="Body12Med"
+            colorTheme="neutral600"
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          />
         </Block>
-      );
-    },
-    [bookingDetail?.EndPoint, bookingDetail?.StartPoint, isShowRemark],
-  );
+        <Block flex={0.5} alignItems="flex-end">
+          <Text
+            t18n={TicketTypeDetails[item.TicketType as TicketType]?.t18n}
+            fontStyle="Body12Bold"
+            colorTheme={
+              TicketTypeDetails[item.TicketType as TicketType]?.colorTheme
+            }
+          />
+          <Text
+            text={`${item?.StartPoint?.Code}-${item?.EndPoint?.Code}`}
+            fontStyle="Body12Reg"
+            colorTheme="neutral600"
+          />
+        </Block>
+      </Block>
+    );
+  }, []);
 
   return (
     <Screen
@@ -149,12 +143,13 @@ export const Success = ({
       backgroundColor={styles.container.backgroundColor}
       statusBarStyle="light-content">
       <NormalHeaderGradient
+        gradientType="gra1"
         leftContent={<Block height={32} width={32} />}
         centerContent={
           <Text
             t18n="issue_ticket:completed"
             fontStyle="Title20Semi"
-            colorTheme="neutral100"
+            colorTheme="white"
           />
         }
       />
@@ -176,7 +171,7 @@ export const Success = ({
           fontStyle="Title20Semi"
           colorTheme="primary900"
           textAlign="center">
-          {title}{' '}
+          {'Xuất vé'}{' '}
           <Text
             fontStyle="Title20Semi"
             colorTheme="success500"
@@ -241,7 +236,9 @@ export const Success = ({
           t18n="issue_ticket:closed"
           type="classic"
           textColorTheme="neutral900"
-          onPress={goBack}
+          onPress={() => {
+            navigate(APP_SCREEN.SEARCH_FLIGHT);
+          }}
         />
       </Block>
     </Screen>
