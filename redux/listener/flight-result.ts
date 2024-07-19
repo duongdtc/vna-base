@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Ibe } from '@services/axios';
-import { AirOption, MinFare, OptionGroup } from '@services/axios/axios-ibe';
+import { AirOption, MinFare } from '@services/axios/axios-ibe';
 import { AirportRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { showToast } from '@vna-base/components';
@@ -506,7 +506,9 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
 
       return {
         Leg: idx,
-        Journey: `${StartPoint}${EndPoint}${dayjs(dp).format('DDMMYYYY')}`,
+        Journey: `${StartPoint.Code}${EndPoint.Code}${dayjs(dp).format(
+          'DDMMYYYY',
+        )}`,
         Itinerary: 1,
         Airline: 'VN',
         System: 'VN',
@@ -550,8 +552,8 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
               ListFareInfo: [
                 {
                   SegmentId: '1',
-                  StartPoint,
-                  EndPoint,
+                  StartPoint: StartPoint.Code,
+                  EndPoint: EndPoint.Code,
                   FareClass: 'N',
                   FareBasis: 'NPXVNF',
                   HandBaggage: '1 piece x 10kg',
@@ -568,8 +570,8 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
             FlightId: '2',
             Airline: 'VN',
             Operator: 'BL',
-            StartPoint,
-            EndPoint,
+            StartPoint: StartPoint.Code,
+            EndPoint: EndPoint.Code,
             StartDate: `${StartDate}T21:10:00`,
             EndDate: `${StartDate}T23:30:00`,
             DepartDate: `${DepartDate} 2110`,
@@ -583,8 +585,8 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
                 SegmentId: '1',
                 Airline: 'VN',
                 Operator: 'BL',
-                StartPoint,
-                EndPoint,
+                StartPoint: StartPoint.Code,
+                EndPoint: EndPoint.Code,
                 StartDate: `${StartDate}T21:10:00`,
                 EndDate: `${StartDate}T23:30:00`,
                 DepartDate: `${DepartDate} 2110`,
