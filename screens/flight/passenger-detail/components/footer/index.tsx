@@ -1,4 +1,6 @@
-import { Block, Button, Icon, Text } from '@vna-base/components';
+import { ContinueBtn } from '@screens/flight/passenger-detail/components/continue-btn';
+import { createStyleSheet, useStyles } from '@theme';
+import { Block, Icon, Text } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import {
   selectCustomFeeTotal,
@@ -9,10 +11,9 @@ import { ActiveOpacity, WindowHeight, WindowWidth } from '@vna-base/utils';
 import React, { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { ActivityIndicator, TouchableOpacity } from 'react-native';
+import { UnistylesRuntime } from 'react-native-unistyles';
 import { useSelector } from 'react-redux';
 import { calculateTotalPrice } from '../../utils';
-import { createStyleSheet, useStyles } from '@theme';
-import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const Footer = ({
   summaryBottomSheetRef,
@@ -50,11 +51,6 @@ export const Footer = ({
 
     return { listKey, passengerCount: passengers.length };
   }, []);
-
-  const tabIndex = useWatch({
-    control,
-    name: 'TabIndex',
-  });
 
   const TotalFareFlight = useWatch({
     control,
@@ -122,23 +118,7 @@ export const Footer = ({
           )}
         </Block>
       </TouchableOpacity>
-      <Block flex={1} maxWidth={142}>
-        <Button
-          size="medium"
-          disabled={isLoadingVerifiedFlights}
-          t18n={
-            tabIndex === 2
-              ? 'input_info_passenger:reservations'
-              : 'common:continue'
-          }
-          textColorTheme="white"
-          buttonColorTheme={tabIndex === 2 ? 'successColor' : 'graPre'}
-          fullWidth
-          textFontStyle="Title16Bold"
-          paddingVertical={14}
-          onPress={next}
-        />
-      </Block>
+      <ContinueBtn onPress={next} />
     </Block>
   );
 };
