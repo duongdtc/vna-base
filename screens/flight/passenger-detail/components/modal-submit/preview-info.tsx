@@ -5,33 +5,18 @@ import { CountryRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { Block, Text } from '@vna-base/components';
 import { selectCustomFeeTotal } from '@vna-base/redux/selector';
-import {
-  HotelEnum,
-  ListHotelDetails,
-  ListRoomDetails,
-} from '@vna-base/screens/flight/list-hotel/dummy';
 import { Passenger, PassengerForm } from '@vna-base/screens/flight/type';
 import {
   getFlightNumber,
   getFullNameOfPassenger,
   getPassengerTitle,
   removeLeadingZero,
-  save,
-  StorageKey,
 } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { calculateTotalPrice } from '../../utils';
-import {
-  Bus,
-  BusDetails,
-  NumberBus,
-  NumberBusDetails,
-  TRIP,
-  TripDetails,
-} from '../service-tab/shuttle-cars/components/shuttle-car-item/dummy';
 
 export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
   const { Total } = useSelector(selectCustomFeeTotal);
@@ -54,31 +39,6 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
   let Services: Array<
     Ancillary & Pick<Passenger, 'Surname' | 'FullName' | 'GivenName'>
   > = [];
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const tripWithBus = TripDetails[form.ShuttleBuses[0].trip ?? TRIP.ONE];
-
-  const busNumber =
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    NumberBusDetails[form.ShuttleBuses[0].numberBus ?? NumberBus.ONE];
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const busName = BusDetails[form.ShuttleBuses[0].type ?? Bus.ONE];
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const hotel = ListHotelDetails[form.Hotels[0].hotel?.key];
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const roomHotel = ListRoomDetails[form.Hotels[0].room?.key];
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const numberRoomHotel = form.Hotels[0].numberRoom ?? 0;
 
   form.Passengers.forEach(passenger => {
     passenger.PreSeats.forEach((preS, idxFlight) => {
@@ -146,15 +106,15 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
     form.TotalFareFlight,
   );
 
-  useEffect(() => {
-    save(StorageKey.PRICE_BOOK, (total ?? 0) + (Total ?? 0));
-  }, [Total, total]);
-
   return (
     <Block rowGap={10}>
       {/* Hành khách */}
       <Block>
-        <Text text="PASSENGERS" fontStyle="Body10RegMono" colorTheme="white" />
+        <Text
+          text="PASSENGERS"
+          fontStyle="Body10SemiMonoLH16"
+          colorTheme="white"
+        />
         <Block flexDirection="row" columnGap={8}>
           {/* Số thứ tự */}
           <Block>
@@ -162,7 +122,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
               <Text
                 key={idx}
                 text={`${idx + 1}.`}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -179,7 +139,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                   ? passenger.FullName
                   : `${passenger.Surname}/${passenger.GivenName}`
                 ).toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -194,7 +154,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                   type: passenger.Type,
                   gender: passenger.Gender,
                 }).toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -210,7 +170,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                     ? dayjs(passenger.Birthday).format('DD/MM/YYYY')
                     : ' '
                 }
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -220,7 +180,11 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
 
       {/* Chuyến bay */}
       <Block>
-        <Text text="FLIGHTS" fontStyle="Body10RegMono" colorTheme="white" />
+        <Text
+          text="FLIGHTS"
+          fontStyle="Body10SemiMonoLH16"
+          colorTheme="white"
+        />
         <Block flexDirection="row" columnGap={8}>
           {/* Số thứ tự */}
           <Block>
@@ -228,7 +192,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
               <Text
                 key={idx}
                 text={idx + 1 + '.'}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -236,11 +200,11 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
 
           {/* hãng bay
           <Block>
-            {form.FLights.map((flight, idx) => (
+            {form.Flights.map((flight, idx) => (
               <Text
                 key={idx}
                 text={flight.System?.toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -256,19 +220,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                   flight.Airline,
                   flight.FlightNumber,
                 ).toUpperCase()}
-                fontStyle="Body10RegMono"
-                colorTheme="white"
-              />
-            ))}
-          </Block>
-
-          {/* Hạng vé */}
-          <Block>
-            {form.FLights.map((flight, idx) => (
-              <Text
-                key={idx}
-                text={flight.FareOption!.ListFarePax![0].ListFareInfo![0].FareClass!.toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -280,7 +232,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
               <Text
                 key={idx}
                 text={`${flight.StartPoint}${flight.EndPoint}`.toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -294,7 +246,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                 text={dayjs(flight.DepartDate, 'DDMMYYYY HHmm')
                   .format('DD/MM/YYYY')
                   .toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -306,7 +258,7 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
               <Text
                 key={idx}
                 text={dayjs(flight.DepartDate).format('HH:mm').toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
               />
             ))}
@@ -318,8 +270,24 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
               <Text
                 key={idx}
                 text={dayjs(flight.ArriveDate).format('HH:mm').toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 colorTheme="white"
+              />
+            ))}
+          </Block>
+
+          {/* Hạng vé */}
+          <Block>
+            {form.FLights.map((flight, idx) => (
+              <Text
+                key={idx}
+                text={
+                  flight.FareOption
+                    ? flight.FareOption.ListFarePax![0].ListFareInfo![0].FareClass!.toUpperCase()
+                    : ''
+                }
+                fontStyle="Body10SemiMonoLH16"
+                colorTheme="warning400"
               />
             ))}
           </Block>
@@ -329,43 +297,22 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
       {/* Hành lý */}
       {Baggages.length > 0 && (
         <Block>
-          <Text text="BAGGAGES" fontStyle="Body10RegMono" colorTheme="white" />
+          <Text
+            text="BAGGAGES"
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
           {Baggages.map((baggage, idx) => (
             <Block key={idx}>
               <Block flexDirection="row">
                 {/* index */}
                 <Text
                   text={`${idx + 1}. `}
-                  fontStyle="Body10RegMono"
+                  fontStyle="Body10SemiMonoLH16"
                   colorTheme="white"
                 />
-                {/* tên gói hàng */}
-                <Block flex={1}>
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="clip"
-                    text={`${baggage.Name?.trim().toUpperCase()}...................................................`}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                  />
-                </Block>
-                <Text text="..." fontStyle="Body10RegMono" colorTheme="white" />
-
-                {/* giá */}
-                <Text
-                  text={baggage.Price?.currencyFormat().toUpperCase()}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-              </Block>
-              <Block flexDirection="row">
-                <Text
-                  text={'   '}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-                {/* Tên hành khách */}
-                <Block flex={1}>
+                {/* tên khách */}
+                <Block flex={1} flexDirection="row">
                   <Text
                     numberOfLines={1}
                     ellipsizeMode="middle"
@@ -376,16 +323,40 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                           GivenName: baggage.GivenName,
                         } as Passenger)
                     ).toUpperCase()}
-                    fontStyle="Body10RegMono"
+                    fontStyle="Body10SemiMonoLH16"
                     colorTheme="white"
                   />
+                  {/* route */}
+                  <Text
+                    text={` ${baggage.Airline} ${baggage.StartPoint}${baggage.EndPoint}`.toUpperCase()}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="info300"
+                  />
                 </Block>
-                {/* route */}
+
+                {/* giá */}
                 <Text
-                  text={`${baggage.StartPoint}${baggage.EndPoint}`.toUpperCase()}
-                  fontStyle="Body10RegMono"
+                  text={baggage.Price?.currencyFormat().toUpperCase()}
+                  fontStyle="Body10SemiMonoLH16"
                   colorTheme="white"
                 />
+              </Block>
+              <Block flexDirection="row">
+                <Text
+                  text={'   '}
+                  fontStyle="Body10SemiMonoLH16"
+                  colorTheme="white"
+                />
+                {/* Tên hành khách */}
+                <Block flex={1}>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="clip"
+                    text={`${baggage.Name?.trim().toUpperCase()}`}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="warning400"
+                  />
+                </Block>
               </Block>
             </Block>
           ))}
@@ -395,76 +366,54 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
       {/* Chỗ ngồi */}
       {PreSeats.length > 0 && (
         <Block>
-          <Text text="PRESEATS" fontStyle="Body10RegMono" colorTheme="white" />
+          <Text
+            text="PRESEATS"
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
           {PreSeats.map((preSeat, idx) =>
             preSeat.SeatNumber ? (
-              <Block key={idx}>
-                <Block flexDirection="row">
-                  {/* index */}
-                  <Text
-                    text={`${idx + 1}. `}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                  />
+              <Block flexDirection="row" key={idx}>
+                {/* index */}
+                <Text
+                  text={`${idx + 1}. `}
+                  fontStyle="Body10SemiMonoLH16"
+                  colorTheme="white"
+                />
 
-                  {/* Số ghế */}
-                  <Block flex={1}>
-                    <Text
-                      numberOfLines={1}
-                      ellipsizeMode="clip"
-                      text={`${preSeat.SeatNumber}......................................................`}
-                      fontStyle="Body10RegMono"
-                      colorTheme="white"
-                    />
-                  </Block>
+                {/* Số ghế */}
+                <Block flex={1} flexDirection="row">
                   <Text
-                    text="..."
-                    fontStyle="Body10RegMono"
+                    numberOfLines={1}
+                    ellipsizeMode="middle"
+                    text={(preSeat.FullName !== ''
+                      ? preSeat.FullName
+                      : getFullNameOfPassenger({
+                          Surname: preSeat.Surname,
+                          GivenName: preSeat.GivenName,
+                        } as Passenger)
+                    ).toUpperCase()}
+                    fontStyle="Body10SemiMonoLH16"
                     colorTheme="white"
                   />
-                  {/* giá */}
-                  <Text
-                    text={preSeat.Price?.currencyFormat().toUpperCase()}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                  />
-                </Block>
-                <Block flexDirection="row">
-                  <Text
-                    text={'   '}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                  />
-                  {/* Tên hành khách */}
-                  <Block flex={1}>
-                    <Text
-                      numberOfLines={1}
-                      ellipsizeMode="middle"
-                      text={(preSeat.FullName !== ''
-                        ? preSeat.FullName
-                        : getFullNameOfPassenger({
-                            Surname: preSeat.Surname,
-                            GivenName: preSeat.GivenName,
-                          } as Passenger)
-                      ).toUpperCase()}
-                      fontStyle="Body10RegMono"
-                      colorTheme="white"
-                    />
-                  </Block>
-                  {/* hãng bay */}
-                  <Text
-                    text={`${preSeat.Airline?.toUpperCase()} `}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                  />
-
                   {/* route */}
                   <Text
-                    text={`${preSeat.StartPoint}${preSeat.EndPoint}`.toUpperCase()}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
+                    text={` ${preSeat.Airline} ${preSeat.StartPoint}${preSeat.EndPoint}`.toUpperCase()}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="info300"
+                  />
+                  <Text
+                    text={` ${preSeat.SeatNumber}`}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="warning400"
                   />
                 </Block>
+                {/* giá */}
+                <Text
+                  text={preSeat.Price?.currencyFormat().toUpperCase()}
+                  fontStyle="Body10SemiMonoLH16"
+                  colorTheme="white"
+                />
               </Block>
             ) : null,
           )}
@@ -474,44 +423,21 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
       {/* Dịch vụ */}
       {Services.length > 0 && (
         <Block>
-          <Text text="SERVICES" fontStyle="Body10RegMono" colorTheme="white" />
+          <Text
+            text="SERVICES"
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
           {Services.map((service, idx) => (
             <Block key={idx}>
               <Block flexDirection="row">
                 {/* index */}
                 <Text
                   text={`${idx + 1}. `}
-                  fontStyle="Body10RegMono"
+                  fontStyle="Body10SemiMonoLH16"
                   colorTheme="white"
                 />
-                <Block flex={1}>
-                  <Text
-                    text={`${
-                      service.Description ?? service.Name
-                    }.....................................................`}
-                    fontStyle="Body10RegMono"
-                    colorTheme="white"
-                    numberOfLines={1}
-                    ellipsizeMode="clip"
-                  />
-                </Block>
-                <Text text="..." fontStyle="Body10RegMono" colorTheme="white" />
-                {/* giá */}
-                <Text
-                  text={service.Price?.currencyFormat().toUpperCase()}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-              </Block>
-              <Block flexDirection="row">
-                <Text
-                  text={'   '}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-
-                {/* Tên hành khách */}
-                <Block flex={1}>
+                <Block flex={1} flexDirection="row">
                   <Text
                     numberOfLines={1}
                     ellipsizeMode="middle"
@@ -522,123 +448,96 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
                           GivenName: service.GivenName,
                         } as Passenger)
                     ).toUpperCase()}
-                    fontStyle="Body10RegMono"
+                    fontStyle="Body10SemiMonoLH16"
                     colorTheme="white"
                   />
+                  {/* route */}
+                  <Text
+                    text={` ${service.Airline} ${service.StartPoint}${service.EndPoint}`.toUpperCase()}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="info300"
+                  />
                 </Block>
-                {/* hãng bay */}
+                {/* giá */}
                 <Text
-                  text={`${service.Airline?.toUpperCase()} `}
-                  fontStyle="Body10RegMono"
+                  text={service.Price?.currencyFormat().toUpperCase()}
+                  fontStyle="Body10SemiMonoLH16"
+                  colorTheme="white"
+                />
+              </Block>
+              <Block flexDirection="row">
+                <Text
+                  text={'   '}
+                  fontStyle="Body10SemiMonoLH16"
                   colorTheme="white"
                 />
 
-                {/* route */}
-                <Text
-                  text={`${service.StartPoint}${service.EndPoint}`.toUpperCase()}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
+                {/* dịch vụ */}
+                <Block flex={1}>
+                  <Text
+                    text={`${service.Description ?? service.Name}`}
+                    fontStyle="Body10SemiMonoLH16"
+                    colorTheme="warning400"
+                    numberOfLines={1}
+                    ellipsizeMode="clip"
+                  />
+                </Block>
               </Block>
             </Block>
           ))}
         </Block>
       )}
 
-      {/* dịch vụ bus đã chọn */}
-      {(busNumber?.key !== NumberBus.ZERO || busName?.key !== Bus.ZERO) && (
-        <Block>
-          <Block flexDirection="row" alignItems="center">
-            <Text
-              text="SHUTTLE BUS: "
-              fontStyle="Body10RegMono"
-              colorTheme="white"
-            />
-            <Block flexDirection="row" alignItems="center" columnGap={4}>
-              {busNumber?.key !== NumberBus.ZERO && (
-                <Text
-                  text={busNumber?.t18n ?? 'N/A'}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-              )}
-              {busName?.key !== Bus.ZERO && (
-                <Text
-                  text={' ' + busName?.t18n ?? 'N/A'}
-                  fontStyle="Body10RegMono"
-                  colorTheme="white"
-                />
-              )}
-            </Block>
-          </Block>
-          <Block flexDirection="row" alignItems="center">
-            <Text text="TRIP: " fontStyle="Body10RegMono" colorTheme="white" />
-            <Text
-              text={tripWithBus?.t18n ?? 'N/A'}
-              fontStyle="Body10RegMono"
-              colorTheme="white"
-            />
-          </Block>
-        </Block>
-      )}
-
-      {/* dịch vụ khách sạn đã chọn */}
-      <Block>
-        <Block flexDirection="row" alignItems="center">
-          <Text text="HOTEL: " fontStyle="Body10RegMono" colorTheme="white" />
-          <Block flexDirection="row" alignItems="center" columnGap={4}>
-            {hotel?.key !== HotelEnum.ZERO && (
-              <Text
-                text={hotel?.t18n ?? 'N/A'}
-                fontStyle="Body10RegMono"
-                colorTheme="white"
-              />
-            )}
-            {roomHotel?.key && (
-              <Text
-                text={'- ' + roomHotel?.t18n ?? 'N/A'}
-                fontStyle="Body10RegMono"
-                colorTheme="white"
-              />
-            )}
-          </Block>
-        </Block>
-        {numberRoomHotel !== 0 && (
-          <Block flexDirection="row" alignItems="center">
-            <Text
-              text="NUMBER OF ROOM: "
-              fontStyle="Body10RegMono"
-              colorTheme="white"
-            />
-            <Text
-              text={`${numberRoomHotel}`}
-              fontStyle="Body10RegMono"
-              colorTheme="white"
-            />
-          </Block>
-        )}
-      </Block>
-
       {/* Thông tin liên hệ */}
       <Block>
+        <Text
+          text="CONTACT"
+          fontStyle="Body10SemiMonoLH16"
+          colorTheme="white"
+        />
+        {/* tên hành khách 1 */}
+        <Block flexDirection="row" alignItems="center">
+          <Text
+            text="NAME: "
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
+          <Text
+            text={(form.Passengers[0].FullName !== ''
+              ? form.Passengers[0].FullName
+              : `${form.Passengers[0].Surname}/${form.Passengers[0].GivenName}`
+            ).toUpperCase()}
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
+        </Block>
+
         {/* SDT liên hệ */}
         <Block flexDirection="row" alignItems="center">
-          <Text text="PHONE: " fontStyle="Body10RegMono" colorTheme="white" />
+          <Text
+            text="PHONE: "
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
           <Text
             text={`${dialCode}${removeLeadingZero(
               form.ContactInfo.PhoneNumber,
             )}`}
-            fontStyle="Body10RegMono"
+            fontStyle="Body10SemiMonoLH16"
             colorTheme="white"
           />
         </Block>
 
         {/* Email liên hệ */}
         <Block flexDirection="row" alignItems="center">
-          <Text text="EMAIL: " fontStyle="Body10RegMono" colorTheme="white" />
+          <Text
+            text="EMAIL: "
+            fontStyle="Body10SemiMonoLH16"
+            colorTheme="white"
+          />
           <Text
             text={form.ContactInfo.Email.toUpperCase()}
-            fontStyle="Body10RegMono"
+            fontStyle="Body10SemiMonoLH16"
             colorTheme="white"
           />
         </Block>
@@ -646,10 +545,14 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
         {/* Tên liên hệ */}
         {form.ContactInfo.FullName && form.ContactInfo.FullName !== '' && (
           <Block flexDirection="row" alignItems="center">
-            <Text text="NAME: " fontStyle="Body10RegMono" colorTheme="white" />
+            <Text
+              text="NAME: "
+              fontStyle="Body10SemiMonoLH16"
+              colorTheme="white"
+            />
             <Text
               text={form.ContactInfo.FullName.toUpperCase()}
-              fontStyle="Body10RegMono"
+              fontStyle="Body10SemiMonoLH16"
               colorTheme="white"
             />
           </Block>
@@ -660,13 +563,13 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
           <Block flexDirection="row" alignItems="center">
             <Text
               text="ADDRESS: "
-              fontStyle="Body10RegMono"
+              fontStyle="Body10SemiMonoLH16"
               colorTheme="white"
             />
             <Block flex={1}>
               <Text
                 text={form.ContactInfo.Address.toUpperCase()}
-                fontStyle="Body10RegMono"
+                fontStyle="Body10SemiMonoLH16"
                 numberOfLines={2}
                 ellipsizeMode="clip"
                 colorTheme="white"
@@ -679,12 +582,12 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
           <Block flexDirection="row" alignItems="center">
             <Text
               text="CONTACT NOTE:  "
-              fontStyle="Body10RegMono"
+              fontStyle="Body10SemiMonoLH16"
               colorTheme="white"
             />
             <Text
               text={form.ContactInfo.Note.toUpperCase()}
-              fontStyle="Body10RegMono"
+              fontStyle="Body10SemiMonoLH16"
               colorTheme="white"
             />
           </Block>
@@ -698,13 +601,13 @@ export const PreviewInfo = ({ form }: { form: PassengerForm }) => {
             numberOfLines={1}
             ellipsizeMode="clip"
             text={`TOTAL PRICE (${DEFAULT_CURRENCY}):..........................................`}
-            fontStyle="Body10RegMono"
+            fontStyle="Body10SemiMonoLH16"
             colorTheme="white"
           />
         </Block>
         <Text
           text={`${(total + Total).currencyFormat()}`}
-          fontStyle="Body10RegMono"
+          fontStyle="Body10SemiMonoLH16"
           colorTheme="white"
         />
       </Block>

@@ -135,7 +135,7 @@ export const ShuttleCarItem = memo(({ item, index }: Props) => {
                         <ModalPicker
                           ref={bottomTypeBusRef}
                           data={Object.values(BusDetails) as Item[]}
-                          snapPoints={[SnapPoint['60%']]}
+                          snapPoints={[SnapPoint['50%']]}
                           t18nTitle={'Chọn loại xe' as I18nKeys}
                           handleDone={onChange}
                         />

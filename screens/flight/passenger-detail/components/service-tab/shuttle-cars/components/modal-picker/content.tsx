@@ -40,6 +40,7 @@ export const Content = ({
 
   const _renderItem = useCallback<ListRenderItem<Item>>(
     ({ item }) => {
+      console.log('item.t18n', item.t18n);
       const selected = item.key === selectedStatusKey;
       return (
         <TouchableOpacity
@@ -69,8 +70,8 @@ export const Content = ({
               <Block rowGap={4}>
                 <Text
                   t18n={item.t18n}
-                  fontStyle={selected ? 'Title16Semi' : 'Body16Reg'}
-                  colorTheme={selected ? 'neutral900' : 'neutral800'}
+                  fontStyle="Body14Semi"
+                  colorTheme="neutral900"
                 />
                 {item.description !== '' && (
                   <Block columnGap={8} flexDirection="row" alignItems="center">
@@ -94,7 +95,7 @@ export const Content = ({
                     <Text
                       t18n={item.description as I18nKeys}
                       fontStyle="Body12Reg"
-                      colorTheme={'neutral100'}
+                      colorTheme="neutral80"
                     />
                   </Block>
                 )}
@@ -103,7 +104,7 @@ export const Content = ({
               <Block paddingHorizontal={16}>
                 <Text
                   t18n={item.t18n}
-                  fontStyle={selected ? 'Title16Semi' : 'Body16Reg'}
+                  fontStyle="Body14Semi"
                   colorTheme={selected ? 'neutral900' : 'neutral800'}
                 />
               </Block>

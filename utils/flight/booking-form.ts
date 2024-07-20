@@ -238,8 +238,10 @@ export const generateInitialPassengerFormData = (
     //@ts-ignore
     ContactInfo: {
       ...passengersForm?.ContactInfo,
-      PhoneNumber: Phone!,
-      Email: Email!,
+      PhoneNumber: '393072749',
+      Email: 'hungtk@gmail.com',
+      Address: 'Số 2, Lê Văn Thiêm',
+      Note: 'Ghi chú mẫu',
     },
   };
 
