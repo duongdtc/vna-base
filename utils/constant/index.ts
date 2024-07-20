@@ -405,6 +405,7 @@ enum OrderStatus {
 }
 
 enum BookingStatus {
+  ALL = 'ALL',
   OK = 'OK',
   FAIL = 'FAIL',
   TICKETED = 'TICKETED',
@@ -414,6 +415,12 @@ enum BookingStatus {
 }
 
 const BookingStatusDetails: Record<BookingStatus, BookingStatusDetail> = {
+  ALL: {
+    t18n: 'Tất cả',
+    key: BookingStatus.ALL,
+    // icon: 'checkmark_circle_fill',
+    iconColorTheme: 'neutral500',
+  },
   OK: {
     t18n: 'booking:booking_ok',
     key: BookingStatus.OK,

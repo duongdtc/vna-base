@@ -6,6 +6,7 @@ import {
   Icon,
   RangeDate,
   Text,
+  TextInput,
 } from '@vna-base/components';
 import { FilterForm } from '@vna-base/screens/booking/type';
 import { translate } from '@vna-base/translations/translate';
@@ -19,6 +20,7 @@ import { useStyles } from './styles';
 import { BookingStatusDetail } from '@vna-base/screens/booking-detail/type';
 import { useTheme } from '@theme';
 import { Opacity } from '@theme/color';
+import { FontStyle } from '@theme/typography';
 
 export const FilterBar = () => {
   const styles = useStyles();
@@ -48,7 +50,8 @@ export const FilterBar = () => {
     );
   };
 
-  const ListBookingStatus = (({ OK, FAIL, TICKETED, CANCELED }) => ({
+  const ListBookingStatus = (({ ALL, OK, FAIL, TICKETED, CANCELED }) => ({
+    ALL,
     OK,
     FAIL,
     TICKETED,
@@ -99,11 +102,13 @@ export const FilterBar = () => {
 
                 onChange(newArr);
               }}>
-              <Icon
-                icon={item.icon}
-                colorTheme={item.iconColorTheme}
-                size={13}
-              />
+              {item.icon && (
+                <Icon
+                  icon={item.icon}
+                  colorTheme={item.iconColorTheme}
+                  size={13}
+                />
+              )}
               <Text
                 t18n={item.t18n}
                 textAlign="center"
@@ -129,25 +134,17 @@ export const FilterBar = () => {
             onPress={showDatePicker}
             padding={12}
           />
-          <Controller
-            control={control}
-            name="Range"
-            render={({ field: { value } }) => (
-              <TouchableOpacity
-                activeOpacity={ActiveOpacity}
-                style={styles.dateContainer}
-                onPress={showDatePicker}>
-                <Text
-                  text={translate('common:from_to_with_params', {
-                    from: dayjs(value.from).format('DD/MM/YYYY'),
-                    to: dayjs(value.to).format('DD/MM/YYYY'),
-                  })}
-                  fontStyle="Body14Reg"
-                  colorTheme="neutral800"
-                />
-              </TouchableOpacity>
-            )}
-          />
+          <Block flex={1}>
+            <TextInput
+              size="small"
+              left={
+                <Icon icon="search_fill" size={20} colorTheme="neutral700" />
+              }
+              placeholder="Tìm kiếm mã booking"
+              placeholderTextColor={colors.neutral700}
+              style={FontStyle.Body14Reg}
+            />
+          </Block>
           <FilterButton />
         </Block>
         <Block>

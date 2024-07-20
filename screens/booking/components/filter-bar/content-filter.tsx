@@ -49,7 +49,7 @@ export function ContentFilter({
       />
       <Separator type="horizontal" size={3} />
       {/* hãng */}
-      <RowOfForm<FilterFormInBottomSheet>
+      {/* <RowOfForm<FilterFormInBottomSheet>
         t18n="booking:airline"
         name="Filter.Airline"
         maxLength={20}
@@ -58,7 +58,7 @@ export function ContentFilter({
         autoCapitalize="characters"
         useBottomSheetInput={true}
       />
-      <Separator type="horizontal" size={3} />
+      <Separator type="horizontal" size={3} /> */}
       {/* mã đặt chỗ */}
       <RowOfForm<FilterFormInBottomSheet>
         control={formMethod.control}
@@ -72,7 +72,7 @@ export function ContentFilter({
       <Separator type="horizontal" size={3} />
 
       {/* Đơn hàng */}
-      <RowOfForm<FilterFormInBottomSheet>
+      {/* <RowOfForm<FilterFormInBottomSheet>
         control={formMethod.control}
         name="Filter.OrderCode"
         autoCapitalize={'characters'}
@@ -81,9 +81,9 @@ export function ContentFilter({
         useBottomSheetInput={true}
         hideBottomSheet={closeBottomSheet}
       />
-      <Separator type="horizontal" size={3} />
+      <Separator type="horizontal" size={3} /> */}
       {/* Hệ thống */}
-      <RowOfForm<FilterFormInBottomSheet>
+      {/* <RowOfForm<FilterFormInBottomSheet>
         type="dropdown"
         typeDetails={SystemDetails}
         t18n="booking:system"
@@ -91,7 +91,7 @@ export function ContentFilter({
         hideBottomSheet={closeBottomSheet}
         control={formMethod.control}
       />
-      <Separator type="horizontal" size={3} />
+      <Separator type="horizontal" size={3} /> */}
       {/* hành trình  */}
       <RowOfForm<FilterFormInBottomSheet>
         control={formMethod.control}
