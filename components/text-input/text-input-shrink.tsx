@@ -33,13 +33,16 @@ export const TextInputShrink = forwardRef<TextInput, TextInputShrinkProps>(
       placeholderTextColor = colors.neutral500,
       disable,
       useBottomSheetInput = false,
+      onBlur,
+      onFocus,
       ...subProps
     } = props;
     const inputRef = useRef<any>(null);
 
     const [isShowIcon, setIsShowIcon] = useState(true);
 
-    const onFocus = () => {
+    const _onFocus = e => {
+      onFocus?.(e);
       setIsShowIcon(false);
       LayoutAnimation.configureNext({
         ...LayoutAnimation.Presets.linear,
@@ -47,7 +50,8 @@ export const TextInputShrink = forwardRef<TextInput, TextInputShrinkProps>(
       });
     };
 
-    const onBlur = () => {
+    const _onBlur = e => {
+      onBlur?.(e);
       setIsShowIcon(true);
       LayoutAnimation.configureNext({
         ...LayoutAnimation.Presets.linear,
@@ -78,8 +82,8 @@ export const TextInputShrink = forwardRef<TextInput, TextInputShrinkProps>(
             {...subProps}
             style={[styles.input, FontStyle[fontStyle], styleInput]}
             placeholderTextColor={placeholderTextColor}
-            onFocus={onFocus}
-            onBlur={onBlur}
+            onFocus={_onFocus}
+            onBlur={_onBlur}
             editable={!disable}
           />
         ) : (
@@ -88,8 +92,8 @@ export const TextInputShrink = forwardRef<TextInput, TextInputShrinkProps>(
             {...subProps}
             style={[styles.input, FontStyle[fontStyle], styleInput]}
             placeholderTextColor={placeholderTextColor}
-            onFocus={onFocus}
-            onBlur={onBlur}
+            onFocus={_onFocus}
+            onBlur={_onBlur}
             editable={!disable}
           />
         )}

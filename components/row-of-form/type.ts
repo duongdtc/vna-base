@@ -56,6 +56,10 @@ export type InputProps = {
   validate?: Validate<any, any>;
   ValueView?: (value: any) => string;
   processValue?: (value: string) => string;
+  /**
+   * @default false
+   */
+  useBlur?: boolean;
 } & Omit<
   TextInputShrinkProps,
   'onChange' | 'value' | 'onChangeText' | 'fontStyle'

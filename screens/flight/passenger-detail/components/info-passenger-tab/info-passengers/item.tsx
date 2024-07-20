@@ -98,6 +98,7 @@ export const Item = memo(
                 textContentType="namePrefix"
                 autoCapitalize="characters"
                 maxLength={MaxLengthFullName}
+                useBlur={true}
               />
               <Separator type="horizontal" size={3} />
               <RowOfForm<PassengerForm>
@@ -111,6 +112,7 @@ export const Item = memo(
                 textContentType="namePrefix"
                 autoCapitalize="characters"
                 maxLength={MaxLengthFullName}
+                useBlur={true}
               />
             </Block>
           ) : (
@@ -123,6 +125,7 @@ export const Item = memo(
               autoComplete="name-prefix"
               textContentType="namePrefix"
               autoCapitalize="characters"
+              useBlur={true}
             />
           )}
           <Separator type="horizontal" size={3} />

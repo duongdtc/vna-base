@@ -31,11 +31,12 @@ export function Input<
     colorTheme = 'neutral100',
     processValue,
     validate,
+    useBlur = false,
     ...input
   } = props;
 
   const {
-    field: { value: inputValue, onChange: onChangeText },
+    field: { value: inputValue, onChange: onChangeText, onBlur },
     fieldState: { invalid },
   } = useController({
     control: control,
@@ -93,6 +94,20 @@ export function Input<
     [onChangeText, processValue],
   );
 
+  const _onBlur = () => {
+    if (useBlur) {
+      onChangeText(
+        inputValue
+          .replace(/[\s.]+/g, ' ')
+          .toUpperCase()
+          .replaceAll('Đ', 'D')
+          .removeAccent()
+          .trim(),
+      );
+      onBlur();
+    }
+  };
+
   return (
     <Block flexDirection="row" alignItems="center" colorTheme={colorTheme}>
       <Pressable
@@ -145,6 +160,7 @@ export function Input<
           }
           styleInput={invalid ? styles.inputErr : [styles.input, style]}
           disable={disable}
+          onBlur={_onBlur}
           {...input}
         />
       </Pressable>
