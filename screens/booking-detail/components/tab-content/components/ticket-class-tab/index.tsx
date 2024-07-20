@@ -13,7 +13,10 @@ export const TicketClassTab = () => {
   const bookingId = useSelector(selectViewingBookingId);
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const bookingDetail = useObject<BookingRealm>(BookingRealm.schema.name, bookingId!);
+  const bookingDetail = useObject<BookingRealm>(
+    BookingRealm.schema.name,
+    bookingId!,
+  );
   const _data = useMemo(() => {
     const [dataAdtFare, dataChdFare, dataInfFare]: Array<Array<FareInfo>> = [
       [],

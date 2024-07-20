@@ -15,6 +15,7 @@ export const images = {
   imgRoom3: require('./source/room3.png'),
   imgRoom4: require('./source/room4.png'),
   imgRoom5: require('./source/room5.png'),
+  checkin_online: require('./source/checkin-online.png'),
 
   // Services
   Rectangle34624147_1: require('./source/services/Rectangle34624147-1.png'),

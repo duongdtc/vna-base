@@ -5,7 +5,12 @@ import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { Booking, Ticket } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
-import { System, SystemDetails, TicketTypeDetails, TicketType } from '@vna-base/utils';
+import {
+  System,
+  SystemDetails,
+  TicketTypeDetails,
+  TicketType,
+} from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
@@ -47,7 +52,7 @@ export const TicketsTab = memo(() => {
             <Text
               text={item.System as string}
               fontStyle="Capture11Bold"
-              colorTheme={'classicWhite'}
+              colorTheme={'white'}
             />
           </Block>
           <Block>

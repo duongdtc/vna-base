@@ -65,13 +65,13 @@ export const InfoFareItem = memo(
                       paddingHorizontal={12}>
                       <Text
                         text={item.FareClass as string}
-                        colorTheme="neutral100"
+                        colorTheme="white"
                         fontStyle="Capture11Bold"
                       />
                       {item.FareBasis && (
                         <Text
                           text={`_${item.FareBasis}`}
-                          colorTheme="neutral100"
+                          colorTheme="white"
                           fontStyle="Capture11Bold"
                         />
                       )}
