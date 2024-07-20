@@ -26,9 +26,11 @@ export const runAuthenticationListener = () => {
 
       if (validResponse(response)) {
         if (!isRemember) {
+          remove(StorageKey.AGENT_CODE);
           remove(StorageKey.USERNAME);
           await CustomKeyChain.resetInternetCredentials();
         } else {
+          save(StorageKey.AGENT_CODE, body.AgentCode ?? '');
           save(StorageKey.USERNAME, body.Username);
           await CustomKeyChain.setInternetCredentials(
             body.Username,
