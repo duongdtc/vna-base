@@ -14,6 +14,12 @@ export function useGetStoredAccount(
       if (username) {
         formMethod.setValue('Username', username);
       }
+
+      const agentcode = load(StorageKey.AGENT_CODE);
+
+      if (agentcode) {
+        formMethod.setValue('AgentCode', agentcode);
+      }
     } catch (error) {}
   }, []);
   useEffect(() => {
