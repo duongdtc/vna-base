@@ -275,7 +275,8 @@ export const Button = memo((props: ButtonProps) => {
         containerStyle={touchableScaleStyles}
         disabled={disabled}
         {...rest}>
-        {buttonColorTheme?.includes('gra') && (
+        {(buttonColorTheme?.includes('gra') ||
+          buttonColorTheme?.startsWith('0')) && (
           <LinearGradient
             style={StyleSheet.absoluteFill}
             //@ts-ignore

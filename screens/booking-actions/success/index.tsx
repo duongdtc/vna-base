@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { images } from '@assets/image';
+import { navigate, popWithStep } from '@navigation/navigation-service';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Ticket } from '@services/axios/axios-ibe';
+import { BookingRealm } from '@services/realm/models/booking';
+import { useObject } from '@services/realm/provider';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   Button,
@@ -12,19 +19,13 @@ import {
   showToast,
   Text,
 } from '@vna-base/components';
-import { navigate, popWithStep } from '@navigation/navigation-service';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   selectFlightActionsByBookingId,
   selectLanguage,
 } from '@vna-base/redux/selector';
-import { Ticket } from '@services/axios/axios-ibe';
-import { BookingRealm } from '@services/realm/models/booking';
 import {
   BookingStatus,
   BookingStatusDetails,
-  dispatch,
   HitSlop,
   load,
   StorageKey,
@@ -35,9 +36,6 @@ import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
-import { useObject } from '@services/realm/provider';
-import { bookingActions } from '@vna-base/redux/action-slice';
-import { APP_SCREEN, RootStackParamList } from '@utils';
 
 export const Success = ({
   route,
@@ -129,7 +127,7 @@ export const Success = ({
             }
           />
           <Text
-            text={`${item?.StartPoint?.Code}-${item?.EndPoint?.Code}`}
+            text={`${item?.StartPoint}-${item?.EndPoint}`}
             fontStyle="Body12Reg"
             colorTheme="neutral600"
           />
@@ -197,7 +195,7 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={load(StorageKey.BOOKING_CODE)}
+              text={bookingDetail?.BookingCode ?? ''}
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[

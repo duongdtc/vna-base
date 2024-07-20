@@ -7939,8 +7939,6 @@ async function fakeBookFlight(
 
   const BookingCode = '5OCE35';
 
-  save(StorageKey.BOOKING_CODE, BookingCode);
-
   const ListPassenger = form.ListPassenger?.map((pax, idx) => ({
     Index: idx,
     ParentId: pax?.ParentId,

@@ -1,17 +1,16 @@
+import { goBack } from '@navigation/navigation-service';
+import { AirlineRealm } from '@services/realm/models';
+import { realmRef } from '@services/realm/provider';
 import {
   ActionSheet,
   Block,
   Button,
-  Icon,
   NormalHeader,
   Text,
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
-import { goBack } from '@navigation/navigation-service';
 import { FormBookingDetail } from '@vna-base/screens/booking-detail/type';
-import { AirlineRealm } from '@services/realm/models';
-import { realmRef } from '@services/realm/provider';
-import { HitSlop, System, SystemDetails } from '@vna-base/utils';
+import { HitSlop, System } from '@vna-base/utils';
 import React, { memo, useCallback, useMemo, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { Controller, useFormContext, useFormState } from 'react-hook-form';
@@ -133,7 +132,8 @@ export const HeaderBookingOrderDetail = memo(
                 name="BookingCode"
                 render={({ field: { value } }) => (
                   <Text
-                    text={`${info?.airline}: ${value ?? 'FAIL'}`}
+                    // text={`${info?.airline}: ${value ?? 'FAIL'}`}
+                    text={value ?? 'FAIL'}
                     colorTheme={!value ? 'error500' : 'success600'}
                     fontStyle="Title20Semi"
                     numberOfLines={1}
@@ -141,7 +141,7 @@ export const HeaderBookingOrderDetail = memo(
                   />
                 )}
               />
-              <Block flexDirection="row" alignItems="center" columnGap={4}>
+              {/* <Block flexDirection="row" alignItems="center" columnGap={4}>
                 <Icon
                   icon="navigation_2_fill"
                   colorTheme="neutral800"
@@ -154,10 +154,10 @@ export const HeaderBookingOrderDetail = memo(
                   numberOfLines={1}
                   ellipsizeMode="tail"
                 />
-              </Block>
+              </Block> */}
             </Block>
           </Block>
-          <Block
+          {/* <Block
             paddingHorizontal={8}
             paddingVertical={4}
             borderRadius={4}
@@ -174,7 +174,7 @@ export const HeaderBookingOrderDetail = memo(
               fontStyle="Capture11Bold"
               colorTheme="classicWhite"
             />
-          </Block>
+          </Block> */}
         </Block>
       ),
       [control, airline, info.system, info?.airline],
@@ -221,7 +221,7 @@ export const HeaderBookingOrderDetail = memo(
         <NormalHeader
           zIndex={0}
           leftContentStyle={{ flex: 1 }}
-          colorTheme="neutral100"
+          colorTheme="neutral10"
           leftContent={_leftContent}
           rightContent={_rightContent}
         />

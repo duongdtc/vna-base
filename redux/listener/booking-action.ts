@@ -1,24 +1,23 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Data, Ibe } from '@services/axios';
+import { Booking, Flight } from '@services/axios/axios-data';
+import {
+  Ancillary,
+  Booking as BookingIbe,
+  SeatMap,
+  Ticket,
+} from '@services/axios/axios-ibe';
+import { BookingRealm } from '@services/realm/models/booking';
+import { realmRef } from '@services/realm/provider';
 import { hideLoading, showLoading } from '@vna-base/components';
 import {
   bookingActionActions,
   currentAccountActions,
 } from '@vna-base/redux/action-slice';
-import { Data, Ibe } from '@services/axios';
-import { Booking } from '@services/axios/axios-data';
-import {
-  Ancillary,
-  SeatMap,
-  Ticket,
-  Booking as BookingIbe,
-} from '@services/axios/axios-ibe';
-import { BookingRealm } from '@services/realm/models/booking';
-import { realmRef } from '@services/realm/provider';
 import {
   ANCILLARY_TYPE,
   BookingStatus,
   delay,
-  getState,
   load,
   scale,
   StorageKey,
@@ -28,8 +27,6 @@ import {
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
-import { PassengerForm } from '@vna-base/screens/flight/type';
-import { Route } from '../type';
 
 export const runBookingActionListnener = () => {
   takeLatestListeners()({
@@ -78,13 +75,21 @@ export const runBookingActionListnener = () => {
         ),
       );
 
-      // const bookingDetail = realmRef.current
-      //   ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
-      //   ?.toJSON() as Booking;
+      const bookingDetail = realmRef.current
+        ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
+        ?.toJSON() as Booking;
 
-      const { routes } = listenerApi.getState().flightSearch;
+      // console.log(
+      //   '🚀 ~ effect: ~ bookingDetail:',
+      //   JSON.stringify(bookingDetail),
+      // );
+      // const { routes } = listenerApi.getState().flightSearch;
 
-      const res = await fakeIssueTicket(routes);
+      const res = await fakeIssueTicket({
+        fl: bookingDetail?.Flights ?? [],
+        paxName: bookingDetail?.PaxName ?? '',
+        bookingCode: bookingDetail?.BookingCode ?? '',
+      });
       // const res = await Ibe.flightIssueTicketCreate({
       //   System: bookingDetail?.System,
       //   BookingCode: bookingDetail?.BookingCode,
@@ -1076,10 +1081,16 @@ export const runBookingActionListnener = () => {
   });
 };
 
-async function fakeIssueTicket(routes: Route[]) {
+async function fakeIssueTicket({
+  fl,
+  paxName,
+  bookingCode,
+}: {
+  fl: Flight[];
+  paxName: string;
+  bookingCode: string;
+}) {
   await delay(1000);
-
-  const formData = load(StorageKey.FORM_BOOKING) as PassengerForm;
 
   return {
     data: {
@@ -1091,7 +1102,7 @@ async function fakeIssueTicket(routes: Route[]) {
         OrderCode: null,
         OrderId: null,
         GdsCode: '5KBXK4',
-        BookingCode: '5KBXK4',
+        BookingCode: bookingCode,
         BookingStatus: 'TICKETED',
         ExpirationTime: null,
         TimePurchase: null,
@@ -1109,7 +1120,7 @@ async function fakeIssueTicket(routes: Route[]) {
         ListContact: [],
         ListFlightFare: [],
         ListPassenger: [],
-        ListTicket: routes.map(({ StartPoint, EndPoint, DepartDate }) => ({
+        ListTicket: fl.map(({ StartPoint, EndPoint, DepartDate }) => ({
           Index: 0,
           System: 'VN',
           Airline: 'VN',
@@ -1125,9 +1136,9 @@ async function fakeIssueTicket(routes: Route[]) {
           ServiceType: 'FLIGHT',
           ServiceCode: null,
           PaxType: 'ADT',
-          FullName: formData.Passengers[0].FullName,
-          GivenName: formData.Passengers[0].GivenName,
-          Surname: formData.Passengers[0].Surname,
+          FullName: paxName,
+          GivenName: paxName,
+          Surname: paxName,
           NameId: '2',
           Fare: 1639000,
           Tax: 701000,

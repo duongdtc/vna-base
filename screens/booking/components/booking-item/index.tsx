@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { navigate } from '@navigation/navigation-service';
 import { Booking } from '@services/axios/axios-data';
-import { AirlineRealm } from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';
-import { realmRef, useObject } from '@services/realm/provider';
+import { useObject } from '@services/realm/provider';
 import { APP_SCREEN } from '@utils';
 import { Block, Icon, Text } from '@vna-base/components';
 import { translate } from '@vna-base/translations/translate';
@@ -39,17 +38,17 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
     !bookingDetail?.ExpirationDate ||
     dayjs(bookingDetail?.ExpirationDate).isBefore(dayjs());
 
-  const isHideWhenAllExpired =
-    isExpired &&
-    (!bookingDetail?.TimePurchase ||
-      dayjs(bookingDetail?.TimePurchase).isBefore(dayjs()));
+  // const isHideWhenAllExpired =
+  //   isExpired &&
+  //   (!bookingDetail?.TimePurchase ||
+  //     dayjs(bookingDetail?.TimePurchase).isBefore(dayjs()));
 
-  const airline = bookingDetail?.Airline
-    ? realmRef.current?.objectForPrimaryKey<AirlineRealm>(
-        AirlineRealm.schema.name,
-        bookingDetail?.Airline,
-      )?.NameEn
-    : '';
+  // const airline = bookingDetail?.Airline
+  //   ? realmRef.current?.objectForPrimaryKey<AirlineRealm>(
+  //       AirlineRealm.schema.name,
+  //       bookingDetail?.Airline,
+  //     )?.NameEn
+  //   : '';
 
   return (
     <Pressable
@@ -101,25 +100,13 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
                   colorTheme={isVisible ? 'neutral700' : 'neutral600'}
                 />
               </Block>
-              {bookingDetail?.ExpirationDate && (
-                <Block flexDirection="row" columnGap={2} alignItems="center">
-                  <Text
-                    colorTheme={isVisible ? 'neutral70' : 'neutral600'}
-                    fontStyle="Capture11Reg">
-                    {`${translate('booking:reservation_deadline')}: `}
+              {bookingDetail?.ExpirationDate &&
+                bookingDetail?.BookingStatus !== BookingStatus.TICKETED && (
+                  <Block flexDirection="row" columnGap={2} alignItems="center">
                     <Text
-                      colorTheme={
-                        // eslint-disable-next-line no-nested-ternary
-                        isVisible
-                          ? isExpired
-                            ? 'error600'
-                            : 'success600'
-                          : 'neutral600'
-                      }
+                      colorTheme={isVisible ? 'neutral70' : 'neutral600'}
                       fontStyle="Capture11Reg">
-                      {`${dayjs(bookingDetail?.ExpirationDate).format(
-                        'DD/MM/YYYY ',
-                      )}`}
+                      {`${translate('booking:reservation_deadline')}: `}
                       <Text
                         colorTheme={
                           // eslint-disable-next-line no-nested-ternary
@@ -129,22 +116,28 @@ export const BookingItem = ({ item, customStyle, id }: Props) => {
                               : 'success600'
                             : 'neutral600'
                         }
-                        fontStyle="Capture11Bold"
-                        text={dayjs(bookingDetail?.ExpirationDate).format(
-                          ' HH:mm',
-                        )}
-                      />
+                        fontStyle="Capture11Reg">
+                        {`${dayjs(bookingDetail?.ExpirationDate).format(
+                          'DD/MM/YYYY ',
+                        )}`}
+                        <Text
+                          colorTheme={
+                            // eslint-disable-next-line no-nested-ternary
+                            isVisible
+                              ? isExpired
+                                ? 'error600'
+                                : 'success600'
+                              : 'neutral600'
+                          }
+                          fontStyle="Capture11Bold"
+                          text={dayjs(bookingDetail?.ExpirationDate).format(
+                            ' HH:mm',
+                          )}
+                        />
+                      </Text>
                     </Text>
-                  </Text>
-                  {isExpired && (
-                    <Icon
-                      icon="alert_circle_outline"
-                      size={12}
-                      colorTheme="error600"
-                    />
-                  )}
-                </Block>
-              )}
+                  </Block>
+                )}
             </Block>
           </Block>
         </Block>

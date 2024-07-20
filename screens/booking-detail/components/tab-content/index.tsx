@@ -44,7 +44,7 @@ const routes = [
   },
   {
     key: TabName.TICKETS,
-    title: 'booking:tickets',
+    title: 'Số vé',
   },
   {
     key: TabName.SERVICES,

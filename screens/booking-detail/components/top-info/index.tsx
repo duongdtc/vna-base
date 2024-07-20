@@ -9,11 +9,29 @@ import {
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { PREFIX_BOOKING_VIEW } from '@env';
 import { FormBookingDetail } from '@vna-base/screens/booking-detail/type';
-import { ActiveOpacity, BookingStatusDetails, SnapPoint } from '@vna-base/utils';
+import {
+  ActiveOpacity,
+  BookingStatus,
+  BookingStatusDetails,
+  Gender,
+  getPassengerTitle,
+  PassengerType,
+  SnapPoint,
+} from '@vna-base/utils';
 import dayjs from 'dayjs';
-import React, { useRef } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import {
+  FieldArrayWithId,
+  useController,
+  useFieldArray,
+  useFormContext,
+} from 'react-hook-form';
+import {
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { BookingView } from './booking-view';
 import { useStyles } from './styles';
 
@@ -38,9 +56,49 @@ export const TopInfo = ({
     name: 'BookingStatus',
   });
 
+  const { fields } = useFieldArray({ control, name: 'Passengers' });
+
   const statusDetail = BookingStatusDetails[status];
 
   const isExpired = dayjs(expirationDate).isBefore(dayjs());
+
+  const renderItem = useCallback<
+    ListRenderItem<FieldArrayWithId<FormBookingDetail, 'Passengers', 'id'>>
+  >(
+    ({ item }) => (
+      <Block
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        columnGap={8}>
+        <Block flex={1}>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            fontStyle="Body14Semi"
+            colorTheme="primaryPressed">
+            {`${item.Surname},${item.GivenName} `}
+            <Text
+              text={getPassengerTitle({
+                type: item.PaxType as PassengerType,
+                gender: item.Gender as Gender,
+              })}
+              fontStyle="Body14Semi"
+              colorTheme="neutral100"
+            />
+          </Text>
+        </Block>
+        {item.BirthDate && (
+          <Text
+            text={dayjs(item.BirthDate).format('DD/MM/YYYY')}
+            fontStyle="Body12Reg"
+            colorTheme="neutral100"
+          />
+        )}
+      </Block>
+    ),
+    [],
+  );
 
   return (
     <Block rowGap={16} paddingHorizontal={16}>
@@ -75,11 +133,11 @@ export const TopInfo = ({
             style={[styles.headerBtn, styles.actionBtn]}
             activeOpacity={ActiveOpacity}>
             <LinearGradient style={StyleSheet.absoluteFillObject} type="001" />
-            <Icon icon="browser_outline" size={20} colorTheme="classicWhite" />
+            <Icon icon="browser_outline" size={20} colorTheme="white" />
             <Text
               t18n="booking:booking_view"
               fontStyle="Body14Semi"
-              colorTheme="classicWhite"
+              colorTheme="white"
             />
           </TouchableOpacity>
         </Block>
@@ -100,8 +158,8 @@ export const TopInfo = ({
           </TerminalView>
         </BottomSheet>
       </Block>
-      {!!timePurchase ||
-        (!!expirationDate && (
+      {(!!timePurchase || !!expirationDate) &&
+        statusDetail?.key !== BookingStatus.TICKETED && (
           <Block
             flexDirection="row"
             alignItems="center"
@@ -159,7 +217,14 @@ export const TopInfo = ({
               )}
             </Block>
           </Block>
-        ))}
+        )}
+
+      <FlatList
+        data={fields}
+        keyExtractor={it => it.id}
+        ItemSeparatorComponent={() => <Block height={8} />}
+        renderItem={renderItem}
+      />
     </Block>
   );
 };
