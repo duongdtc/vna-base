@@ -372,7 +372,7 @@ export const runFlightSearchListener = () => {
 
       listenerApi.dispatch(flightResultActions.saveFilterForms(filterForms));
 
-      const res = await fakeData({
+      const res = await fakeSearchFlight({
         ListRoute: listRoute.map(r => ({
           DepartDate: dayjs(r.DepartDate).format('DDMMYYYY'),
           EndPoint: r.EndPoint.Code,
@@ -451,7 +451,7 @@ export const runFlightSearchListener = () => {
   }
 };
 
-async function fakeData({
+async function fakeSearchFlight({
   ListRoute,
 }: {
   ListRoute: Array<{
@@ -465,11 +465,13 @@ async function fakeData({
 
   const ListGroup = ListRoute.map(
     ({ DepartDate: dp, StartPoint, EndPoint }, idx) => {
-      const Journey = `${StartPoint}${EndPoint}${dayjs(dp).format('DDMMYYYY')}`;
+      const Journey = `${StartPoint}${EndPoint}${dayjs(dp, 'DDMMYYYY').format(
+        'DDMMYYYY',
+      )}`;
 
-      const DepartDate = dayjs(dp).format('DDMMYYYY');
+      const DepartDate = dayjs(dp, 'DDMMYYYY').format('DDMMYYYY');
 
-      const StartDate = dayjs(dp).format('YYYY-MM-DD');
+      const StartDate = dayjs(dp, 'DDMMYYYY').format('YYYY-MM-DD');
 
       return {
         Leg: idx,

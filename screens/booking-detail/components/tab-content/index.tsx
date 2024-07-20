@@ -50,15 +50,15 @@ const routes = [
     key: TabName.SERVICES,
     title: 'booking:service',
   },
-  {
-    key: TabName.TICKET_CLASS,
-    title: 'booking:ticket_class',
-  },
+  // {
+  //   key: TabName.TICKET_CLASS,
+  //   title: 'booking:ticket_class',
+  // },
 
-  {
-    key: TabName.OTHERS_INFO,
-    title: 'booking:others_info',
-  },
+  // {
+  //   key: TabName.OTHERS_INFO,
+  //   title: 'booking:others_info',
+  // },
 ];
 
 export const TabContent = memo(() => {
@@ -101,7 +101,7 @@ export const TabContent = memo(() => {
                   height={4}
                   position="absolute"
                   borderTopRadius={8}
-                  style={{ bottom: -16 }}
+                  style={{ bottom: -12 }}
                 />
               )}
             </Block>
@@ -135,13 +135,13 @@ export const TabContent = memo(() => {
         case TabName.SERVICES:
           return <ServicesTab />;
 
-        // ticket class tab
-        case TabName.TICKET_CLASS:
-          return <TicketClassTab />;
+        // // ticket class tab
+        // case TabName.TICKET_CLASS:
+        //   return <TicketClassTab />;
 
-        // others info tab
-        case TabName.OTHERS_INFO:
-          return <OthersInfoTab />;
+        // // others info tab
+        // case TabName.OTHERS_INFO:
+        //   return <OthersInfoTab />;
       }
     },
     [],

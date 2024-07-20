@@ -75,7 +75,7 @@ export const TicketFareBottomSheet = memo(
                     height={4}
                     position="absolute"
                     borderTopRadius={8}
-                    style={{ bottom: -16 }}
+                    style={{ bottom: -12 }}
                   />
                 )}
               </Block>

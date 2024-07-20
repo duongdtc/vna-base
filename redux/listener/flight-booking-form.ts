@@ -329,7 +329,7 @@ async function fakeGetAncillary(
       ],
       ListService: [
         {
-          image: 'Rectangle34624147_1',
+          image: 'IMG1',
           System: 'VN',
           Airline: 'VN',
           Value: 'LOUN',
@@ -348,7 +348,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_2',
+          image: 'IMG2',
           System: 'VN',
           Airline: 'VN',
           Value: 'rwer',
@@ -367,7 +367,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_3',
+          image: 'IMG3',
           System: 'VN',
           Airline: 'VN',
           Value: 'tryue',
@@ -386,7 +386,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_4',
+          image: 'IMG4',
           System: 'VN',
           Airline: 'VN',
           Value: 'fghtrye',
@@ -405,7 +405,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_5',
+          image: 'IMG5',
           System: 'VN',
           Airline: 'VN',
           Value: 'hjfyt',
@@ -424,7 +424,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_6',
+          image: 'IMG6',
           System: 'VN',
           Airline: 'VN',
           Value: 'LOUqweN',
@@ -443,7 +443,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_7',
+          image: 'IMG7',
           System: 'VN',
           Airline: 'VN',
           Value: 'ttttt',
@@ -462,7 +462,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_8',
+          image: 'IMG8',
           System: 'VN',
           Airline: 'VN',
           Value: 'asdfc',
@@ -481,7 +481,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_9',
+          image: 'IMG9',
           System: 'VN',
           Airline: 'VN',
           Value: 'uyweza',
@@ -500,7 +500,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_10',
+          image: 'IMG10',
           System: 'VN',
           Airline: 'VN',
           Value: 'khgmbn',
@@ -519,7 +519,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_11',
+          image: 'IMG11',
           System: 'VN',
           Airline: 'VN',
           Value: 'opojh',
@@ -538,7 +538,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_12',
+          image: 'IMG12',
           System: 'VN',
           Airline: 'VN',
           Value: 'urtcvb',
@@ -557,7 +557,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_13',
+          image: 'IMG13',
           System: 'VN',
           Airline: 'VN',
           Value: 'trytvcb',
@@ -576,7 +576,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_14',
+          image: 'IMG14',
           System: 'VN',
           Airline: 'VN',
           Value: 'asde',
@@ -595,7 +595,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_15',
+          image: 'IMG15',
           System: 'VN',
           Airline: 'VN',
           Value: 'sadfvbv',
@@ -614,7 +614,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_16',
+          image: 'IMG16',
           System: 'VN',
           Airline: 'VN',
           Value: 'sssss',
@@ -633,7 +633,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_17',
+          image: 'IMG17',
           System: 'VN',
           Airline: 'VN',
           Value: 'awerdf',
@@ -652,7 +652,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_18',
+          image: 'IMG18',
           System: 'VN',
           Airline: 'VN',
           Value: 'trewdd',
@@ -671,7 +671,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_19',
+          image: 'IMG19',
           System: 'VN',
           Airline: 'VN',
           Value: 'mmnfghj',
@@ -690,7 +690,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_20',
+          image: 'IMG20',
           System: 'VN',
           Airline: 'VN',
           Value: 'fgyicx',
@@ -709,7 +709,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_21',
+          image: 'IMG21',
           System: 'VN',
           Airline: 'VN',
           Value: 'fghjsd',
@@ -728,7 +728,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_22',
+          image: 'IMG22',
           System: 'VN',
           Airline: 'VN',
           Value: 'hhjjjj',
@@ -747,7 +747,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_23',
+          image: 'IMG23',
           System: 'VN',
           Airline: 'VN',
           Value: 'kkkkk',
@@ -766,7 +766,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_24',
+          image: 'IMG24',
           System: 'VN',
           Airline: 'VN',
           Value: 'fdghjfffff',
@@ -785,7 +785,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_25',
+          image: 'IMG25',
           System: 'VN',
           Airline: 'VN',
           Value: 'iiiiii',
@@ -804,7 +804,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_26',
+          image: 'IMG26',
           System: 'VN',
           Airline: 'VN',
           Value: 'fghjbbbmm',
@@ -823,7 +823,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_27',
+          image: 'IMG27',
           System: 'VN',
           Airline: 'VN',
           Value: 'poooopp',
@@ -842,7 +842,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_28',
+          image: 'IMG28',
           System: 'VN',
           Airline: 'VN',
           Value: 'wwwwwww',
@@ -861,7 +861,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_29',
+          image: 'IMG29',
           System: 'VN',
           Airline: 'VN',
           Value: 'hjklfsdgh',
@@ -880,7 +880,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_30',
+          image: 'IMG30',
           System: 'VN',
           Airline: 'VN',
           Value: 'dfghv',
@@ -899,7 +899,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147_31',
+          image: 'IMG31',
           System: 'VN',
           Airline: 'VN',
           Value: 'sdfgrsdf',
@@ -918,7 +918,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624147',
+          image: 'IMG32',
           System: 'VN',
           Airline: 'VN',
           Value: 'sdfgjujjjj',
@@ -937,7 +937,7 @@ async function fakeGetAncillary(
         },
 
         {
-          image: 'Rectangle34624148',
+          image: 'IMG33',
           System: 'VN',
           Airline: 'VN',
           Value: 'xxxxxx',
