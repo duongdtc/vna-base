@@ -28,15 +28,16 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Avatar, Header } from './components';
-import { useStyles } from './style';
 import { PersonalInfoForm } from './type';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import { MainContent } from '@screens/personal-info/main-content';
+import { createStyleSheet, useStyles } from '@theme';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const PersonalInfo = ({
   route,
 }: NativeStackScreenProps<RootStackParamList, APP_SCREEN.PERSONAL_INFO>) => {
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
   const { id, userSubAgtWithAgtId } = route.params;
 
   const bottomSheetRef = useRef<BottomSheetHistoryRef>(null);
@@ -224,12 +225,14 @@ export const PersonalInfo = ({
           userSubAgtWithAgtId={userSubAgtWithAgtId}
           openHistory={openHistory}
         />
-        <ScrollView
-          contentContainerStyle={styles.contentContainer}
-          showsVerticalScrollIndicator={false}>
-          <Avatar id={id!} />
-          <MainContent id={id} userSubAgtWithAgtId={userSubAgtWithAgtId} />
-        </ScrollView>
+        <Block flex={1} colorTheme="neutral50">
+          <ScrollView
+            contentContainerStyle={styles.contentContainer}
+            showsVerticalScrollIndicator={false}>
+            <Avatar id={id!} />
+            <MainContent id={id} userSubAgtWithAgtId={userSubAgtWithAgtId} />
+          </ScrollView>
+        </Block>
         {id === undefined && (
           <Block style={styles.containerBottom}>
             <Pressable
@@ -255,3 +258,19 @@ export const PersonalInfo = ({
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows }) => ({
+  container: {
+    backgroundColor: colors.neutral100,
+  },
+  contentContainer: {
+    paddingBottom: UnistylesRuntime.insets.bottom + 12,
+  },
+  containerBottom: {
+    backgroundColor: colors.neutral100,
+    paddingTop: scale(12),
+    paddingHorizontal: scale(12),
+    paddingBottom: UnistylesRuntime.insets.bottom + scale(8),
+    ...shadows.main,
+  },
+}));
