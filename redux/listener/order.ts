@@ -51,7 +51,6 @@ const ObjFlagsRevert: Record<
 };
 
 export const runOrderListener = () => {
-
   takeLatestListeners()({
     actionCreator: orderActions.getListOrder,
     effect: async (action, listenerApi) => {
@@ -266,7 +265,9 @@ export const runOrderListener = () => {
         const PaidAmtColumnIndex = 10; // Xác định chỉ số cột PaidAmt
         const ProfitColumnIndex = 11; // Xác định chỉ số cột Profit
 
-        const TotalPriceColumnChar = XLSX.utils.encode_col(TotalPriceColumnIndex); // Chuyển đổi chỉ số sang ký tự cột
+        const TotalPriceColumnChar = XLSX.utils.encode_col(
+          TotalPriceColumnIndex,
+        ); // Chuyển đổi chỉ số sang ký tự cột
         const NetPriceColumnChar = XLSX.utils.encode_col(NetPriceColumnIndex);
         const PaidAmtColumnChar = XLSX.utils.encode_col(PaidAmtColumnIndex);
         const ProfitColumnChar = XLSX.utils.encode_col(ProfitColumnIndex);
@@ -317,7 +318,7 @@ export const runOrderListener = () => {
 
         const filePath =
           ReactNativeBlobUtil.fs.dirs[
-          Platform.OS === 'ios' ? 'DocumentDir' : 'LegacyDownloadDir'
+            Platform.OS === 'ios' ? 'DocumentDir' : 'LegacyDownloadDir'
           ] + `/${fileName}.xlsx`;
 
         await ReactNativeBlobUtil.fs.writeFile(filePath, wbout, 'base64');
@@ -536,7 +537,9 @@ export const runOrderListener = () => {
       } else {
         const oldList = listenerApi.getState().order.listRemark;
         listenerApi.dispatch(
-          orderActions.saveListRemark(oldList.concat([res.data.Item as Remark])),
+          orderActions.saveListRemark(
+            oldList.concat([res.data.Item as Remark]),
+          ),
         );
       }
     },
@@ -573,14 +576,14 @@ export const runOrderListener = () => {
             Item:
               typeof form[ObjFlagsRevert[key]] === 'object'
                 ? {
-                  Id: orderId,
-                  //@ts-ignore
-                  ...form[ObjFlagsRevert[key]],
-                }
+                    Id: orderId,
+                    //@ts-ignore
+                    ...form[ObjFlagsRevert[key]],
+                  }
                 : {
-                  Id: orderId,
-                  [ObjFlagsRevert[key]]: form[ObjFlagsRevert[key]],
-                },
+                    Id: orderId,
+                    [ObjFlagsRevert[key]]: form[ObjFlagsRevert[key]],
+                  },
           });
 
           return response.data.Item;
@@ -603,4 +606,4 @@ export const runOrderListener = () => {
       }
     },
   });
-}
+};

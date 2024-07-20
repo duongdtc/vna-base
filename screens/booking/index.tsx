@@ -11,7 +11,7 @@ import { useStyles } from './style';
 export const Bookings = () => {
   const styles = useStyles();
 
-  const { list, formMethod, handleRefresh, loadMore } = useFilterBooking();
+  const { list, formMethod, handleRefresh } = useFilterBooking();
 
   const _renderItem = useCallback<ListRenderItem<string>>(({ item }) => {
     if (isEmpty(item)) {
@@ -41,7 +41,7 @@ export const Bookings = () => {
             <RefreshControl refreshing={false} onRefresh={handleRefresh} />
           }
           onEndReachedThreshold={0.01}
-          onEndReached={loadMore}
+          // onEndReached={loadMore}
           ListEmptyComponent={
             <EmptyList
               height={500}

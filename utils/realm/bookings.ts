@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Booking } from '@services/axios/axios-data';
+import {
+  AircraftRealm,
+  AirlineRealm,
+  AirportRealm,
+} from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import isNil from 'lodash.isnil';
@@ -29,4 +34,46 @@ export function createBookingFromAxios(
     },
     mode,
   );
+}
+
+export function getBookingFromRealm(id: string): Booking {
+  const booking = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+    BookingRealm.schema.name,
+    id,
+  );
+
+  const temp = booking?.toJSON() as BookingRealm;
+
+  //@ts-ignore
+  temp.ListAirline =
+    temp.ListAirline?.map(code => {
+      const al = realmRef.current?.objectForPrimaryKey<AirlineRealm>(
+        AirlineRealm.schema.name,
+        code,
+      );
+
+      return al?.toJSON();
+    }) ?? [];
+  //@ts-ignore
+  temp.ListAirport =
+    temp.ListAirport?.map(code => {
+      const al = realmRef.current?.objectForPrimaryKey<AirportRealm>(
+        AirportRealm.schema.name,
+        code,
+      );
+
+      return al?.toJSON();
+    }) ?? [];
+  //@ts-ignore
+  temp.ListAircraft =
+    temp.ListAircraft?.map(code => {
+      const al = realmRef.current?.objectForPrimaryKey<AircraftRealm>(
+        AircraftRealm.schema.name,
+        code,
+      );
+
+      return al?.toJSON();
+    }) ?? [];
+
+  return temp;
 }
