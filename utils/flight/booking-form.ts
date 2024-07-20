@@ -212,6 +212,8 @@ export const generateInitialPassengerFormData = (
 ): PassengerForm => {
   const { passengersForm } = getState('flightBookingForm');
 
+  const { Phone, Email } = getState('currentAccount').currentAccount;
+
   //@ts-ignore
   const tempInitData: PassengerForm = {
     Insurance: true,
@@ -234,7 +236,11 @@ export const generateInitialPassengerFormData = (
     Hotel: [],
 
     //@ts-ignore
-    ContactInfo: passengersForm?.ContactInfo,
+    ContactInfo: {
+      ...passengersForm?.ContactInfo,
+      PhoneNumber: Phone!,
+      Email: Email!,
+    },
   };
 
   listSelectedFlight.forEach(airOption => {

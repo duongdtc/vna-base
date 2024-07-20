@@ -122,7 +122,7 @@ export const Footer = ({
           )}
         </Block>
       </TouchableOpacity>
-      <Block flex={1}>
+      <Block flex={1} maxWidth={142}>
         <Button
           size="medium"
           disabled={isLoadingVerifiedFlights}

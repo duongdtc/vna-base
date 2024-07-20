@@ -141,7 +141,7 @@ const styleSheet = createStyleSheet(({ colors, spacings }) => ({
   segmentHeader: {
     flexDirection: 'row',
     padding: spacings[8],
-    backgroundColor: colors.neutral50,
+    backgroundColor: colors.neutral20,
     alignItems: 'center',
     justifyContent: 'space-between',
   },

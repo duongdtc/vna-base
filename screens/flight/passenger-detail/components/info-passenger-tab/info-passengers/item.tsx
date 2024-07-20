@@ -1,5 +1,6 @@
-import { Block, RowOfForm, Separator } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
+import { APP_SCREEN } from '@utils';
+import { Block, RowOfForm, Separator } from '@vna-base/components';
 import {
   AdditionalPassengerInfoForm,
   PassengerForm,
@@ -11,11 +12,10 @@ import {
   rxSpecialAndNumber,
 } from '@vna-base/utils';
 import dayjs from 'dayjs';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { LayoutAnimation } from 'react-native';
 import { Title } from './title';
-import { APP_SCREEN } from '@utils';
 
 export const Item = memo(
   ({ index, airlines }: { index: number; airlines: string[] }) => {
@@ -51,7 +51,7 @@ export const Item = memo(
       });
     };
 
-    const ConstantData = useMemo(() => {
+    const ConstantData = useCallback(() => {
       const passengerType = getValues().Passengers[index].Type;
 
       return {
@@ -130,11 +130,11 @@ export const Item = memo(
             name={`Passengers.${index}.Birthday`}
             fixedTitleFontStyle={true}
             type="date-picker"
-            maximumDate={ConstantData.rangeDate.maxDate}
-            minimumDate={ConstantData.rangeDate.minDate}
+            maximumDate={ConstantData().rangeDate.maxDate}
+            minimumDate={ConstantData().rangeDate.minDate}
             colorThemeValue="neutral700"
             control={control}
-            isRequire={ConstantData.passengerType !== PassengerType.ADT}
+            isRequire={ConstantData().passengerType !== PassengerType.ADT}
           />
         </Block>
       </Block>

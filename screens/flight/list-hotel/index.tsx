@@ -77,21 +77,21 @@ export const ListHotelScreen = ({
         goBack();
       } else {
         refHotelId.current = key;
-        btsRoomRef.current?.present(initData.room?.key);
+        btsRoomRef.current?.present(initData?.room?.key);
       }
     },
-    [initData.room?.key, onDone],
+    [initData?.room?.key, onDone],
   );
 
   const renderItem = useCallback<ListRenderItem<HotelDetail>>(
     ({ item }) => {
-      const selected = item.key === initData.hotel?.key;
+      const selected = item.key === initData?.hotel?.key;
 
       return (
         <ItemHotel
           item={item}
           selected={selected}
-          openBtsRoom={() => openBtsRoom(item.key)}
+          openBtsRoom={() => openBtsRoom(item?.key)}
         />
       );
     },

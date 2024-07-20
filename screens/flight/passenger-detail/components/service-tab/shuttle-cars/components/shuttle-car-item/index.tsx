@@ -22,7 +22,10 @@ type Props = {
 };
 
 export const ShuttleCarItem = memo(({ item, index }: Props) => {
-  const { styles } = useStyles(styleSheet);
+  const {
+    styles,
+    theme: { colors },
+  } = useStyles(styleSheet);
 
   const { control } = useFormContext<PassengerForm>();
 
@@ -59,17 +62,19 @@ export const ShuttleCarItem = memo(({ item, index }: Props) => {
                           onPress={() => {
                             bottomTypeBusRef.current?.present(String(value));
                           }}>
-                          <Block
-                            paddingHorizontal={8}
-                            paddingVertical={12}
-                            marginBottom={12}
-                            colorTheme="neutral50">
+                          <View
+                            style={{
+                              paddingHorizontal: 8,
+                              paddingVertical: 12,
+                              marginBottom: 12,
+                              backgroundColor: colors.neutral20,
+                            }}>
                             <Text
                               text={`${index + 1}. ${airportSP?.NameVi}`}
                               fontStyle="Body14Semi"
                               colorTheme="neutral800"
                             />
-                          </Block>
+                          </View>
                           <Block
                             paddingHorizontal={12}
                             flexDirection="row"
