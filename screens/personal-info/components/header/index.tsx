@@ -10,8 +10,14 @@ import {
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { goBack } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { selectCurrentAccount, selectUserAccount } from '@vna-base/redux/selector';
-import { userAccountActions, userSubAgentActions } from '@vna-base/redux/action-slice';
+import {
+  selectCurrentAccount,
+  selectUserAccount,
+} from '@vna-base/redux/selector';
+import {
+  userAccountActions,
+  userSubAgentActions,
+} from '@vna-base/redux/action-slice';
 import {
   PersonalInfoForm,
   listOptionItemSubAgtAcc,
@@ -91,7 +97,7 @@ export const Header = (props: Props) => {
         </Text>
       ),
       t18nCancel: 'common:cancel',
-      themeColorCancel: 'neutral50',
+      themeColorCancel: 'neutral500',
       themeColorTextCancel: 'neutral900',
       t18nOk: 'common:reset',
       themeColorOK: 'warning600',
@@ -267,7 +273,7 @@ export const Header = (props: Props) => {
     <>
       <NormalHeader
         zIndex={0}
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           <Button
             hitSlop={HitSlop.Large}

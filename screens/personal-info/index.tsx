@@ -15,7 +15,10 @@ import {
   selectUserAccount,
   selectUserSubAgent,
 } from '@vna-base/redux/selector';
-import { userAccountActions, userSubAgentActions } from '@vna-base/redux/action-slice';
+import {
+  userAccountActions,
+  userSubAgentActions,
+} from '@vna-base/redux/action-slice';
 import { I18nKeys } from '@translations/locales';
 import { translate } from '@vna-base/translations/translate';
 import { ObjectHistoryTypes, dispatch, scale } from '@vna-base/utils';
@@ -24,10 +27,11 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Avatar, Header, MainContent } from './components';
+import { Avatar, Header } from './components';
 import { useStyles } from './style';
 import { PersonalInfoForm } from './type';
 import { APP_SCREEN, RootStackParamList } from '@utils';
+import { MainContent } from '@screens/personal-info/main-content';
 
 export const PersonalInfo = ({
   route,
@@ -240,7 +244,7 @@ export const PersonalInfo = ({
                 <Text
                   t18n="common:save"
                   fontStyle="Title16Bold"
-                  colorTheme="classicWhite"
+                  colorTheme="white"
                 />
               </Block>
             </Pressable>

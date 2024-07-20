@@ -17,6 +17,7 @@ export const useStyles = () => {
           backgroundColor: colors.neutral100,
         },
         contentContainer: {
+          flex: 1,
           backgroundColor: colors.neutral50,
           paddingBottom: bottom + 12,
         },
