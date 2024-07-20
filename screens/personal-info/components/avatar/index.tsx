@@ -11,13 +11,13 @@ import {
 } from '@vna-base/components';
 import { OptionData } from '@vna-base/components/action-sheet/type';
 import { PersonalInfoForm } from '@vna-base/screens/personal-info/type';
-import { ActiveOpacity } from '@vna-base/utils';
+import { ActiveOpacity, scale } from '@vna-base/utils';
 import React, { memo, useCallback, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { useController } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import { useStyles } from './styles';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 const Options: Array<OptionData> = [
   {
@@ -38,7 +38,7 @@ const Options: Array<OptionData> = [
 ];
 
 export const Avatar = memo(({ id }: { id: string }) => {
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
   const imgActionSheetRef = useRef<ActionSheet>(null);
   const imageViewerRef = useRef<ImageViewerRef>(null);
 
@@ -174,3 +174,20 @@ export const Avatar = memo(({ id }: { id: string }) => {
     </Block>
   );
 }, isEqual);
+
+const styleSheet = createStyleSheet(({ colors, shadows }) => ({
+  avatarContainer: {
+    backgroundColor: colors.neutral10,
+    borderRadius: 60,
+    padding: 4,
+    width: scale(88),
+    height: scale(88),
+    ...shadows.small,
+  },
+  avatar: {
+    width: scale(80),
+    height: scale(80),
+    borderRadius: scale(60),
+    overflow: 'hidden',
+  },
+}));

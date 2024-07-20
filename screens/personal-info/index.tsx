@@ -27,12 +27,13 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Avatar, Header } from './components';
+import { Header } from './components';
 import { PersonalInfoForm } from './type';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import { MainContent } from '@screens/personal-info/main-content';
 import { createStyleSheet, useStyles } from '@theme';
 import { UnistylesRuntime } from 'react-native-unistyles';
+import { Avatar } from '@screens/personal-info/avatar';
 
 export const PersonalInfo = ({
   route,
