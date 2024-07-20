@@ -1,8 +1,6 @@
 import { images } from '@assets/image';
-import { Block, Image, Separator, Text } from '@vna-base/components';
-import { selectBalanceInfo, selectCurrentAccount } from '@vna-base/redux/selector';
-import { translate } from '@vna-base/translations/translate';
-import { CurrencyDetails } from '@vna-base/utils';
+import { Block, Image } from '@vna-base/components';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useStyles } from './style';
@@ -11,7 +9,6 @@ export const TopInfo = () => {
   const styles = useStyles();
 
   const { Agent } = useSelector(selectCurrentAccount);
-  const { balance, creditLimit } = useSelector(selectBalanceInfo);
 
   // render
   return (
@@ -27,8 +24,7 @@ export const TopInfo = () => {
           source={Agent?.Logo ?? images.default_avatar}
         />
       </Block>
-      <Block colorTheme="neutral100" borderRadius={12} overflow="hidden">
-        {/* //cmt: số dư */}
+      {/* <Block colorTheme="neutral100" borderRadius={12} overflow="hidden">
         <Block
           rowGap={4}
           paddingVertical={12}
@@ -48,7 +44,6 @@ export const TopInfo = () => {
           />
         </Block>
         <Separator type="horizontal" size={3} />
-        {/* //cmt: tiền đặt cọc */}
         <Block
           rowGap={4}
           paddingVertical={12}
@@ -68,7 +63,6 @@ export const TopInfo = () => {
           />
         </Block>
         <Separator type="horizontal" size={3} />
-        {/* //cmt: tiền bảo lãnh */}
         <Block
           rowGap={4}
           paddingVertical={12}
@@ -88,7 +82,6 @@ export const TopInfo = () => {
           />
         </Block>
         <Separator type="horizontal" size={3} />
-        {/* //cmt: hạn mức nợ */}
         <Block
           rowGap={4}
           paddingVertical={12}
@@ -108,7 +101,6 @@ export const TopInfo = () => {
           />
         </Block>
         <Separator type="horizontal" size={3} />
-        {/* //cmt: hạn mức nợ */}
         <Block
           rowGap={4}
           padding={16}
@@ -131,7 +123,7 @@ export const TopInfo = () => {
             />
           </Text>
         </Block>
-      </Block>
+      </Block> */}
     </Block>
   );
 };

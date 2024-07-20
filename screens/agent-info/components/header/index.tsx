@@ -48,7 +48,7 @@ export const HeaderAgentInfo = () => {
   // render
   return (
     <NormalHeader
-      colorTheme="neutral100"
+      colorTheme="neutral10"
       leftContent={
         <Button
           leftIcon="arrow_ios_left_outline"

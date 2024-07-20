@@ -19,8 +19,9 @@ export const AgentInfo = () => {
 
   useEffect(() => {
     formMethod.reset({
+      IATANumber: '867023847',
       GeneralTab: {
-        CustomerID: Agent?.CustomerID ?? '',
+        CustomerID: 'VNA647821',
         AgentCode: Agent?.AgentCode,
         Phone: Agent?.Phone ?? '',
         Email: Agent?.Email ?? '',

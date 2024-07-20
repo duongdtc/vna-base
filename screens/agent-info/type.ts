@@ -1,4 +1,5 @@
 export type FormAgentInfoType = {
+  IATANumber?: string | null;
   GeneralTab: {
     CustomerID?: string | null;
     AgentCode?: string | null;
