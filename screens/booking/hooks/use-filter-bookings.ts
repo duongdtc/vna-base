@@ -5,7 +5,7 @@ import {
 } from '@vna-base/redux/selector';
 import { bookingActions } from '@vna-base/redux/action-slice';
 import { SortType } from '@services/axios';
-import { dispatch } from '@vna-base/utils';
+import { BookingStatus, dispatch } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,13 @@ const DefaultForm: FilterForm = {
   },
   OrderBy: 'OrderCode',
   SortType: SortType.Desc,
-  Filter: [],
+  Filter: [
+    {
+      Name: 'BookingStatus',
+      Value: BookingStatus.ALL,
+      Contain: true,
+    },
+  ],
   GetAll: false,
 };
 
