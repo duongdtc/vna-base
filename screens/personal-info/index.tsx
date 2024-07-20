@@ -268,7 +268,7 @@ const styleSheet = createStyleSheet(({ colors, shadows }) => ({
     paddingBottom: UnistylesRuntime.insets.bottom + 12,
   },
   containerBottom: {
-    backgroundColor: colors.neutral100,
+    backgroundColor: colors.neutral10,
     paddingTop: scale(12),
     paddingHorizontal: scale(12),
     paddingBottom: UnistylesRuntime.insets.bottom + scale(8),

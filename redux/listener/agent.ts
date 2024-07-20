@@ -20,6 +20,7 @@ import {
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import { Image } from 'react-native-image-crop-picker';
 import { onProgressFile } from './file';
+import { AxiosResponse } from 'axios';
 
 const ObjFlags: Record<keyof Omit<FormAgentDetail, 'Logo'>, string> = {
   // Logo: 'agentAgentUpdateInfoCreate',

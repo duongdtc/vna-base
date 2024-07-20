@@ -26,6 +26,7 @@ export const useFilterAgent = () => {
   const { List, PageIndex, TotalPage, TotalItem } = useSelector(
     selectResultFilterAgent,
   );
+
   const loadingFilter = useSelector(selectLoadingFilterAgent);
 
   useEffect(() => {

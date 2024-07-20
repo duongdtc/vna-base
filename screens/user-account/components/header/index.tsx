@@ -13,7 +13,7 @@ export const Header = () => {
 
   return (
     <NormalHeader
-      colorTheme="neutral100"
+      colorTheme="neutral10"
       leftContent={
         <Button
           hitSlop={HitSlop.Large}
@@ -29,7 +29,7 @@ export const Header = () => {
       centerContent={
         <Text
           fontStyle="Title20Semi"
-          t18n="user_account:list"
+          text="Khách hàng thường xuyên"
           colorTheme="neutral900"
         />
       }

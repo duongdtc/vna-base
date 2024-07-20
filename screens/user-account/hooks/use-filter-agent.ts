@@ -41,9 +41,9 @@ export const useFilterUserAccount = () => {
   }, [formMethod]);
 
   const loadMore = useCallback(() => {
-    if ((PageIndex ?? 0) < (TotalPage ?? 0)) {
-      dispatch(userAccountActions.loadMoreUserAccount());
-    }
+    // if ((PageIndex ?? 0) < (TotalPage ?? 0)) {
+    //   dispatch(userAccountActions.loadMoreUserAccount());
+    // }
   }, [PageIndex, TotalPage]);
 
   const handleRefresh = useCallback(() => {

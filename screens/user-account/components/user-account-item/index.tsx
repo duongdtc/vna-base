@@ -1,11 +1,8 @@
 import { images } from '@assets/image';
-import { Block, Icon, Image, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectUserGroupById } from '@vna-base/redux/selector';
-import { UserGroup } from '@redux/type';
 import { UserAccount } from '@services/axios/axios-data';
 import { APP_SCREEN } from '@utils';
-import dayjs from 'dayjs';
+import { Block, Icon, Image, Text } from '@vna-base/components';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { Pressable } from 'react-native';
@@ -16,8 +13,6 @@ export type Props = {
 
 export const UserAccountItem = memo((props: Props) => {
   const { item } = props;
-
-  const userGroup = selectUserGroupById(item.UserGroupId) as UserGroup;
 
   const navToDetail = () => {
     navigate(APP_SCREEN.PERSONAL_INFO, { id: item.Id! });
@@ -40,7 +35,7 @@ export const UserAccountItem = memo((props: Props) => {
             opacity={item.Visible ? 1 : 0.6}
             borderRadius={16}>
             <Image
-              source={item.Photo ?? images.default_avatar}
+              source={images.default_avatar}
               style={{
                 width: 32,
                 height: 32,
@@ -94,7 +89,7 @@ export const UserAccountItem = memo((props: Props) => {
             <Text
               fontStyle="Title16Bold"
               colorTheme={item.Visible ? 'neutral800' : 'neutral600'}>
-              {`${item.Username} - `}
+              {`${item.Phone} - `}
               <Text
                 text={item.Email ?? 'N/A'}
                 fontStyle="Body16Reg"
@@ -103,25 +98,23 @@ export const UserAccountItem = memo((props: Props) => {
             </Text>
             <Block flexDirection="row" alignItems="center" columnGap={4}>
               <Text
-                text={userGroup?.Name as string}
+                text={item?.Gender as string}
                 fontStyle="Body12Bold"
                 colorTheme="neutral600"
               />
-              {item.LastLoginDate && (
-                <Block flexDirection="row" alignItems="center" columnGap={4}>
-                  <Block
-                    width={4}
-                    height={4}
-                    borderRadius={2}
-                    colorTheme="neutral600"
-                  />
-                  <Text
-                    text={dayjs(item.LastLoginDate).format('DD/MM/YYYY HH:mm')}
-                    fontStyle="Body12Reg"
-                    colorTheme="neutral600"
-                  />
-                </Block>
-              )}
+              <Block flexDirection="row" alignItems="center" columnGap={4}>
+                <Block
+                  width={4}
+                  height={4}
+                  borderRadius={2}
+                  colorTheme="neutral600"
+                />
+                <Text
+                  text={'Ngày sinh: ' + item?.Dob}
+                  fontStyle="Body12Reg"
+                  colorTheme="neutral600"
+                />
+              </Block>
             </Block>
           </Block>
         </Block>
