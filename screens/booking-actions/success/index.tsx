@@ -195,7 +195,7 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={bookingDetail?.BookingCode ?? ''}
+              text={bookingDetail?.BookingCode ?? 'VIN69Q'}
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[
