@@ -15,12 +15,12 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
-import { Setup } from './components';
 import { useStyles } from './style';
 import { useCASLContext } from '@services/casl';
 import { InfoCard } from '@screens/personal/components/info-card';
 import { AnimatedHeader } from '@screens/personal/components/animated-header';
 import { PersonalInfo } from '@screens/personal/components/personal-info';
+import { Setup } from '@screens/personal/components/setup';
 
 export const Personal = () => {
   const styles = useStyles();
@@ -113,7 +113,7 @@ export const Personal = () => {
             size="medium"
             fullWidth
             t18n="common:logout"
-            buttonColorTheme="neutral100"
+            buttonColorTheme="neutral10"
             textColorTheme="error500"
             onPress={logout}
           />

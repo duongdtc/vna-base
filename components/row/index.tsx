@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import { Dropdown, Input, Nav } from './components';
+import { Dropdown, Input, Nav, Switch } from './components';
 import { RowProps } from './type';
 
 export const Row = memo((props: RowProps) => {
@@ -12,9 +12,9 @@ export const Row = memo((props: RowProps) => {
       //@ts-ignore
       return <Dropdown {...rest} />;
 
-    // case 'switch':
-    //   //@ts-ignore
-    //   return <Switch {...rest} />;
+    case 'switch':
+      //@ts-ignore
+      return <Switch {...rest} />;
 
     case 'nav':
       //@ts-ignore

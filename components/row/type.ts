@@ -1,8 +1,7 @@
 import { IconTypes } from '@assets/icon';
 import { TextInputShrinkProps } from '@vna-base/components/text-input/type';
 import { Colors } from '@theme';
-import { Spacing } from '@theme/type';
-import { FontStyle } from '@theme/typography';
+import { FontStyle, Spacing } from '@theme/type';
 import { I18nKeys } from '@translations/locales';
 import { SnapPoint } from '@vna-base/utils';
 
@@ -20,17 +19,17 @@ export type CommonProps = {
   t18n: I18nKeys;
   fixedTitleFontStyle?: boolean;
   t18nAll?: I18nKeys;
-  colorThemeValue?: keyof Colors;
+  colorThemeValue?: Colors;
   titleFontStyle?: FontStyle;
   numberOfLines?: number;
-  colorTheme?: keyof Colors;
+  colorTheme?: Colors;
   paddingHorizontal?: Spacing;
   leftIcon?: IconTypes;
   leftIconSize?: number;
-  leftIconColorTheme?: keyof Colors;
+  leftIconColorTheme?: Colors;
   rightIcon?: IconTypes;
   rightIconSize?: number;
-  rightIconColorTheme?: keyof Colors;
+  rightIconColorTheme?: Colors;
 
   // onPress?: (val?: PathValue<F, N>) => void;
 };

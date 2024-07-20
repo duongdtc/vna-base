@@ -17,7 +17,7 @@ export const Nav = (props: NavProps & CommonProps) => {
     titleFontStyle,
     fixedTitleFontStyle,
     leftIcon,
-    leftIconColorTheme = 'primary500',
+    leftIconColorTheme = 'neutral900',
     leftIconSize = 24,
     rightIcon = 'arrow_ios_right_outline',
     rightIconColorTheme = 'neutral900',

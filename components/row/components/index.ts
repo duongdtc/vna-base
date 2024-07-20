@@ -2,7 +2,7 @@ export * from './dropdown';
 
 export * from './input';
 
-// export * from './switch';
+export * from './switch';
 
 // export * from './radio';
 

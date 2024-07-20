@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
-import { ListRef, ListRenderItemParams } from '@vna-base/components/bottom-sheet/type';
-import { CommonProps, Dropdown as DropdownType } from '@vna-base/components/row/type';
+import {
+  ListRef,
+  ListRenderItemParams,
+} from '@vna-base/components/bottom-sheet/type';
+import {
+  CommonProps,
+  Dropdown as DropdownType,
+} from '@vna-base/components/row/type';
 import { ActiveOpacity, SnapPoint } from '@vna-base/utils';
 
 import { TouchableOpacity } from '@gorhom/bottom-sheet';
@@ -28,7 +34,7 @@ export function Dropdown(props: DropdownType & CommonProps) {
     value,
     onChange,
     leftIcon,
-    leftIconColorTheme = 'primary500',
+    leftIconColorTheme = 'neutral100',
     leftIconSize = 24,
   } = props;
 

@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Switch as SwitchBase, Text } from '@vna-base/components';
-import { CommonProps, Switch as SwitchType } from '@vna-base/components/row/type';
+import { Block, Icon, Switch as SwitchBase, Text } from '@vna-base/components';
+import {
+  CommonProps,
+  Switch as SwitchType,
+} from '@vna-base/components/row/type';
 import { getStyle, useTheme } from '@theme';
 import React from 'react';
 import { Pressable } from 'react-native';
@@ -13,6 +16,9 @@ export function Switch({
   colorTheme = 'neutral100',
   paddingHorizontal = 16,
   onChange,
+  leftIcon,
+  leftIconColorTheme = 'neutral100',
+  leftIconSize = 24,
 }: SwitchType & CommonProps) {
   const { colors } = useTheme();
 
@@ -34,6 +40,13 @@ export function Switch({
         alignItems="center"
         justifyContent="space-between">
         <Block flexDirection="row" alignItems="center" columnGap={4}>
+          {leftIcon && (
+            <Icon
+              icon={leftIcon}
+              size={leftIconSize}
+              colorTheme={leftIconColorTheme}
+            />
+          )}
           <Text
             t18n={t18n}
             fontStyle={titleFontStyle ?? 'Body16Reg'}
