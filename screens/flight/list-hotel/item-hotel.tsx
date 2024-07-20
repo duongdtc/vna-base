@@ -91,11 +91,13 @@ export const ItemHotel = ({ item, selected, openBtsRoom }: Props) => {
             </Block>
           </>
         ) : (
-          <Text
-            text={item.t18n}
-            fontStyle="Body14Semi"
-            colorTheme="neutral100"
-          />
+          <Block paddingBottom={8} paddingLeft={8}>
+            <Text
+              text={item.t18n}
+              fontStyle="Body14Semi"
+              colorTheme="neutral100"
+            />
+          </Block>
         )}
       </Block>
     </Pressable>

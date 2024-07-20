@@ -19,7 +19,7 @@ import { ShuttleCarItem } from './components';
 export const ShuttleCars = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
   const { styles } = useStyles(styleSheet);
   const { control } = useFormContext<PassengerForm>();
-  const [isClose, setIsClose] = useState(true);
+  const [isClose, setIsClose] = useState(false);
 
   const flights = useWatch({
     control,

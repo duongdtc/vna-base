@@ -19,7 +19,7 @@ import { HotelItem } from './components';
 export const Hotels = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
   const { styles } = useStyles(styleSheet);
   const { control } = useFormContext<PassengerForm>();
-  const [isClose, setIsClose] = useState(true);
+  const [isClose, setIsClose] = useState(false);
 
   const flights = useWatch({
     control,
