@@ -1,6 +1,7 @@
-import { Block, Button } from '@vna-base/components';
-import { FormForgotPassword } from '@vna-base/screens/forgot-password/type';
+import { SubmitBtn } from '@screens/forgot-password/components/submit-btn';
 import { FontStyle } from '@theme/typography';
+import { Block } from '@vna-base/components';
+import { FormForgotPassword } from '@vna-base/screens/forgot-password/type';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useStyles } from '../style';
@@ -43,13 +44,7 @@ export const Form = () => {
           returnKeyType="done"
           labelI18n="common:email"
         />
-        <Button
-          fullWidth
-          buttonColorTheme="gra5"
-          t18n="common:reset"
-          textColorTheme="neutral10"
-          onPress={onSubmitKey}
-        />
+        <SubmitBtn onPress={onSubmitKey} />
       </Block>
     </FormProvider>
   );
