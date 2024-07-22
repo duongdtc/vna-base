@@ -1,7 +1,7 @@
 import { Text } from '@vna-base/components';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import { createStyleSheet, useStyles } from '@theme';
-import { ActiveOpacity, scale } from '@vna-base/utils';
+import { ActiveOpacity, Gender, scale } from '@vna-base/utils';
 import React from 'react';
 import { useController } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
@@ -30,7 +30,7 @@ export const SwitchGender = ({ index }: { index: number }) => {
   });
 
   const handlePress = () => {
-    onChange(!value);
+    onChange(value === Gender.Female ? Gender.Male : Gender.Female);
 
     animatedValue.value = withTiming(value ? 0 : 1, {
       duration: 300,

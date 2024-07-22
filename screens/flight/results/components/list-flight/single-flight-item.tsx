@@ -258,7 +258,9 @@ export const SingleFlightItem = memo(
               <Text colorTheme="white" fontStyle="Body12Reg">
                 Từ{' '}
                 <Text
-                  text={(5795000).currencyFormat() + ' VND'}
+                  text={
+                    item.ListFareOption[0].TotalFare.currencyFormat() + ' VND'
+                  }
                   colorTheme="white"
                   fontStyle="Body12Bold"
                 />

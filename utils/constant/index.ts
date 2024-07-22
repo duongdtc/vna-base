@@ -218,15 +218,15 @@ const ListFareFilter: Array<{
 ];
 
 const ListFieldSort: Array<{
-  key: 'Fare' | 'DepartDate' | 'ArriveDate' | 'Airline';
+  key: 'Fare' | 'DepartDate' | 'ArriveDate';
   t18n: I18nKeys;
   icon: IconTypes;
 }> = [
-  {
-    key: 'Airline',
-    t18n: 'flight:airline',
-    icon: 'tail_fill',
-  },
+  // {
+  //   key: 'Airline',
+  //   t18n: 'flight:airline',
+  //   icon: 'tail_fill',
+  // },
   {
     key: 'DepartDate',
     t18n: 'flight:departure_time',
