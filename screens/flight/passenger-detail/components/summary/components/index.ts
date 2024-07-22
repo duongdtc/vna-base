@@ -11,3 +11,5 @@ export * from './flight-container-item';
 export * from './tab-bar';
 
 export * from './shuttle-bus/shuttle-bus-tab';
+
+export * from './hotel-tab';

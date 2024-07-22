@@ -49,7 +49,7 @@ export const HotelItem = memo(({ item, index }: Props) => {
         <FlatList
           data={item.ListSegment}
           keyExtractor={(item, index) => `${item.SegmentId}_${index}`}
-          renderItem={({ item: it, index: idx }) => {
+          renderItem={({ item: _it, index: idx }) => {
             const city = realmRef.current?.objectForPrimaryKey<AirportRealm>(
               AirportRealm.schema.name,
               item.EndPoint as string,

@@ -3,7 +3,7 @@ import { images } from '@assets/image';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { AirportRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
-import { Block, Image, Separator, Text } from '@vna-base/components';
+import { Block, Icon, Image, Separator, Text } from '@vna-base/components';
 import {
   FlightOfPassengerForm,
   PassengerForm,
@@ -12,17 +12,13 @@ import { scale } from '@vna-base/utils';
 import React, { useCallback } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { ListRenderItem, View } from 'react-native';
-import {
-  Bus,
-  BusDetails,
-} from '../../../service-tab/shuttle-cars/components/shuttle-car-item/dummy';
 
-export const ShuttleBusTab = () => {
+export const HotelTab = () => {
   const { control } = useFormContext<PassengerForm>();
 
-  const shuttleBus = useWatch({
+  const hotels = useWatch({
     control,
-    name: 'ShuttleBuses',
+    name: 'Hotels',
   });
 
   const flights = useWatch({
@@ -32,13 +28,15 @@ export const ShuttleBusTab = () => {
 
   flights.forEach((flight, flightIndex) => {
     flight.ListSegment = flight.ListSegment?.map((segment, segmentIndex) => {
-      const typeIndex = (flightIndex + segmentIndex) % shuttleBus?.length;
+      const typeIndex = flightIndex + segmentIndex;
       return {
         ...segment,
-        type: shuttleBus?.[typeIndex]?.type ?? Bus.ZERO,
+        infoHotel: hotels?.[typeIndex] ?? undefined,
       };
     });
   });
+
+  //   console.log('flights', JSON.stringify(flights));
 
   const renderItem = useCallback<ListRenderItem<FlightOfPassengerForm>>(
     //@ts-ignore
@@ -48,14 +46,14 @@ export const ShuttleBusTab = () => {
         item.StartPoint as string,
       );
 
-      const car = Object.values(BusDetails).find(
+      const isShow =
         //@ts-ignore
-        it => it.key === item?.ListSegment?.[0]?.type,
-      );
+        item?.ListSegment?.[0]?.infoHotel?.hotel !== undefined &&
+        //@ts-ignore
+        item?.ListSegment?.[0]?.infoHotel?.hotel !== null;
 
       return (
-        //@ts-ignore
-        item?.ListSegment?.[0]?.type !== Bus.ZERO && (
+        isShow && (
           <Block
             colorTheme="neutral100"
             borderRadius={8}
@@ -64,41 +62,62 @@ export const ShuttleBusTab = () => {
             rowGap={12}>
             <View>
               <Text
-                text={`${index + 1}. ${airportSP?.NameVi}`}
+                text={`${index + 1}. ${airportSP?.City.NameVi}`}
                 fontStyle="Body14Semi"
                 colorTheme="neutral100"
               />
             </View>
             <Separator type="horizontal" size={3} />
-            <Block
-              paddingHorizontal={4}
-              rowGap={4}
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="space-between">
-              <Block>
+            <Block rowGap={4}>
+              <Block
+                paddingHorizontal={4}
+                rowGap={4}
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="space-between">
+                <Block>
+                  <Text
+                    text="Loại phòng"
+                    fontStyle="Body14Med"
+                    colorTheme="neutral100"
+                  />
+                  <Text
+                    //@ts-ignore
+                    text={item?.ListSegment?.[0]?.infoHotel?.room?.t18n}
+                    fontStyle="Body12Bold"
+                    colorTheme={'success500'}
+                  />
+                </Block>
+                <Block alignItems="flex-end">
+                  <Text
+                    text={'Giá'}
+                    fontStyle="Body14Med"
+                    colorTheme={'neutral100'}
+                  />
+                  <Text
+                    //@ts-ignore
+                    text={item?.ListSegment?.[0]?.infoHotel?.room?.price?.currencyFormat()}
+                    fontStyle="Body12Bold"
+                    colorTheme={'price'}
+                  />
+                </Block>
+              </Block>
+              <Block paddingHorizontal={4} rowGap={4}>
                 <Text
-                  text="Loại xe"
-                  fontStyle="Body14Med"
+                  //@ts-ignore
+                  text={item?.ListSegment?.[0]?.infoHotel?.hotel?.t18n}
+                  fontStyle="Body14Semi"
                   colorTheme="neutral100"
                 />
-                <Text
-                  text={car?.t18n}
-                  fontStyle="Body12Bold"
-                  colorTheme={'success500'}
-                />
-              </Block>
-              <Block alignItems="flex-end">
-                <Text
-                  text={'Giá'}
-                  fontStyle="Body14Med"
-                  colorTheme={'neutral100'}
-                />
-                <Text
-                  text={car?.price?.currencyFormat()}
-                  fontStyle="Body12Bold"
-                  colorTheme={'price'}
-                />
+                <Block flexDirection="row" alignItems="center" columnGap={4}>
+                  <Icon icon="pin_outline" size={12} colorTheme="neutral100" />
+                  <Text
+                    //@ts-ignore
+                    text={item?.ListSegment?.[0]?.infoHotel?.hotel?.description}
+                    fontStyle="Body10Reg"
+                    colorTheme="neutral100"
+                  />
+                </Block>
               </Block>
             </Block>
           </Block>
@@ -108,10 +127,7 @@ export const ShuttleBusTab = () => {
     [],
   );
 
-  if (
-    shuttleBus.every(it => it.type === undefined) ||
-    shuttleBus.every(it => it.type === Bus.ZERO)
-  ) {
+  if (hotels === undefined || hotels?.every(it => it.hotel === null)) {
     return (
       <Block flex={1} justifyContent="center" alignItems="center">
         <Image

@@ -10,6 +10,7 @@ import {
 } from 'react-native-tab-view';
 import {
   BaggageTab,
+  HotelTab,
   InfoFareTab,
   SeatTab,
   ServiceTab,
@@ -90,7 +91,7 @@ export const Summary = memo(
           case TabName.SHUTTLE_BUS:
             return <ShuttleBusTab />;
           case TabName.HOTEL:
-            return <ServiceTab />;
+            return <HotelTab />;
           case TabName.ISSUERANCE:
             return <ServiceTab />;
         }
