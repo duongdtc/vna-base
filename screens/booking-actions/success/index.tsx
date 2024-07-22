@@ -195,7 +195,14 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={bookingDetail?.BookingCode ?? 'VIN69Q'}
+              text={
+                bookingDetail?.BookingCode ??
+                Array.from({ length: 6 }, () =>
+                  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(
+                    Math.floor(Math.random() * 62),
+                  ),
+                ).join('')
+              }
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[

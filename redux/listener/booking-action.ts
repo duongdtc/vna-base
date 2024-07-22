@@ -1129,9 +1129,8 @@ async function fakeIssueTicket({
           Airline: 'VN',
           BookingCode: '5KBXK4',
           ConjTktNum: '738',
-          TicketNumber: (
-            Math.floor(Math.random() * 9000000000000) + 1000000000000
-          ).toString(),
+          TicketNumber:
+            '738' + (Math.floor(Math.random() * 9000000000) + 1000000000),
           TicketType: 'OPEN',
           TicketStatus: 'OPEN',
           TicketRelated: null,
