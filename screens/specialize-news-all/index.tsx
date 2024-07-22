@@ -118,7 +118,7 @@ export const SpecializeNewsAll = ({
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
         shadow=".3"
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           <Button
             hitSlop={HitSlop.Large}

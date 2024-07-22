@@ -114,7 +114,6 @@ export const DBSContentAll = ({
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        shadow=".3"
         colorTheme="neutral100"
         leftContent={
           <Button

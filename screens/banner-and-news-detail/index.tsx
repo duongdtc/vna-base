@@ -1,9 +1,10 @@
-import { Button, Icon, NormalHeader, Screen, Text } from '@vna-base/components';
 import { goBack } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectDetailDBSContent } from '@vna-base/redux/selector';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { APP_SCREEN, RootStackParamList } from '@utils';
+import { Button, Icon, NormalHeader, Screen, Text } from '@vna-base/components';
 import { dbsContentActions } from '@vna-base/redux/action-slice';
-import { createStyleSheet, useStyles, bs } from '@theme';
+import { selectDetailDBSContent } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { HitSlop, WindowWidth, dispatch, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
@@ -17,7 +18,6 @@ import RenderHTML, {
 } from 'react-native-render-html';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { APP_SCREEN, RootStackParamList } from '@utils';
 
 export const BannerAndNewsDetail = ({
   route,
@@ -46,9 +46,9 @@ export const BannerAndNewsDetail = ({
       return (
         <View key={key}>
           <Icon
-            icon="saladin"
+            icon="star_fill"
             size={16}
-            colorTheme={item < Math.round(rate) ? '1A' : 'neutral60'}
+            colorTheme={item < Math.round(rate) ? 'warning400' : 'neutral60'}
           />
         </View>
       );
@@ -93,8 +93,7 @@ export const BannerAndNewsDetail = ({
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        shadow=".3"
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           <Button
             hitSlop={HitSlop.Large}
