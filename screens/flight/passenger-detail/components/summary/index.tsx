@@ -12,6 +12,7 @@ import {
   BaggageTab,
   HotelTab,
   InfoFareTab,
+  InsuranceTravelTab,
   SeatTab,
   ServiceTab,
   ShuttleBusTab,
@@ -93,7 +94,7 @@ export const Summary = memo(
           case TabName.HOTEL:
             return <HotelTab />;
           case TabName.ISSUERANCE:
-            return <ServiceTab />;
+            return <InsuranceTravelTab />;
         }
       },
       [],
