@@ -112,6 +112,7 @@ export const ServiceTab = () => {
                   colorTheme="success500"
                 />
               </TouchableOpacity>
+
               <View style={styles.imageInsurance}>
                 <Image source={images.insuranceImg} resizeMode="contain" />
               </View>
@@ -123,7 +124,7 @@ export const ServiceTab = () => {
               <Text fontStyle="Body12Med" colorTheme="neutral100">
                 {translate('choose_services:des_insurance2')}{' '}
                 <Text
-                  fontStyle="Body12Med"
+                  fontStyle="Body12Reg"
                   colorTheme="neutral100"
                   t18n="choose_services:des_insurance3"
                 />
