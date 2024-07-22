@@ -5,7 +5,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ticket } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
-import { useObject } from '@services/realm/provider';
+import { realmRef, useObject } from '@services/realm/provider';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
@@ -36,6 +36,8 @@ import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
+import { createBookingFromAxios } from '@vna-base/utils/realm/bookings';
+import { UpdateMode } from 'realm';
 
 export const Success = ({
   route,
@@ -201,7 +203,9 @@ export const Success = ({
                   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(
                     Math.floor(Math.random() * 62),
                   ),
-                ).join('')
+                )
+                  .join('')
+                  .toUpperCase()
               }
               fontStyle="Title20Bold"
               colorTheme={
@@ -243,7 +247,20 @@ export const Success = ({
           type="classic"
           textColorTheme="neutral900"
           onPress={() => {
-            navigate(APP_SCREEN.SEARCH_FLIGHT);
+            realmRef.current?.write(() => {
+              if (bookingDetail !== undefined) {
+                bookingDetail.BookingStatus = BookingStatus.TICKETED;
+                // createBookingFromAxios(
+                //   {
+                //     ...bookingDetail?.toJSON(),
+                //     BookingStatus: BookingStatus.TICKETED,
+                //   },
+                //   UpdateMode.Modified,
+                // );
+              }
+            });
+
+            navigate(APP_SCREEN.ORDER);
           }}
         />
       </Block>

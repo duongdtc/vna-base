@@ -18,6 +18,7 @@ import { realmRef } from '@services/realm/provider';
 import { I18nKeys } from '@translations/locales';
 import {
   ActiveOpacity,
+  BookingStatus,
   CheckInOnlineSystem,
   dispatch,
   scale,
@@ -55,25 +56,40 @@ export const Content = ({
       t18n: I18nKeys;
     }> = [];
 
-    actions.forEach(action => {
-      //@ts-ignore
-      const actionGroup = isEmpty(MapTitleSection[action.Feature?.Group])
-        ? 'OTHER'
-        : action.Feature?.Group;
+    const booking = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+      BookingRealm.schema.name,
+      bookingId,
+    );
 
-      const idx = sections.findIndex(section => section.group === actionGroup);
+    actions
+      .filter(
+        ac =>
+          (booking?.BookingStatus === BookingStatus.TICKETED &&
+            ac.FeatureId !== 'TicketIssue') ||
+          (booking?.BookingStatus === BookingStatus.OK &&
+            ac.FeatureId !== 'CheckInOnline'),
+      )
+      .forEach(action => {
+        //@ts-ignore
+        const actionGroup = isEmpty(MapTitleSection[action.Feature?.Group])
+          ? 'OTHER'
+          : action.Feature?.Group;
 
-      if (idx === -1) {
-        sections.push({
-          group: actionGroup,
-          data: [action],
-          //@ts-ignore
-          t18n: MapTitleSection[actionGroup]?.t18n,
-        });
-      } else {
-        sections[idx].data.push(action);
-      }
-    });
+        const idx = sections.findIndex(
+          section => section.group === actionGroup,
+        );
+
+        if (idx === -1) {
+          sections.push({
+            group: actionGroup,
+            data: [action],
+            //@ts-ignore
+            t18n: MapTitleSection[actionGroup]?.t18n,
+          });
+        } else {
+          sections[idx].data.push(action);
+        }
+      });
 
     sections
       .sort(
