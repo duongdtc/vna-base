@@ -40,7 +40,6 @@ export const Content = ({
 
   const _renderItem = useCallback<ListRenderItem<Item>>(
     ({ item }) => {
-      console.log('item.t18n', item.t18n);
       const selected = item.key === selectedStatusKey;
       return (
         <TouchableOpacity

@@ -9,3 +9,5 @@ export * from './seats/seat-tab';
 export * from './flight-container-item';
 
 export * from './tab-bar';
+
+export * from './shuttle-bus/shuttle-bus-tab';

@@ -13,14 +13,19 @@ import {
   InfoFareTab,
   SeatTab,
   ServiceTab,
+  ShuttleBusTab,
   TabBar,
 } from './components';
+import { I18nKeys } from '@translations/locales';
 
 const TabName = {
   INFO_FARE: 'INFO_FARE',
   SEAT: 'SEAT',
   BAGGAGE: 'BAGGAGE',
   SERVICE: 'SERVICE',
+  SHUTTLE_BUS: 'SHUTTLE_BUS',
+  HOTEL: 'HOTEL',
+  ISSUERANCE: 'ISSUERANCE',
 };
 
 export const Summary = memo(
@@ -43,6 +48,18 @@ export const Summary = memo(
       {
         key: TabName.SERVICE,
         title: 'input_info_passenger:others_services',
+      },
+      {
+        key: TabName.SHUTTLE_BUS,
+        title: 'Xe sân bay' as I18nKeys,
+      },
+      {
+        key: TabName.HOTEL,
+        title: 'Khách sạn' as I18nKeys,
+      },
+      {
+        key: TabName.ISSUERANCE,
+        title: 'Bảo hiểm' as I18nKeys,
       },
     ]);
 
@@ -69,6 +86,12 @@ export const Summary = memo(
           case TabName.BAGGAGE:
             return <BaggageTab />;
           case TabName.SERVICE:
+            return <ServiceTab />;
+          case TabName.SHUTTLE_BUS:
+            return <ShuttleBusTab />;
+          case TabName.HOTEL:
+            return <ServiceTab />;
+          case TabName.ISSUERANCE:
             return <ServiceTab />;
         }
       },

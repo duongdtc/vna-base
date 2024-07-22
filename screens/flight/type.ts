@@ -535,9 +535,6 @@ export type SubmitOption = {
 };
 
 export type ShuttleBus = {
-  dateTime: Date | undefined;
-  trip?: string;
-  numberBus?: number | null;
   type?: string | null;
 };
 

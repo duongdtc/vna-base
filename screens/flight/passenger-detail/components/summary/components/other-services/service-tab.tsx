@@ -2,7 +2,10 @@
 import { images } from '@assets/image';
 import { Block, Image, Text } from '@vna-base/components';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { FlightOfPassengerForm, PassengerForm } from '@vna-base/screens/flight/type';
+import {
+  FlightOfPassengerForm,
+  PassengerForm,
+} from '@vna-base/screens/flight/type';
 import { Ancillary } from '@services/axios/axios-ibe';
 import { scale } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';

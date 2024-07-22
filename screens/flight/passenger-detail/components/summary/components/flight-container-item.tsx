@@ -2,7 +2,10 @@
 import { Block, Icon, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
 import { selectLanguage } from '@vna-base/redux/selector';
-import { FlightOfPassengerForm, PassengerForm } from '@vna-base/screens/flight/type';
+import {
+  FlightOfPassengerForm,
+  PassengerForm,
+} from '@vna-base/screens/flight/type';
 import { Ancillary, Seat } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
@@ -131,7 +134,7 @@ export const FlightContainerItem = ({
             fontStyle="Body12Bold"
             colorTheme="primaryColor"
           />
-          <Icon icon="f_arrow_right" size={12} colorTheme="primaryColor" />
+          <Icon icon="arrow_right_fill" size={12} colorTheme="primaryColor" />
           <Text
             text={item.EndPoint as string}
             fontStyle="Body12Bold"
