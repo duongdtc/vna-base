@@ -88,7 +88,7 @@ export const Banner = memo(() => {
             navigate(APP_SCREEN.BANNER_AND_NEWS_DETAIL, { id: item.Id! });
           }}>
           <Image
-            resizeMode="stretch"
+            resizeMode="cover"
             source={getImageUrl(item.Image, 'image_default_news')}
             containerStyle={styles.img}
           />
