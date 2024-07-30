@@ -19,6 +19,7 @@ import { Image, Pressable, ScrollView, TextInput } from 'react-native';
 import { UnistylesRuntime } from 'react-native-unistyles';
 import { TypeRequires } from './dummy';
 import { images } from '@vna-base/assets/image';
+import { Footer } from '@screens/create-request-support/components/footer';
 
 export type FormCreateNewRequestSupport = {
   typeRequire: string;
@@ -229,13 +230,7 @@ export const CreateRequestSupport = () => {
             paddingBottom: UnistylesRuntime.insets.bottom + 12,
             backgroundColor: colors.neutral10,
           }}>
-          <Button
-            fullWidth
-            buttonColorTheme="gra1"
-            text="Gửi"
-            textColorTheme="white"
-            onPress={submit}
-          />
+          <Footer onPress={submit} />
         </Block>
       </FormProvider>
     </Screen>
