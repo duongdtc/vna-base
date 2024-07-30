@@ -216,7 +216,7 @@ export const generateInitialPassengerFormData = (
 
   //@ts-ignore
   const tempInitData: PassengerForm = {
-    Insurance: true,
+    Insurance: null,
     Passengers: !passengersForm?.Passengers
       ? []
       : cloneDeep(passengersForm?.Passengers),
@@ -231,9 +231,6 @@ export const generateInitialPassengerFormData = (
       AutomaticallyIssueTicketsUponExpiration: false,
       ReceivePriceFluctuationNotifications: false,
     },
-
-    ShuttleBus: [],
-    Hotel: [],
 
     //@ts-ignore
     ContactInfo: {
@@ -326,6 +323,10 @@ export const generateInitialPassengerFormData = (
       }
     }
   });
+
+  tempInitData.WaitingRooms = new Array(tempInitData.FLights.length);
+  tempInitData.ShuttleCars = new Array(tempInitData.FLights.length).fill([]);
+  tempInitData.Hotels = new Array(tempInitData.FLights.length).fill([]);
 
   // if (!!passengersForm?.Passengers) {
   //   tempInitData.Passengers.forEach(pax => {

@@ -188,6 +188,17 @@ export type ModalBaggagePickerProps = {
     flightIndex: number;
   }) => void;
 };
+export type WaitingRoomPickerProps = {
+  onDone: (data: { waitingRoom: WaitingRoom; flightIndex: number }) => void;
+};
+
+export type ShuttleCarPickerProps = {
+  onDone: (data: {
+    shuttleCar: ShuttleCar;
+    flightIndex: number;
+    airportIdx: number;
+  }) => void;
+};
 
 export type ModalServicePickerProps = {
   onDone: (data: {
@@ -213,6 +224,21 @@ export type ModalBaggagePickerRef = {
     selected: string | null | undefined;
     passengerIndex: number;
     flightIndex: number;
+  }) => void;
+};
+
+export type WaitingRoomPickerRef = {
+  present: (data: {
+    selected: string | null | undefined;
+    flightIndex: number;
+  }) => void;
+};
+
+export type ShuttleCarPickerRef = {
+  present: (data: {
+    selected: string | null | undefined;
+    flightIndex: number;
+    airportIdx: number;
   }) => void;
 };
 
@@ -534,8 +560,13 @@ export type SubmitOption = {
   ReceivePriceFluctuationNotifications: boolean;
 };
 
-export type ShuttleBus = {
-  type?: string | null;
+export type ShuttleCar = {
+  title: string;
+  value: string;
+  image: string;
+  capacity: number;
+  description: string;
+  price: number;
 };
 
 export type Hotel = {
@@ -543,11 +574,17 @@ export type Hotel = {
   room: RoomDetail | null;
 };
 
+export type WaitingRoom = {
+  value: string;
+  price: number;
+  img: string;
+  title: string;
+};
+
 export type PassengerForm = {
   Passengers: Array<Passenger>;
   FLights: Array<FlightOfPassengerForm>;
   TotalFareFlight: number;
-  Insurance: boolean;
   ContactInfo: ContactInfo;
   TabIndex: number;
   SplitFullName: boolean;
@@ -555,8 +592,11 @@ export type PassengerForm = {
 
   VerifiedSessions: Array<string>;
 
-  ShuttleBuses: Array<ShuttleBus>;
-  Hotels: Array<Hotel>;
+  Insurance: string | null;
+
+  ShuttleCars: Array<Array<ShuttleCar>>;
+  Hotels: Array<Array<Hotel>>;
+  WaitingRooms: Array<WaitingRoom>;
 };
 
 export enum SeatType {

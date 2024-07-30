@@ -15,7 +15,10 @@ import { Service } from '.';
 import { ItemContainer } from './item-container';
 import { ServiceItem } from './service-item';
 
-export const Services = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
+export const Services = ({
+  t18nTitle,
+  icon,
+}: Pick<Service, 't18nTitle' | 'icon'>) => {
   const { setValue } = useFormContext<PassengerForm>();
   // const modalRef = useRef<ModalServicePickerRef>(null);
   const services = useSelector(selectServices);
@@ -70,11 +73,11 @@ export const Services = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
         // @ts-ignore
         renderServiceItem={renderItem}
         t18nTitle={t18nTitle}
-        defaultClose={true}
         disabled={!isNotEmp}
         services={services}
         loading={isLoading}
         t18nEmpty="input_info_passenger:no_more_services"
+        icon={icon}
       />
       {/* <ModalServicePicker ref={modalRef} onDone={onPickDone} /> */}
     </Block>

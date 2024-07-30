@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react';
 import { StyleProp, TouchableOpacity } from 'react-native';
-
 import FastImage, { ImageStyle } from 'react-native-fast-image';
-
-import { icons } from '@assets/icon';
 import { useStyles } from '@theme';
-
 import { IconProps } from './type';
+import { icons } from '@vna-base/assets/icon';
 
 const SIZE = 24;
 

@@ -15,7 +15,7 @@ import {
   InsuranceTravelTab,
   SeatTab,
   ServiceTab,
-  ShuttleBusTab,
+  // ShuttleBusTab,
   TabBar,
 } from './components';
 import { I18nKeys } from '@translations/locales';
@@ -89,8 +89,8 @@ export const Summary = memo(
             return <BaggageTab />;
           case TabName.SERVICE:
             return <ServiceTab />;
-          case TabName.SHUTTLE_BUS:
-            return <ShuttleBusTab />;
+          // case TabName.SHUTTLE_BUS:
+          //   return <ShuttleBusTab />;
           case TabName.HOTEL:
             return <HotelTab />;
           case TabName.ISSUERANCE:

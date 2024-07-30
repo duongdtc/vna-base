@@ -558,6 +558,11 @@ export const icons = {
   fi_rr_settings: require('./source/outline/fi-rr-settings.png'),
   fi_rs_users_alt: require('./source/outline/fi-rs-users-alt.png'),
   topup_wallet_outline: require('./source/outline/topupwallet.png'),
+
+  bed: require('./source/Bed.png'),
+  car: require('./source/car.png'),
+  insurance_flight: require('./source/insurance_flight.png'),
+  waitingroom: require('./source/waitingroom.png'),
 };
 
 export type IconTypes = keyof typeof icons;

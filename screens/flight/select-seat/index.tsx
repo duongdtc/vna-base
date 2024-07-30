@@ -41,6 +41,7 @@ import {
 } from './components';
 import { useStyles } from './styles';
 import isEmpty from 'lodash.isempty';
+import { SubmitBtn } from '@screens/flight/select-seat/components/submit-btn';
 
 export const SelectSeat = ({
   route,
@@ -323,17 +324,11 @@ export const SelectSeat = ({
           colorTheme="neutral100"
           shadow="main"
           style={styles.footerContainer}>
-          <Button
-            fullWidth
-            t18n="common:confirm"
+          <SubmitBtn
             onPress={() => {
               goBack();
               onSubmit(seats);
             }}
-            buttonStyle={styles.btn}
-            buttonColorTheme="graPre"
-            size="medium"
-            textColorTheme="neutral10"
           />
         </Block>
       </Block>

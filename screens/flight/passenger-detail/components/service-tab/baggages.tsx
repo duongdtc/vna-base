@@ -1,6 +1,12 @@
 import { Block } from '@vna-base/components';
-import { selectBaggages, selectIsLoadingAncillaries } from '@vna-base/redux/selector';
-import { ModalBaggagePickerRef, PassengerForm } from '@vna-base/screens/flight/type';
+import {
+  selectBaggages,
+  selectIsLoadingAncillaries,
+} from '@vna-base/redux/selector';
+import {
+  ModalBaggagePickerRef,
+  PassengerForm,
+} from '@vna-base/screens/flight/type';
 import { Ancillary } from '@services/axios/axios-ibe';
 import React, { useMemo, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -10,7 +16,10 @@ import { BaggageItem } from './baggage-item';
 import { ItemContainer } from './item-container';
 import { ModalBaggagePicker } from './modal-baggage-picker';
 
-export const Baggages = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
+export const Baggages = ({
+  t18nTitle,
+  icon,
+}: Pick<Service, 't18nTitle' | 'icon'>) => {
   const { setValue } = useFormContext<PassengerForm>();
   const modalRef = useRef<ModalBaggagePickerRef>(null);
   const baggages = useSelector(selectBaggages);
@@ -51,12 +60,12 @@ export const Baggages = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
     <Block>
       <ItemContainer
         renderServiceItem={renderItem}
-        defaultClose={false}
         t18nTitle={t18nTitle}
         renderSegment={false}
         disabled={!isNotEmp}
         services={baggages}
         loading={isLoading}
+        icon={icon}
         t18nEmpty="input_info_passenger:no_more_baggages"
       />
       <ModalBaggagePicker ref={modalRef} onDone={onPickDone} />

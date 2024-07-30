@@ -1,11 +1,17 @@
-import { selectIsLoadingSeatMaps, selectSeatMaps } from '@vna-base/redux/selector';
+import {
+  selectIsLoadingSeatMaps,
+  selectSeatMaps,
+} from '@vna-base/redux/selector';
 import React, { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Service } from '.';
 import { ItemContainer } from './item-container';
 import { SeatItem } from './seat-item';
 
-export const Seats = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
+export const Seats = ({
+  t18nTitle,
+  icon,
+}: Pick<Service, 't18nTitle' | 'icon'>) => {
   const seatMaps = useSelector(selectSeatMaps);
   const isLoading = useSelector(selectIsLoadingSeatMaps);
 
@@ -31,12 +37,12 @@ export const Seats = ({ t18nTitle }: Pick<Service, 't18nTitle'>) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //  @ts-ignore
       renderServiceItem={renderItem}
-      defaultClose={true}
       t18nTitle={t18nTitle}
       disabled={!isNotEmp}
       services={seatMaps}
       loading={isLoading}
       t18nEmpty="input_info_passenger:no_more_seats"
+      icon={icon}
     />
   );
 };

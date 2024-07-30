@@ -28,12 +28,13 @@ export const ItemContainer = (props: ItemContainerProps) => {
   const {
     t18nTitle,
     renderSegment = true,
-    defaultClose = false,
+    defaultClose = true,
     disabled = false,
     t18nEmpty,
     loading = false,
     services,
     renderServiceItem,
+    icon,
   } = props;
 
   const {
@@ -102,22 +103,22 @@ export const ItemContainer = (props: ItemContainerProps) => {
   );
 
   const toggleContent = useCallback(() => {
-    if (
-      flights.length === 1 &&
-      flights[0].ListSegment?.length === 1 &&
-      t18nTitle === 'choose_services:choose_seat' &&
-      !disabled &&
-      !loading
-    ) {
-      onPressPreSeat(0, 0);
-      setIsClose(false);
-    } else {
-      LayoutAnimation.configureNext({
-        ...LayoutAnimation.Presets.linear,
-        duration: 160,
-      });
-      setIsClose(prev => !prev);
-    }
+    // if (
+    //   flights.length === 1 &&
+    //   flights[0].ListSegment?.length === 1 &&
+    //   t18nTitle === 'choose_services:choose_seat' &&
+    //   !disabled &&
+    //   !loading
+    // ) {
+    //   onPressPreSeat(0, 0);
+    //   setIsClose(false);
+    // } else {
+    LayoutAnimation.configureNext({
+      ...LayoutAnimation.Presets.linear,
+      duration: 160,
+    });
+    setIsClose(prev => !prev);
+    // }
   }, [disabled, flights, loading, onPressPreSeat, t18nTitle]);
 
   const renderFlight = useCallback<ListRenderItem<FlightOfPassengerForm>>(
@@ -157,9 +158,16 @@ export const ItemContainer = (props: ItemContainerProps) => {
             flights.length === 1 &&
             flights[0].ListSegment?.length === 1 && { paddingBottom: 0 },
         ]}>
-        <Text fontStyle="Body16Semi" colorTheme="neutral100" t18n={t18nTitle} />
+        <Icon icon={icon} size={20} colorTheme="neutral700" />
+        <Block flex={1}>
+          <Text
+            fontStyle="Body16Semi"
+            colorTheme="neutral100"
+            t18n={t18nTitle}
+          />
+        </Block>
         <Icon
-          icon={isClose ? 'arrow_ios_right_fill' : 'arrow_ios_down_fill'}
+          icon={isClose ? 'arrow_ios_down_fill' : 'arrow_ios_up_fill'}
           size={24}
           colorTheme="neutral100"
         />
@@ -203,5 +211,6 @@ const styleSheet = createStyleSheet(({ spacings }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    columnGap: 8,
   },
 }));
