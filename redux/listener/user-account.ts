@@ -59,22 +59,22 @@ export const runUserAccountListener = () => {
     },
   });
 
-  takeLatestListeners()({
-    actionCreator: userAccountActions.getUserAccount,
-    effect: async (action, listenerApi) => {
-      const { id } = action.payload;
+  // takeLatestListeners()({
+  //   actionCreator: userAccountActions.getUserAccount,
+  //   effect: async (action, listenerApi) => {
+  //     const { id } = action.payload;
 
-      const response = await Data.userAccountUserAccountGetByIdCreate({
-        Id: id,
-      });
+  //     const response = await Data.userAccountUserAccountGetByIdCreate({
+  //       Id: id,
+  //     });
 
-      if (validResponse(response)) {
-        listenerApi.dispatch(
-          userAccountActions.saveUserAccount(response.data.Item!),
-        );
-      }
-    },
-  });
+  //     if (validResponse(response)) {
+  //       listenerApi.dispatch(
+  //         userAccountActions.saveUserAccount(response.data.Item!),
+  //       );
+  //     }
+  //   },
+  // });
 
   takeLatestListeners(true)({
     actionCreator: userAccountActions.updateUserAccount,
