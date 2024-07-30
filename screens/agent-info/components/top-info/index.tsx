@@ -1,14 +1,10 @@
 import { images } from '@assets/image';
 import { Block, Image } from '@vna-base/components';
-import { selectCurrentAccount } from '@vna-base/redux/selector';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useStyles } from './style';
 
 export const TopInfo = () => {
   const styles = useStyles();
-
-  const { Agent } = useSelector(selectCurrentAccount);
 
   // render
   return (
@@ -19,10 +15,7 @@ export const TopInfo = () => {
       paddingHorizontal={12}>
       {/* // cmt:header info  */}
       <Block style={styles.avatarContainer}>
-        <Image
-          containerStyle={styles.avatar}
-          source={Agent?.Logo ?? images.default_avatar}
-        />
+        <Image containerStyle={styles.avatar} source={images.agent_logo} />
       </Block>
       {/* <Block colorTheme="neutral100" borderRadius={12} overflow="hidden">
         <Block
