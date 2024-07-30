@@ -51,6 +51,11 @@ export const images = {
   IMG31: require('./source/services/IMG31.png'),
   IMG32: require('./source/services/IMG32.png'),
   IMG33: require('./source/services/IMG33.png'),
+
+  //create require support
+  result1: require('./source/require-support/result1.png'),
+  result2: require('./source/require-support/result2.png'),
+  result3: require('./source/require-support/result3.png'),
 };
 
 export type ImageTypes = keyof typeof images;
