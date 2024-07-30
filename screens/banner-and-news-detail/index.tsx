@@ -35,11 +35,11 @@ export const BannerAndNewsDetail = ({
 
   const content = useSelector(selectDetailDBSContent(id));
 
-  useEffect(() => {
-    if (isEmpty(content)) {
-      dispatch(dbsContentActions.getDetailDBSContent(id));
-    }
-  }, [content, id]);
+  // useEffect(() => {
+  //   if (isEmpty(content)) {
+  //     dispatch(dbsContentActions.getDetailDBSContent(id));
+  //   }
+  // }, [content, id]);
 
   const _renderRating = (rate: number) => {
     return [1, 2, 3, 4, 5].map((item, key) => {

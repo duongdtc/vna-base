@@ -43,6 +43,14 @@ export const runDBSContentListener = () => {
             TotalPage: response.data.TotalPage,
           }),
         );
+
+        response.data.List?.forEach(item => {
+          listenerApi.dispatch(
+            dbsContentActions.saveDetailContent({
+              [item.Id]: item as Content,
+            }),
+          );
+        });
       }
 
       listenerApi.dispatch(
@@ -83,6 +91,14 @@ export const runDBSContentListener = () => {
             TotalPage: response.data.TotalPage,
           }),
         );
+
+        response.data.List?.forEach(item => {
+          listenerApi.dispatch(
+            dbsContentActions.saveDetailContent({
+              [item.Id]: item as Content,
+            }),
+          );
+        });
       }
 
       listenerApi.dispatch(dbsContentActions.changeLoadingPolicy(false));
