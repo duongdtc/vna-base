@@ -65,20 +65,17 @@ export const Content = ({
             </Block>
             {!!item.title && (
               <Block flexDirection="row" columnGap={4} alignItems="center">
+                <Icon icon="people_outline" size={14} colorTheme="neutral800" />
                 <Text
-                  text="Bao gồm:"
+                  text={item.capacity}
                   fontStyle="Body12Reg"
-                  colorTheme="neutral80"
+                  colorTheme="neutral100"
                 />
-                <Icon icon="car_fill" size={10} colorTheme="neutral80" />
-                <Icon icon="wifi_fill" size={10} colorTheme="neutral80" />
-                <Icon icon="eat_fill" size={10} colorTheme="neutral80" />
-                <Icon
-                  icon="arrow_circle_up_fill"
-                  size={10}
-                  colorTheme="neutral80"
+                <Text
+                  text={item.description}
+                  fontStyle="Body12Reg"
+                  colorTheme="neutral100"
                 />
-                <Icon icon="attach_outline" size={10} colorTheme="neutral80" />
               </Block>
             )}
           </Block>

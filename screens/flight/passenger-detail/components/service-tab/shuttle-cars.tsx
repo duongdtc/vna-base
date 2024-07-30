@@ -18,7 +18,7 @@ export const ShuttleCarsFake: Array<ShuttleCar> = [
     image:
       'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/vf_dspwla.png',
     capacity: 5,
-    description: '• 16.000 VND/km (Dự kiến)',
+    description: '• 14.000 VND/km (Dự kiến)',
     price: 190_000,
   },
   {
@@ -27,7 +27,7 @@ export const ShuttleCarsFake: Array<ShuttleCar> = [
     image:
       'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/ml_clp07d.png',
     capacity: 7,
-    description: '• 16.000 VND/km (Dự kiến)',
+    description: '• 15.000 VND/km (Dự kiến)',
     price: 210_000,
   },
   {
@@ -35,7 +35,7 @@ export const ShuttleCarsFake: Array<ShuttleCar> = [
     value: 'THREE',
     image:
       'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/vns_wy9lrh.png',
-    capacity: 16,
+    capacity: 4,
     description: '• 16.000 VND/km (Dự kiến)',
     price: 350_000,
   },

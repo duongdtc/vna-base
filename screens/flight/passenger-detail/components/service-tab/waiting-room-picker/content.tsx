@@ -68,7 +68,7 @@ export const Content = ({ onDone, flightIndex, selectedBaggage }: Props) => {
                   fontStyle="Body12Reg"
                   colorTheme="neutral80"
                 />
-                <Icon icon="car_fill" size={10} colorTheme="neutral80" />
+                <Icon icon="car" size={10} colorTheme="neutral80" />
                 <Icon icon="wifi_fill" size={10} colorTheme="neutral80" />
                 <Icon icon="eat_fill" size={10} colorTheme="neutral80" />
                 <Icon
@@ -76,7 +76,7 @@ export const Content = ({ onDone, flightIndex, selectedBaggage }: Props) => {
                   size={10}
                   colorTheme="neutral80"
                 />
-                <Icon icon="attach_outline" size={10} colorTheme="neutral80" />
+                <Icon icon="bed" size={10} colorTheme="neutral80" />
               </Block>
             )}
           </Block>

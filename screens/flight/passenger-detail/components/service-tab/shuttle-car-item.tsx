@@ -19,7 +19,7 @@ export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
     name: `ShuttleCars.${flightIndex}.${airportIdx}`,
   });
 
-  const _roomExist = useMemo(() => {
+  const _exist = useMemo(() => {
     if (typeof car === 'object' && !isEmpty(car)) {
       return true;
     }
@@ -47,7 +47,7 @@ export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
               colorTheme="neutral100"
             />
           </Block>
-          {_roomExist ? (
+          {_exist ? (
             <Text text="Giá" fontStyle="Body14Reg" colorTheme="neutral100" />
           ) : (
             <>
@@ -64,7 +64,7 @@ export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
             </>
           )}
         </Block>
-        {_roomExist && (
+        {_exist && (
           <Block
             flexDirection="row"
             justifyContent="space-between"

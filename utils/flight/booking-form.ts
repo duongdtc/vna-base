@@ -236,7 +236,7 @@ export const generateInitialPassengerFormData = (
     ContactInfo: {
       ...passengersForm?.ContactInfo,
       PhoneNumber: '393072749',
-      Email: 'hungtk@gmail.com',
+      Email,
       Address: 'Số 2, Lê Văn Thiêm',
       Note: 'Ghi chú mẫu',
     },
