@@ -27,17 +27,14 @@ import {
   BookingStatus,
   BookingStatusDetails,
   HitSlop,
-  load,
-  StorageKey,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
+import isNil from 'lodash.isnil';
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
-import { createBookingFromAxios } from '@vna-base/utils/realm/bookings';
-import { UpdateMode } from 'realm';
 
 export const Success = ({
   route,
@@ -248,7 +245,7 @@ export const Success = ({
           textColorTheme="neutral900"
           onPress={() => {
             realmRef.current?.write(() => {
-              if (bookingDetail !== undefined) {
+              if (!isNil(bookingDetail)) {
                 bookingDetail.BookingStatus = BookingStatus.TICKETED;
                 // createBookingFromAxios(
                 //   {

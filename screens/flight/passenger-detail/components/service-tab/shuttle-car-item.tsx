@@ -42,7 +42,7 @@ export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
         <Block flexDirection="row" columnGap={2} alignItems="center">
           <Block flex={1}>
             <Text
-              text="Loại phòng"
+              text="Loại xe"
               fontStyle="Body14Med"
               colorTheme="neutral100"
             />
