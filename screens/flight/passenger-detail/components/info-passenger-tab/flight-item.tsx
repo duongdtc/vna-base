@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Button, Icon, Separator, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
 import { navigate } from '@navigation/navigation-service';
 import { FlightFare } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
-import { useObject, useRealm } from '@services/realm/provider';
+import { useRealm } from '@services/realm/provider';
 import { bs, useStyles } from '@theme';
+import { APP_SCREEN } from '@utils';
+import { Block, Button, Icon, Separator, Text } from '@vna-base/components';
 import {
-  APP_SCREEN,
   ActiveOpacity,
   HitSlop,
   convertMin2Hour,
