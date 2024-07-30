@@ -1,7 +1,8 @@
-import { goBack } from '@navigation/navigation-service';
+import { goBack, navigate } from '@navigation/navigation-service';
 import {
   Block,
   Button,
+  Icon,
   NormalHeader,
   Screen,
   Text,
@@ -12,12 +13,14 @@ import React, { useCallback } from 'react';
 import { FlatList, ListRenderItem, Pressable } from 'react-native';
 import { UnistylesRuntime, useStyles } from 'react-native-unistyles';
 import { FilterBar, Statuses } from './components/filter-bar';
+import { APP_SCREEN } from '@utils';
 
 type Request = {
   title: string;
   code: string;
   createDate: string;
   status: string;
+  estimate?: string;
 };
 
 const RequestsFake: Array<Request> = [
@@ -38,6 +41,7 @@ const RequestsFake: Array<Request> = [
     code: 'YC12342',
     createDate: '2024-07-24T15:42:16.120Z',
     status: 'processing',
+    estimate: '2024-07-27T15:42:16.120Z',
   },
   {
     title: 'Tìm kiếm chuyến bay',
@@ -64,7 +68,7 @@ export const RequestSupport = () => {
     theme: { colors },
   } = useStyles();
 
-  const renderItem = useCallback<ListRenderItem<Request>>(({ item, index }) => {
+  const renderItem = useCallback<ListRenderItem<Request>>(({ item }) => {
     return (
       <Pressable onPress={() => {}}>
         <Block padding={12} rowGap={12} colorTheme="neutral100">
@@ -94,6 +98,28 @@ export const RequestSupport = () => {
               />
             </Block>
           </Block>
+          {!!item.estimate && (
+            <Block
+              style={{ backgroundColor: colors.errorSurface }}
+              flexDirection="row"
+              alignItems="center"
+              borderRadius={8}
+              padding={8}
+              columnGap={8}>
+              <Icon
+                icon="alert_circle_fill"
+                size={16}
+                colorTheme="neutral800"
+              />
+              <Text
+                text={`Dự kiến hoàn thành ${dayjs(item.estimate).format(
+                  'DD/MM/YYYY',
+                )}`}
+                fontStyle="Body12Reg"
+                colorTheme="neutral900"
+              />
+            </Block>
+          )}
         </Block>
       </Pressable>
     );
@@ -130,6 +156,9 @@ export const RequestSupport = () => {
             leftIconSize={24}
             textColorTheme="neutral900"
             padding={4}
+            onPress={() => {
+              navigate(APP_SCREEN.CREATE_REQUEST_SUPPORT);
+            }}
           />
         }
       />

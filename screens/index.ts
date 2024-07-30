@@ -135,3 +135,5 @@ export * from './banner-and-news-detail';
 export * from './flight/list-hotel';
 
 export * from './request-support';
+
+export * from './create-request-support';
