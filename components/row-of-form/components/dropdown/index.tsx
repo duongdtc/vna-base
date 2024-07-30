@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Block, BottomSheet, Icon, Text } from '@vna-base/components';
-import { ListRef, ListRenderItemParams } from '@vna-base/components/bottom-sheet/type';
+import {
+  ListRef,
+  ListRenderItemParams,
+} from '@vna-base/components/bottom-sheet/type';
 import {
   CommonProps,
   Dropdown as DropdownType,

@@ -15,7 +15,7 @@ export const UserAccountItem = memo((props: Props) => {
   const { item } = props;
 
   const navToDetail = () => {
-    navigate(APP_SCREEN.PERSONAL_INFO, { id: item.Id! });
+    navigate(APP_SCREEN.REGULAR_CUSTOMERS, { id: item.Id! });
   };
 
   return (
