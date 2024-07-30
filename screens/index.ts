@@ -139,3 +139,5 @@ export * from './request-support';
 export * from './create-request-support';
 
 export * from './regular-customers';
+
+export * from './request-detail';

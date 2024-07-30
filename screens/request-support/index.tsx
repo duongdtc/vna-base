@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { goBack, navigate } from '@navigation/navigation-service';
 import {
   Block,
@@ -14,8 +15,9 @@ import { FlatList, ListRenderItem, Pressable } from 'react-native';
 import { UnistylesRuntime, useStyles } from 'react-native-unistyles';
 import { FilterBar, Statuses } from './components/filter-bar';
 import { APP_SCREEN } from '@utils';
+import { Shadows } from '@theme';
 
-type Request = {
+export type Request = {
   title: string;
   code: string;
   createDate: string;
@@ -70,7 +72,12 @@ export const RequestSupport = () => {
 
   const renderItem = useCallback<ListRenderItem<Request>>(({ item }) => {
     return (
-      <Pressable onPress={() => {}}>
+      <Pressable
+        onPress={() => {
+          navigate(APP_SCREEN.REQUEST_DETAIL, {
+            request: item,
+          });
+        }}>
         <Block padding={12} rowGap={12} colorTheme="neutral100">
           <Text
             text={`${item.title} - [${item.code}]`}
@@ -90,9 +97,11 @@ export const RequestSupport = () => {
               paddingHorizontal={8}
               paddingVertical={4}
               borderRadius={4}
+              //@ts-ignore
               style={{ backgroundColor: colors[Statuses[item.status].bgc] }}>
               <Text
                 text={Statuses[item.status].title}
+                //@ts-ignore
                 colorTheme={Statuses[item.status].textColor}
                 fontStyle="Body12Med"
               />
@@ -129,7 +138,7 @@ export const RequestSupport = () => {
     <Screen backgroundColor={colors.neutral20}>
       <NormalHeader
         colorTheme="neutral10"
-        shadow=".3"
+        shadow={'.3' as unknown as Shadows}
         leftContent={
           <Button
             hitSlop={HitSlop.Large}
