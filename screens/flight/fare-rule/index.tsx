@@ -54,7 +54,7 @@ export const FareRule = ({
       <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
       <NormalHeader
         shadow=".3"
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           <Button
             type="common"
