@@ -40,7 +40,8 @@ export const Header = memo(() => {
             numberOfLines={1}
             ellipsizeMode="tail"
             colorTheme="neutral100"
-            text={` ${UserGroup?.Code}-${UserGroup?.Name}`}
+            // text={` ${UserGroup?.Code}-${UserGroup?.Name}`}
+            text=" AD-Admin"
           />
         </View>
       </View>

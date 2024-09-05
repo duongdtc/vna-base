@@ -73,8 +73,8 @@ export const runBookingActionListnener = () => {
       const { id, info, cb } = action.payload;
 
       listenerApi.dispatch(
-        currentAccountActions.reduceBalance(
-          Number(load(StorageKey.PRICE_BOOK ?? 0)),
+        currentAccountActions.addBalance(
+          -Number(load(StorageKey.PRICE_BOOK ?? 0)),
         ),
       );
 

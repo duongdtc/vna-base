@@ -13,12 +13,11 @@ export const runPermissionsListener = () => {
       const { UserGroupId, Agent, SuperAdmin } =
         listenerApi.getState().currentAccount.currentAccount;
 
-      const res = await Data.userPermissionUserPermissionGetListByUserGroupCreate(
-        {
+      const res =
+        await Data.userPermissionUserPermissionGetListByUserGroupCreate({
           Id: UserGroupId,
           Forced: true,
-        },
-      );
+        });
 
       if (validResponse(res)) {
         listenerApi.dispatch(
@@ -43,8 +42,10 @@ export const runPermissionsListener = () => {
       const res = await Data.userPermissionUserPermissionGetAllCreate({});
 
       if (validResponse(res)) {
-        listenerApi.dispatch(permissionActions.saveAllPermission(res.data.List!));
+        listenerApi.dispatch(
+          permissionActions.saveAllPermission(res.data.List!),
+        );
       }
     },
   });
-}
+};

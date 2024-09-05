@@ -27,11 +27,6 @@ const currentAccountSlice = createSlice({
       state.currentAccount = payload;
     },
 
-    reduceBalance: (state, { payload }: PayloadAction<number>) => {
-      state.currentAccount.Agent!.Balance =
-        state.currentAccount.Agent!.Balance - payload;
-    },
-
     setErrorMsgResetPassword: (
       state,
       { payload }: PayloadAction<I18nKeys | undefined>,
@@ -74,10 +69,15 @@ const resetPassword = createAction(
   }),
 );
 
+const addBalance = createAction(Actions.ADD_BALANCE, (amount: number) => ({
+  payload: { amount },
+}));
+
 export const currentAccountActions = {
   ...currentAccountSlice.actions,
   getCurrentAccount,
   loadAccountData,
   resetPassword,
+  addBalance,
 };
 export const currentAccountReducer = currentAccountSlice.reducer;
