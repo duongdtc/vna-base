@@ -74,7 +74,7 @@ export const BookingFlightDone = ({
         save(StorageKey.DETAIL_ORDER_BOOKING, {
           price: response.data.Item?.TotalPrice,
           bookingCode: response.data.Item?.Bookings?.[0]?.BookingCode,
-          bookingId: response.data.Item?.Bookings[0].Id,
+          bookingId: response.data.Item?.Bookings?.[0].Id,
         });
       }
     };
