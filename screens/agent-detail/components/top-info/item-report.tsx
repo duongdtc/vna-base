@@ -1,5 +1,8 @@
 import { Block, Icon, LinearGradient, Text } from '@vna-base/components';
-import { ListKeyFlReport, ReportAgt } from '@vna-base/screens/agent-detail/type';
+import {
+  ListKeyFlReport,
+  ReportAgt,
+} from '@vna-base/screens/agent-detail/type';
 import { translate } from '@vna-base/translations/translate';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -23,10 +26,10 @@ export const ItemReportAgt = (props: Props) => {
       borderColorTheme="neutral200"
       overflow="hidden">
       {item.key === ListKeyFlReport.ORDERS && (
-        <LinearGradient style={StyleSheet.absoluteFillObject} type="001" />
+        <LinearGradient style={StyleSheet.absoluteFillObject} type="gra5" />
       )}
       {item.key === ListKeyFlReport.SALES && (
-        <LinearGradient style={StyleSheet.absoluteFillObject} type="003" />
+        <LinearGradient style={StyleSheet.absoluteFillObject} type="gra6" />
       )}
       <Block
         flexDirection="row"
@@ -38,7 +41,7 @@ export const ItemReportAgt = (props: Props) => {
           colorTheme={
             item.key === ListKeyFlReport.ORDERS ||
             item.key === ListKeyFlReport.SALES
-              ? 'classicWhite'
+              ? 'white'
               : 'neutral800'
           }
         />
@@ -48,7 +51,7 @@ export const ItemReportAgt = (props: Props) => {
           colorTheme={
             item.key === ListKeyFlReport.ORDERS ||
             item.key === ListKeyFlReport.SALES
-              ? 'classicWhite'
+              ? 'white'
               : 'neutral800'
           }
         />

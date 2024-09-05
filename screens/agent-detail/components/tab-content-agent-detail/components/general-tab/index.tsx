@@ -1,28 +1,28 @@
-import { Block, Icon, RowOfForm, Separator, Text } from '@vna-base/components';
+import { useStyles } from '@theme';
+import { Block, RowOfForm, Separator } from '@vna-base/components';
+import { agentActions } from '@vna-base/redux/action-slice';
 import {
   selectAgentDetailById,
-  selectAllAgentGroup,
   selectAllAgentType,
-  selectAllOffice,
 } from '@vna-base/redux/selector';
-import { agentActions } from '@vna-base/redux/action-slice';
 import { FormAgentDetail } from '@vna-base/screens/agent-detail/type';
-import { useTheme } from '@theme';
-import { rxEmail, rxPhone, dispatch } from '@vna-base/utils';
+import { dispatch, rxEmail, rxPhone } from '@vna-base/utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Pressable, RefreshControl, ScrollView } from 'react-native';
+import { RefreshControl, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 
 export const GeneralTab = () => {
-  const { colors } = useTheme();
+  const {
+    theme: { colors },
+  } = useStyles();
   const { bottom } = useSafeAreaInsets();
 
   const agentDetail = useSelector(selectAgentDetailById);
-  const allAgentGroups = useSelector(selectAllAgentGroup);
+  // const allAgentGroups = useSelector(selectAllAgentGroup);
   const allAgentTypes = useSelector(selectAllAgentType);
-  const allOffices = useSelector(selectAllOffice);
+  // const allOffices = useSelector(selectAllOffice);
 
   const { control } = useFormContext<FormAgentDetail>();
 
@@ -45,7 +45,7 @@ export const GeneralTab = () => {
           padding: 12,
           paddingBottom: bottom,
         }}>
-        <Pressable onPress={() => {}}>
+        {/* <Pressable onPress={() => {}}>
           <Block
             flexDirection="row"
             alignItems="center"
@@ -69,10 +69,10 @@ export const GeneralTab = () => {
               />
             </Block>
           </Block>
-        </Pressable>
+        </Pressable> */}
         <Block
           flex={1}
-          marginTop={12}
+          overflow="hidden"
           colorTheme="neutral100"
           borderRadius={12}>
           <RowOfForm<FormAgentDetail>
@@ -104,7 +104,7 @@ export const GeneralTab = () => {
           />
           <Separator type="horizontal" size={3} />
 
-          <RowOfForm<FormAgentDetail>
+          {/* <RowOfForm<FormAgentDetail>
             type="dropdown"
             t18n="agent:group_customer"
             t18nBottomSheet="agent:group_customer"
@@ -115,7 +115,7 @@ export const GeneralTab = () => {
             typeDetails={allAgentGroups}
             colorThemeValue="neutral700"
           />
-          <Separator type="horizontal" size={3} />
+          <Separator type="horizontal" size={3} /> */}
 
           <RowOfForm<FormAgentDetail>
             type="dropdown"
@@ -157,6 +157,24 @@ export const GeneralTab = () => {
             isRequire
           />
           <Separator type="horizontal" size={3} />
+          <RowOfForm<FormAgentDetail>
+            t18n="OfficeId"
+            name="GeneralTab.OfficeId"
+            fixedTitleFontStyle={true}
+            control={control}
+            maxLength={80}
+            styleInput={{ color: colors.neutral700 }}
+          />
+          <Separator type="horizontal" size={3} />
+          <RowOfForm<FormAgentDetail>
+            t18n="IATA"
+            name="GeneralTab.IATA"
+            fixedTitleFontStyle={true}
+            control={control}
+            maxLength={80}
+            styleInput={{ color: colors.neutral700 }}
+          />
+          <Separator type="horizontal" size={3} />
 
           <RowOfForm<FormAgentDetail>
             t18n="order:contact"
@@ -165,11 +183,10 @@ export const GeneralTab = () => {
             control={control}
             maxLength={80}
             styleInput={{ color: colors.neutral700 }}
-            isRequire
           />
           <Separator type="horizontal" size={3} />
 
-          <RowOfForm<FormAgentDetail>
+          {/* <RowOfForm<FormAgentDetail>
             type="dropdown"
             t18n="agent_detail:affiliated_branches"
             t18nBottomSheet="agent_detail:affiliated_branches"
@@ -180,7 +197,7 @@ export const GeneralTab = () => {
             colorThemeValue="neutral700"
             typeDetails={allOffices}
           />
-          <Separator type="horizontal" size={3} />
+          <Separator type="horizontal" size={3} /> */}
 
           <RowOfForm<FormAgentDetail>
             t18n="input_info_passenger:address"
@@ -192,7 +209,7 @@ export const GeneralTab = () => {
             textContentType="fullStreetAddress"
           />
         </Block>
-        <Block
+        {/* <Block
           flex={1}
           marginTop={12}
           colorTheme="neutral100"
@@ -258,7 +275,7 @@ export const GeneralTab = () => {
             colorThemeValue="neutral700"
           />
           <Separator type="horizontal" size={3} />
-        </Block>
+        </Block> */}
       </ScrollView>
     </Block>
   );

@@ -6,7 +6,8 @@ import React from 'react';
 export const Header = () => {
   return (
     <NormalHeader
-      colorTheme="neutral100"
+      colorTheme="neutral10"
+      shadow=".3"
       leftContent={
         <Button
           hitSlop={HitSlop.Large}

@@ -15,7 +15,10 @@ import { goBack } from '@navigation/navigation-service';
 import { selectAgentDetailById } from '@vna-base/redux/selector';
 import { agentActions } from '@vna-base/redux/action-slice';
 import { listOptionUploadImg } from '@vna-base/screens/add-new-agent/type';
-import { FormAgentDetail, listOption } from '@vna-base/screens/agent-detail/type';
+import {
+  FormAgentDetail,
+  listOption,
+} from '@vna-base/screens/agent-detail/type';
 import { translate } from '@vna-base/translations/translate';
 import { HitSlop, dispatch } from '@vna-base/utils';
 import React, { memo, useCallback, useMemo, useRef } from 'react';
@@ -262,7 +265,7 @@ export const HeaderAgentDetail = memo(
                     borderRadius={4}>
                     <Text
                       text={agentDetail.CustomerID ?? 'N/A'}
-                      colorTheme="classicWhite"
+                      colorTheme="white"
                       fontStyle="Capture11Bold"
                     />
                   </Block>
@@ -315,7 +318,7 @@ export const HeaderAgentDetail = memo(
     return (
       <>
         <NormalHeader
-          colorTheme="neutral100"
+          colorTheme="neutral10"
           leftContent={_leftContent}
           rightContent={_rightContent()}
           zIndex={0}

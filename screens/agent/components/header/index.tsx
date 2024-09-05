@@ -7,7 +7,7 @@ import { APP_SCREEN } from '@utils';
 export const Header = () => {
   return (
     <NormalHeader
-      colorTheme="neutral100"
+      colorTheme="neutral10"
       leftContent={
         <Button
           hitSlop={HitSlop.Large}

@@ -102,7 +102,7 @@ export const FilterBottomSheet = forwardRef<
         <Button
           fullWidth
           t18n="common:confirm"
-          textColorTheme="classicWhite"
+          textColorTheme="white"
           buttonColorTheme="primary500"
           onPress={() => {
             closeBottomSheet();

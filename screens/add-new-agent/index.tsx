@@ -79,7 +79,7 @@ export const AddNewAgent = () => {
               <Text
                 t18n="common:save"
                 fontStyle="Title16Bold"
-                colorTheme="classicWhite"
+                colorTheme="white"
               />
             </Block>
           </Pressable>

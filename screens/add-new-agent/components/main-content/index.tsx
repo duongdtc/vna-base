@@ -1,26 +1,14 @@
-import { Block, RowOfForm, Separator, Text } from '@vna-base/components';
-import {
-  selectAllAgentGroup,
-  selectAllAgentType,
-  selectAllOffice,
-  selectAllSIset,
-} from '@vna-base/redux/selector';
+import { Block, RowOfForm, Separator } from '@vna-base/components';
+import { selectAllAgentType } from '@vna-base/redux/selector';
 import { FormNewAgentType } from '@vna-base/screens/add-new-agent/type';
-import { useTheme } from '@theme';
-import { rxEmail, rxPhone, convertStringToNumber } from '@vna-base/utils';
+import { rxEmail, rxPhone } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { useFormContext } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { FontStyle } from '@theme/typography';
 
 export const MainContent = memo(() => {
-  const { colors } = useTheme();
-
-  const allAgentGroups = useSelector(selectAllAgentGroup);
   const allAgentTypes = useSelector(selectAllAgentType);
-  const allOffices = useSelector(selectAllOffice);
-  const allSISet = useSelector(selectAllSIset);
 
   const { control } = useFormContext<FormNewAgentType>();
 
@@ -55,7 +43,7 @@ export const MainContent = memo(() => {
           control={control}
           isRequire
         />
-        <Separator type="horizontal" size={3} />
+        {/* <Separator type="horizontal" size={3} />
         <RowOfForm<FormNewAgentType>
           type="dropdown"
           t18n="agent:group_customer"
@@ -68,7 +56,7 @@ export const MainContent = memo(() => {
           typeDetails={allAgentGroups}
           colorThemeValue="neutral700"
           removeAll
-        />
+        /> */}
         <Separator type="horizontal" size={3} />
         <RowOfForm<FormNewAgentType>
           type="dropdown"
@@ -109,14 +97,40 @@ export const MainContent = memo(() => {
         />
         <Separator type="horizontal" size={3} />
         <RowOfForm<FormNewAgentType>
+          t18n="OfficeID"
+          name="OfficeID"
+          fixedTitleFontStyle={true}
+          control={control}
+          keyboardType="email-address"
+          maxLength={120}
+        />
+        <Separator type="horizontal" size={3} />
+        <RowOfForm<FormNewAgentType>
+          t18n="IATA"
+          name="IATA"
+          fixedTitleFontStyle={true}
+          control={control}
+          keyboardType="email-address"
+          maxLength={120}
+        />
+        <Separator type="horizontal" size={3} />
+        <RowOfForm<FormNewAgentType>
           t18n="order:contact"
           name="Contact"
           fixedTitleFontStyle={true}
           control={control}
           maxLength={80}
-          isRequire
         />
         <Separator type="horizontal" size={3} />
+        <RowOfForm<FormNewAgentType>
+          t18n="input_info_passenger:address"
+          name="Address"
+          fixedTitleFontStyle={true}
+          control={control}
+          maxLength={120}
+          textContentType="fullStreetAddress"
+        />
+        {/* <Separator type="horizontal" size={3} />
         <RowOfForm<FormNewAgentType>
           t18n="input_info_passenger:address"
           name="Address"
@@ -180,9 +194,9 @@ export const MainContent = memo(() => {
             color: colors.neutral700,
             ...FontStyle.Title16Semi,
           }}
-        />
+        /> */}
       </Block>
-      <Text
+      {/* <Text
         t18n="add_new_user_acc:usage_rights"
         fontStyle="Title20Semi"
         colorTheme="neutral900"
@@ -231,7 +245,7 @@ export const MainContent = memo(() => {
           fixedTitleFontStyle={true}
           control={control}
         />
-      </Block>
+      </Block> */}
     </Block>
   );
 }, isEqual);

@@ -12,22 +12,15 @@ import {
 } from 'react-native-tab-view';
 
 import { useStyles } from './style';
-import {
-  AccountsTab,
-  ActivitiesTab,
-  ConfigTab,
-  DocumentsTab,
-  EmployeesTab,
-  GeneralTab,
-} from './components';
+import { AccountsTab, GeneralTab } from './components';
 
 const TabName = {
   GENERAL: 'GENERAL',
-  CONFIG: 'CONFIG',
+  // CONFIG: 'CONFIG',
   ACCOUNT: 'ACCOUNT',
-  EMPLOYEE: 'EMPLOYEE',
-  DOCUMENT: 'DOCUMENT',
-  ACTIVITY: 'ACTIVITY',
+  // EMPLOYEE: 'EMPLOYEE',
+  // DOCUMENT: 'DOCUMENT',
+  // ACTIVITY: 'ACTIVITY',
 };
 
 export const TabContentAgentDetail = () => {
@@ -41,26 +34,26 @@ export const TabContentAgentDetail = () => {
         key: TabName.GENERAL,
         title: 'agent:general_info',
       },
-      {
-        key: TabName.CONFIG,
-        title: 'agent:configuration',
-      },
+      // {
+      //   key: TabName.CONFIG,
+      //   title: 'agent:configuration',
+      // },
       {
         key: TabName.ACCOUNT,
         title: 'agent:accounts',
       },
-      {
-        key: TabName.EMPLOYEE,
-        title: 'agent:employees',
-      },
-      {
-        key: TabName.DOCUMENT,
-        title: 'agent:document',
-      },
-      {
-        key: TabName.ACTIVITY,
-        title: 'user_account:activities',
-      },
+      // {
+      //   key: TabName.EMPLOYEE,
+      //   title: 'agent:employees',
+      // },
+      // {
+      //   key: TabName.DOCUMENT,
+      //   title: 'agent:document',
+      // },
+      // {
+      //   key: TabName.ACTIVITY,
+      //   title: 'user_account:activities',
+      // },
     ];
 
     return temp;
@@ -120,25 +113,20 @@ export const TabContentAgentDetail = () => {
         case TabName.GENERAL:
           return <GeneralTab />;
 
-        // passenger tab
-        case TabName.CONFIG:
-          return <ConfigTab />;
+        // case TabName.CONFIG:
+        //   return <ConfigTab />;
 
-        // ticket tab
         case TabName.ACCOUNT:
           return <AccountsTab />;
 
-        // service tab
-        case TabName.EMPLOYEE:
-          return <EmployeesTab />;
+        // case TabName.EMPLOYEE:
+        //   return <EmployeesTab />;
 
-        // ticket class tab
-        case TabName.DOCUMENT:
-          return <DocumentsTab />;
+        // case TabName.DOCUMENT:
+        //   return <DocumentsTab />;
 
-        // ticket class tab
-        case TabName.ACTIVITY:
-          return <ActivitiesTab />;
+        // case TabName.ACTIVITY:
+        //   return <ActivitiesTab />;
       }
     },
     [],

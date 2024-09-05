@@ -82,7 +82,7 @@ export const AgentItem = memo((props: Props) => {
                 <Text
                   text={item.CustomerID ?? 'N/A'}
                   fontStyle="Capture11Bold"
-                  colorTheme="neutral100"
+                  colorTheme="neutral10"
                 />
               </Block>
               <Text
