@@ -1,22 +1,23 @@
+import { Policy as PolicyType } from '@services/axios/axios-data';
+import { createStyleSheet, useStyles } from '@theme';
 import { Block, EmptyList, Screen } from '@vna-base/components';
+import { NormalRef } from '@vna-base/components/bottom-sheet/type';
+import { WindowWidth, scale } from '@vna-base/utils';
+import isEmpty from 'lodash.isempty';
 import React, { useCallback, useRef } from 'react';
-import { FilterBar, Header, Item } from './components';
-import { useStyles } from './styles';
-import { useFilterOrder } from './hooks';
+import ContentLoader, { Rect } from 'react-content-loader/native';
 import { FormProvider } from 'react-hook-form';
 import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
-import { useTheme } from '@theme';
-import { Policy as PolicyType } from '@services/axios/axios-data';
-import isEmpty from 'lodash.isempty';
-import ContentLoader, { Rect } from 'react-content-loader/native';
-import { WindowWidth, scale } from '@vna-base/utils';
+import { FilterBar, Header, Item } from './components';
 import { FilterBottomSheet } from './components/filter-bar/filter-bottom-sheet';
-import { NormalRef } from '@vna-base/components/bottom-sheet/type';
+import { useFilterOrder } from './hooks';
 import { Filter, FilterFormInBottomSheet, FilterName } from './type';
 
 export const Policy = () => {
-  const styles = useStyles();
-  const { colors, dark } = useTheme();
+  const {
+    styles,
+    theme: { colors, dark },
+  } = useStyles(styleSheet);
   const filterRef = useRef<NormalRef>(null);
 
   const { list, formMethod, handleRefresh, loadMore } = useFilterOrder();
@@ -128,3 +129,10 @@ export const Policy = () => {
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors }) => ({
+  container: {
+    backgroundColor: colors.neutral30,
+  },
+  contentContainer: { paddingTop: 8, paddingBottom: scale(36) },
+}));

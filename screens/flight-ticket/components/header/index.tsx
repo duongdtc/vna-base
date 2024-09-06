@@ -23,9 +23,7 @@ export const Header = () => {
 
   return (
     <NormalHeader
-      colorTheme="neutral100"
-      borderBottomWidth={3}
-      borderColorTheme="neutral300"
+      colorTheme="neutral10"
       leftContent={
         <Button
           hitSlop={HitSlop.Large}

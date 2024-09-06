@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { createStyleSheet, useStyles } from '@theme';
 import {
   Block,
   Button,
@@ -8,11 +9,11 @@ import {
   Text,
 } from '@vna-base/components';
 import { FilterForm } from '@vna-base/screens/flight-ticket/type';
-import { useTheme } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
   HitSlop,
+  scale,
   TicketTypeDetail,
   TicketTypeDetails,
 } from '@vna-base/utils';
@@ -27,11 +28,9 @@ import {
 } from 'react-native';
 import { FilterButton } from './filter-button';
 import { SortButton } from './sort-button';
-import { useStyles } from './styles';
 
 export const FilterBar = () => {
-  const styles = useStyles();
-  const { colors } = useTheme();
+  const { styles } = useStyles(styleSheet);
   const { setValue, getValues, control } = useFormContext<FilterForm>();
 
   const handleDoneDatePicker = (range: RangeDate) => {
@@ -72,16 +71,7 @@ export const FilterBar = () => {
 
           return (
             <TouchableOpacity
-              style={[
-                styles.statusItemContainer,
-                {
-                  backgroundColor: colors[item.bgColorTheme],
-                  borderColor: isSelected
-                    ? //@ts-ignore
-                      colors[item.colorTheme + '0']
-                    : colors.neutral100,
-                },
-              ]}
+              style={[styles.statusItemContainer(isSelected, item.colorTheme)]}
               activeOpacity={ActiveOpacity}
               onPress={() => {
                 const newArr = [...value];
@@ -111,7 +101,7 @@ export const FilterBar = () => {
         }}
       />
     ),
-    [colors, control, styles.statusItemContainer],
+    [control, styles],
   );
 
   return (
@@ -160,3 +150,30 @@ export const FilterBar = () => {
     </Block>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors }) => ({
+  statusItemContainer: (isSelected: boolean, itemBgTheme: any) => ({
+    paddingHorizontal: scale(8),
+    paddingVertical: 4,
+    flexDirection: 'row',
+    columnGap: 4,
+    borderRadius: 4,
+    borderWidth: 1,
+    alignItems: 'center',
+    //@ts-ignore
+    backgroundColor: colors[itemBgTheme],
+    //@ts-ignore
+    borderColor: isSelected ? colors[itemBgTheme + '0'] : colors.neutral10,
+  }),
+  statusContentContainer: {
+    paddingHorizontal: scale(12),
+    paddingTop: 4,
+    paddingBottom: 2,
+  },
+  dateContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%',
+  },
+}));

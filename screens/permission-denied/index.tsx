@@ -25,13 +25,13 @@ export const PermissionDenied = ({
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           isShowBackBtn ? (
             <Button
               leftIcon="arrow_ios_left_outline"
               leftIconSize={24}
-              textColorTheme="neutral900"
+              textColorTheme="neutral100"
               onPress={() => {
                 goBack();
               }}

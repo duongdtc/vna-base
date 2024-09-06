@@ -29,26 +29,6 @@ export const useStyles = () => {
           top: 2,
           right: 4,
         },
-        dateContainer: {
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          height: '100%',
-        },
-        statusContentContainer: {
-          paddingHorizontal: scale(12),
-          paddingTop: 4,
-          paddingBottom: 2,
-        },
-        statusItemContainer: {
-          paddingHorizontal: scale(8),
-          paddingVertical: 4,
-          flexDirection: 'row',
-          columnGap: 4,
-          borderRadius: 4,
-          borderWidth: 2,
-          alignItems: 'center',
-        },
         confirmContainer: {
           paddingTop: scale(12),
           paddingHorizontal: scale(16),

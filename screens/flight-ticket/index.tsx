@@ -1,16 +1,19 @@
+import { createStyleSheet, useStyles } from '@theme';
 import { Block, EmptyList, Screen } from '@vna-base/components';
+import { scale } from '@vna-base/utils';
+import isEmpty from 'lodash.isempty';
 import React, { useCallback } from 'react';
-import { useStyles } from './styles';
-import { FilterBar, Header, Item, SkeletonItem } from './components';
-import { useFilterFlightTicket } from './hooks';
 import { FormProvider } from 'react-hook-form';
 import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
-import { useTheme } from '@theme';
-import isEmpty from 'lodash.isempty';
+import { UnistylesRuntime } from 'react-native-unistyles';
+import { FilterBar, Header, Item, SkeletonItem } from './components';
+import { useFilterFlightTicket } from './hooks';
 
 export const FlightTicket = () => {
-  const styles = useStyles();
-  const { colors } = useTheme();
+  const {
+    styles,
+    theme: { colors },
+  } = useStyles(styleSheet);
 
   const { list, formMethod, handleRefresh, loadMore } = useFilterFlightTicket();
 
@@ -57,3 +60,17 @@ export const FlightTicket = () => {
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors }) => ({
+  container: {
+    backgroundColor: colors.neutral30,
+  },
+  contentContainer: {
+    paddingHorizontal: scale(12),
+    paddingTop: 8,
+    paddingBottom: UnistylesRuntime.insets.bottom + 8,
+  },
+  list: {
+    marginTop: -1,
+  },
+}));

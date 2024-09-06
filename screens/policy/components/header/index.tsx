@@ -9,7 +9,7 @@ export const Header = memo(() => {
   return (
     <NormalHeader
       zIndex={0}
-      colorTheme="neutral100"
+      colorTheme="neutral10"
       leftContent={
         <Button
           hitSlop={HitSlop.Large}

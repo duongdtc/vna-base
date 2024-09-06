@@ -1,11 +1,13 @@
 import { Block, Button, Image, Screen, Text } from '@vna-base/components';
 import React from 'react';
-import { useStyles } from './styles';
 import { goBack } from '@navigation/navigation-service';
 import { images } from '@assets/image';
+import { createStyleSheet, useStyles } from '@theme';
+import { UnistylesRuntime } from 'react-native-unistyles';
+import { scale } from '@vna-base/utils';
 
 export const NotFound = () => {
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
 
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
@@ -42,3 +44,21 @@ export const NotFound = () => {
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows }) => ({
+  container: {
+    backgroundColor: colors.neutral30,
+  },
+  footerContainer: {
+    padding: scale(12),
+    paddingBottom: UnistylesRuntime.insets.bottom + 12,
+    columnGap: scale(12),
+    flexDirection: 'row',
+    backgroundColor: colors.neutral10,
+    ...shadows.main,
+  },
+  img: {
+    width: scale(268),
+    height: scale(138),
+  },
+}));
