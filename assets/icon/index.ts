@@ -300,6 +300,7 @@ export const icons = {
   weight_fill: require('./source/fill/weight.png'),
   wifi_off_fill: require('./source/fill/wifi-off.png'),
   wifi_fill: require('./source/fill/wifi.png'),
+  cash_add_fill: require('./source/fill/cash_add.png'),
   //*outline
   suitcase_outline: require('./source/outline/suitcase.png'),
   eat_outline: require('./source/outline/eat.png'),
