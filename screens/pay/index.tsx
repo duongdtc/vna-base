@@ -7,8 +7,6 @@ import {
 } from '@react-native-camera-roll/camera-roll';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { currentAccountActions } from '@redux-slice';
-import { bankAccountsOfParent } from '@screens/topup/type';
 import { TypeIdMessage } from '@services/mqtt/constants';
 import { removeFunOnMessage } from '@services/mqtt/provider';
 import { createStyleSheet, useStyles } from '@theme';
@@ -37,6 +35,8 @@ import { Platform, ScrollView } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Line, Svg } from 'react-native-svg';
 import { UnistylesRuntime } from 'react-native-unistyles';
+import { bankAccountsOfParent } from '../topup/type';
+import { currentAccountActions } from '@vna-base/redux/action-slice';
 
 export const Pay = ({
   route,

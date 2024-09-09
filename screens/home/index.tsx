@@ -80,7 +80,7 @@ export const Home = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}>
         <Balance />
-        <ProcessingTask />
+        {/* <ProcessingTask /> */}
         <Banner />
         <SpecializedNews />
       </Animated.ScrollView>

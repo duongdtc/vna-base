@@ -19,7 +19,6 @@ import {
   Text,
 } from '@vna-base/components';
 import { topupActions } from '@vna-base/redux/action-slice';
-import { TransactionStatus } from '@vna-base/screens/pay/hooks/use-handle-topup-mqtt';
 import {
   CurrencyDetails,
   dispatch,

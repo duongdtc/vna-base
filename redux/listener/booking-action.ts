@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Data, Ibe } from '@services/axios';
+import { Ibe } from '@services/axios';
 import { ActionLst, Booking, Flight } from '@services/axios/axios-data';
 import {
   Ancillary,
@@ -29,6 +29,8 @@ import {
 } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import { AxiosResponse } from 'axios';
+
+import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
 import isNil from 'lodash.isnil';
@@ -74,13 +76,13 @@ export const runBookingActionListnener = () => {
   takeLatestListeners()({
     actionCreator: bookingActionActions.issueTicket,
     effect: async (action, listenerApi) => {
-      const { id, cb } = action.payload;
+      const { id, cb, autoUpdateBalance } = action.payload;
 
-      listenerApi.dispatch(
-        currentAccountActions.addBalance(
-          -Number(load(StorageKey.PRICE_BOOK ?? 0)),
-        ),
-      );
+      const price = Number(load(StorageKey.PRICE_BOOK ?? 0));
+
+      if (autoUpdateBalance) {
+        listenerApi.dispatch(currentAccountActions.addBalance(-price));
+      }
 
       const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
         BookingRealm.schema.name,
@@ -99,6 +101,28 @@ export const runBookingActionListnener = () => {
           bookingDetail.BookingStatus = BookingStatus.TICKETED;
         }
       });
+
+      await notifee.requestPermission({
+        criticalAlert: true,
+      });
+
+      const trigger: TimestampTrigger = {
+        type: TriggerType.TIMESTAMP,
+        timestamp: Date.now() + 1000,
+      };
+
+      await notifee.createTriggerNotification(
+        {
+          title: 'Thanh toán xuất vé thành công',
+          body: `Bạn vừa thanh toán ${price.currencyFormat()}VND`,
+          ios: {
+            critical: true,
+            sound: 'default',
+            criticalVolume: 1.0,
+          },
+        },
+        trigger,
+      );
 
       cb(validResponse(res), {
         listTicket: res.data.Booking?.ListTicket ?? [],

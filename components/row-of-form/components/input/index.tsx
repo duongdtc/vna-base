@@ -4,7 +4,12 @@ import { CommonProps, InputProps } from '@vna-base/components/row-of-form/type';
 import { SortType } from '@services/axios';
 import { translate } from '@vna-base/translations/translate';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { FieldPath, FieldValues, useController } from 'react-hook-form';
+import {
+  FieldPath,
+  FieldValues,
+  useController,
+  useFormContext,
+} from 'react-hook-form';
 import { Pressable, TextInput } from 'react-native';
 import { useStyles } from '../../styles';
 
@@ -13,7 +18,6 @@ export function Input<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: InputProps & CommonProps<TFieldValues, TName>) {
   const styles = useStyles();
-  const inputRef = useRef<TextInput>(null);
   const {
     t18n,
     hideBottomSheet,
@@ -35,8 +39,11 @@ export function Input<
     ...input
   } = props;
 
+  //@ts-ignore
+  const { setFocus } = useFormContext({ control });
+
   const {
-    field: { value: inputValue, onChange: onChangeText, onBlur },
+    field: { value: inputValue, onChange: onChangeText, onBlur, ref },
     fieldState: { invalid },
   } = useController({
     control: control,
@@ -85,7 +92,7 @@ export function Input<
 
       hideBottomSheet();
     } else {
-      inputRef.current?.focus();
+      setFocus(name);
     }
   }, []);
 
@@ -141,11 +148,11 @@ export function Input<
       <Pressable
         disabled={disable}
         onPress={() => {
-          inputRef.current?.focus();
+          setFocus(name);
         }}
         style={styles.rightContainer}>
         <TextInputShrink
-          ref={inputRef}
+          ref={ref}
           rightIcon="edit_2_fill"
           rightIconSize={18}
           rightIconColorTheme={invalid ? 'error400' : 'neutral700'}

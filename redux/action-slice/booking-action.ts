@@ -177,8 +177,9 @@ const issueTicket = createAction(
         };
       },
     ) => void,
+    autoUpdateBalance = true,
   ) => ({
-    payload: { id, info, cb },
+    payload: { id, info, cb, autoUpdateBalance },
   }),
 );
 
