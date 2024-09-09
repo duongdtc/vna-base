@@ -79,7 +79,7 @@ export const TicketVoid = ({
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <FormProvider {...formMethod}>
         <NormalHeader
-          colorTheme="neutral100"
+          colorTheme="neutral10"
           shadow=".3"
           leftContent={
             <Button

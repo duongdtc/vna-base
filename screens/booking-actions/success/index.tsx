@@ -27,6 +27,7 @@ import {
   BookingStatus,
   BookingStatusDetails,
   HitSlop,
+  TicketStatus,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
@@ -244,20 +245,7 @@ export const Success = ({
           type="classic"
           textColorTheme="neutral900"
           onPress={() => {
-            realmRef.current?.write(() => {
-              if (!isNil(bookingDetail)) {
-                bookingDetail.BookingStatus = BookingStatus.TICKETED;
-                // createBookingFromAxios(
-                //   {
-                //     ...bookingDetail?.toJSON(),
-                //     BookingStatus: BookingStatus.TICKETED,
-                //   },
-                //   UpdateMode.Modified,
-                // );
-              }
-            });
-
-            navigate(APP_SCREEN.ORDER);
+            popWithStep(3);
           }}
         />
       </Block>

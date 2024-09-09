@@ -109,88 +109,94 @@ export const Content = ({
   }, [actions]);
 
   const onPressItem = useCallback(({ FeatureId, System }: Action) => {
-    if (FeatureId !== 'TicketIssue' && FeatureId !== 'CheckInOnline') {
-      showToast({
-        type: 'warning',
-        text: 'Chỉ Demo chức năng Xuất vé và Check in online',
-      });
-
-      return;
-    }
-
-    let screen: APP_SCREEN;
-
-    closeBottomSheet();
-
-    if (FeatureId === 'BookingPricing') {
-      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
-        BookingRealm.schema.name,
-        bookingId,
-      );
-
-      dispatch(
-        bookingActionActions.bookingPricing(
-          {
-            System: System as System,
-            Airline: bookingDetail?.Airline ?? '',
-            BookingCode: bookingDetail?.BookingCode ?? '',
-            BookingId: bookingId,
-            AccountCode: bookingDetail?.AccountCode ?? '',
-            Tourcode: bookingDetail?.Tourcode ?? '',
-          },
-          isSuccess => {
-            if (isSuccess) {
-              navigate(APP_SCREEN.BOOKING_PRICING_COMPLETED);
-            }
-          },
-        ),
-      );
-
-      return;
-    }
-
-    if (FeatureId === 'BookingRetrieve') {
-      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
-        BookingRealm.schema.name,
-        bookingId,
-      );
-      dispatch(
-        bookingActions.getBookingByIdOrBookingCode(
-          {
-            id: bookingId,
-            system: System as CheckInOnlineSystem,
-            bookingCode: bookingDetail?.BookingCode ?? '',
-            surname: bookingDetail?.Passengers[0]?.Surname,
-          },
-          { force: true },
-        ),
-      );
-
-      return;
-    }
-
-    dispatch(
-      bookingActionActions.saveCurrentFeature({
-        featureId: FeatureId as string,
-        bookingId,
-      }),
-    );
-
-    switch (FeatureId) {
-      case 'TicketExch':
-        screen = APP_SCREEN.FlightChange;
-        break;
-
-      default:
-        screen = FeatureId as APP_SCREEN;
-
-        break;
-    }
-
-    navigate(screen, {
+    navigate(APP_SCREEN.TicketVoid, {
       id: bookingId,
+      featureId: FeatureId,
       system: System as CheckInOnlineSystem,
     });
+
+    // if (FeatureId !== 'TicketIssue' && FeatureId !== 'CheckInOnline') {
+    //   showToast({
+    //     type: 'warning',
+    //     text: 'Chỉ Demo chức năng Xuất vé và Check in online',
+    //   });
+
+    //   return;
+    // }
+
+    // let screen: APP_SCREEN;
+
+    // closeBottomSheet();
+
+    // if (FeatureId === 'BookingPricing') {
+    //   const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+    //     BookingRealm.schema.name,
+    //     bookingId,
+    //   );
+
+    //   dispatch(
+    //     bookingActionActions.bookingPricing(
+    //       {
+    //         System: System as System,
+    //         Airline: bookingDetail?.Airline ?? '',
+    //         BookingCode: bookingDetail?.BookingCode ?? '',
+    //         BookingId: bookingId,
+    //         AccountCode: bookingDetail?.AccountCode ?? '',
+    //         Tourcode: bookingDetail?.Tourcode ?? '',
+    //       },
+    //       isSuccess => {
+    //         if (isSuccess) {
+    //           navigate(APP_SCREEN.BOOKING_PRICING_COMPLETED);
+    //         }
+    //       },
+    //     ),
+    //   );
+
+    //   return;
+    // }
+
+    // if (FeatureId === 'BookingRetrieve') {
+    //   const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+    //     BookingRealm.schema.name,
+    //     bookingId,
+    //   );
+    //   dispatch(
+    //     bookingActions.getBookingByIdOrBookingCode(
+    //       {
+    //         id: bookingId,
+    //         system: System as CheckInOnlineSystem,
+    //         bookingCode: bookingDetail?.BookingCode ?? '',
+    //         surname: bookingDetail?.Passengers[0]?.Surname,
+    //       },
+    //       { force: true },
+    //     ),
+    //   );
+
+    //   return;
+    // }
+
+    // dispatch(
+    //   bookingActionActions.saveCurrentFeature({
+    //     featureId: FeatureId as string,
+    //     bookingId,
+    //   }),
+    // );
+
+    // switch (FeatureId) {
+    //   case 'TicketExch':
+    //     screen = APP_SCREEN.FlightChange;
+    //     break;
+
+    //   default:
+    //     screen = FeatureId as APP_SCREEN;
+
+    //     break;
+    // }
+
+    // navigate(screen, {
+    //   id: bookingId,
+    //   system: System as CheckInOnlineSystem,
+    // });
   }, []);
 
   const getActionIcon = useCallback(

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Data, Ibe } from '@services/axios';
 import { ActionLst, Booking, Flight } from '@services/axios/axios-data';
@@ -22,12 +23,15 @@ import {
   scale,
   StorageKey,
   System as SystemType,
+  TicketStatus,
+  TicketType,
   validResponse,
 } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash.isempty';
+import isNil from 'lodash.isnil';
 
 export const runBookingActionListnener = () => {
   takeLatestListeners()({
@@ -70,7 +74,7 @@ export const runBookingActionListnener = () => {
   takeLatestListeners()({
     actionCreator: bookingActionActions.issueTicket,
     effect: async (action, listenerApi) => {
-      const { id, info, cb } = action.payload;
+      const { id, cb } = action.payload;
 
       listenerApi.dispatch(
         currentAccountActions.addBalance(
@@ -78,28 +82,23 @@ export const runBookingActionListnener = () => {
         ),
       );
 
-      const bookingDetail = realmRef.current
-        ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
-        ?.toJSON() as Booking;
-
-      // console.log(
-      //   '🚀 ~ effect: ~ bookingDetail:',
-      //   JSON.stringify(bookingDetail),
-      // );
-      // const { routes } = listenerApi.getState().flightSearch;
+      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+        BookingRealm.schema.name,
+        id,
+      );
 
       const res = await fakeIssueTicket({
+        //@ts-ignore
         fl: bookingDetail?.Flights ?? [],
         paxName: bookingDetail?.PaxName ?? '',
         bookingCode: bookingDetail?.BookingCode ?? '',
       });
-      // const res = await Ibe.flightIssueTicketCreate({
-      //   System: bookingDetail?.System,
-      //   BookingCode: bookingDetail?.BookingCode,
-      //   BookingId: id,
-      //   Tourcode: info.Tourcode,
-      //   AccountCode: info.AccountCode,
-      // });
+
+      realmRef.current?.write(() => {
+        if (!isNil(bookingDetail)) {
+          bookingDetail.BookingStatus = BookingStatus.TICKETED;
+        }
+      });
 
       cb(validResponse(res), {
         listTicket: res.data.Booking?.ListTicket ?? [],
@@ -132,31 +131,37 @@ export const runBookingActionListnener = () => {
     },
   })({
     actionCreator: bookingActionActions.voidTicket,
-    effect: async action => {
-      const { id, form, cb } = action.payload;
+    effect: async (action, listenerApi) => {
+      const { id, cb } = action.payload;
+      await delay(2000);
+      try {
+        const bookingDetail =
+          realmRef.current?.objectForPrimaryKey<BookingRealm>(
+            BookingRealm.schema.name,
+            id,
+          );
 
-      const bookingDetail = realmRef.current
-        ?.objectForPrimaryKey<BookingRealm>(BookingRealm.schema.name, id)
-        ?.toJSON() as Booking;
+        listenerApi.dispatch(
+          currentAccountActions.addBalance(
+            -Number(load(StorageKey.PRICE_BOOK ?? 0)),
+          ),
+        );
 
-      const res = await Ibe.flightVoidTicketCreate({
-        System: bookingDetail?.System,
-        Airline: bookingDetail?.Airline,
-        BookingCode: bookingDetail?.BookingCode,
-        BookingId: id,
+        realmRef.current?.write(() => {
+          if (!isNil(bookingDetail)) {
+            bookingDetail.Tickets?.forEach(ticket => {
+              ticket.TicketStatus = TicketStatus.VOID;
+              ticket.TicketType = TicketType.VOID;
+            });
 
-        CancelBooking: form.isCancelBooking,
-        VoidAllTicket: form.isVoidAllTicket,
-        ListTicket: form.tickets
-          .filter(ticket => ticket.isSelected)
-          .map(ticket => ticket.TicketNumber as string),
-      });
+            bookingDetail.BookingStatus = BookingStatus.CANCELED;
+          }
+        });
 
-      if (!validResponse(res)) {
-        throw new Error();
+        cb(true, bookingDetail?.Tickets ?? []);
+      } catch (error) {
+        console.log('🚀 ~ effect: ~ error:', error);
       }
-
-      cb(validResponse(res), res.data.Booking?.ListTicket ?? []);
     },
   });
 
