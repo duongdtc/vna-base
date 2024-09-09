@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { images } from '@assets/image';
+import { goBack } from '@navigation/navigation-service';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TypeIdMessage } from '@services/mqtt/constants';
+import { removeFunOnMessage } from '@services/mqtt/provider';
+import { TopupRealm } from '@services/realm/models';
+import { useObject } from '@services/realm/provider';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   Button,
@@ -10,20 +18,8 @@ import {
   showToast,
   Text,
 } from '@vna-base/components';
-import { goBack } from '@navigation/navigation-service';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectAllTypeTopup } from '@vna-base/redux/selector';
 import { topupActions } from '@vna-base/redux/action-slice';
-import {
-  selectAllBankAccountsOfParent,
-  selectTransactionStatus,
-} from '@vna-base/redux/selector/bank';
 import { TransactionStatus } from '@vna-base/screens/pay/hooks/use-handle-topup-mqtt';
-import { TypeIdMessage } from '@services/mqtt/constants';
-import { removeFunOnMessage } from '@services/mqtt/provider';
-import { TopupRealm } from '@services/realm/models';
-import { useObject } from '@services/realm/provider';
 import {
   CurrencyDetails,
   dispatch,
@@ -35,49 +31,20 @@ import {
 import dayjs from 'dayjs';
 import React, { useEffect, useMemo } from 'react';
 import { Pressable, ScrollView } from 'react-native';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
-import { useSelector } from 'react-redux';
 import { RealmObject } from 'realm/dist/public-types/Object';
 import { useStyles } from './style';
-import { APP_SCREEN, RootStackParamList } from '@utils';
 
 export const TopupDetail = ({
   route,
 }: NativeStackScreenProps<RootStackParamList, APP_SCREEN.TOPUP_DETAIL>) => {
   const styles = useStyles();
   const { id, realtime } = route.params;
-  const loadingSharedValue = useSharedValue<number>(0);
-
-  const realtimeStatus = useSelector(selectTransactionStatus);
 
   const topupDetail =
     useObject<TopupRealm>(TopupRealm.schema.name, id) ??
     ({} as RealmObject<TopupRealm, never> & TopupRealm);
 
-  useEffect(() => {
-    loadingSharedValue.value = withRepeat(
-      withTiming(1, { duration: 1000, easing: Easing.linear }),
-      -1,
-    );
-  }, []);
-
-  const allTypes = useSelector(selectAllTypeTopup);
-
-  const accounts = useSelector(selectAllBankAccountsOfParent);
-
-  const bank = accounts[topupDetail.AccountId as string];
-
   const isPositive = (topupDetail.Amount ?? 0) > 0;
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${loadingSharedValue.value * 360}deg` }],
-  }));
 
   const status = useMemo(() => {
     switch (true) {

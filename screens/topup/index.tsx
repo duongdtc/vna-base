@@ -1,75 +1,63 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { goBack, navigate } from '@navigation/navigation-service';
 import {
   Block,
   Button,
   Icon,
+  Image,
   NormalHeader,
   RadioButton,
   RowOfForm,
   Screen,
   Separator,
-  showToast,
   Text,
 } from '@vna-base/components';
-import { goBack, navigate } from '@navigation/navigation-service';
-import { bankActions } from '@vna-base/redux/action-slice';
-import { selectAllBankAccountsOfParent } from '@vna-base/redux/selector/bank';
 import {
   convertStringToNumber,
-  dispatch,
   HitSlop,
   rxNumber,
+  scale,
 } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useEffect } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { Pressable, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
 
-import { useStyles } from './styles';
-import { TopupForm } from './type';
+import { createStyleSheet, useStyles } from '@theme';
 import { APP_SCREEN } from '@utils';
+import { UnistylesRuntime } from 'react-native-unistyles';
+import { Bank, bankAccountsOfParent, TopupForm } from './type';
 
 export const Topup = () => {
-  const styles = useStyles();
-
-  const bankAccountsOfParent = useSelector(selectAllBankAccountsOfParent);
+  const { styles } = useStyles(styleSheet);
 
   const formMethod = useForm<TopupForm>();
 
   useEffect(() => {
     if (!isEmpty(bankAccountsOfParent)) {
-      formMethod.setValue('bankId', Object.values(bankAccountsOfParent)[0].Id!);
+      formMethod.setValue(
+        'bankId',
+        Object.values(bankAccountsOfParent)[0].key as Bank,
+      );
     }
   }, [bankAccountsOfParent]);
 
   const submit = () => {
     formMethod.handleSubmit(form => {
-      dispatch(
-        bankActions.getQRCode(form, isSuccess => {
-          if (isSuccess) {
-            navigate(APP_SCREEN.PAY);
-          } else {
-            showToast({
-              type: 'error',
-              t18n: 'pay:error_creating_transfer_information',
-            });
-          }
-        }),
-      );
+      navigate(APP_SCREEN.PAY, { data: form });
     })();
   };
 
   return (
     <Screen unsafe={true} backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         leftContent={
           <Button
             hitSlop={HitSlop.Large}
             leftIcon="arrow_ios_left_fill"
             leftIconSize={24}
-            textColorTheme="neutral900"
+            textColorTheme="neutral100"
             onPress={() => {
               goBack();
             }}
@@ -144,23 +132,32 @@ export const Topup = () => {
                   colorTheme="neutral100"
                   overflow="hidden">
                   {Object.values(bankAccountsOfParent).map((item, idx) => {
-                    const selected = value === item.Id;
+                    const selected = value === item.key;
                     return (
                       <Block key={idx}>
                         {idx !== 0 && <Separator type="horizontal" />}
                         <Pressable
                           disabled={selected}
                           onPress={() => {
-                            onChange(item.Id);
+                            onChange(item.key);
                           }}
                           style={styles.bankContainer}>
                           <Block
                             flexDirection="row"
                             alignItems="center"
                             justifyContent="space-between">
-                            <Block flex={1}>
+                            <Block
+                              flex={1}
+                              flexDirection="row"
+                              alignItems="center"
+                              columnGap={8}>
+                              <Image
+                                resizeMode="cover"
+                                source={item.logo}
+                                containerStyle={styles.img}
+                              />
                               <Text
-                                text={item.Name ?? ''}
+                                text={item.t18n ?? ''}
                                 fontStyle="Body14Semi"
                                 colorTheme="neutral900"
                               />
@@ -202,7 +199,7 @@ export const Topup = () => {
             fullWidth
             t18n="topup:confirm"
             buttonColorTheme="primary600"
-            textColorTheme="classicWhite"
+            textColorTheme="white"
             onPress={submit}
             disabled={!formMethod.formState.isValid}
           />
@@ -211,3 +208,35 @@ export const Topup = () => {
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows, textPresets }) => ({
+  container: { backgroundColor: colors.neutral10 },
+  contentContainer: {
+    padding: scale(12),
+    rowGap: scale(12),
+  },
+  body: {
+    backgroundColor: colors.neutral30,
+  },
+  footer: {
+    paddingHorizontal: scale(16),
+    paddingTop: scale(12),
+    backgroundColor: colors.neutral10,
+    paddingBottom: scale(12) + UnistylesRuntime.insets.bottom,
+    ...shadows.main,
+  },
+  bankContainer: {
+    paddingVertical: scale(20),
+    paddingHorizontal: scale(16),
+  },
+  amountInput: {
+    color: colors.price,
+    ...textPresets.Body14Semi,
+  },
+  img: {
+    width: scale(24),
+    height: scale(24),
+    borderRadius: scale(8),
+    overflow: 'hidden',
+  },
+}));

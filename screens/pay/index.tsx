@@ -1,3 +1,18 @@
+import { images } from '@assets/image';
+import { goBack, popWithStep } from '@navigation/navigation-service';
+import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
+import {
+  CameraRoll,
+  iosReadGalleryPermission,
+} from '@react-native-camera-roll/camera-roll';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { currentAccountActions } from '@redux-slice';
+import { bankAccountsOfParent } from '@screens/topup/type';
+import { TypeIdMessage } from '@services/mqtt/constants';
+import { removeFunOnMessage } from '@services/mqtt/provider';
+import { createStyleSheet, useStyles } from '@theme';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   Button,
@@ -9,36 +24,33 @@ import {
   showToast,
   Text,
 } from '@vna-base/components';
-import { goBack, popWithStep } from '@navigation/navigation-service';
-import {
-  CameraRoll,
-  iosRequestReadWriteGalleryPermission,
-} from '@react-native-camera-roll/camera-roll';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { selectAllBankAccountsOfParent, selectQR } from '@vna-base/redux/selector/bank';
-import { TypeIdMessage } from '@services/mqtt/constants';
-import { removeFunOnMessage } from '@services/mqtt/provider';
-import { useTheme } from '@theme';
 import { translate } from '@vna-base/translations/translate';
-import { CurrencyDetails, HitSlop } from '@vna-base/utils';
+import {
+  convertStringToNumber,
+  CurrencyDetails,
+  dispatch,
+  HitSlop,
+  scale,
+} from '@vna-base/utils';
 import React, { useEffect } from 'react';
 import { Platform, ScrollView } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Line, Svg } from 'react-native-svg';
-import { useSelector } from 'react-redux';
-import { useHandleTopupMQTT } from './hooks/use-handle-topup-mqtt';
-import { useStyles } from './styles';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
-export const Pay = () => {
-  const styles = useStyles();
-  const { colors } = useTheme();
+export const Pay = ({
+  route,
+}: NativeStackScreenProps<RootStackParamList, APP_SCREEN.PAY>) => {
+  const { amount, bankId } = route.params.data;
+  const bankDetail = bankAccountsOfParent[bankId];
 
-  const { bank, path, amount, randomCode } = useSelector(selectQR);
-  const allAccount = useSelector(selectAllBankAccountsOfParent);
+  const {
+    styles,
+    theme: { colors },
+  } = useStyles(styleSheet);
 
-  useHandleTopupMQTT();
-
-  const bankDetail = allAccount[bank];
+  //   const path = images.banking_qrcode;
+  const randomCode = Math.random().toString().substring(2, 12);
 
   const copy = (val: string) => {
     Clipboard.setString(val);
@@ -52,28 +64,73 @@ export const Pay = () => {
   const saveQR = async () => {
     try {
       if (Platform.OS === 'ios') {
-        await iosRequestReadWriteGalleryPermission();
+        await iosReadGalleryPermission('readWrite');
       }
 
-      await CameraRoll.saveToCameraRoll(path, 'photo');
-
+      CameraRoll.saveAsset(
+        'file://src/assets/image/source/banking_qrcode.png',
+        { type: 'photo' },
+      );
       showToast({ type: 'success', t18n: 'pay:saved_qr_success' });
     } catch (error) {
-      console.log('🚀 ~ saveQR ~ error:', error);
+      // console.log('🚀 ~ saveQR ~ error:', error);
       showToast({ type: 'error', t18n: 'pay:saved_qr_failed' });
     }
   };
 
-  useEffect(() => {
-    return () => {
-      ReactNativeBlobUtil.fs.unlink(path);
+  const onCreateTriggerNotification = async () => {
+    await notifee.requestPermission({
+      criticalAlert: true,
+    });
+
+    const trigger: TimestampTrigger = {
+      type: TriggerType.TIMESTAMP,
+      timestamp: Date.now() + 5000,
     };
-  }, [path]);
+
+    await notifee.createTriggerNotification(
+      {
+        title: 'Nạp tiền thành công',
+        body: `Bạn vừa nạp ${convertStringToNumber(
+          amount,
+        ).currencyFormat()} vào tài khoản xuất vé`,
+
+        ios: {
+          critical: true,
+          sound: 'default',
+          criticalVolume: 1.0,
+        },
+      },
+      trigger,
+    );
+  };
+
+  const done = () => {
+    popWithStep(2);
+  };
+
+  useEffect(() => {
+    onCreateTriggerNotification();
+
+    const timeId = setTimeout(() => {
+      dispatch(currentAccountActions.addBalance(convertStringToNumber(amount)));
+      done();
+    }, 5500);
+
+    return () => {
+      clearTimeout(timeId);
+      ReactNativeBlobUtil.fs.unlink(
+        'file://src/assets/image/source/banking_qrcode.png',
+      );
+    };
+  }, []);
 
   return (
     <Screen unsafe={true} backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         shadow=".3"
         leftContent={
           <Button
@@ -118,18 +175,14 @@ export const Pay = () => {
             padding={12}
             rowGap={2}>
             <Block flexDirection="row" columnGap={8}>
-              <LinearGradient type="005" style={styles.stepContainer}>
-                <Text
-                  text="1"
-                  fontStyle="Title16Bold"
-                  colorTheme="neutral900"
-                />
+              <LinearGradient type="gra1" style={styles.stepContainer}>
+                <Text text="1" fontStyle="Title16Bold" colorTheme="neutral10" />
               </LinearGradient>
               <Block flex={1} justifyContent="center">
                 <Text
                   t18n="pay:step_1"
                   fontStyle="Body12Med"
-                  colorTheme="neutral900"
+                  colorTheme="neutral100"
                 />
               </Block>
             </Block>
@@ -148,12 +201,8 @@ export const Pay = () => {
               </Svg>
             </Block>
             <Block flexDirection="row" columnGap={8}>
-              <LinearGradient type="005" style={styles.stepContainer}>
-                <Text
-                  text="2"
-                  fontStyle="Title16Bold"
-                  colorTheme="neutral900"
-                />
+              <LinearGradient type="gra1" style={styles.stepContainer}>
+                <Text text="2" fontStyle="Title16Bold" colorTheme="neutral10" />
               </LinearGradient>
               <Block flex={1} justifyContent="center">
                 <Text
@@ -182,11 +231,11 @@ export const Pay = () => {
                 <Text
                   fontStyle="Body14Semi"
                   colorTheme="neutral900"
-                  text={bankDetail.Description ?? ''}
+                  text={bankDetail.t18n ?? ''}
                 />
               </Block>
               <Image
-                source={bankDetail?.Image ?? ''}
+                source={bankDetail.logo ?? ''}
                 containerStyle={styles.logoBank}
               />
             </Block>
@@ -207,7 +256,7 @@ export const Pay = () => {
                   ellipsizeMode="tail"
                   fontStyle="Body14Semi"
                   colorTheme="neutral900"
-                  text={bankDetail.AccountName ?? ''}
+                  text="Vietnam Airline"
                 />
               </Block>
             </Block>
@@ -229,7 +278,7 @@ export const Pay = () => {
                   ellipsizeMode="tail"
                   fontStyle="Body14Semi"
                   colorTheme="neutral900"
-                  text={`${bankDetail.AccountNumb}${randomCode}`}
+                  text={`STK${randomCode}`}
                 />
               </Block>
               <Button
@@ -239,7 +288,7 @@ export const Pay = () => {
                 padding={0}
                 textColorTheme="neutral300"
                 onPress={() => {
-                  copy(`${bankDetail.AccountNumb}${randomCode}`);
+                  copy(`STK${randomCode}`);
                 }}
               />
             </Block>
@@ -261,7 +310,7 @@ export const Pay = () => {
                   ellipsizeMode="tail"
                   fontStyle="Body14Semi"
                   colorTheme="price">
-                  {amount.currencyFormat()}{' '}
+                  {amount}{' '}
                   <Text
                     fontStyle="Body14Semi"
                     colorTheme="neutral900"
@@ -275,7 +324,7 @@ export const Pay = () => {
                 leftIconSize={16}
                 padding={0}
                 onPress={() => {
-                  copy(amount.toString());
+                  copy(amount);
                 }}
                 textColorTheme="neutral300"
               />
@@ -317,9 +366,7 @@ export const Pay = () => {
 
             <Block padding={12} rowGap={12} alignItems="center">
               <Image
-                source={{
-                  uri: `${Platform.OS === 'ios' ? '' : 'file://'}${path}`,
-                }}
+                source={images.banking_qrcode}
                 containerStyle={styles.qr}
                 resizeMode="cover"
               />
@@ -385,13 +432,43 @@ export const Pay = () => {
         <Button
           fullWidth
           t18n="modal_confirm:close"
-          buttonColorTheme="neutral50"
+          buttonColorTheme="neutral30"
           textColorTheme="neutral900"
-          onPress={() => {
-            popWithStep(2);
-          }}
+          onPress={done}
         />
       </Block>
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows }) => ({
+  container: { backgroundColor: colors.neutral10 },
+  contentContainer: {
+    padding: scale(12),
+    rowGap: scale(12),
+  },
+  body: {
+    backgroundColor: colors.neutral30,
+  },
+  footer: {
+    paddingHorizontal: scale(16),
+    paddingTop: scale(12),
+    backgroundColor: colors.neutral10,
+    paddingBottom: scale(12) + UnistylesRuntime.insets.bottom,
+    ...shadows.main,
+  },
+  stepContainer: {
+    padding: scale(8),
+    width: scale(34),
+    borderRadius: scale(8),
+    alignItems: 'center',
+  },
+  logoBank: {
+    width: scale(28),
+    height: scale(28),
+  },
+  qr: {
+    width: scale(190),
+    height: scale(210),
+  },
+}));
