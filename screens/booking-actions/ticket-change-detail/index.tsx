@@ -28,7 +28,7 @@ export const TicketChangeDetail = () => {
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         shadow=".3"
         zIndex={0}
         leftContent={

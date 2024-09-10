@@ -1,11 +1,26 @@
 import { Block, Separator, Text } from '@vna-base/components';
 import { selectPriceExchangeTicket } from '@vna-base/redux/selector';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 export const Price = () => {
-  const { Different, NewPrice, OldPrice, PaidAmount, Penalty, TotalPrice } =
-    useSelector(selectPriceExchangeTicket);
+  const { NewPrice, OldPrice, TotalPrice } = useSelector(
+    selectPriceExchangeTicket,
+  );
+
+  const getPrice = useMemo(() => {
+    const different = (NewPrice?.Amount ?? 0) - (OldPrice?.Amount ?? 0);
+    const panalty = 360_000;
+    const totalPrice = different + panalty;
+    return {
+      OldPrice: OldPrice?.Amount?.currencyFormat(),
+      NewPrice: NewPrice?.Amount?.currencyFormat(),
+      Different: Math.abs(different).currencyFormat(),
+      Penalty: panalty.currencyFormat(),
+      PaidAmount: OldPrice?.Amount?.currencyFormat(),
+      TotalPrice: Math.abs(totalPrice).currencyFormat(),
+    };
+  }, [NewPrice?.Amount, OldPrice?.Amount]);
 
   return (
     <Block rowGap={12} style={{ marginTop: -12 }}>
@@ -26,7 +41,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={(OldPrice?.Amount ?? 0).currencyFormat()}
+            text={getPrice.OldPrice}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -43,7 +58,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={(NewPrice?.Amount ?? 0).currencyFormat()}
+            text={getPrice.NewPrice}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -62,7 +77,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={(Different?.Amount ?? 0).currencyFormat()}
+            text={getPrice.Different}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -79,7 +94,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={(Penalty?.Amount ?? 0).currencyFormat()}
+            text={getPrice.Penalty}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -96,7 +111,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={(PaidAmount ?? 0).currencyFormat()}
+            text={getPrice.PaidAmount}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -113,7 +128,7 @@ export const Price = () => {
             fontStyle="Body14Semi"
           />
           <Text colorTheme="price" fontStyle="Title16Bold">
-            {(TotalPrice?.Amount ?? 0).currencyFormat()}{' '}
+            {getPrice.TotalPrice}{' '}
             <Text
               colorTheme="neutral900"
               fontStyle="Title16Bold"

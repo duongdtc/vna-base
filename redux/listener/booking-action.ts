@@ -1018,7 +1018,12 @@ export const runBookingActionListnener = () => {
 
       const { Confirm } = form;
 
-      let session: string | undefined;
+      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+        BookingRealm.schema.name,
+        form.BookingId!,
+      );
+
+      // let session: string | undefined;
 
       showLoading({
         lottie: 'loading',
@@ -1029,21 +1034,32 @@ export const runBookingActionListnener = () => {
         lottieStyle: { width: scale(182), height: scale(72) },
       });
 
-      if (Confirm) {
-        session = listenerApi.getState().bookingAction.sessionExchangeTicket!;
-      }
+      await delay(2000);
+      hideLoading();
+
+      // if (Confirm) {
+      //   session = listenerApi.getState().bookingAction.sessionExchangeTicket!;
+      // }
 
       try {
-        const res = await Ibe.flightExchangeTicketCreate({
-          ...form,
-          Session: session,
-        });
+        // const res = await Ibe.flightExchangeTicketCreate({
+        //   ...form,
+        //   Session: session,
+        // });
 
-        if (!validResponse(res)) {
-          throw new Error();
-        }
+        // if (!validResponse(res)) {
+        //   throw new Error();
+        // }
+
+        const newPrice = load(StorageKey.EXCH_TICKET_NEW_PRICE);
 
         if (Confirm) {
+          listenerApi.dispatch(
+            currentAccountActions.addBalance(
+              newPrice - (bookingDetail?.TotalPrice ?? 0) + 360_000,
+            ),
+          );
+
           hideLoading({
             lottie: 'done',
             t18nSubtitle: 'exchange_ticket:exchange_success',
@@ -1055,33 +1071,47 @@ export const runBookingActionListnener = () => {
         if (!Confirm) {
           hideLoading();
           // lưu phí thay đổi khi refund
-          const {
-            Penalty,
-            Different,
-            OldPrice,
-            NewPrice,
-            TotalPrice,
-            PaidAmount,
-          } = res.data;
+          // const {
+          //   Penalty,
+          //   Different,
+          //   OldPrice,
+          //   NewPrice,
+          //   TotalPrice,
+          //   PaidAmount,
+          // } = res.data;
+          // const newPrice = load(StorageKey.EXCH_TICKET_NEW_PRICE);
 
           listenerApi.dispatch(
             bookingActionActions.savePriceExchangeTicket({
               price: {
-                Penalty,
-                Different,
-                OldPrice,
-                NewPrice,
-                TotalPrice,
-                PaidAmount,
+                Penalty: {
+                  Amount: 360000,
+                  Currency: 'VND',
+                },
+                Different: {
+                  Amount: 227000,
+                  Currency: 'VND',
+                },
+                OldPrice: {
+                  Amount: bookingDetail?.TotalPrice,
+                  Currency: 'VND',
+                },
+                NewPrice: {
+                  Amount: newPrice ?? 0,
+                  Currency: 'VND',
+                },
+                TotalPrice: {
+                  Amount: 587000,
+                  Currency: 'VND',
+                },
               },
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              session: res.data.Session,
+
+              session: '',
             }),
           );
         }
 
-        cb(true, res.data.Booking?.ListTicket ?? []);
+        cb(true, (bookingDetail?.Tickets ?? []) as Array<Ticket>);
       } catch (error) {
         hideLoading({
           lottie: 'failed',

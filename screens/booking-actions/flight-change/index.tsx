@@ -70,7 +70,7 @@ export const FlightChange = ({
   return (
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <NormalHeader
-        colorTheme="neutral100"
+        colorTheme="neutral10"
         shadow=".3"
         leftContent={
           <Button

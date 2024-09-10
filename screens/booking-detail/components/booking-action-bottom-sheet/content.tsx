@@ -1,28 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, showToast, Text } from '@vna-base/components';
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { navigate } from '@navigation/navigation-service';
-import {
-  selectFlightActionsByBookingId,
-  selectLanguage,
-} from '@vna-base/redux/selector';
-import {
-  bookingActionActions,
-  bookingActions,
-} from '@vna-base/redux/action-slice';
-import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { Action } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN } from '@utils';
+import { Block, Icon, showToast, Text } from '@vna-base/components';
+import { bookingActionActions } from '@vna-base/redux/action-slice';
+import {
+  selectFlightActionsByBookingId,
+  selectLanguage,
+} from '@vna-base/redux/selector';
+import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import {
   ActiveOpacity,
   BookingStatus,
   CheckInOnlineSystem,
   dispatch,
   scale,
-  System,
 } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useMemo } from 'react';
@@ -35,7 +32,6 @@ import {
 import { useSelector } from 'react-redux';
 import { MapActionIcon, MapTitleSection } from './constants';
 import { useStyles } from './styles';
-import { APP_SCREEN } from '@utils';
 
 export const Content = ({
   bookingId,
@@ -108,101 +104,53 @@ export const Content = ({
     return sections;
   }, [actions]);
 
-  const onPressItem = useCallback(({ FeatureId, System }: Action) => {
-    // navigate(APP_SCREEN.TicketVoid, {
-    //   id: bookingId,
-    //   featureId: FeatureId,
-    //   system: System as CheckInOnlineSystem,
-    // });
+  const onPressItem = useCallback(
+    ({ FeatureId, System }: Action) => {
+      if (
+        FeatureId !== 'TicketIssue' &&
+        FeatureId !== 'CheckInOnline' &&
+        FeatureId !== 'TicketVoid' &&
+        FeatureId !== 'TicketRfnd' &&
+        FeatureId !== 'TicketExch'
+      ) {
+        showToast({
+          type: 'warning',
+          text: 'Chỉ Demo chức năng Xuất vé và Check in online',
+        });
 
-    if (
-      FeatureId !== 'TicketIssue' &&
-      FeatureId !== 'CheckInOnline' &&
-      FeatureId !== 'TicketVoid' &&
-      FeatureId !== 'TicketRfnd'
-    ) {
-      showToast({
-        type: 'warning',
-        text: 'Chỉ Demo chức năng Xuất vé và Check in online',
+        return;
+      }
+
+      let screen: APP_SCREEN;
+
+      dispatch(
+        bookingActionActions.saveCurrentFeature({
+          featureId: FeatureId as string,
+          bookingId,
+        }),
+      );
+
+      switch (FeatureId) {
+        case 'TicketExch':
+          screen = APP_SCREEN.FlightChange;
+          break;
+
+        default:
+          screen = FeatureId as APP_SCREEN;
+
+          break;
+      }
+
+      //@ts-ignore
+      navigate(screen, {
+        id: bookingId,
+        system: System as CheckInOnlineSystem,
       });
 
-      return;
-    }
-
-    let screen: APP_SCREEN;
-
-    closeBottomSheet();
-
-    if (FeatureId === 'BookingPricing') {
-      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
-        BookingRealm.schema.name,
-        bookingId,
-      );
-
-      dispatch(
-        bookingActionActions.bookingPricing(
-          {
-            System: System as System,
-            Airline: bookingDetail?.Airline ?? '',
-            BookingCode: bookingDetail?.BookingCode ?? '',
-            BookingId: bookingId,
-            AccountCode: bookingDetail?.AccountCode ?? '',
-            Tourcode: bookingDetail?.Tourcode ?? '',
-          },
-          isSuccess => {
-            if (isSuccess) {
-              navigate(APP_SCREEN.BOOKING_PRICING_COMPLETED);
-            }
-          },
-        ),
-      );
-
-      return;
-    }
-
-    if (FeatureId === 'BookingRetrieve') {
-      const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
-        BookingRealm.schema.name,
-        bookingId,
-      );
-      dispatch(
-        bookingActions.getBookingByIdOrBookingCode(
-          {
-            id: bookingId,
-            system: System as CheckInOnlineSystem,
-            bookingCode: bookingDetail?.BookingCode ?? '',
-            surname: bookingDetail?.Passengers[0]?.Surname,
-          },
-          { force: true },
-        ),
-      );
-
-      return;
-    }
-
-    dispatch(
-      bookingActionActions.saveCurrentFeature({
-        featureId: FeatureId as string,
-        bookingId,
-      }),
-    );
-
-    switch (FeatureId) {
-      case 'TicketExch':
-        screen = APP_SCREEN.FlightChange;
-        break;
-
-      default:
-        screen = FeatureId as APP_SCREEN;
-
-        break;
-    }
-
-    navigate(screen, {
-      id: bookingId,
-      system: System as CheckInOnlineSystem,
-    });
-  }, []);
+      closeBottomSheet();
+    },
+    [bookingId, closeBottomSheet],
+  );
 
   const getActionIcon = useCallback(
     (featureId: string | null | undefined): IconTypes => {

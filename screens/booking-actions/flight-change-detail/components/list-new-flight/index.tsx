@@ -1,7 +1,7 @@
 import { Block, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
 import { APP_SCREEN } from '@utils';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import {
   FieldArrayWithId,
   useFieldArray,
@@ -10,6 +10,7 @@ import {
 import { FlatList, ListRenderItem } from 'react-native';
 import { FlightChangeForm } from '../../type';
 import { FlightItem } from '../flight-item';
+import { save, StorageKey } from '@vna-base/utils';
 
 export const ListNewFlight = () =>
   //   {
@@ -24,6 +25,19 @@ export const ListNewFlight = () =>
       control,
       name: 'newFlights',
     });
+
+    const totalNewPrice = useMemo(
+      () =>
+        fields?.reduce(
+          (total, currFare) => total + (currFare?.FareOption!.TotalFare ?? 0),
+          0,
+        ),
+      [fields],
+    );
+
+    useEffect(() => {
+      save(StorageKey.EXCH_TICKET_NEW_PRICE, totalNewPrice);
+    }, [totalNewPrice]);
 
     // const onPressItem = useCallback(
     //   (flight: Flight, index: number) => {

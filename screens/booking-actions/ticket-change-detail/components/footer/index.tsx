@@ -80,7 +80,7 @@ export const Footer = memo(() => {
             themeColorTextCancel: 'neutral900',
             t18nOk: 'common:execute',
             themeColorOK: 'primary600',
-            themeColorTextOK: 'classicWhite',
+            themeColorTextOK: 'white',
             flexDirection: 'row',
             onOk: () => {
               callApi(dataForm, true, (_isSuccess, listTicket) => {
@@ -116,7 +116,7 @@ export const Footer = memo(() => {
           fullWidth
           t18n="common:cancel"
           textColorTheme="neutral900"
-          buttonColorTheme="neutral50"
+          buttonColorTheme="neutral30"
           textFontStyle="Body14Bold"
           size="medium"
         />
@@ -126,8 +126,8 @@ export const Footer = memo(() => {
           onPress={submit}
           fullWidth
           t18n="common:continue"
-          textColorTheme="classicWhite"
-          buttonColorTheme="primary600"
+          textColorTheme="white"
+          buttonColorTheme="001"
           textFontStyle="Body14Bold"
           size="medium"
         />
