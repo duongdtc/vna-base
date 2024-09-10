@@ -48,7 +48,7 @@ export const TopInfo = memo(() => {
     <Block
       paddingVertical={8}
       paddingHorizontal={12}
-      colorTheme="neutral100"
+      colorTheme="neutral10"
       borderBottomWidth={3}
       borderColorTheme="neutral300">
       <Block

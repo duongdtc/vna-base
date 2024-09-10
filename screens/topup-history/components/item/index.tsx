@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, Text } from '@vna-base/components';
 import { navigate } from '@navigation/navigation-service';
-import { selectAllTypeTopup } from '@vna-base/redux/selector';
 import { TopupRealm } from '@services/realm/models';
-import { realmRef } from '@services/realm/provider';
 import { Colors } from '@theme';
 import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN } from '@utils';
+import { Block, Icon, Text } from '@vna-base/components';
+import { selectAllTypeTopup } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { TopupMethod, TopupMethodDetails } from '@vna-base/utils';
 import dayjs from 'dayjs';
@@ -14,32 +14,25 @@ import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
-import { RealmObject } from 'realm/dist/public-types/Object';
-import { APP_SCREEN } from '@utils';
 
 type Props = {
-  id: string;
+  item: TopupRealm;
 };
 
-export const Item = memo(({ id }: Props) => {
+export const Item = memo(({ item }: Props) => {
   const allTypes = useSelector(selectAllTypeTopup);
-  const topupDetail =
-    realmRef.current?.objectForPrimaryKey<TopupRealm>(
-      TopupRealm.schema.name,
-      id,
-    ) ?? ({} as RealmObject<TopupRealm, never> & TopupRealm);
 
-  const isPositive = (topupDetail.Amount ?? 0) > 0;
+  const isPositive = (item.Amount ?? 0) > 0;
 
   let iconStatus: IconTypes = 'refresh_fill';
   let colorThemeStatus: keyof Colors = 'warning600';
   let t18nStatus: I18nKeys = 'common:processing';
 
-  if (topupDetail.Approved) {
+  if (item.Approved) {
     iconStatus = 'checkmark_circle_fill';
     colorThemeStatus = 'success600';
     t18nStatus = 'common:success';
-  } else if (topupDetail.Approved === false) {
+  } else if (item.Approved === false) {
     iconStatus = 'close_circle_fill';
     colorThemeStatus = 'error600';
     t18nStatus = 'common:failed';
@@ -49,7 +42,7 @@ export const Item = memo(({ id }: Props) => {
     <Pressable
       onPress={() => {
         navigate(APP_SCREEN.TOPUP_DETAIL, {
-          id,
+          id: item.Id,
         });
       }}>
       <Block
@@ -62,14 +55,12 @@ export const Item = memo(({ id }: Props) => {
           alignItems="center"
           justifyContent="space-between">
           <Text
-            text={(
-              allTypes[topupDetail.EntryType!]?.ViewVi ?? ''
-            ).toUpperCase()}
+            text={(allTypes[item.EntryType!]?.ViewVi ?? '').toUpperCase()}
             fontStyle="Title16Semi"
             colorTheme="neutral900"
           />
           <Text
-            text={dayjs(topupDetail.CreatedDate).format('DD/MM/YYYY HH:mm')}
+            text={dayjs(item.CreatedDate).format('DD/MM/YYYY HH:mm')}
             fontStyle="Capture11Reg"
             colorTheme="neutral600"
           />
@@ -86,8 +77,7 @@ export const Item = memo(({ id }: Props) => {
               <Block flex={1}>
                 <Text
                   t18n={
-                    TopupMethodDetails[topupDetail.PaymentMethod as TopupMethod]
-                      .t18n
+                    TopupMethodDetails[item.PaymentMethod as TopupMethod].t18n
                   }
                   fontStyle="Body12Med"
                   colorTheme="neutral700"
@@ -112,7 +102,7 @@ export const Item = memo(({ id }: Props) => {
               <Block>
                 <Text
                   text={`${isPositive ? '+' : ''}${(
-                    topupDetail.Amount ?? 0
+                    item.Amount ?? 0
                   ).currencyFormat()}`}
                   fontStyle="Body14Semi"
                   colorTheme={isPositive ? 'success500' : 'error500'}
@@ -132,9 +122,9 @@ export const Item = memo(({ id }: Props) => {
                   <Text
                     fontStyle="Capture11Reg"
                     colorTheme={
-                      (topupDetail.Balance ?? 0) > 0 ? 'success500' : 'error500'
+                      (item.Balance ?? 0) > 0 ? 'success500' : 'error500'
                     }
-                    text={topupDetail.Balance?.currencyFormat()}
+                    text={item.Balance?.currencyFormat()}
                   />
                 </Text>
               </Block>

@@ -1,103 +1,86 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { topupActions } from '@vna-base/redux/action-slice';
 import { EntryType } from '@redux/type';
-import { Data, SortType } from '@services/axios';
+import { Data } from '@services/axios';
 import { EntryItem } from '@services/axios/axios-data';
-import { TopupRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { I18nKeys } from '@translations/locales';
-import { PAGE_SIZE_ORDER, scale, validResponse } from '@vna-base/utils';
+import { topupActions } from '@vna-base/redux/action-slice';
+import { scale, validResponse } from '@vna-base/utils';
 import { createTopupFromAxios } from '@vna-base/utils/realm/topup';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import dayjs from 'dayjs';
-import cloneDeep from 'lodash.clonedeep';
-import isEmpty from 'lodash.isempty';
 import { UpdateMode } from 'realm';
-
 
 export const runTopupListener = () => {
   takeLatestListeners()({
     actionCreator: topupActions.getListTopupHistory,
     effect: async (action, listenerApi) => {
-      const { filterForm, pageIndex } = action.payload;
-
-      if (!pageIndex) {
-        realmRef.current?.write(() => {
-          realmRef.current?.delete(realmRef.current?.objects(TopupRealm.schema.name));
-        });
-
-        listenerApi.dispatch(
-          topupActions.saveResultFilter({
-            list: [],
-            pageIndex: 1,
-            totalPage: 1,
-          }),
-        );
-
-        listenerApi.dispatch(topupActions.changeLoadingFilter(true));
-      }
-
-      let _filterForm = filterForm;
-
-      if (!isEmpty(_filterForm)) {
-        listenerApi.dispatch(topupActions.savedFilterForm(_filterForm));
-      } else {
-        _filterForm = listenerApi.getState().topup.filterForm!;
-      }
-
-      const response = await Data.entryItemEntryItemGetOwnerCreate({
-        PageSize: PAGE_SIZE_ORDER,
-        PageIndex: pageIndex ?? 1,
-        OrderBy: _filterForm.OrderBy,
-        SortType: _filterForm.SortType ?? SortType.Desc,
-        Filter: _filterForm.Filter,
-        From: dayjs(_filterForm.Range.from).format(),
-        To: dayjs(_filterForm.Range.to).format(),
-        GetAll: _filterForm.GetAll,
-      });
-
-      if (validResponse(response)) {
-        const { List: newEntryItems, TotalPage } = response.data;
-        const listId: Array<string | null> = cloneDeep(
-          listenerApi.getState().topup.resultFilter.list,
-        );
-
-        realmRef.current?.write(() => {
-          newEntryItems?.forEach(entryItem => {
-            if (
-              !realmRef.current?.objectForPrimaryKey<TopupRealm>(
-                TopupRealm.schema.name,
-                entryItem.Id!,
-              )
-            ) {
-              // Không bị trùng thì lưu vào realm và push vào listOrderId
-              createTopupFromAxios(entryItem);
-
-              listId.push(entryItem.Id!);
-            } else {
-              // bị trùng thì update data trong realm và xoá id trong listId, push vào cuối listId
-              createTopupFromAxios(entryItem, UpdateMode.Modified);
-
-              const i = listId.findIndex(id => id === entryItem.Id);
-              listId[i] = null;
-
-              listId.push(entryItem.Id!);
-            }
-          });
-        });
-
-        listenerApi.dispatch(
-          topupActions.saveResultFilter({
-            list: listId.filter(id => id !== null) as Array<string>,
-            pageIndex: pageIndex ?? 1,
-            totalPage: TotalPage ?? 1,
-          }),
-        );
-      }
-
-      if (!pageIndex) {
-        listenerApi.dispatch(topupActions.changeLoadingFilter(false));
-      }
+      // const { filterForm, pageIndex } = action.payload;
+      // if (!pageIndex) {
+      //   realmRef.current?.write(() => {
+      //     realmRef.current?.delete(realmRef.current?.objects(TopupRealm.schema.name));
+      //   });
+      //   listenerApi.dispatch(
+      //     topupActions.saveResultFilter({
+      //       list: [],
+      //       pageIndex: 1,
+      //       totalPage: 1,
+      //     }),
+      //   );
+      //   listenerApi.dispatch(topupActions.changeLoadingFilter(true));
+      // }
+      // let _filterForm = filterForm;
+      // if (!isEmpty(_filterForm)) {
+      //   listenerApi.dispatch(topupActions.savedFilterForm(_filterForm));
+      // } else {
+      //   _filterForm = listenerApi.getState().topup.filterForm!;
+      // }
+      // const response = await Data.entryItemEntryItemGetOwnerCreate({
+      //   PageSize: PAGE_SIZE_ORDER,
+      //   PageIndex: pageIndex ?? 1,
+      //   OrderBy: _filterForm.OrderBy,
+      //   SortType: _filterForm.SortType ?? SortType.Desc,
+      //   Filter: _filterForm.Filter,
+      //   From: dayjs(_filterForm.Range.from).format(),
+      //   To: dayjs(_filterForm.Range.to).format(),
+      //   GetAll: _filterForm.GetAll,
+      // });
+      // if (validResponse(response)) {
+      //   const { List: newEntryItems, TotalPage } = response.data;
+      //   const listId: Array<string | null> = cloneDeep(
+      //     listenerApi.getState().topup.resultFilter.list,
+      //   );
+      //   realmRef.current?.write(() => {
+      //     newEntryItems?.forEach(entryItem => {
+      //       if (
+      //         !realmRef.current?.objectForPrimaryKey<TopupRealm>(
+      //           TopupRealm.schema.name,
+      //           entryItem.Id!,
+      //         )
+      //       ) {
+      //         // Không bị trùng thì lưu vào realm và push vào listOrderId
+      //         createTopupFromAxios(entryItem);
+      //         listId.push(entryItem.Id!);
+      //       } else {
+      //         // bị trùng thì update data trong realm và xoá id trong listId, push vào cuối listId
+      //         createTopupFromAxios(entryItem, UpdateMode.Modified);
+      //         const i = listId.findIndex(id => id === entryItem.Id);
+      //         listId[i] = null;
+      //         listId.push(entryItem.Id!);
+      //       }
+      //     });
+      //   });
+      //   listenerApi.dispatch(
+      //     topupActions.saveResultFilter({
+      //       list: listId.filter(id => id !== null) as Array<string>,
+      //       pageIndex: pageIndex ?? 1,
+      //       totalPage: TotalPage ?? 1,
+      //     }),
+      //   );
+      // }
+      // if (!pageIndex) {
+      //   listenerApi.dispatch(topupActions.changeLoadingFilter(false));
+      // }
     },
   });
 
@@ -182,7 +165,10 @@ export const runTopupListener = () => {
         To: dayjs(form.Range.to).format(),
         GetAll: false,
       });
-      console.log('🚀 ~ effect: ~ response:', JSON.stringify(response.data.List));
+      console.log(
+        '🚀 ~ effect: ~ response:',
+        JSON.stringify(response.data.List),
+      );
 
       // if (validResponse(response)) {
       //   // xử lý excel
@@ -366,4 +352,4 @@ export const runTopupListener = () => {
       // }
     },
   });
-}
+};

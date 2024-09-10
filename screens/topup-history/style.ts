@@ -12,7 +12,7 @@ export const useStyles = () => {
     () =>
       StyleSheet.create({
         container: {
-          backgroundColor: colors.neutral50,
+          backgroundColor: colors.neutral20,
         },
 
         contentContainer: { paddingTop: 8, paddingBottom: scale(36) },
