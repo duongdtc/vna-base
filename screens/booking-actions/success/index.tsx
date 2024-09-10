@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { images } from '@assets/image';
-import { navigate, popWithStep } from '@navigation/navigation-service';
+import { popWithStep, reset } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ticket } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
-import { realmRef, useObject } from '@services/realm/provider';
+import { useObject } from '@services/realm/provider';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
@@ -27,11 +27,9 @@ import {
   BookingStatus,
   BookingStatusDetails,
   HitSlop,
-  TicketStatus,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
-import isNil from 'lodash.isnil';
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -258,7 +256,22 @@ export const Success = ({
           type="classic"
           textColorTheme="neutral900"
           onPress={() => {
-            popWithStep(3);
+            reset({
+              index: 0,
+              routes: [
+                {
+                  name: APP_SCREEN.BOTTOM_TAB_NAV,
+
+                  state: {
+                    routes: [
+                      {
+                        name: APP_SCREEN.BOOKING,
+                      },
+                    ],
+                  },
+                },
+              ],
+            });
           }}
         />
       </Block>

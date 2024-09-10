@@ -1,5 +1,4 @@
 import { goBack } from '@navigation/navigation-service';
-import { TopupRealm } from '@services/realm/models';
 import { useQuery } from '@services/realm/provider';
 import {
   Block,
@@ -16,6 +15,7 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { FilterButton, Item, Skeleton, TopInfo } from './components';
 import { useFilterTopup } from './hooks';
 import { useStyles } from './style';
+import { EntryItemRealm } from '@services/realm/models/entry-item';
 
 export const TopupHistory = () => {
   const styles = useStyles();
@@ -24,19 +24,22 @@ export const TopupHistory = () => {
 
   const agentId = load(StorageKey.CURRENT_AGENT_ID);
 
-  const allTopup = useQuery<TopupRealm>(TopupRealm.schema.name);
+  const allTopup = useQuery<EntryItemRealm>(EntryItemRealm.schema.name);
 
   const listTopup = allTopup
     .filtered('AgentId == $0', agentId)
     .sorted('CreatedDate', true);
 
-  const _renderItem = useCallback<ListRenderItem<TopupRealm>>(({ item }) => {
-    if (!item) {
-      return <Skeleton />;
-    }
+  const _renderItem = useCallback<ListRenderItem<EntryItemRealm>>(
+    ({ item }) => {
+      if (!item) {
+        return <Skeleton />;
+      }
 
-    return <Item item={item} />;
-  }, []);
+      return <Item item={item} />;
+    },
+    [],
+  );
 
   const exportExcel = () => {
     // if (list && list.length > 0) {
