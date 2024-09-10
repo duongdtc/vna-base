@@ -1,4 +1,7 @@
+import { BookingRealm } from '@services/realm/models/booking';
+import { useQuery } from '@services/realm/provider';
 import { Block, EmptyList, Screen } from '@vna-base/components';
+import { load, StorageKey } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback } from 'react';
 import { FormProvider } from 'react-hook-form';
@@ -11,14 +14,22 @@ import { useStyles } from './style';
 export const Bookings = () => {
   const styles = useStyles();
 
-  const { list, formMethod, handleRefresh } = useFilterBooking();
+  const { formMethod, handleRefresh } = useFilterBooking();
 
-  const _renderItem = useCallback<ListRenderItem<string>>(({ item }) => {
+  const agentId = load(StorageKey.CURRENT_AGENT_ID);
+
+  const allBooking = useQuery<BookingRealm>(BookingRealm.schema.name);
+
+  const list = allBooking
+    .filtered('AgentId == $0', agentId)
+    .sorted('BookingDate', true);
+
+  const _renderItem = useCallback<ListRenderItem<BookingRealm>>(({ item }) => {
     if (isEmpty(item)) {
       return <Skeleton />;
     }
 
-    return <BookingItem id={item} />;
+    return <BookingItem id={item.Id} />;
   }, []);
 
   // render

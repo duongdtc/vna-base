@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { PREFIX_BOOKING_XLSX_NAME } from '@env';
-import { Data, Ibe } from '@services/axios';
+import { Data } from '@services/axios';
 import { Booking, BookingLst, BookingRes } from '@services/axios/axios-data';
 import { RetrieveBookingRes } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
@@ -30,8 +30,6 @@ import {
 } from '@vna-base/utils/redux/listener';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
-import cloneDeep from 'lodash.clonedeep';
-import isEmpty from 'lodash.isempty';
 import { Platform } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import Share from 'react-native-share';
@@ -42,89 +40,75 @@ export const runBookingListnener = () => {
   takeLatestListeners()({
     actionCreator: bookingActions.getListBookings,
     effect: async (action, listenerApi) => {
-      const { filterForm, pageIndex } = action.payload;
-
-      if (!pageIndex) {
-        // realmRef.current?.write(() => {
-        //   realmRef.current?.delete(
-        //     realmRef.current?.objects(BookingRealm.schema.name),
-        //   );
-        // });
-
-        listenerApi.dispatch(
-          bookingActions.saveResultFilter({
-            list: [],
-            pageIndex: 1,
-            totalPage: 1,
-          }),
-        );
-
-        listenerApi.dispatch(bookingActions.changeLoadingFilter(true));
-      }
-
-      let _filterForm = filterForm;
-
-      if (!isEmpty(_filterForm)) {
-        listenerApi.dispatch(bookingActions.savedFilterForm(_filterForm));
-      } else {
-        _filterForm = listenerApi.getState().bookings.filterForm!;
-      }
-
-      // const response = await Data.bookingBookingGetListCreate({
-      //   PageSize: PAGE_SIZE_BOOKING,
-      //   PageIndex: pageIndex ?? 1,
-      //   OrderBy: _filterForm.OrderBy,
-      //   SortType: _filterForm.SortType ?? SortType.Desc,
-      //   Filter: _filterForm.Filter,
-      //   From: dayjs(_filterForm.Range.from).format(),
-      //   To: dayjs(_filterForm.Range.to).format(),
-      //   GetAll: _filterForm.GetAll,
-      // });
-
-      const response = await fakeListBooking();
-
-      if (validResponse(response)) {
-        const { List: newBookings, TotalPage } = response.data;
-        const listId: Array<string | null> = cloneDeep(
-          listenerApi.getState().bookings.resultFilter.list,
-        );
-
-        realmRef.current?.write(() => {
-          newBookings?.forEach(booking => {
-            if (
-              !realmRef.current?.objectForPrimaryKey<BookingRealm>(
-                BookingRealm.schema.name,
-                booking.Id!,
-              )
-            ) {
-              // Không bị trùng thì lưu vào realm và push vào listOrderId
-              createBookingFromAxios(booking);
-
-              listId.push(booking.Id!);
-            } else {
-              // bị trùng thì update data trong realm và xoá id trong listId, push vào cuối listId
-              createBookingFromAxios(booking, UpdateMode.Modified);
-
-              const i = listId.findIndex(id => id === booking.Id);
-              listId[i] = null;
-
-              listId.push(booking.Id!);
-            }
-          });
-        });
-
-        listenerApi.dispatch(
-          bookingActions.saveResultFilter({
-            list: listId.filter(id => id !== null) as Array<string>,
-            pageIndex: pageIndex ?? 1,
-            totalPage: TotalPage ?? 1,
-          }),
-        );
-      }
-
-      if (!pageIndex) {
-        listenerApi.dispatch(bookingActions.changeLoadingFilter(false));
-      }
+      // const { filterForm, pageIndex } = action.payload;
+      // if (!pageIndex) {
+      //   // realmRef.current?.write(() => {
+      //   //   realmRef.current?.delete(
+      //   //     realmRef.current?.objects(BookingRealm.schema.name),
+      //   //   );
+      //   // });
+      //   listenerApi.dispatch(
+      //     bookingActions.saveResultFilter({
+      //       list: [],
+      //       pageIndex: 1,
+      //       totalPage: 1,
+      //     }),
+      //   );
+      //   listenerApi.dispatch(bookingActions.changeLoadingFilter(true));
+      // }
+      // let _filterForm = filterForm;
+      // if (!isEmpty(_filterForm)) {
+      //   listenerApi.dispatch(bookingActions.savedFilterForm(_filterForm));
+      // } else {
+      //   _filterForm = listenerApi.getState().bookings.filterForm!;
+      // }
+      // // const response = await Data.bookingBookingGetListCreate({
+      // //   PageSize: PAGE_SIZE_BOOKING,
+      // //   PageIndex: pageIndex ?? 1,
+      // //   OrderBy: _filterForm.OrderBy,
+      // //   SortType: _filterForm.SortType ?? SortType.Desc,
+      // //   Filter: _filterForm.Filter,
+      // //   From: dayjs(_filterForm.Range.from).format(),
+      // //   To: dayjs(_filterForm.Range.to).format(),
+      // //   GetAll: _filterForm.GetAll,
+      // // });
+      // const response = await fakeListBooking();
+      // if (validResponse(response)) {
+      //   const { List: newBookings, TotalPage } = response.data;
+      //   const listId: Array<string | null> = cloneDeep(
+      //     listenerApi.getState().bookings.resultFilter.list,
+      //   );
+      //   realmRef.current?.write(() => {
+      //     newBookings?.forEach(booking => {
+      //       if (
+      //         !realmRef.current?.objectForPrimaryKey<BookingRealm>(
+      //           BookingRealm.schema.name,
+      //           booking.Id!,
+      //         )
+      //       ) {
+      //         // Không bị trùng thì lưu vào realm và push vào listOrderId
+      //         createBookingFromAxios(booking);
+      //         listId.push(booking.Id!);
+      //       } else {
+      //         // bị trùng thì update data trong realm và xoá id trong listId, push vào cuối listId
+      //         createBookingFromAxios(booking, UpdateMode.Modified);
+      //         const i = listId.findIndex(id => id === booking.Id);
+      //         listId[i] = null;
+      //         listId.push(booking.Id!);
+      //       }
+      //     });
+      //   });
+      //   listenerApi.dispatch(
+      //     bookingActions.saveResultFilter({
+      //       list: listId.filter(id => id !== null) as Array<string>,
+      //       pageIndex: pageIndex ?? 1,
+      //       totalPage: TotalPage ?? 1,
+      //     }),
+      //   );
+      // }
+      // if (!pageIndex) {
+      //   listenerApi.dispatch(bookingActions.changeLoadingFilter(false));
+      // }
     },
   });
 
