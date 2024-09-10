@@ -1,3 +1,4 @@
+import { AgentRealm } from '@services/realm/models/agent';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useQuery } from '@services/realm/provider';
 import { Block, EmptyList, Screen } from '@vna-base/components';
@@ -18,10 +19,18 @@ export const Bookings = () => {
 
   const agentId = load(StorageKey.CURRENT_AGENT_ID);
 
+  const allAgent = useQuery<AgentRealm>(AgentRealm.schema.name);
   const allBooking = useQuery<BookingRealm>(BookingRealm.schema.name);
 
+  const subAgents = allAgent.filtered('ParentId == $0', agentId);
+
   const list = allBooking
-    .filtered('AgentId == $0', agentId)
+    .filtered(
+      `AgentId IN {${subAgents.reduce(
+        (total, curr) => total + `,'${curr.Id}'`,
+        `'${agentId}'`,
+      )}}`,
+    )
     .sorted('BookingDate', true);
 
   const _renderItem = useCallback<ListRenderItem<BookingRealm>>(({ item }) => {
