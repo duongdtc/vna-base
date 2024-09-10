@@ -56,10 +56,23 @@ export const Success = ({
   const isShowRemark = flightAction !== 'TicketIssue';
 
   const title = useMemo(() => {
-    const flAction = actions?.find(ac => ac.Feature?.Code === flightAction);
+    switch (flightAction) {
+      case 'CheckInOnline':
+        return 'Thanh toán online';
 
-    return Lng === 'en' ? flAction?.Feature?.NameEn : flAction?.Feature?.NameVi;
-  }, [Lng, actions, flightAction]);
+      case 'TicketVoid':
+        return 'Void vé';
+
+      case 'RefundTicket':
+        return 'Hoàn vé';
+
+      default:
+        return 'Xuất vé';
+    }
+    // const flAction = actions?.find(ac => ac.Feature?.Code === flightAction);
+
+    // return Lng === 'en' ? flAction?.Feature?.NameEn : flAction?.Feature?.NameVi;
+  }, [flightAction]);
 
   const goBack = () => {
     // dispatch(
@@ -170,7 +183,7 @@ export const Success = ({
           fontStyle="Title20Semi"
           colorTheme="primary900"
           textAlign="center">
-          {'Xuất vé'}{' '}
+          {title}{' '}
           <Text
             fontStyle="Title20Semi"
             colorTheme="success500"

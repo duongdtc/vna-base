@@ -49,7 +49,7 @@ export const TicketRefund = ({
     <Screen unsafe backgroundColor={styles.container.backgroundColor}>
       <FormProvider {...formMethod}>
         <NormalHeader
-          colorTheme="neutral100"
+          colorTheme="neutral10"
           zIndex={0}
           leftContent={
             <Button

@@ -182,7 +182,7 @@ export const runBookingActionListnener = () => {
           }
         });
 
-        cb(true, bookingDetail?.Tickets ?? []);
+        cb(true, (bookingDetail?.Tickets ?? []) as Array<Ticket>);
       } catch (error) {
         console.log('🚀 ~ effect: ~ error:', error);
       }
@@ -827,7 +827,7 @@ export const runBookingActionListnener = () => {
 
       const { Confirm } = form;
 
-      let session: string | undefined;
+      // let session: string | undefined;
 
       showLoading({
         lottie: 'loading',
@@ -838,21 +838,35 @@ export const runBookingActionListnener = () => {
         lottieStyle: { width: scale(182), height: scale(72) },
       });
 
-      if (Confirm) {
-        session = listenerApi.getState().bookingAction.sessionRefund!;
-      }
+      await delay(2000);
+      hideLoading();
+
+      // if (Confirm) {
+      //   session = listenerApi.getState().bookingAction.sessionRefund!;
+      // }
 
       try {
-        const res = await Ibe.flightRefundTicketCreate({
-          ...form,
-          Session: session,
-        });
+        // const res = await Ibe.flightRefundTicketCreate({
+        //   ...form,
+        //   Session: session,
+        // });
 
-        if (!validResponse(res)) {
-          throw new Error();
-        }
+        // if (!validResponse(res)) {
+        //   throw new Error();
+        // }
+
+        const bookingDetail =
+          realmRef.current?.objectForPrimaryKey<BookingRealm>(
+            BookingRealm.schema.name,
+            form.BookingId!,
+          );
 
         if (Confirm) {
+          listenerApi.dispatch(
+            currentAccountActions.addBalance(
+              (bookingDetail?.TotalPrice ?? 0) - 1584000,
+            ),
+          );
           hideLoading({
             lottie: 'done',
             t18nSubtitle: 'ancillary_update:update_booking_success',
@@ -866,15 +880,39 @@ export const runBookingActionListnener = () => {
           // lưu phí thay đổi khi refund
           listenerApi.dispatch(
             bookingActionActions.saveRefundDoc({
-              refundDocs: res.data.RefundDoc!,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              session: res.data.Session,
+              refundDocs: [
+                {
+                  TicketNumber: 'ALL TICKETS',
+                  Passenger: 'ALL PASSENGERS',
+                  RefundRoute: null,
+                  BaseFare: {
+                    Amount: (bookingDetail?.TotalPrice ?? 0) - 1308500,
+                    Currency: 'VND',
+                  },
+                  TotalTax: {
+                    Amount: 1308500,
+                    Currency: 'VND',
+                  },
+                  UsedFare: {
+                    Amount: 0,
+                    Currency: 'VND',
+                  },
+                  RefundFare: {
+                    Amount: 1584000,
+                    Currency: 'VND',
+                  },
+                  RefundTotal: {
+                    Amount: 2892500,
+                    Currency: 'VND',
+                  },
+                },
+              ],
+              session: '',
             }),
           );
         }
 
-        cb(true, res.data.Booking?.ListTicket ?? []);
+        cb(true, (bookingDetail?.Tickets ?? []) as Array<Ticket>);
       } catch (error) {
         hideLoading({
           lottie: 'failed',
