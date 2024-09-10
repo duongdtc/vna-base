@@ -28,7 +28,9 @@ import {
   CurrencyDetails,
   dispatch,
   HitSlop,
+  load,
   scale,
+  StorageKey,
 } from '@vna-base/utils';
 import React, { useEffect } from 'react';
 import { Platform, ScrollView } from 'react-native';
@@ -37,6 +39,10 @@ import { Line, Svg } from 'react-native-svg';
 import { UnistylesRuntime } from 'react-native-unistyles';
 import { bankAccountsOfParent } from '../topup/type';
 import { currentAccountActions } from '@vna-base/redux/action-slice';
+import { createEntryItem } from '@utils/realm/entry-item';
+import { realmRef } from '@services/realm/provider';
+import { AgentRealm } from '@services/realm/models/agent';
+import dayjs from 'dayjs';
 
 export const Pay = ({
   route,
@@ -113,7 +119,50 @@ export const Pay = ({
     onCreateTriggerNotification();
 
     const timeId = setTimeout(() => {
-      dispatch(currentAccountActions.addBalance(convertStringToNumber(amount)));
+      const _amount = convertStringToNumber(amount);
+
+      dispatch(currentAccountActions.addBalance(_amount));
+
+      const agentId = load(StorageKey.CURRENT_AGENT_ID);
+
+      const agent = realmRef.current?.objectForPrimaryKey<AgentRealm>(
+        AgentRealm.schema.name,
+        agentId,
+      );
+      realmRef.current?.write(() => {
+        createEntryItem({
+          Id: String.prototype.randomUniqueId(),
+          CreatedName: null,
+          ApproveName: null,
+          Index: 1187,
+          OfficeId: '9FA9E354-2B78-4D02-9190-6C82AE43440E',
+          AgentId: agentId,
+          AccountId: '669635EA-7688-4A8F-B995-2B2A375C9DA3',
+          CustomerId: agentId,
+          Type: true,
+          Title: 'Nạp tiền vào tài khoản',
+          Remark: 'ceghj',
+          Amount: _amount,
+          Balance: (agent?.Balance ?? 0) + (agent?.CreditLimit ?? 0) + _amount,
+          Currency: 'VND',
+          Rate: 0,
+          DocNumb: 177,
+          RefNumb: null,
+          EntryType: 'R_TOPUP',
+          AccDebit: null,
+          AccCredit: null,
+          PaymentMethod: 'BANK',
+          PaymentDate: dayjs().format(),
+          ReceiveUser: '669635EA-7688-4A8F-B995-2B2A375C9DA3',
+          CreatedUser: '669635EA-7688-4A8F-B995-2B2A375C9DA3',
+          CreatedDate: dayjs().format(),
+          ApproveUser: '669635EA-7688-4A8F-B995-2B2A375C9DA3',
+          ApproveDate: dayjs().format(),
+          Approved: true,
+          Visible: true,
+        });
+      });
+
       done();
     }, 5500);
 

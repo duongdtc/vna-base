@@ -1,3 +1,5 @@
+import { AgentRealm } from '@services/realm/models/agent';
+import { useObject } from '@services/realm/provider';
 import {
   Block,
   DateRangePicker,
@@ -6,19 +8,19 @@ import {
   RangeDate,
   Text,
 } from '@vna-base/components';
-import { selectBalanceInfo } from '@vna-base/redux/selector';
 import { TopupFilterForm } from '@vna-base/screens/topup-history/type';
 import { translate } from '@vna-base/translations/translate';
-import { CurrencyDetails } from '@vna-base/utils';
+import { CurrencyDetails, load, StorageKey } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Pressable } from 'react-native';
-import { useSelector } from 'react-redux';
 
 export const TopInfo = memo(() => {
-  const { balance } = useSelector(selectBalanceInfo);
+  const agentId = load(StorageKey.CURRENT_AGENT_ID);
+
+  const agent = useObject<AgentRealm>(AgentRealm.schema.name, agentId);
 
   const { setValue, getValues, control } = useFormContext<TopupFilterForm>();
 
@@ -71,7 +73,9 @@ export const TopInfo = memo(() => {
             colorTheme="neutral800"
           />
           <Text
-            text={balance.currencyFormat()}
+            text={(
+              (agent?.CreditLimit ?? 0) + (agent?.Balance ?? 0)
+            ).currencyFormat()}
             fontStyle="Title16Semi"
             colorTheme="success500"
           />
