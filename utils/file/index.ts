@@ -6,6 +6,7 @@ import { Process, UploadFileResponse } from '@redux/type';
 import { Platform } from 'react-native';
 import { Image } from 'react-native-image-crop-picker';
 import { ImageTypes } from '@assets/image';
+import { images } from '@vna-base/assets/image';
 
 export enum PathInServer {
   MISSION = 'mission/document',

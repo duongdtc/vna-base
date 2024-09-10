@@ -1,3 +1,7 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingRealm } from '@services/realm/models/booking';
+import { useObject } from '@services/realm/provider';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   BottomSheetHistory,
@@ -5,22 +9,16 @@ import {
   Screen,
 } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { bookingActions } from '@vna-base/redux/action-slice';
-import { BookingRealm } from '@services/realm/models/booking';
-import { useObject } from '@services/realm/provider';
 import {
   BookingStatus,
   ObjectHistoryTypes,
   System,
   dispatch,
 } from '@vna-base/utils';
-import { APP_SCREEN, RootStackParamList } from '@utils';
 import isEmpty from 'lodash.isempty';
 import React, { useEffect, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 import {
   BottomInfoFlightBookingOrder,
   FlightActionBottomSheet,
@@ -38,9 +36,9 @@ export const BookingDetail = ({
 
   const bottomSheetRef = useRef<NormalRef>(null);
   const flightActionRef = useRef<FlightActionBottomSheetRef>(null);
-  const bookingId = useSelector(selectViewingBookingId);
-  const bookingDetail = useObject<BookingRealm>(BookingRealm.schema.name, id);
   const BTSHistoryRef = useRef<BottomSheetHistoryRef>(null);
+
+  const bookingDetail = useObject<BookingRealm>(BookingRealm.schema.name, id);
 
   const formMethod = useForm<FormBookingDetail>({
     mode: 'all',
@@ -122,12 +120,12 @@ export const BookingDetail = ({
         expand={_onShowContentBottom}
         showFlightAction={_showFlightAction}
       />
-      {bookingId && (
-        <>
-          <TicketFareBottomSheet ref={bottomSheetRef} />
-          <FlightActionBottomSheet ref={flightActionRef} />
-        </>
-      )}
+      {/* {bookingId && (
+        <> */}
+      <TicketFareBottomSheet ref={bottomSheetRef} />
+      <FlightActionBottomSheet ref={flightActionRef} />
+      {/* </>
+      )} */}
       <BottomSheetHistory ref={BTSHistoryRef} />
     </Screen>
   );
