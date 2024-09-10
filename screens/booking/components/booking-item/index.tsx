@@ -27,10 +27,6 @@ export type Props = {
 export const BookingItem = ({ item, customStyle, id }: Props) => {
   const _bookingDetail = useObject<BookingRealm>(BookingRealm.schema.name, id);
 
-  if (_bookingDetail?.BookingCode === '5UDOFF') {
-    console.log('🚀 ~ BookingItem ~ _bookingDetail:', _bookingDetail?.toJSON());
-  }
-
   const bookingDetail = (item ?? _bookingDetail?.toJSON()) as Booking;
 
   const status =
