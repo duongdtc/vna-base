@@ -15,10 +15,10 @@ export const Price = () => {
     return {
       OldPrice: OldPrice?.Amount?.currencyFormat(),
       NewPrice: NewPrice?.Amount?.currencyFormat(),
-      Different: Math.abs(different).currencyFormat(),
+      Different: different,
       Penalty: panalty.currencyFormat(),
       PaidAmount: OldPrice?.Amount?.currencyFormat(),
-      TotalPrice: Math.abs(totalPrice).currencyFormat(),
+      TotalPrice: totalPrice + panalty,
     };
   }, [NewPrice?.Amount, OldPrice?.Amount]);
 
@@ -77,7 +77,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={getPrice.Different}
+            text={Math.abs(getPrice.Different).currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -128,7 +128,7 @@ export const Price = () => {
             fontStyle="Body14Semi"
           />
           <Text colorTheme="price" fontStyle="Title16Bold">
-            {getPrice.TotalPrice}{' '}
+            {Math.abs(getPrice.TotalPrice).currencyFormat()}{' '}
             <Text
               colorTheme="neutral900"
               fontStyle="Title16Bold"
