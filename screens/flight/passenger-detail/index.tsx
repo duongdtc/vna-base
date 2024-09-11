@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/no-unstable-nested-components */
+import { navigate } from '@navigation/navigation-service';
+import { createStyleSheet, useStyles } from '@theme';
 import {
   Block,
   Button,
@@ -12,19 +14,15 @@ import {
 } from '@vna-base/components';
 import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import { PagerRef } from '@vna-base/components/pager/type';
-import { navigate } from '@navigation/navigation-service';
+import {
+  flightBookingFormActions,
+  flightResultActions,
+} from '@vna-base/redux/action-slice';
 import {
   selectListSelectedFlight,
   selectSession,
 } from '@vna-base/redux/selector';
 import {
-  flightBookingFormActions,
-  flightResultActions,
-} from '@vna-base/redux/action-slice';
-import { BookFlightRes } from '@services/axios/axios-ibe';
-import { createStyleSheet, useStyles } from '@theme';
-import {
-  BookFlight,
   ModalWidth,
   StorageKey,
   WindowHeight,
@@ -65,9 +63,9 @@ import {
 
 import { images } from '@assets/image';
 import { useFocusEffect } from '@react-navigation/native';
+import { APP_SCREEN } from '@utils';
 import { AvoidSoftInput } from 'react-native-avoid-softinput';
 import { UnistylesRuntime } from 'react-native-unistyles';
-import { APP_SCREEN } from '@utils';
 
 // Hiện tại màn này chưa có đối tượng nào khiến rerender nên không cần useCallbak, useMemo
 export const TabName = {
@@ -111,15 +109,10 @@ export const PassengerDetail = () => {
     dispatch(
       flightBookingFormActions.bookFlight(
         formMethod.getValues(),
-        (
-          success: boolean,
-          orderInfo: Pick<BookFlightRes, 'OrderId' | 'ListBooking'> & {
-            Type: BookFlight;
-          },
-        ) => {
+        (success, bookingId) => {
           navigate(APP_SCREEN.BOOKING_FLIGHT_DONE, {
             success,
-            orderInfo,
+            bookingId,
           });
         },
       ),

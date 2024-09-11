@@ -347,7 +347,7 @@ export const runBookingListnener = () => {
 
       if (
         !history[idHistory] ||
-        dayjs().unix() - history[idHistory] > 30 ||
+        dayjs().unix() - history[idHistory] > 5 ||
         option?.force
       ) {
         // const resRetrieve = await Ibe.flightRetrieveBookingCreate({

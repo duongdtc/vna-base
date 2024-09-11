@@ -1,7 +1,10 @@
 import Actions from '@vna-base/redux/action-type';
 import { FlightBookingFormState } from '@redux/type';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FlightOfPassengerForm, PassengerForm } from '@vna-base/screens/flight/type';
+import {
+  FlightOfPassengerForm,
+  PassengerForm,
+} from '@vna-base/screens/flight/type';
 import { Ancillary, BookFlightRes, SeatMap } from '@services/axios/axios-ibe';
 import { BookFlight } from '@vna-base/utils';
 import { SLICE_NAME } from './constant';
@@ -105,12 +108,7 @@ const bookFlight = createAction(
   Actions.BOOK_FLIGHT,
   (
     form: PassengerForm,
-    callback: (
-      success: boolean,
-      orderInfo: Pick<BookFlightRes, 'OrderId' | 'ListBooking'> & {
-        Type: BookFlight;
-      },
-    ) => void,
+    callback: (success: boolean, bookingId: string) => void,
   ) => ({
     payload: { form, callback },
   }),

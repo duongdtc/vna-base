@@ -869,7 +869,7 @@ export const runBookingActionListnener = () => {
               if (form.isCancelBooking) {
                 bookingDetail.BookingStatus = BookingStatus.CANCELED;
               } else {
-                bookingDetail.BookingStatus = BookingStatus.OK;
+                // bookingDetail.BookingStatus = BookingStatus.OK;
               }
 
               bookingDetail.Tickets.forEach(tk => {
@@ -1249,48 +1249,49 @@ async function fakeIssueTicket(
     id,
   );
 
+  const { StartPoint, EndPoint, DepartDate, Airline, ArriveDate } =
+    bookingDetail!.Flights[0]!;
+
   // @ts-ignore
   const listTicket: List<TicketRealm> =
-    bookingDetail?.Flights.map(
-      ({ StartPoint, EndPoint, DepartDate, Airline, ArriveDate }) => ({
-        Index: 0,
-        Id: String.prototype.randomUniqueId(),
-        System: bookingDetail.System,
-        Airline,
-        BookingCode: bookingDetail.BookingCode,
-        ConjTktNum: ConjTktNum,
-        TicketNumber: randomTicketNumber(),
-        TicketType: TicketType.OPEN,
-        TicketStatus: TicketStatus.OPEN,
-        TicketRelated: null,
-        RelatedType: null,
-        ServiceType: 'FLIGHT',
-        ServiceCode: null,
-        PaxType: 'ADT',
-        FullName: `${bookingDetail.Passengers[0].Surname} ${bookingDetail.Passengers[0].GivenName}`,
-        GivenName: bookingDetail.Passengers[0].GivenName,
-        Surname: bookingDetail.Passengers[0].Surname,
-        NameId: '2',
-        Fare: 1639000,
-        Tax: 701000,
-        Fee: 0,
-        Vat: 0,
-        Total: 2340000,
-        Currency: 'VND',
-        Itinerary: 1,
-        StartPoint,
-        EndPoint,
-        DepartDate: dayjs(DepartDate).format('DDMMYYYY'),
-        ReturnDate: dayjs(ArriveDate).format('DDMMYYYY'),
-        FareClass: 'N',
-        FareBasis: 'NPXVNF',
-        FlightType: 'domestic',
-        Segments: 'VN' + StartPoint + EndPoint,
-        Remark: 'PAX 738-2300011752/ETVN/18JUL24/SGNVN28BM/37980003',
-        TicketImage: null,
-        IssueDate: dayjs().format(),
-      }),
-    ) ?? [];
+    bookingDetail?.Passengers.map(({ PaxType, GivenName, Surname }) => ({
+      Index: 0,
+      Id: String.prototype.randomUniqueId(),
+      System: bookingDetail.System,
+      Airline,
+      BookingCode: bookingDetail.BookingCode,
+      ConjTktNum: ConjTktNum,
+      TicketNumber: randomTicketNumber(),
+      TicketType: TicketType.OPEN,
+      TicketStatus: TicketStatus.OPEN,
+      TicketRelated: null,
+      RelatedType: null,
+      ServiceType: 'FLIGHT',
+      ServiceCode: null,
+      PaxType,
+      FullName: `${Surname} ${GivenName}`,
+      GivenName: GivenName,
+      Surname: Surname,
+      NameId: '2',
+      Fare: 1639000,
+      Tax: 701000,
+      Fee: 0,
+      Vat: 0,
+      Total: 2_340_000,
+      Currency: 'VND',
+      Itinerary: 1,
+      StartPoint,
+      EndPoint,
+      DepartDate: dayjs(DepartDate).format('DDMMYYYY'),
+      ReturnDate: dayjs(ArriveDate).format('DDMMYYYY'),
+      FareClass: 'N',
+      FareBasis: 'NPXVNF',
+      FlightType: 'domestic',
+      Segments: 'VN' + StartPoint + EndPoint,
+      Remark: 'PAX 738-2300011752/ETVN/18JUL24/SGNVN28BM/37980003',
+      TicketImage: null,
+      IssueDate: dayjs().format(),
+    })) ?? [];
 
   realmRef.current?.write(() => {
     if (!isNil(bookingDetail)) {
