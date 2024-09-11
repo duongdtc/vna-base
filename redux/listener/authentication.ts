@@ -63,7 +63,7 @@ export const runAuthenticationListener = () => {
         remove(StorageKey.USERNAME);
         await CustomKeyChain.resetInternetCredentials();
       } else {
-        save(StorageKey.AGENT_CODE, body.AgentCode);
+        save(StorageKey.AGENT_CODE, body.AgentCode.toUpperCase());
         save(StorageKey.USERNAME, body.Username);
         await CustomKeyChain.setInternetCredentials(
           body.Username,

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FormLoginType } from '@vna-base/screens/login/type';
+
+import { FormLoginType } from '@screens/login/type';
 import { load } from '@vna-base/utils';
 import { StorageKey } from '@vna-base/utils/storage/constants';
 import { useCallback, useEffect } from 'react';
