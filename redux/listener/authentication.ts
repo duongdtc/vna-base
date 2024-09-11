@@ -26,7 +26,7 @@ export const runAuthenticationListener = () => {
       const agents = realmRef.current
         ?.objects<AgentRealm>(AgentRealm.schema.name)
         //@
-        .filtered('AgentCode CONTAINS[c] $0', body.AgentCode ?? 'VNABOOKER');
+        .filtered('AgentCode == $0', body.AgentCode.toUpperCase());
 
       if (!agents || agents?.length === 0) {
         console.log('first');
@@ -38,9 +38,9 @@ export const runAuthenticationListener = () => {
       const accountRealms = realmRef.current
         ?.objects<AccountRealm>(AccountRealm.schema.name)
         .filtered(
-          'Username CONTAINS[c] $0 && Password CONTAINS[c] $1 && AgentId CONTAINS[c] $2',
-          body.Username,
-          body.Password,
+          'Username == $0 && Password == $1 && AgentId CONTAINS[c] $2',
+          body.Username.toLowerCase(),
+          body.Password.toLowerCase(),
           agents[0].Id,
         );
 
@@ -63,7 +63,7 @@ export const runAuthenticationListener = () => {
         remove(StorageKey.USERNAME);
         await CustomKeyChain.resetInternetCredentials();
       } else {
-        save(StorageKey.AGENT_CODE, body.AgentCode ?? 'VNABOOKER');
+        save(StorageKey.AGENT_CODE, body.AgentCode);
         save(StorageKey.USERNAME, body.Username);
         await CustomKeyChain.setInternetCredentials(
           body.Username,
