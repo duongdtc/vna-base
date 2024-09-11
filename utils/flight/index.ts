@@ -103,3 +103,9 @@ export const getFlightNumber = (
 
   return (airline ?? '') + (newFlNumber ?? '');
 };
+
+export const ConjTktNum = '738';
+
+export function randomTicketNumber() {
+  return ConjTktNum + (Math.floor(Math.random() * 9000000000) + 1000000000);
+}

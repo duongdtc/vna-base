@@ -20,10 +20,6 @@ import {
   Text,
 } from '@vna-base/components';
 import {
-  selectFlightActionsByBookingId,
-  selectLanguage,
-} from '@vna-base/redux/selector';
-import {
   BookingStatus,
   BookingStatusDetails,
   HitSlop,
@@ -32,7 +28,6 @@ import {
 } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 
 export const Success = ({
@@ -44,14 +39,10 @@ export const Success = ({
   const { flightAction, t18nAnnouncement, tickets, bookingId } = route.params;
   const styles = useStyles();
 
-  const actions = useSelector(selectFlightActionsByBookingId(bookingId));
   const bookingDetail = useObject<BookingRealm>(
     BookingRealm.schema.name,
     bookingId,
   );
-  const Lng = useSelector(selectLanguage);
-
-  const isShowRemark = flightAction !== 'TicketIssue';
 
   const title = useMemo(() => {
     switch (flightAction) {
@@ -206,16 +197,7 @@ export const Success = ({
               colorTheme="neutral600"
             />
             <Text
-              text={
-                bookingDetail?.BookingCode ??
-                Array.from({ length: 6 }, () =>
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(
-                    Math.floor(Math.random() * 62),
-                  ),
-                )
-                  .join('')
-                  .toUpperCase()
-              }
+              text={bookingDetail?.BookingCode}
               fontStyle="Title20Bold"
               colorTheme={
                 BookingStatusDetails[

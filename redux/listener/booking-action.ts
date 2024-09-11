@@ -1,16 +1,21 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Ibe } from '@services/axios';
-import { ActionLst, Booking, Flight } from '@services/axios/axios-data';
+import { ActionLst, Booking } from '@services/axios/axios-data';
 import {
   Ancillary,
   Booking as BookingIbe,
+  IssueTicketRes,
   SeatMap,
   Ticket,
 } from '@services/axios/axios-ibe';
-import { BookingRealm } from '@services/realm/models/booking';
+import { BookingRealm, TicketRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
-import { hideLoading, showLoading } from '@vna-base/components';
+import {
+  hideLoading,
+  showLoading,
+  showModalConfirm,
+} from '@vna-base/components';
 import {
   bookingActionActions,
   currentAccountActions,
@@ -18,10 +23,10 @@ import {
 import {
   ANCILLARY_TYPE,
   BookingStatus,
+  ConjTktNum,
   delay,
-  load,
+  randomTicketNumber,
   scale,
-  StorageKey,
   System as SystemType,
   TicketStatus,
   TicketType,
@@ -32,8 +37,10 @@ import { AxiosResponse } from 'axios';
 
 import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
 import dayjs from 'dayjs';
+import cloneDeep from 'lodash.clonedeep';
 import isEmpty from 'lodash.isempty';
 import isNil from 'lodash.isnil';
+import { List } from 'realm';
 
 export const runBookingActionListnener = () => {
   takeLatestListeners()({
@@ -78,29 +85,18 @@ export const runBookingActionListnener = () => {
     effect: async (action, listenerApi) => {
       const { id, cb, autoUpdateBalance } = action.payload;
 
-      const price = Number(load(StorageKey.PRICE_BOOK ?? 0));
-
-      if (autoUpdateBalance) {
-        listenerApi.dispatch(currentAccountActions.addBalance(-price));
-      }
-
       const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
         BookingRealm.schema.name,
         id,
       );
 
-      const res = await fakeIssueTicket({
-        //@ts-ignore
-        fl: bookingDetail?.Flights ?? [],
-        paxName: bookingDetail?.PaxName ?? '',
-        bookingCode: bookingDetail?.BookingCode ?? '',
-      });
+      const price = Number(bookingDetail?.TotalPrice ?? 0);
 
-      realmRef.current?.write(() => {
-        if (!isNil(bookingDetail)) {
-          bookingDetail.BookingStatus = BookingStatus.TICKETED;
-        }
-      });
+      if (autoUpdateBalance) {
+        listenerApi.dispatch(currentAccountActions.addBalance(-price));
+      }
+
+      const res = await fakeIssueTicket(id);
 
       await notifee.requestPermission({
         criticalAlert: true,
@@ -167,20 +163,20 @@ export const runBookingActionListnener = () => {
 
         listenerApi.dispatch(
           currentAccountActions.addBalance(
-            -Number(load(StorageKey.PRICE_BOOK ?? 0)),
+            Number(bookingDetail?.TotalPrice ?? 0),
           ),
         );
 
-        realmRef.current?.write(() => {
-          if (!isNil(bookingDetail)) {
+        if (!isNil(bookingDetail)) {
+          realmRef.current?.write(() => {
             bookingDetail.Tickets?.forEach(ticket => {
               ticket.TicketStatus = TicketStatus.VOID;
               ticket.TicketType = TicketType.VOID;
             });
 
             bookingDetail.BookingStatus = BookingStatus.CANCELED;
-          }
-        });
+          });
+        }
 
         cb(true, (bookingDetail?.Tickets ?? []) as Array<Ticket>);
       } catch (error) {
@@ -862,11 +858,27 @@ export const runBookingActionListnener = () => {
           );
 
         if (Confirm) {
-          listenerApi.dispatch(
-            currentAccountActions.addBalance(
-              (bookingDetail?.TotalPrice ?? 0) - 1584000,
-            ),
-          );
+          if (!isEmpty(bookingDetail)) {
+            listenerApi.dispatch(
+              currentAccountActions.addBalance(
+                (bookingDetail?.TotalPrice ?? 0) - 900_000,
+              ),
+            );
+
+            realmRef.current?.write(() => {
+              if (form.isCancelBooking) {
+                bookingDetail.BookingStatus = BookingStatus.CANCELED;
+              } else {
+                bookingDetail.BookingStatus = BookingStatus.OK;
+              }
+
+              bookingDetail.Tickets.forEach(tk => {
+                tk.TicketStatus = TicketStatus.REFUND;
+                tk.TicketType = TicketType.RFND;
+              });
+            });
+          }
+
           hideLoading({
             lottie: 'done',
             t18nSubtitle: 'ancillary_update:update_booking_success',
@@ -898,7 +910,7 @@ export const runBookingActionListnener = () => {
                     Currency: 'VND',
                   },
                   RefundFare: {
-                    Amount: 1584000,
+                    Amount: 900_000,
                     Currency: 'VND',
                   },
                   RefundTotal: {
@@ -1016,7 +1028,7 @@ export const runBookingActionListnener = () => {
     effect: async (action, listenerApi) => {
       const { form, cb } = action.payload;
 
-      const { Confirm } = form;
+      const { Confirm, NewPrice } = form;
 
       const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
         BookingRealm.schema.name,
@@ -1051,14 +1063,48 @@ export const runBookingActionListnener = () => {
         //   throw new Error();
         // }
 
-        const newPrice = load(StorageKey.EXCH_TICKET_NEW_PRICE);
+        const oldPrice = bookingDetail?.TotalPrice ?? 0;
+
+        const Penalty = 360_000;
+
+        const different = NewPrice - oldPrice;
+
+        const totalPrice = NewPrice + Penalty - oldPrice;
+
+        if (different < 0) {
+          throw new Error('Chỉ cho phép đổi sang vé có giá lớn hơn hoặc bằng');
+        }
 
         if (Confirm) {
-          listenerApi.dispatch(
-            currentAccountActions.addBalance(
-              newPrice - (bookingDetail?.TotalPrice ?? 0) + 360_000,
-            ),
-          );
+          if (!isNil(bookingDetail)) {
+            listenerApi.dispatch(currentAccountActions.addBalance(-totalPrice));
+
+            let newTickets = bookingDetail.toJSON().Tickets;
+
+            newTickets.forEach(tk => {
+              tk.TicketType = TicketType.EXCH;
+              tk.TicketStatus = TicketStatus.EXCHANGE;
+            });
+
+            newTickets = newTickets.concat(
+              newTickets.map(tk => {
+                const newTk = cloneDeep(tk);
+
+                newTk.Id = String.prototype.randomUniqueId();
+
+                newTk.TicketStatus = TicketStatus.OPEN;
+                newTk.TicketType = TicketType.OPEN;
+                newTk.TicketNumber = randomTicketNumber();
+
+                return newTk;
+              }),
+            );
+
+            realmRef.current?.write(() => {
+              bookingDetail.Tickets = newTickets;
+              bookingDetail.TotalPrice = NewPrice;
+            });
+          }
 
           hideLoading({
             lottie: 'done',
@@ -1085,25 +1131,26 @@ export const runBookingActionListnener = () => {
             bookingActionActions.savePriceExchangeTicket({
               price: {
                 Penalty: {
-                  Amount: 360000,
+                  Amount: Penalty,
                   Currency: 'VND',
                 },
                 Different: {
-                  Amount: 227000,
+                  Amount: different,
                   Currency: 'VND',
                 },
                 OldPrice: {
-                  Amount: bookingDetail?.TotalPrice,
+                  Amount: oldPrice,
                   Currency: 'VND',
                 },
                 NewPrice: {
-                  Amount: newPrice ?? 0,
+                  Amount: NewPrice,
                   Currency: 'VND',
                 },
                 TotalPrice: {
-                  Amount: 587000,
+                  Amount: totalPrice,
                   Currency: 'VND',
                 },
+                PaidAmount: oldPrice,
               },
 
               session: '',
@@ -1113,11 +1160,22 @@ export const runBookingActionListnener = () => {
 
         cb(true, (bookingDetail?.Tickets ?? []) as Array<Ticket>);
       } catch (error) {
-        hideLoading({
+        hideLoading();
+        //   {
+        //   lottie: 'failed',
+        //   t18nSubtitle: 'update_booking:contact_admin_help',
+        //   t18nTitle: 'common:failed',
+        //   lottieStyle: { width: scale(182), height: scale(72) },
+        // }
+
+        showModalConfirm({
           lottie: 'failed',
-          t18nSubtitle: 'update_booking:contact_admin_help',
-          t18nTitle: 'common:failed',
           lottieStyle: { width: scale(182), height: scale(72) },
+          t18nTitle: 'Hoàn vé lỗi',
+          t18nSubtitle: error.message,
+          t18nCancel: 'modal_confirm:close',
+          themeColorCancel: 'neutral50',
+          themeColorTextCancel: 'neutral900',
         });
       }
     },
@@ -1181,83 +1239,72 @@ export const runBookingActionListnener = () => {
   });
 };
 
-async function fakeIssueTicket({
-  fl,
-  paxName,
-  bookingCode,
-}: {
-  fl: Flight[];
-  paxName: string;
-  bookingCode: string;
-}) {
+async function fakeIssueTicket(
+  id: string,
+): Promise<AxiosResponse<IssueTicketRes, any>> {
   await delay(1000);
+
+  const bookingDetail = realmRef.current?.objectForPrimaryKey<BookingRealm>(
+    BookingRealm.schema.name,
+    id,
+  );
+
+  // @ts-ignore
+  const listTicket: List<TicketRealm> =
+    bookingDetail?.Flights.map(
+      ({ StartPoint, EndPoint, DepartDate, Airline, ArriveDate }) => ({
+        Index: 0,
+        Id: String.prototype.randomUniqueId(),
+        System: bookingDetail.System,
+        Airline,
+        BookingCode: bookingDetail.BookingCode,
+        ConjTktNum: ConjTktNum,
+        TicketNumber: randomTicketNumber(),
+        TicketType: TicketType.OPEN,
+        TicketStatus: TicketStatus.OPEN,
+        TicketRelated: null,
+        RelatedType: null,
+        ServiceType: 'FLIGHT',
+        ServiceCode: null,
+        PaxType: 'ADT',
+        FullName: `${bookingDetail.Passengers[0].Surname} ${bookingDetail.Passengers[0].GivenName}`,
+        GivenName: bookingDetail.Passengers[0].GivenName,
+        Surname: bookingDetail.Passengers[0].Surname,
+        NameId: '2',
+        Fare: 1639000,
+        Tax: 701000,
+        Fee: 0,
+        Vat: 0,
+        Total: 2340000,
+        Currency: 'VND',
+        Itinerary: 1,
+        StartPoint,
+        EndPoint,
+        DepartDate: dayjs(DepartDate).format('DDMMYYYY'),
+        ReturnDate: dayjs(ArriveDate).format('DDMMYYYY'),
+        FareClass: 'N',
+        FareBasis: 'NPXVNF',
+        FlightType: 'domestic',
+        Segments: 'VN' + StartPoint + EndPoint,
+        Remark: 'PAX 738-2300011752/ETVN/18JUL24/SGNVN28BM/37980003',
+        TicketImage: null,
+        IssueDate: dayjs().format(),
+      }),
+    ) ?? [];
+
+  realmRef.current?.write(() => {
+    if (!isNil(bookingDetail)) {
+      bookingDetail.BookingStatus = BookingStatus.TICKETED;
+      bookingDetail.Tickets = listTicket;
+    }
+  });
 
   return {
     data: {
       Booking: {
-        Source: null,
-        System: 'VN',
-        Airline: 'VN',
-        BookingId: null,
-        OrderCode: null,
-        OrderId: null,
-        GdsCode: '5KBXK4',
-        BookingCode: bookingCode,
-        BookingStatus: 'TICKETED',
-        ExpirationTime: null,
-        TimePurchase: null,
-        TotalPrice: 0,
-        Currency: 'VND',
-        BookingPcc: null,
-        BookingSignIn: null,
-        BookingImage:
-          '5KBXK4\r\nWARNING: NOT FOUND PASSENGER DATA!\r\nNO ITINERARY INFO!',
-        ResponseTime: 0,
-        AutoIssue: false,
-        Sandbox: false,
-        StatusCode: null,
-        Message: null,
-        ListContact: [],
-        ListFlightFare: [],
-        ListPassenger: [],
-        ListTicket: fl.map(({ StartPoint, EndPoint, DepartDate }) => ({
-          Index: 0,
-          System: 'VN',
-          Airline: 'VN',
-          BookingCode: '5KBXK4',
-          ConjTktNum: '738',
-          TicketNumber:
-            '738' + (Math.floor(Math.random() * 9000000000) + 1000000000),
-          TicketType: 'OPEN',
-          TicketStatus: 'OPEN',
-          TicketRelated: null,
-          RelatedType: null,
-          ServiceType: 'FLIGHT',
-          ServiceCode: null,
-          PaxType: 'ADT',
-          FullName: paxName,
-          GivenName: paxName,
-          Surname: paxName,
-          NameId: '2',
-          Fare: 1639000,
-          Tax: 701000,
-          Fee: 0,
-          Vat: 0,
-          Total: 2340000,
-          Currency: 'VND',
-          Itinerary: 1,
-          StartPoint,
-          EndPoint,
-          DepartDate: dayjs(DepartDate).format('DDMMYYYY'),
-          ReturnDate: null,
-          FareClass: 'N',
-          FareBasis: 'NPXVNF',
-          FlightType: 'domestic',
-          Segments: 'VN' + StartPoint + EndPoint,
-          Remark: 'PAX 738-2300011752/ETVN/18JUL24/SGNVN28BM/37980003',
-          TicketImage: null,
-          IssueDate: '2024-07-18T00:00:00',
-        })),
+        ...bookingDetail,
+        //@ts-ignore
+        ListTicket: cloneDeep(listTicket),
       },
       PaidAmount: 0,
       RequestID: 38406,
@@ -1267,7 +1314,6 @@ async function fakeIssueTicket({
       Expired: false,
       Message: null,
       Language: 'vi',
-      CustomProperties: null,
     },
   };
 }

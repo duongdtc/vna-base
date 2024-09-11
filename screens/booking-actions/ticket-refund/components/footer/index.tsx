@@ -1,16 +1,15 @@
-import { Block, Button, showModalConfirm } from '@vna-base/components';
 import { goBack, navigate } from '@navigation/navigation-service';
-import {
-  bookingActionActions,
-  bookingActions,
-  currentAccountActions,
-} from '@vna-base/redux/action-slice';
 import { Ticket } from '@services/axios/axios-data';
 import { RefundTicketReq } from '@services/axios/axios-ibe';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
-import { dispatch, System } from '@vna-base/utils';
 import { APP_SCREEN } from '@utils';
+import { Block, Button, showModalConfirm } from '@vna-base/components';
+import {
+  bookingActionActions,
+  bookingActions,
+} from '@vna-base/redux/action-slice';
+import { dispatch, System } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { useFormContext, useFormState } from 'react-hook-form';
@@ -36,7 +35,10 @@ export const Footer = memo(
       confirm: boolean,
       cb: (isSuccess: boolean, listTicket: Array<Ticket>) => void,
     ) => {
-      const form: Omit<RefundTicketReq, 'RequestInfo'> = {
+      const form: Omit<RefundTicketReq, 'RequestInfo'> & {
+        isCancelBooking: boolean;
+      } = {
+        isCancelBooking: dataForm.isCancelBooking,
         System: bookingDetail?.System,
         Airline: bookingDetail?.Airline,
         BookingCode: bookingDetail?.BookingCode,

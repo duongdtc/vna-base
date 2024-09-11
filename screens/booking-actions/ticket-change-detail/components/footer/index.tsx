@@ -36,7 +36,9 @@ export const Footer = memo(() => {
     confirm: boolean,
     cb: (isSuccess: boolean, listTicket: Array<Ticket>) => void,
   ) => {
-    const form: Omit<ExchangeTicketReq, 'RequestInfo' | 'AutoIssue'> = {
+    const form: Omit<ExchangeTicketReq, 'RequestInfo' | 'AutoIssue'> & {
+      NewPrice: number;
+    } = {
       System: bookingDetail?.System,
       Airline: bookingDetail?.Airline,
       BookingCode: bookingDetail?.BookingCode,
@@ -64,6 +66,18 @@ export const Footer = memo(() => {
             BookingClass: sgm.FareClass,
           })),
         ) as Array<SegmentInfo>,
+
+      NewPrice:
+        dataForm.oldFlights
+          .filter(fl => !fl.isSelected)
+          .reduce(
+            (total, curr) => total + (curr.FareOption?.TotalFare ?? 0),
+            0,
+          ) +
+        dataForm.newFlights.reduce(
+          (total, curr) => total + (curr.FareOption?.TotalFare ?? 0),
+          0,
+        ),
     };
 
     dispatch(bookingActionActions.exchangeTicket(form, cb));

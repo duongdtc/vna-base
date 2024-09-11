@@ -26,19 +26,6 @@ export const ListNewFlight = () =>
       name: 'newFlights',
     });
 
-    const totalNewPrice = useMemo(
-      () =>
-        fields?.reduce(
-          (total, currFare) => total + (currFare?.FareOption!.TotalFare ?? 0),
-          0,
-        ),
-      [fields],
-    );
-
-    useEffect(() => {
-      save(StorageKey.EXCH_TICKET_NEW_PRICE, totalNewPrice);
-    }, [totalNewPrice]);
-
     // const onPressItem = useCallback(
     //   (flight: Flight, index: number) => {
     //     // map flight to AirlineOptionCustom

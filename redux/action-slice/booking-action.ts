@@ -334,7 +334,9 @@ const changeFlight = createAction(
 const refundTicket = createAction(
   Actions.REFUND_TICKET,
   (
-    form: Omit<RefundTicketReq, 'RequestInfo'>,
+    form: Omit<RefundTicketReq, 'RequestInfo'> & {
+      isCancelBooking: boolean;
+    },
     cb: (isSuccess: boolean, listTicket: Array<Ticket>) => void,
   ) => ({
     payload: {
@@ -354,7 +356,9 @@ const updateContact = createAction(
 const exchangeTicket = createAction(
   Actions.EXCHANGE_TICKET,
   (
-    form: Omit<ExchangeTicketReq, 'RequestInfo' | 'AutoIssue'>,
+    form: Omit<ExchangeTicketReq, 'RequestInfo' | 'AutoIssue'> & {
+      NewPrice: number;
+    },
     cb: (isSuccess: boolean, listTicket: Array<Ticket>) => void,
   ) => ({
     payload: {

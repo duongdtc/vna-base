@@ -79,19 +79,18 @@ export const TicketRefund = ({
             render={({ field: { value } }) => {
               return value?.length > 0 ? (
                 <>
-                  {bookingDetail?.System !== System.QH && (
-                    <Block
-                      borderRadius={8}
-                      colorTheme="neutral100"
-                      overflow="hidden">
-                      <RowOfForm<RfndTicketForm>
-                        type="switch"
-                        t18n="refund_ticket:cancel_booking"
-                        name="isCancelBooking"
-                        control={formMethod.control}
-                      />
-                    </Block>
-                  )}
+                  <Block
+                    borderRadius={8}
+                    colorTheme="neutral100"
+                    overflow="hidden">
+                    <RowOfForm<RfndTicketForm>
+                      type="switch"
+                      t18n="refund_ticket:cancel_booking"
+                      name="isCancelBooking"
+                      control={formMethod.control}
+                    />
+                  </Block>
+
                   <Block paddingTop={8} rowGap={8}>
                     <Text
                       t18n="refund_ticket:options"

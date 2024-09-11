@@ -1,26 +1,11 @@
 import { Block, Separator, Text } from '@vna-base/components';
 import { selectPriceExchangeTicket } from '@vna-base/redux/selector';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 export const Price = () => {
-  const { NewPrice, OldPrice, TotalPrice } = useSelector(
-    selectPriceExchangeTicket,
-  );
-
-  const getPrice = useMemo(() => {
-    const different = (NewPrice?.Amount ?? 0) - (OldPrice?.Amount ?? 0);
-    const panalty = 360_000;
-    const totalPrice = different + panalty;
-    return {
-      OldPrice: OldPrice?.Amount?.currencyFormat(),
-      NewPrice: NewPrice?.Amount?.currencyFormat(),
-      Different: different,
-      Penalty: panalty.currencyFormat(),
-      PaidAmount: OldPrice?.Amount?.currencyFormat(),
-      TotalPrice: totalPrice + panalty,
-    };
-  }, [NewPrice?.Amount, OldPrice?.Amount]);
+  const { NewPrice, OldPrice, TotalPrice, PaidAmount, Different, Penalty } =
+    useSelector(selectPriceExchangeTicket);
 
   return (
     <Block rowGap={12} style={{ marginTop: -12 }}>
@@ -41,7 +26,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={getPrice.OldPrice}
+            text={OldPrice?.Amount?.currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -58,7 +43,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={getPrice.NewPrice}
+            text={NewPrice?.Amount?.currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -77,7 +62,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={Math.abs(getPrice.Different).currencyFormat()}
+            text={Different?.Amount?.currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -94,7 +79,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={getPrice.Penalty}
+            text={Penalty?.Amount?.currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -111,7 +96,7 @@ export const Price = () => {
             fontStyle="Body14Reg"
           />
           <Text
-            text={getPrice.PaidAmount}
+            text={PaidAmount?.currencyFormat()}
             colorTheme="price"
             fontStyle="Body14Semi"
           />
@@ -123,12 +108,16 @@ export const Price = () => {
           alignItems="center"
           justifyContent="space-between">
           <Text
-            t18n="exchange_ticket:total"
+            text={
+              (TotalPrice?.Amount ?? 0) >= 0 ? 'Tổng thanh toán' : 'Tổng hoàn'
+            }
             colorTheme="neutral900"
             fontStyle="Body14Semi"
           />
-          <Text colorTheme="price" fontStyle="Title16Bold">
-            {Math.abs(getPrice.TotalPrice).currencyFormat()}{' '}
+          <Text
+            colorTheme={(TotalPrice?.Amount ?? 0) >= 0 ? 'price' : 'success500'}
+            fontStyle="Title16Bold">
+            {Math.abs(TotalPrice?.Amount ?? 0).currencyFormat()}{' '}
             <Text
               colorTheme="neutral900"
               fontStyle="Title16Bold"
