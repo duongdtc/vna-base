@@ -1,13 +1,15 @@
 import { DEFAULT_CURRENCY } from '@env';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
-import { Block, Button, Icon, Text } from '@vna-base/components';
+import { createStyleSheet, useStyles } from '@theme';
+import { Block, Icon, LinearGradient, Text } from '@vna-base/components';
 import { selectViewingBookingId } from '@vna-base/redux/selector';
+import { scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { Pressable } from 'react-native';
+import { UnistylesRuntime } from 'react-native-unistyles';
 import { useSelector } from 'react-redux';
-import { useStyles } from './styles';
 
 export const BottomInfoFlightBookingOrder = memo(
   ({
@@ -17,7 +19,7 @@ export const BottomInfoFlightBookingOrder = memo(
     expand: () => void;
     showFlightAction: () => void;
   }) => {
-    const styles = useStyles();
+    const { styles } = useStyles(styleSheet);
 
     const bookingId = useSelector(selectViewingBookingId);
 
@@ -48,14 +50,16 @@ export const BottomInfoFlightBookingOrder = memo(
                 <Text text={DEFAULT_CURRENCY} colorTheme="neutral800" />
               </Text>
             </Block>
-            <Button
-              t18n="booking:operation"
-              textColorTheme="white"
-              size="medium"
-              buttonColorTheme="001"
-              paddingHorizontal={40}
-              onPress={showFlightAction}
-            />
+            <Pressable onPress={showFlightAction}>
+              <LinearGradient type="gra1" style={styles.btn}>
+                <Text
+                  textAlign="center"
+                  t18n="booking:operation"
+                  fontStyle="Title16Bold"
+                  colorTheme="white"
+                />
+              </LinearGradient>
+            </Pressable>
           </Block>
         </Block>
       </Pressable>
@@ -63,3 +67,18 @@ export const BottomInfoFlightBookingOrder = memo(
   },
   isEqual,
 );
+
+const styleSheet = createStyleSheet(({ colors, shadows, radius }) => ({
+  containerBottom: {
+    backgroundColor: colors.neutral10,
+    paddingTop: scale(8),
+    paddingHorizontal: scale(12),
+    paddingBottom: UnistylesRuntime.insets.bottom + scale(8),
+    ...shadows.main,
+  },
+  btn: {
+    paddingHorizontal: scale(40),
+    paddingVertical: scale(12),
+    borderRadius: radius[8],
+  },
+}));
