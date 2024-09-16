@@ -23,7 +23,6 @@ import { useStyles } from './style';
 export const paddingLeftContentModal: Spacing = 12;
 
 export const ItemFlightJourney = ({ item }: { item: Flight }) => {
-  console.log('🚀 ~ ItemFlightJourney ~ item:', item);
   const realm = useRealm();
   const styles = useStyles();
 

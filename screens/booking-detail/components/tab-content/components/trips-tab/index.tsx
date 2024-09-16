@@ -39,8 +39,6 @@ export const TripsTab = ({ id }: { id: string }) => {
     [bookingDetail?.Flights, fareClassFollowingADT],
   );
 
-  console.log('data', JSON.stringify(data));
-
   const renderItem = useCallback<ListRenderItem<Flight>>(({ item }) => {
     return <ItemFlightJourney item={item} />;
   }, []);
