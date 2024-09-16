@@ -27,7 +27,7 @@ export const TopupHistory = () => {
   const allTopup = useQuery<EntryItemRealm>(EntryItemRealm.schema.name);
 
   const listTopup = allTopup
-    .filtered('AgentId == $0', agentId)
+    .filtered('AgentId == $0 AND CustomerId != NULL', agentId)
     .sorted('CreatedDate', true);
 
   const _renderItem = useCallback<ListRenderItem<EntryItemRealm>>(
