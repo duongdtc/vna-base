@@ -113,7 +113,7 @@ export const BookingDetail = ({
               bookingDate: bookingDetail?.BookingDate,
             }}
           />
-          <TabContent />
+          <TabContent id={id} />
         </Block>
       </FormProvider>
       <BottomInfoFlightBookingOrder

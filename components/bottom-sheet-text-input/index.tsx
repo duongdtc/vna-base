@@ -11,6 +11,7 @@ export const BottomSheetTextInput = memo(
     const {
       leftIcon,
       leftIconSize = 16,
+      leftIconColorTheme,
       colorTheme,
       color,
       placeholderColorTheme,
@@ -32,7 +33,7 @@ export const BottomSheetTextInput = memo(
           <Icon
             icon={leftIcon}
             size={leftIconSize}
-            colorTheme={colorTheme}
+            colorTheme={leftIconColorTheme}
             color={color}
           />
         )}

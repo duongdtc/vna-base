@@ -122,7 +122,7 @@ export const Content = ({
           <View style={bs.flex}>
             <Highlighter
               fontStyle="Body16Bold"
-              colorTheme="neutral100"
+              colorTheme="neutral800"
               searchWords={[keyword]}
               highlightColorTheme="primaryColor"
               textToHighlight={`${
@@ -139,7 +139,7 @@ export const Content = ({
           </View>
           <View style={styles.codeContainer}>
             <Highlighter
-              colorTheme="neutral100"
+              colorTheme="neutral800"
               fontStyle="Body16Bold"
               searchWords={[keyword]}
               highlightColorTheme="primaryColor"
@@ -157,7 +157,8 @@ export const Content = ({
       <BottomSheetTextInput
         onChangeText={setKeyword}
         leftIcon="search_fill"
-        colorTheme="neutral100"
+        colorTheme="neutral10"
+        leftIconColorTheme="001"
         placeholderColorTheme="neutral80"
         leftIconSize={24}
         placeholder={t('flight:search_airport_placeholder')}
@@ -173,7 +174,7 @@ export const Content = ({
               <Text
                 fontStyle="Body14Reg"
                 textAlign="center"
-                colorTheme="neutral100"
+                colorTheme="neutral10"
                 t18n="common:not_found_result"
               />
             }

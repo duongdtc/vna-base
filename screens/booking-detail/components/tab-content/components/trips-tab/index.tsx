@@ -1,24 +1,20 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block } from '@vna-base/components';
-import { selectViewingBookingId } from '@vna-base/redux/selector';
 import { Booking, Flight } from '@services/axios/axios-data';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject } from '@services/realm/provider';
+import { Block } from '@vna-base/components';
 import { scale } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { useSelector } from 'react-redux';
 import { ItemFlightJourney } from './item-flight-journey';
 import { useStyles } from './style';
 
-export const TripsTab = () => {
+export const TripsTab = ({ id }: { id: string }) => {
   const styles = useStyles();
-
-  const bookingId = useSelector(selectViewingBookingId);
 
   const bookingDetail = useObject<BookingRealm>(
     BookingRealm.schema.name,
-    bookingId!,
+    id,
   )?.toJSON() as Booking;
 
   const fareClassFollowingADT = useMemo(() => {
@@ -42,6 +38,8 @@ export const TripsTab = () => {
       })) ?? [],
     [bookingDetail?.Flights, fareClassFollowingADT],
   );
+
+  console.log('data', JSON.stringify(data));
 
   const renderItem = useCallback<ListRenderItem<Flight>>(({ item }) => {
     return <ItemFlightJourney item={item} />;

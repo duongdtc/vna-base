@@ -1171,7 +1171,7 @@ export const runBookingActionListnener = () => {
         showModalConfirm({
           lottie: 'failed',
           lottieStyle: { width: scale(182), height: scale(72) },
-          t18nTitle: 'Hoàn vé lỗi',
+          t18nTitle: 'Đổi vé lỗi',
           t18nSubtitle: error.message,
           t18nCancel: 'modal_confirm:close',
           themeColorCancel: 'neutral50',

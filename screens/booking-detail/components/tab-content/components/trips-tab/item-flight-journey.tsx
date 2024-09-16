@@ -23,6 +23,7 @@ import { useStyles } from './style';
 export const paddingLeftContentModal: Spacing = 12;
 
 export const ItemFlightJourney = ({ item }: { item: Flight }) => {
+  console.log('🚀 ~ ItemFlightJourney ~ item:', item);
   const realm = useRealm();
   const styles = useStyles();
 
@@ -293,7 +294,9 @@ export const ItemFlightJourney = ({ item }: { item: Flight }) => {
                 {/* //cmt: time ArriveDate */}
                 <Block rowGap={4} alignItems="center">
                   <Text
-                    text={dayjs(segment.ArriveDate).format('HH:mm')}
+                    text={dayjs(segment.DepartDate)
+                      .add(segment.Duration ?? 0, 'minute')
+                      .format('HH:mm')}
                     fontStyle="Title16Semi"
                     colorTheme="neutral900"
                   />

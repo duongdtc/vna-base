@@ -29,7 +29,7 @@ export const Header = () => {
       centerContent={
         <Text
           fontStyle="Title20Semi"
-          text="Khách hàng thường xuyên"
+          text="Danh sách tài khoản"
           colorTheme="neutral900"
         />
       }

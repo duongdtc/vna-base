@@ -1,6 +1,6 @@
+import { I18nKeys } from '@translations/locales';
 import { Block, LazyPlaceholder, Text } from '@vna-base/components';
 import { selectViewingBookingId } from '@vna-base/redux/selector';
-import { I18nKeys } from '@translations/locales';
 import { ActiveOpacity, WindowWidth } from '@vna-base/utils';
 import React, { memo, useCallback, useState } from 'react';
 import isEqual from 'react-fast-compare';
@@ -13,14 +13,7 @@ import {
   TabView,
 } from 'react-native-tab-view';
 import { useSelector } from 'react-redux';
-import {
-  OthersInfoTab,
-  PassengersTab,
-  ServicesTab,
-  TicketClassTab,
-  TicketsTab,
-  TripsTab,
-} from './components';
+import { PassengersTab, ServicesTab, TicketsTab, TripsTab } from './components';
 import { useStyles } from './style';
 
 const TabName = {
@@ -61,7 +54,7 @@ const routes = [
   // },
 ];
 
-export const TabContent = memo(() => {
+export const TabContent = memo(({ id }: { id: string }) => {
   const styles = useStyles();
 
   const bookingId = useSelector(selectViewingBookingId);
@@ -121,7 +114,7 @@ export const TabContent = memo(() => {
       switch (route.key) {
         // procedure tab
         case TabName.TRIPS:
-          return <TripsTab />;
+          return <TripsTab id={id} />;
 
         // passenger tab
         case TabName.PASSENGERS:

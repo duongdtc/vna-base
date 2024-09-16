@@ -1,5 +1,4 @@
-import { Colors } from '@theme';
-import { FontStyle } from '@theme/typography';
+import { Colors, FontStyle } from '@theme/type';
 import { StyleProp, TextStyle } from 'react-native';
 
 export type HighLightTextProps = {
@@ -8,6 +7,6 @@ export type HighLightTextProps = {
   fontStyle: FontStyle;
   highlightStyle?: StyleProp<TextStyle>;
   style?: StyleProp<TextStyle>;
-  colorTheme?: keyof Colors;
-  highlightColorTheme?: keyof Colors;
+  colorTheme?: Colors;
+  highlightColorTheme?: Colors;
 };
