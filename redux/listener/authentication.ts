@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Data } from '@services/axios';
 import { AccountRealm } from '@services/realm/models/account';
 import { AgentRealm } from '@services/realm/models/agent';
 import { realmRef } from '@services/realm/provider';
@@ -16,12 +15,26 @@ export const runAuthenticationListener = () => {
     effect: async (action, listenerApi) => {
       const { body, onFailure, isRemember } = action.payload;
 
-      const response = await Data.userAccountUserAccountLoginCreate({
-        AgentCode: 'DC10899',
-        Username: 'hungtk',
-        Password: '123456',
-        Remember: true,
-      });
+      // const response = await Data.userAccountUserAccountLoginCreate({
+      //   AgentCode: 'DC10899',
+      //   Username: 'hungtk',
+      //   Password: '123456',
+      //   Remember: true,
+      // });
+
+      const response = {
+        data: {
+          Message: null,
+          AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+          Language: 'vi',
+          CustomProperties: null,
+          StatusCode: '000',
+          Expired: false,
+          TokenLogin:
+            'pZCI6IjY2OTYzNUVBLTc2ODgtNEE4Ri1COTk1LTJCMkEzNzVDOURBMyIsIm5iZiI6MTczMDIxNTYxMiwiZXhwIjoxNzYxNzUxNjEyLCJpYXQiOjE3MzAyMTU2MTJ9.LaEtFZ8q2Efig4hd-JWRbAsqAkN-azbYsOzE1xyQV1M',
+          Success: true,
+        },
+      };
 
       const agents = realmRef.current
         ?.objects<AgentRealm>(AgentRealm.schema.name)
@@ -29,7 +42,6 @@ export const runAuthenticationListener = () => {
         .filtered('AgentCode == $0', body.AgentCode.toUpperCase());
 
       if (!agents || agents?.length === 0) {
-        console.log('first');
         onFailure('Sai thông tin đăng nhập');
 
         return;
