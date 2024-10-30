@@ -10,16 +10,17 @@ import { Service } from '.';
 import { NewItemContainer } from './new-item-container';
 import { WaitingRoomItem } from './waiting-room-item';
 import { WaitingRoomPicker } from './waiting-room-picker';
+import { images } from '@vna-base/assets/image';
 
 export const WaitingRoomsFake: Array<WaitingRoom> = [
   {
-    img: 'https://res.cloudinary.com/do4l7xob6/image/upload/v1722235046/abc/Rectangle_34624148_t1xelq.png',
+    img: images.Rectangle_34624148_t1xelq,
     price: 344_000,
     title: 'Phòng chờ nội địa',
     value: 'DO',
   },
   {
-    img: 'https://res.cloudinary.com/do4l7xob6/image/upload/v1722235046/abc/Rectangle_34624147_tv33le.png',
+    img: images.Rectangle_34624147_tv33le,
     price: 638_000,
     title: 'Phòng chờ quốc tế',
     value: 'GL',

@@ -1,3 +1,4 @@
+import { images } from '@vna-base/assets/image';
 import { Block, Icon, Image, Text } from '@vna-base/components';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import React, { memo, useCallback, useState } from 'react';
@@ -26,7 +27,7 @@ const ListInsurance: Array<Insurance> = [
     title: 'Bảo hiểm du lịch TripCare',
     value: 'TripCare',
     price: 108_000,
-    img: 'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302551/abc/tripcare_advcu9.png',
+    img: images.insuranceImg,
     subtitle: 'Bảo hiểm trễ/huỷ chuyến bay nội địa',
     benefit: 'Khách hàng của bạn sẽ được đền bù lên đến 1 triệu đồng',
   },
@@ -34,7 +35,7 @@ const ListInsurance: Array<Insurance> = [
     title: 'Bảo hiểm du lịch Saladin',
     value: 'Saladin',
     price: 138_000,
-    img: 'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/saladin_piyqkh.png',
+    img: images.saladin_piyqkh,
     subtitle: 'Bảo hiểm trễ/huỷ chuyến bay nội địa',
     benefit: 'Khách hàng của bạn sẽ được đền bù lên đến 1 triệu đồng',
   },

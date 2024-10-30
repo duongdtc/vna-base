@@ -18,6 +18,12 @@ export const images = {
   checkin_online: require('./source/checkin-online.png'),
   loading: require('./source/loading.png'),
   non_loading: require('./source/non_loading.png'),
+  saladin_piyqkh: require('./source/saladin_piyqkh.png'),
+  ml_clp07d: require('./source/ml_clp07d.png'),
+  vf_dspwla: require('./source/vf_dspwla.png'),
+  vns_wy9lrh: require('./source/vns_wy9lrh.png'),
+  Rectangle_34624147_tv33le: require('./source/Rectangle_34624147_tv33le.png'),
+  Rectangle_34624148_t1xelq: require('./source/Rectangle_34624148_t1xelq.png'),
 
   // Services
   IMG1: require('./source/services/IMG1.png'),

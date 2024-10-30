@@ -10,13 +10,13 @@ import { Service } from '.';
 import { NewItemContainer } from './new-item-container';
 import { ShuttleCarItem } from './shuttle-car-item';
 import { ShuttleCarPicker } from './shuttle-car-picker';
+import { images } from '@vna-base/assets/image';
 
 export const ShuttleCarsFake: Array<ShuttleCar> = [
   {
     title: 'Vinfast VF E34',
     value: 'ONE',
-    image:
-      'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/vf_dspwla.png',
+    image: images.vf_dspwla,
     capacity: 5,
     description: '• 14.000 VND/km (Dự kiến)',
     price: 190_000,
@@ -24,8 +24,7 @@ export const ShuttleCarsFake: Array<ShuttleCar> = [
   {
     title: 'Mai Linh 7 chỗ',
     value: 'TWO',
-    image:
-      'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/ml_clp07d.png',
+    image: images.ml_clp07d,
     capacity: 7,
     description: '• 15.000 VND/km (Dự kiến)',
     price: 210_000,
@@ -33,8 +32,7 @@ export const ShuttleCarsFake: Array<ShuttleCar> = [
   {
     title: 'Vinasun 4 chỗ',
     value: 'THREE',
-    image:
-      'https://res.cloudinary.com/do4l7xob6/image/upload/v1722302550/abc/vns_wy9lrh.png',
+    image: images.vns_wy9lrh,
     capacity: 4,
     description: '• 16.000 VND/km (Dự kiến)',
     price: 350_000,
