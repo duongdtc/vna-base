@@ -34,7 +34,89 @@ export const runSISetListener = () => {
   takeLatestListeners()({
     actionCreator: sisetActions.getAllSISet,
     effect: async (_, listenerApi) => {
-      const res = await Data.siSetSiSetGetAllCreate({});
+      // const res = await Data.siSetSiSetGetAllCreate({});
+      const res = {
+        data: {
+          List: [
+            {
+              Id: '15248905-CC05-4AB7-8B96-DC98882A028D',
+              Index: 9,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              Code: 'CERT',
+              Name: 'Bộ tài khoản test api các hãng',
+              Description: 'Bộ tài khoản test api các hãng',
+              Default: false,
+              Sandbox: false,
+              Visible: true,
+              SIMaps: [],
+            },
+            {
+              Id: '502E2325-FAB1-47B6-8D1E-BE075B6F02DE',
+              Index: 10,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              Code: 'HUNG',
+              Name: 'Hưng tê ka',
+              Description: 'Hưng tê ka',
+              Default: false,
+              Sandbox: false,
+              Visible: true,
+              SIMaps: [],
+            },
+            {
+              Id: '620FC274-1782-4A64-BC62-7963F2D43A26',
+              Index: 1,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              Code: 'DEFAULT',
+              Name: 'Bộ tài khoản mặc định',
+              Description: 'Nhóm SI mặc định',
+              Default: true,
+              Sandbox: true,
+              Visible: true,
+              SIMaps: [],
+            },
+            {
+              Id: '9D6313A6-F480-48E3-A480-58C92382AA12',
+              Index: 7,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              Code: 'MINH',
+              Name: 'Minh',
+              Description: 'Dành riêng cho anh Minh',
+              Default: false,
+              Sandbox: false,
+              Visible: true,
+              SIMaps: [],
+            },
+            {
+              Id: 'C1844805-4B86-435D-B6AF-0AC538312BFE',
+              Index: 8,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              Code: 'PRODUCTION',
+              Name: 'Bộ tài khoản production dùng để test',
+              Description: 'Bộ tài khoản production dùng để test',
+              Default: false,
+              Sandbox: false,
+              Visible: true,
+              SIMaps: [],
+            },
+          ],
+          TotalItem: 0,
+          TotalPage: 0,
+          PageIndex: 0,
+          PageSize: 0,
+          HasPreviousPage: false,
+          HasNextPage: false,
+          OrderBy: null,
+          SortType: null,
+          GetAll: false,
+          Filter: null,
+          StatusCode: '000',
+          Success: true,
+          Expired: false,
+          Message: null,
+          Language: 'vi',
+          CustomProperties: null,
+        },
+      };
 
       if (validResponse(res)) {
         if (validResponse(res)) {
@@ -52,4 +134,4 @@ export const runSISetListener = () => {
       }
     },
   });
-}
+};

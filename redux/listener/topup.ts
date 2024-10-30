@@ -107,7 +107,56 @@ export const runTopupListener = () => {
   takeLatestListeners()({
     actionCreator: topupActions.getAllType,
     effect: async (_, listenerApi) => {
-      const res = await Data.entryTypeEntryTypeGetAllCreate({});
+      // const res = await Data.entryTypeEntryTypeGetAllCreate({});
+
+      const res = {
+        data: {
+          List: [
+            {
+              Code: 'R_TOPUP',
+              AgentId: null,
+              NameVi: 'Thu tiền',
+              NameEn: 'Receipt',
+              ViewVi: 'Nộp tiền',
+              ViewEn: 'Topup',
+              Type: true,
+              Default: true,
+              Order: 0,
+              Visible: true,
+              EntryItems: [],
+            },
+            {
+              Code: 'E_TOPUP',
+              AgentId: null,
+              NameVi: 'Hoàn tiền',
+              NameEn: 'Cash back',
+              ViewVi: 'Rút tiền',
+              ViewEn: 'Withdraw',
+              Type: false,
+              Default: true,
+              Order: 0,
+              Visible: true,
+              EntryItems: [],
+            },
+          ],
+          TotalItem: 0,
+          TotalPage: 0,
+          PageIndex: 0,
+          PageSize: 0,
+          HasPreviousPage: false,
+          HasNextPage: false,
+          OrderBy: null,
+          SortType: null,
+          GetAll: false,
+          Filter: null,
+          StatusCode: '000',
+          Success: true,
+          Expired: false,
+          Message: null,
+          Language: 'vi',
+          CustomProperties: null,
+        },
+      };
 
       if (validResponse(res)) {
         const obj: Record<string, EntryType> = {

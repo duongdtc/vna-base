@@ -27,7 +27,71 @@ export const runAccountListener = () => {
   takeLatestListeners()({
     actionCreator: accountActions.getAllAccount,
     effect: async (_, listenerApi) => {
-      const res = await Data.userAccountUserAccountGetAllCreate({});
+      // const res = await Data.userAccountUserAccountGetAllCreate({});
+      const res = {
+        data: {
+          List: [
+            {
+              Id: '7044E5D5-C28B-4DF3-A2EA-B9839BE56237',
+              Index: 8,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              OfficeId: '21301132-DE26-436B-8BC8-F4B02CF14BEA',
+              Code: '32452452563245',
+              Type: 'CASH',
+              Name: 'DSGS',
+              Description: null,
+              AccountName: null,
+              AccountNumb: null,
+              BankBrand: null,
+              BankBranch: null,
+              Image: null,
+              ServiceId: null,
+              PrefixCode: null,
+              AutoBank: false,
+              Visible: true,
+              EntryItems: [],
+              Transactions: [],
+            },
+            {
+              Id: '95373D95-2086-4E5C-8E0A-7FE3CA5084F4',
+              Index: 1006,
+              AgentId: 'D4275221-ABEB-40AF-8526-98F1C52B362E',
+              OfficeId: '21301132-DE26-436B-8BC8-F4B02CF14BEA',
+              Code: '5345345345345',
+              Type: 'BANK',
+              Name: 'techcombank',
+              Description: null,
+              AccountName: 'Công ty Hồng Ngọc Hà',
+              AccountNumb: '5345345345345',
+              BankBrand: 'techcombank',
+              BankBranch: 'láng hạ',
+              Image: null,
+              ServiceId: null,
+              PrefixCode: null,
+              AutoBank: false,
+              Visible: true,
+              EntryItems: [],
+              Transactions: [],
+            },
+          ],
+          TotalItem: 0,
+          TotalPage: 0,
+          PageIndex: 0,
+          PageSize: 0,
+          HasPreviousPage: false,
+          HasNextPage: false,
+          OrderBy: null,
+          SortType: null,
+          GetAll: false,
+          Filter: null,
+          StatusCode: '000',
+          Success: true,
+          Expired: false,
+          Message: null,
+          Language: 'vi',
+          CustomProperties: null,
+        },
+      };
 
       if (validResponse(res)) {
         const obj: Record<

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Text } from '@vna-base/components';
+import { Block, Icon, Image, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
 import { selectLanguage } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
@@ -19,6 +19,8 @@ import { View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { useStyles } from './style';
+import { imgLocal } from '@assets/image/dbs-content-listener/img-local';
+import { imgBase64 } from '@assets/image/dbs-content-listener/img-base64';
 
 export const paddingLeftContentModal: Spacing = 12;
 
@@ -156,11 +158,15 @@ export const ItemFlightJourney = ({ item }: { item: Flight }) => {
                     height={36}
                     borderRadius={8}
                     overflow="hidden">
-                    <SvgUri
+                    <Image
+                      source={imgBase64.logo_vna}
+                      style={{ width: 36, height: 36 }}
+                    />
+                    {/* <SvgUri
                       width={36}
                       height={36}
                       uri={LOGO_URL + segment.Operator + '.svg'}
-                    />
+                    /> */}
                   </Block>
                 </Block>
                 {/* //cmt: right content */}
