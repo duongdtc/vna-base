@@ -345,7 +345,7 @@ const styleSheet = createStyleSheet(({ colors, shadows }) => ({
     paddingHorizontal: scale(16),
     paddingBottom: scale(16),
   },
-  img: { width: scale(198), height: scale(76) },
+  img: { width: scale(198), height: scale(62.29) },
   footer: {
     padding: scale(12),
     paddingBottom: scale(12) + UnistylesRuntime.insets.bottom,

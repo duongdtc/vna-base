@@ -24,12 +24,13 @@ import {
   BookingStatusDetails,
   HitSlop,
   resetSearchFlight,
+  scale,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, Pressable, ScrollView } from 'react-native';
-import { useStyles } from './styles';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export const Success = ({
   route,
@@ -38,7 +39,7 @@ export const Success = ({
   APP_SCREEN.BOOKING_ACTION_SUCCESS
 >) => {
   const { flightAction, t18nAnnouncement, tickets, bookingId } = route.params;
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
 
   const bookingDetail = useObject<BookingRealm>(
     BookingRealm.schema.name,
@@ -172,12 +173,9 @@ export const Success = ({
         showsVerticalScrollIndicator={false}>
         <Block width={358} height={80} alignItems="center">
           <Image
-            source={images.airplane}
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            resizeMode="center"
+            source={images.airplane_vna}
+            style={styles.img}
+            resizeMode="cover"
           />
         </Block>
 
@@ -330,3 +328,28 @@ export const Success = ({
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows }, rt) => ({
+  img: { width: scale(198), height: scale(62.29) },
+  container: {
+    backgroundColor: colors.neutral10,
+  },
+  containerBottom: {
+    backgroundColor: colors.neutral10,
+    borderTopWidth: scale(2),
+    borderColor: colors.neutral20,
+    paddingTop: scale(12),
+    paddingHorizontal: scale(12),
+    paddingBottom: rt.insets.bottom + scale(8),
+    ...shadows.main,
+  },
+  contentContainer: {
+    padding: scale(12),
+    rowGap: scale(12),
+  },
+  copyIcon: {
+    position: 'absolute',
+    bottom: 6,
+    right: -20,
+  },
+}));
