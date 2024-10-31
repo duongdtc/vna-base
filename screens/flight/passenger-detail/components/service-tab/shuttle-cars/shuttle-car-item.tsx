@@ -6,7 +6,7 @@ import isEmpty from 'lodash.isempty';
 import React, { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
-import { ShuttleCarItemProps } from './type';
+import { ShuttleCarItemProps } from '../type';
 
 export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
   const { flightIndex, onPress, airportIdx } = props;

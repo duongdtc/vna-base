@@ -1,3 +1,4 @@
+import { images } from '@vna-base/assets/image';
 import { Block } from '@vna-base/components';
 import {
   PassengerForm,
@@ -6,11 +7,10 @@ import {
 } from '@vna-base/screens/flight/type';
 import React, { useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Service } from '.';
+import { Service } from '../index';
 import { NewItemContainer } from './new-item-container';
 import { ShuttleCarItem } from './shuttle-car-item';
 import { ShuttleCarPicker } from './shuttle-car-picker';
-import { images } from '@vna-base/assets/image';
 
 export const ShuttleCarsFake: Array<ShuttleCar> = [
   {

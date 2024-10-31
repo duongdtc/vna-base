@@ -6,7 +6,7 @@ import { ActiveOpacity } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { ListRenderItem, TouchableOpacity } from 'react-native';
 import { UnistylesRuntime } from 'react-native-unistyles';
-import { ShuttleCarsFake } from '../shuttle-cars';
+import { ShuttleCarsFake } from '../index';
 
 type Props = {
   selectedBaggage: string | undefined | null;

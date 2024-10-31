@@ -67,7 +67,7 @@ export const Content = ({
                   fontStyle={selected ? 'Title16Semi' : 'Body16Reg'}
                   colorTheme={selected ? 'neutral900' : 'neutral800'}
                 />
-                {item.description !== '' && (
+                {item.description && item.description !== '' && (
                   <Text
                     t18n={item.description as I18nKeys}
                     fontStyle="Body12Reg"
