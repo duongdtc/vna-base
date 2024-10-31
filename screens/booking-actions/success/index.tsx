@@ -23,6 +23,7 @@ import {
   BookingStatus,
   BookingStatusDetails,
   HitSlop,
+  resetSearchFlight,
   TicketType,
   TicketTypeDetails,
 } from '@vna-base/utils';
@@ -138,6 +139,18 @@ export const Success = ({
     );
   }, []);
 
+  const backToHome = () => {
+    reset({
+      index: 0,
+      routes: [
+        {
+          name: APP_SCREEN.BOTTOM_TAB_NAV,
+        },
+      ],
+    });
+    resetSearchFlight();
+  };
+
   return (
     <Screen
       unsafe
@@ -232,30 +245,87 @@ export const Success = ({
         </Block>
       </ScrollView>
       <Block style={styles.containerBottom}>
-        <Button
-          fullWidth
-          t18n="issue_ticket:closed"
-          type="classic"
-          textColorTheme="neutral900"
-          onPress={() => {
-            reset({
-              index: 0,
-              routes: [
-                {
-                  name: APP_SCREEN.BOTTOM_TAB_NAV,
+        {flightAction === 'TicketIssue' ? (
+          <Block rowGap={10}>
+            <Block flexDirection="row" alignItems="center" columnGap={10}>
+              <Block flex={1}>
+                <Button
+                  text="Gửi email KH"
+                  buttonColorTheme="gra1"
+                  textColorTheme="neutral10"
+                  size="medium"
+                  fullWidth
+                  paddingVertical={12}
+                  onPress={() => {}}
+                />
+              </Block>
+              <Block flex={1}>
+                <Button
+                  text="Gửi SMS"
+                  buttonColorTheme="gra1"
+                  textColorTheme="neutral10"
+                  size="medium"
+                  fullWidth
+                  paddingVertical={12}
+                  onPress={() => {}}
+                />
+              </Block>
+            </Block>
+            <Block
+              flexDirection="row"
+              alignItems="center"
+              columnGap={10}
+              justifyContent="space-between">
+              <Block flex={1}>
+                <Button
+                  text="Tiếp tục đặt chỗ"
+                  buttonColorTheme="gra1"
+                  textColorTheme="neutral10"
+                  size="medium"
+                  fullWidth
+                  paddingVertical={12}
+                  onPress={backToHome}
+                />
+              </Block>
+              <Block flex={1}>
+                <Button
+                  text="Quản lý đặt chỗ"
+                  buttonColorTheme="gra1"
+                  textColorTheme="neutral10"
+                  size="medium"
+                  fullWidth
+                  paddingVertical={12}
+                  onPress={() => {}}
+                />
+              </Block>
+            </Block>
+          </Block>
+        ) : (
+          <Button
+            fullWidth
+            t18n="issue_ticket:closed"
+            type="classic"
+            textColorTheme="neutral900"
+            onPress={() => {
+              reset({
+                index: 0,
+                routes: [
+                  {
+                    name: APP_SCREEN.BOTTOM_TAB_NAV,
 
-                  state: {
-                    routes: [
-                      {
-                        name: APP_SCREEN.BOOKING,
-                      },
-                    ],
+                    state: {
+                      routes: [
+                        {
+                          name: APP_SCREEN.BOOKING,
+                        },
+                      ],
+                    },
                   },
-                },
-              ],
-            });
-          }}
-        />
+                ],
+              });
+            }}
+          />
+        )}
       </Block>
     </Screen>
   );

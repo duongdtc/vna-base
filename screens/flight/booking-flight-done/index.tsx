@@ -8,6 +8,7 @@ import { Booking } from '@services/axios/axios-data';
 import { AirlineRealm } from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef, useObject } from '@services/realm/provider';
+import { createStyleSheet, useStyles } from '@theme';
 import { ColorLight } from '@theme/color';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
@@ -21,7 +22,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { translate } from '@vna-base/translations/translate';
-import { HitSlop, resetSearchFlight } from '@vna-base/utils';
+import { HitSlop, resetSearchFlight, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import {
@@ -32,7 +33,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { SvgUri } from 'react-native-svg';
-import { useStyles } from './styles';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const BookingFlightDone = ({
   route,
@@ -40,7 +41,7 @@ export const BookingFlightDone = ({
   RootStackParamList,
   APP_SCREEN.BOOKING_FLIGHT_DONE
 >) => {
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
   const { bookingId, success } = route.params;
 
   const bookingDetail = useObject<BookingRealm>(
@@ -197,18 +198,9 @@ export const BookingFlightDone = ({
     <Screen unsafe statusBarStyle="light-content">
       <NormalHeaderGradient
         gradientType="gra1"
+        leftContent={<Block height={32} width={32} />}
         centerContent={
           <Text t18n="common:done" fontStyle="Title20Semi" colorTheme="white" />
-        }
-        rightContent={
-          <Button
-            hitSlop={HitSlop.Large}
-            leftIcon="home_fill"
-            leftIconSize={24}
-            textColorTheme="white"
-            padding={4}
-            onPress={backToHome}
-          />
         }
       />
       <ScrollView contentContainerStyle={styles.contentContainerScrollView}>
@@ -254,7 +246,7 @@ export const BookingFlightDone = ({
         />
       </ScrollView>
       <Block style={styles.footer}>
-        <Block
+        {/* <Block
           flexDirection="row"
           paddingVertical={2}
           alignItems="center"
@@ -268,10 +260,81 @@ export const BookingFlightDone = ({
             {bookingDetail?.TotalPrice?.currencyFormat()}{' '}
             <Text text="VND" colorTheme="neutral900" />
           </Text>
+        </Block> */}
+        <Block flexDirection="row" alignItems="center" columnGap={10}>
+          <Block flex={1}>
+            <Button
+              text="Gửi email KH"
+              buttonColorTheme="gra1"
+              textColorTheme="neutral10"
+              size="medium"
+              fullWidth
+              paddingVertical={12}
+              onPress={() => {}}
+            />
+          </Block>
+          <Block flex={1}>
+            <Button
+              text="Gửi SMS"
+              buttonColorTheme="gra1"
+              textColorTheme="neutral10"
+              size="medium"
+              fullWidth
+              paddingVertical={12}
+              onPress={() => {}}
+            />
+          </Block>
         </Block>
-
+        <Block
+          flexDirection="row"
+          alignItems="center"
+          columnGap={10}
+          justifyContent="space-between">
+          <Block flex={1}>
+            <Button
+              text="Tiếp tục đặt chỗ"
+              buttonColorTheme="gra1"
+              textColorTheme="neutral10"
+              size="medium"
+              fullWidth
+              paddingVertical={12}
+              onPress={backToHome}
+            />
+          </Block>
+          <Block flex={1}>
+            <Button
+              text="Chi tiết đặt chỗ"
+              buttonColorTheme="gra1"
+              textColorTheme="neutral10"
+              size="medium"
+              fullWidth
+              paddingVertical={12}
+              onPress={() => {}}
+            />
+          </Block>
+        </Block>
         <MoreActionButton />
       </Block>
     </Screen>
   );
 };
+
+const styleSheet = createStyleSheet(({ colors, shadows }) => ({
+  contentContainerScrollView: {
+    paddingTop: scale(12),
+    rowGap: scale(12),
+    backgroundColor: colors.neutral10,
+  },
+  contentContainerFlatList: {
+    paddingHorizontal: scale(16),
+    paddingBottom: scale(16),
+  },
+  img: { width: scale(178), height: scale(56) },
+  footer: {
+    padding: scale(12),
+    paddingBottom: scale(12) + UnistylesRuntime.insets.bottom,
+    backgroundColor: colors.neutral10,
+    rowGap: scale(10),
+    ...shadows.main,
+  },
+}));
