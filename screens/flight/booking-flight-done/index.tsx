@@ -223,9 +223,9 @@ export const BookingFlightDone = ({
         <Block paddingHorizontal={16} rowGap={12}>
           <Block paddingVertical={12} width="100%" alignItems="center">
             <Image
-              source={success ? images.airplane : images.isolation_mode}
+              source={success ? images.airplane_vna : images.isolation_mode}
               style={styles.img}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           </Block>
           <Text
@@ -345,7 +345,7 @@ const styleSheet = createStyleSheet(({ colors, shadows }) => ({
     paddingHorizontal: scale(16),
     paddingBottom: scale(16),
   },
-  img: { width: scale(178), height: scale(56) },
+  img: { width: scale(198), height: scale(76) },
   footer: {
     padding: scale(12),
     paddingBottom: scale(12) + UnistylesRuntime.insets.bottom,
