@@ -1,7 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Image, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectLanguage } from '@vna-base/redux/selector';
 import { Flight } from '@services/axios/axios-data';
 import {
   AircraftRealm,
@@ -10,17 +7,17 @@ import {
 } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { Spacing } from '@theme/type';
+import { Block, Icon, Image, Text } from '@vna-base/components';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { convertMin2Hour, getFlightNumber, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { useStyles } from './style';
-import { imgLocal } from '@assets/image/dbs-content-listener/img-local';
-import { imgBase64 } from '@assets/image/dbs-content-listener/img-base64';
+import { images } from '@vna-base/assets/image';
 
 export const paddingLeftContentModal: Spacing = 12;
 
@@ -159,7 +156,7 @@ export const ItemFlightJourney = ({ item }: { item: Flight }) => {
                     borderRadius={8}
                     overflow="hidden">
                     <Image
-                      source={imgBase64.logo_vna}
+                      source={images.logo_vna}
                       style={{ width: 36, height: 36 }}
                     />
                     {/* <SvgUri

@@ -3,12 +3,10 @@ import {
   fakeGetListSpecializeNews,
 } from '@redux/listener/dbs-content';
 import { Email } from '@services/axios';
-import { ContentLst } from '@services/axios/axios-data';
 import { Content } from '@services/axios/axios-email';
 import { dbsContentActions } from '@vna-base/redux/action-slice';
-import { delay, validResponse } from '@vna-base/utils';
+import { validResponse } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
-import { AxiosResponse } from 'axios';
 
 export const runDBSContentListener = () => {
   takeLatestListeners()({
