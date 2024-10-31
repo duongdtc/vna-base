@@ -1,6 +1,5 @@
+import { APP_DISPLAY_NAME_ANDROID, MKKV_ENCRYPTION_KEY } from '@env';
 import { MMKV } from 'react-native-mmkv';
-import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
-import { MKKV_ENCRYPTION_KEY, APP_DISPLAY_NAME_ANDROID } from '@env';
 
 export * from './constants';
 
@@ -8,10 +7,6 @@ export const AppStorage = new MMKV({
   id: `user-${APP_DISPLAY_NAME_ANDROID}-storage`,
   encryptionKey: MKKV_ENCRYPTION_KEY,
 });
-
-if (__DEV__) {
-  initializeMMKVFlipper({ default: AppStorage });
-}
 
 /**
  * Loads a string from storage.

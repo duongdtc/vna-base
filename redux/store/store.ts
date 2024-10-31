@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { allReducer } from '@store/all-reducers';
-import reduxDebugger from 'redux-flipper';
 import { persistReducer, persistStore } from 'redux-persist';
 
 /**
  * Use this instead storage of reduxPersist
  */
-import { reduxPersistStorage } from '@vna-base/utils';
 import { listenerMiddleware } from '@redux/listener';
+import { reduxPersistStorage } from '@vna-base/utils';
 const persistedReducer = persistReducer(
   {
     key: 'root',
@@ -18,10 +17,6 @@ const persistedReducer = persistReducer(
 );
 
 const middleware = [] as any[];
-
-if (__DEV__) {
-  middleware.push(reduxDebugger());
-}
 
 export const store = configureStore({
   // reducer: allReducer,
