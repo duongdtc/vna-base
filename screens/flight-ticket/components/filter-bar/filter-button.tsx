@@ -51,6 +51,8 @@ export const FilterButton = memo(
       <Block>
         <DotStarFilter />
         <Button
+          disabled
+          buttonStyle={{ opacity: 1 }}
           leftIcon="filter_fill"
           leftIconSize={24}
           textColorTheme="neutral800"

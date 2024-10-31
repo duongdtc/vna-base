@@ -145,8 +145,8 @@ export const FilterBar = () => {
               style={FontStyle.Body14Reg}
             />
           </Block>
-          <Block width={20} />
-          {/* <FilterButton /> */}
+          {/* <Block width={20} /> */}
+          <FilterButton />
         </Block>
         <Block>
           <FlatList
