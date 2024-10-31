@@ -614,7 +614,7 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
         AgentId: null,
         AgentCode: null,
         AgentType: null,
-        Session: `DTC117-5D92BA25F17844BC99A2C9472816${Math.floor(
+        Session: `VNA117-5D92BA25F17844BC99A2C9472816${Math.floor(
           1000 + Math.random() * 9000,
         )}`,
         Status: true,

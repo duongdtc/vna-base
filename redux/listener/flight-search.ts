@@ -3978,7 +3978,7 @@ async function fakeSearchFlight({
 
   return {
     data: {
-      Session: 'DTC117-ECE15F0BE59E43E5B1FDC5E64B59909E',
+      Session: 'VNA117-ECE15F0BE59E43E5B1FDC5E64B59909E',
       ListGroup,
       RequestID: 0,
       ApiQueries: [],

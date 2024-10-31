@@ -1,3 +1,13 @@
+import { goBack } from '@navigation/navigation-service';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Avatar } from '@screens/personal-info/avatar';
+import { MainContent } from '@screens/personal-info/main-content';
+import { AccountRealm } from '@services/realm/models/account';
+import { useObject } from '@services/realm/provider';
+import { createStyleSheet, useStyles } from '@theme';
+import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN, RootStackParamList } from '@utils';
 import {
   Block,
   BottomSheetHistory,
@@ -7,33 +17,24 @@ import {
   showModalConfirm,
   showToast,
 } from '@vna-base/components';
-import { goBack } from '@navigation/navigation-service';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import {
-  selectCurrentAccount,
-  selectUserAccount,
-  selectUserSubAgent,
-} from '@vna-base/redux/selector';
 import {
   userAccountActions,
   userSubAgentActions,
 } from '@vna-base/redux/action-slice';
-import { I18nKeys } from '@translations/locales';
+import {
+  selectCurrentAccount,
+  selectUserSubAgent,
+} from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { ObjectHistoryTypes, dispatch, scale } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Pressable, ScrollView } from 'react-native';
+import { UnistylesRuntime } from 'react-native-unistyles';
 import { useSelector } from 'react-redux';
 import { Header } from './components';
 import { PersonalInfoForm } from './type';
-import { APP_SCREEN, RootStackParamList } from '@utils';
-import { MainContent } from '@screens/personal-info/main-content';
-import { createStyleSheet, useStyles } from '@theme';
-import { UnistylesRuntime } from 'react-native-unistyles';
-import { Avatar } from '@screens/personal-info/avatar';
 
 export const PersonalInfo = ({
   route,
@@ -44,20 +45,22 @@ export const PersonalInfo = ({
   const bottomSheetRef = useRef<BottomSheetHistoryRef>(null);
 
   const { Id } = useSelector(selectCurrentAccount);
-  const userAccount = useSelector(selectUserAccount(id!));
+  // const userAccount = useSelector(selectUserAccount(id!));
   const userSubAgent = useSelector(selectUserSubAgent);
+
+  const userAccount = useObject<AccountRealm>(AccountRealm.schema.name, id);
 
   const formMethod = useForm<PersonalInfoForm>({});
 
-  useEffect(() => {
-    if (userSubAgtWithAgtId) {
-      dispatch(userSubAgentActions.getUserSubAgentById(id!));
-    }
+  // useEffect(() => {
+  //   if (userSubAgtWithAgtId) {
+  //     dispatch(userSubAgentActions.getUserSubAgentById(id!));
+  //   }
 
-    if (isEmpty(userAccount)) {
-      dispatch(userAccountActions.getUserAccount(id!));
-    }
-  }, [id, userSubAgtWithAgtId]);
+  //   if (isEmpty(userAccount)) {
+  //     dispatch(userAccountActions.getUserAccount(id!));
+  //   }
+  // }, [id, userSubAgtWithAgtId, userAccount]);
 
   const isDifferentWithCurrentUserAccountAndNew = useMemo(
     () => (id === undefined || id !== Id ? true : false),
@@ -123,7 +126,7 @@ export const PersonalInfo = ({
         });
       }
     }
-  }, [formMethod, id, userSubAgtWithAgtId, userAccount, userSubAgent]);
+  }, [formMethod, id, userSubAgtWithAgtId, userSubAgent]);
 
   const addSubAgtAccOrUserAcc = useCallback(() => {
     formMethod.handleSubmit(form => {
