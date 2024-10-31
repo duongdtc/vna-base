@@ -84,7 +84,7 @@ export const runCurrentAccountListener = () => {
               Agent: null,
             },
             AllowSearch: true,
-            FullName: 'Tran Khanh Hung',
+            FullName: 'Vu Trung Thong',
             Username: 'hungtk',
             AllowBook: true,
             Id: '669635EA-7688-4A8F-B995-2B2A375C9DA3',
