@@ -42,18 +42,13 @@ export const Trips = {
     },
     {
       key: 1,
-      t18n: 'Nội thành Hà Nội → Sân bay Nội Bài',
-      description: 'Hoàn Kiếm, Ba Đình, Hai Bà Trưng, Tây Hồ',
+      t18n: 'Sân bay Tân Sơn Nhất → Nội thành TP. Hồ Chí Minh',
+      description: 'Quận 1, Quận 2, Quận 3, Quận 4',
     },
     {
       key: 2,
-      t18n: 'Nội thành Hà Nội → Sân bay Nội Bài',
-      description: 'Cầu Giấy, Đống Đa, Thanh Xuân, Nam Từ Liêm',
-    },
-    {
-      key: 3,
-      t18n: 'Ngoại thành Hà Nội → Sân bay Nội Bài',
-      description: 'Chương Mỹ, Hà Đông, Đan Phượng, Long Biên',
+      t18n: 'Sân bay Tân Sơn Nhất → Ngoại thành TP. Hồ Chí Minh',
+      description: 'Quận 9, 12, Thủ Đức, Bình Tân, Hóc Môn, Bình Chánh, Nhà Bè',
     },
   ] as Array<ItemCustom>,
 };

@@ -14,7 +14,7 @@ import {
   ListRenderItem,
   TouchableOpacity,
 } from 'react-native';
-import { NewItemContainerProps } from '../type';
+import { NewItemContainerProps } from '../../type';
 import { FlightItem } from './flight-item';
 
 export const NewItemContainer = (props: NewItemContainerProps) => {
@@ -23,7 +23,6 @@ export const NewItemContainer = (props: NewItemContainerProps) => {
     defaultClose = true,
     disabled = false,
     renderServiceItem,
-    renderEndpoint,
     icon,
   } = props;
 
@@ -74,16 +73,11 @@ export const NewItemContainer = (props: NewItemContainerProps) => {
     [_renderServiceItem],
   );
 
-  const _flight = useMemo(() => {
-    if (!renderEndpoint) {
-      return flights;
-    }
-
-    return flights.flatMap(fl => [
-      { ...fl, airportIdx: 0 },
-      { ...fl, StartPoint: fl.EndPoint, airportIdx: 1 },
-    ]);
-  }, [flights, renderEndpoint]);
+  const _flight = useMemo(
+    () =>
+      flights.map(fl => ({ ...fl, StartPoint: fl.EndPoint, airportIdx: 1 })),
+    [flights],
+  );
 
   return (
     <Block borderRadius={8} colorTheme="neutral100">

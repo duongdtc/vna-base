@@ -35,7 +35,6 @@ export const Hotels = ({
   return (
     <Block>
       <NewItemContainer
-        renderEndpoint={true}
         renderServiceItem={renderItem}
         t18nTitle={t18nTitle}
         disabled={false}
