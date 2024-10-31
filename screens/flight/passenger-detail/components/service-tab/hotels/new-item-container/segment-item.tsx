@@ -26,10 +26,7 @@ export const SegmentItem = memo(
   }) => {
     const { styles } = useStyles(styleSheet);
 
-    const [range, setRange] = useState<RangeDate>({
-      from: dayjs().toDate(),
-      to: dayjs().add(1, 'years').toDate(),
-    });
+    const [range, setRange] = useState<RangeDate | null>(null);
 
     const startPoint = realmRef.current?.objectForPrimaryKey<AirportRealm>(
       AirportRealm.schema.name,
@@ -50,7 +47,6 @@ export const SegmentItem = memo(
           allowToChooseNilDate: false,
           t18nCancel: 'common:cancel',
           maximumDate: dayjs().toDate(),
-          initialValue: range,
         },
         handleDoneDatePicker,
       );
@@ -61,7 +57,7 @@ export const SegmentItem = memo(
         <Pressable disabled={true} style={styles.segmentHeader}>
           <Block flex={1}>
             <Text
-              text={`${segmentIndex + 1}. ${startPoint?.NameVi}`}
+              text={`${segmentIndex + 1}. Tại ${startPoint?.City.NameVi}`}
               fontStyle="Body14Semi"
               colorTheme="neutral80"
             />
@@ -69,9 +65,13 @@ export const SegmentItem = memo(
           <TouchableOpacity onPress={showDatePicker}>
             <Block flexDirection="row" alignItems="center" columnGap={12}>
               <Text
-                text={`${dayjs(range.from).format('DD/MM')} - ${dayjs(
-                  range.to,
-                ).format('DD/MM/YYYY')}`}
+                text={
+                  !range
+                    ? 'Chọn ngày'
+                    : `${dayjs(range.from).format('DD/MM')} - ${dayjs(
+                        range.to,
+                      ).format('DD/MM/YYYY')}`
+                }
                 fontStyle="Body12Reg"
                 colorTheme="neutral80"
               />
