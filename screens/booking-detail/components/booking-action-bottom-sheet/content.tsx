@@ -219,8 +219,8 @@ export const Content = ({
               onPressItem(item);
             }}
             style={[styles.itemContainer, styles.itemPressable]}>
-            {/* <RenderColorBtn featureId={item.FeatureId} /> */}
             <LinearGradient
+              //@ts-ignore
               type={renderColorBtn(item)}
               style={[StyleSheet.absoluteFillObject, styles.linear]}
             />
@@ -248,6 +248,7 @@ export const Content = ({
               }}
               style={[styles.itemContainer, styles.itemPressable]}>
               <LinearGradient
+                //@ts-ignore
                 type={renderColorBtn(nextItem)}
                 style={[StyleSheet.absoluteFillObject, styles.linear]}
               />
