@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Avatar, Button, Text } from '@vna-base/components';
+import { images } from '@assets/image';
 import { goBack, navigate } from '@navigation/navigation-service';
-import { selectCurrentAccount } from '@vna-base/redux/selector';
 import { createStyleSheet, useStyles } from '@theme';
-import { HitSlop, scale } from '@vna-base/utils';
 import { APP_SCREEN } from '@utils';
+import { Avatar, Button, Text } from '@vna-base/components';
+import { selectCurrentAccount } from '@vna-base/redux/selector';
+import { HitSlop, scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { View } from 'react-native';
@@ -13,7 +14,7 @@ import { useSelector } from 'react-redux';
 export const Header = memo(() => {
   const { styles } = useStyles(styleSheet);
 
-  const { Photo, Id, FullName, UserGroup } = useSelector(selectCurrentAccount);
+  const { Id, FullName } = useSelector(selectCurrentAccount);
 
   const navToUserAccount = () => {
     navigate(APP_SCREEN.PERSONAL_INFO, { id: Id! });
@@ -21,7 +22,11 @@ export const Header = memo(() => {
 
   return (
     <View style={styles.container}>
-      <Avatar source={Photo} size={36} onPress={navToUserAccount} />
+      <Avatar
+        source={images.default_avatar}
+        size={36}
+        onPress={navToUserAccount}
+      />
       <View style={styles.nameAndAvatarContainer}>
         <Text
           text={FullName as string}
