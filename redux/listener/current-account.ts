@@ -3,6 +3,7 @@ import { UserAccount } from '@services/axios/axios-data';
 import { AccountRealm } from '@services/realm/models/account';
 import { AgentRealm } from '@services/realm/models/agent';
 import { realmRef } from '@services/realm/provider';
+import { images } from '@vna-base/assets/image';
 import {
   currentAccountActions,
   permissionActions,
@@ -39,7 +40,7 @@ export const runCurrentAccountListener = () => {
           Expired: false,
           Item: {
             ViewAllOffice: false,
-            Photo: 'https://cdn1.datacom.vn/images/avatar/nvzudhoh.jpg',
+            Photo: images.nvzudhoh,
             SISetId: '502E2325-FAB1-47B6-8D1E-BE075B6F02DE',
             ViewAllAccount: false,
             EmployeeId: null,
@@ -156,7 +157,7 @@ export const runCurrentAccountListener = () => {
               Domain: 'localhost:7136',
               WebTmpl: 'TEMP2',
               ParentId: null,
-              Company: 'Datacom',
+              Company: 'VNA',
               Employees: [],
               Address: '58 To Huu, Nam Tu Liem, Hanoi',
               SISetId: null,

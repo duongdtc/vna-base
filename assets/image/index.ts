@@ -65,6 +65,7 @@ export const images = {
   result2: require('./source/require-support/result2.png'),
   result3: require('./source/require-support/result3.png'),
   logo_vna: require('./source/VN.png'),
+  nvzudhoh: require('./source/nvzudhoh.jpg'),
 };
 
 export type ImageTypes = keyof typeof images;

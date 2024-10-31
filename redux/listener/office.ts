@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { officeActions } from '@vna-base/redux/action-slice';
 import { Office } from '@redux/type';
-import { Data } from '@services/axios';
 import { I18nKeys } from '@translations/locales';
+import { officeActions } from '@vna-base/redux/action-slice';
 import { validResponse } from '@vna-base/utils';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 
@@ -48,10 +47,10 @@ export const runOfficeListener = () => {
               Type: 'hdq',
               Name: 'Trụ sở chính',
               Phone: '0975750088',
-              Email: 'admin@datacom.vn',
+              Email: 'admin@gmail.vn',
               Address: null,
               Manager: 'Nguyễn Quang Minh',
-              Description: 'Trụ sở chính Datacom',
+              Description: 'Trụ sở chính',
               Image: null,
               Grade: 0,
               Order: 1,
@@ -199,7 +198,7 @@ export const runOfficeListener = () => {
               Type: 'brd',
               Name: 'Chi nhánh Sài Gòn',
               Phone: '098765432',
-              Email: 'sgn@datacom.vn',
+              Email: 'sgn@gmail.vn',
               Address: '123 Nam Kỳ Khởi Nghĩa, Tp. Hồ Chí Minh',
               Manager: 'Nguyễn Quang Thành',
               Description: 'Chi nhánh miền nam',

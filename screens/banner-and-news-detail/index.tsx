@@ -3,13 +3,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { bs, createStyleSheet, useStyles } from '@theme';
 import { APP_SCREEN, RootStackParamList } from '@utils';
 import { Button, Icon, NormalHeader, Screen, Text } from '@vna-base/components';
-import { dbsContentActions } from '@vna-base/redux/action-slice';
 import { selectDetailDBSContent } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
-import { HitSlop, WindowWidth, dispatch, scale } from '@vna-base/utils';
+import { HitSlop, WindowWidth, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
-import isEmpty from 'lodash.isempty';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ScrollView, View } from 'react-native';
 import RenderHTML, {
   HTMLContentModel,
@@ -17,6 +15,7 @@ import RenderHTML, {
   defaultHTMLElementModels,
 } from 'react-native-render-html';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
 
 export const BannerAndNewsDetail = ({
@@ -115,8 +114,7 @@ export const BannerAndNewsDetail = ({
         }
       />
       <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
+        style={[
           styles.contentContainer,
           { paddingBottom: bottom + scale(12) },
         ]}>
