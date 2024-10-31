@@ -5,6 +5,9 @@ import {
   GetSeatMapRes,
   SeatMap,
 } from '@services/axios/axios-ibe';
+import { AccountRealm } from '@services/realm/models/account';
+import { AgentRealm } from '@services/realm/models/agent';
+import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import { flightBookingFormActions } from '@vna-base/redux/action-slice';
 import { FlightOfPassengerForm } from '@vna-base/screens/flight/type';
@@ -16,15 +19,11 @@ import {
   scale,
   StorageKey,
 } from '@vna-base/utils';
-import { createBookingFromAxios } from '@vna-base/utils/realm/bookings';
 import { takeLatestListeners } from '@vna-base/utils/redux/listener';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
-import { Route } from '../type';
-import { AgentRealm } from '@services/realm/models/agent';
-import { AccountRealm } from '@services/realm/models/account';
-import { BookingRealm, PassengerRealm } from '@services/realm/models/booking';
 import { UpdateMode } from 'realm';
+import { Route } from '../type';
 
 export const runFlightBookingFormListener = () => {
   takeLatestListeners()({
@@ -7952,90 +7951,50 @@ async function fakeBookFlight(
     load(StorageKey.CURRENT_ACCOUNT_ID),
   );
 
-  const segments =
-    routes.length === 1
-      ? [
-          {
-            Id: 12081,
-            FlightId: 10596,
-            Leg: 0,
-            SegmentId: '1',
-            Airline: 'VN',
-            Operator: 'BL',
-            StartPoint: routes[0].StartPoint.Code,
-            EndPoint: routes[0].EndPoint.Code,
-            DepartDate: dayjs(routes[0].DepartDate).format(),
-            ArriveDate: dayjs(routes[routes.length - 1].DepartDate).format(),
-            FlightNumber: '6129',
-            FlightsMiles: 0,
-            MarriageGrp: null,
-            Duration: 140,
-            Equipment: '321',
-            StartTerminal: '1',
-            EndTerminal: '1',
-            HasStop: false,
-            StopPoint: null,
-            StopTime: 0,
-            Status: 'HK',
-            FareClass: 'A',
-            FareBasis: 'APXVNF',
-            Flight: null,
-          },
-        ]
-      : [
-          {
-            Id: 12082,
-            FlightId: 10593,
-            Leg: 0,
-            SegmentId: '1',
-            Airline: 'VN',
-            Operator: 'BL',
-            StartPoint: routes[0].StartPoint.Code,
-            EndPoint: routes[0].EndPoint.Code,
-            DepartDate: dayjs(routes[0].DepartDate).format(),
-            ArriveDate: dayjs(routes[0].DepartDate).format(),
-            FlightNumber: '6129',
-            FlightsMiles: 0,
-            MarriageGrp: null,
-            Duration: 140,
-            Equipment: '321',
-            StartTerminal: '1',
-            EndTerminal: '1',
-            HasStop: false,
-            StopPoint: null,
-            StopTime: 0,
-            Status: 'HK',
-            FareClass: 'A',
-            FareBasis: 'APXVNF',
-            Flight: null,
-          },
-          {
-            Id: 12083,
-            FlightId: 10594,
-            Leg: 0,
-            SegmentId: '1',
-            Airline: 'VN',
-            Operator: 'BL',
-            StartPoint: routes[1].StartPoint.Code,
-            EndPoint: routes[1].EndPoint.Code,
-            DepartDate: dayjs(routes[1].DepartDate).format(),
-            ArriveDate: dayjs(routes[1].DepartDate).format(),
-            FlightNumber: '6129',
-            FlightsMiles: 0,
-            MarriageGrp: null,
-            Duration: 140,
-            Equipment: '321',
-            StartTerminal: '1',
-            EndTerminal: '1',
-            HasStop: false,
-            StopPoint: null,
-            StopTime: 0,
-            Status: 'HK',
-            FareClass: 'A',
-            FareBasis: 'APXVNF',
-            Flight: null,
-          },
-        ];
+  const Flights = routes.map((r, i) => ({
+    Id: Math.floor(1000 + Math.random() * 9000),
+    BookingId: bookingId,
+    Leg: i,
+    FlightId: '2',
+    Airline: 'VN',
+    Operator: 'VN',
+    StartPoint: r.StartPoint.Code,
+    EndPoint: r.EndPoint.Code,
+    DepartDate: dayjs(r.DepartDate).format(),
+    ArriveDate: dayjs(r.DepartDate).add(140, 'minutes').format(),
+    FlightNumber: '6129',
+    StopNum: 0,
+    Duration: 140,
+    Booking: null,
+    Segments: [
+      {
+        Id: Math.floor(1000 + Math.random() * 9000),
+        FlightId: 10596,
+        Leg: i,
+        SegmentId: '1',
+        Airline: 'VN',
+        Operator: 'VN',
+        StartPoint: r.StartPoint.Code,
+        EndPoint: r.EndPoint.Code,
+        DepartDate: dayjs(r.DepartDate).format(),
+        ArriveDate: dayjs(r.DepartDate).add(140, 'minutes').format(),
+        FlightNumber: '6129',
+        FlightsMiles: 0,
+        MarriageGrp: null,
+        Duration: 140,
+        Equipment: '321',
+        StartTerminal: '1',
+        EndTerminal: '1',
+        HasStop: false,
+        StopPoint: null,
+        StopTime: 0,
+        Status: 'HK',
+        FareClass: 'A',
+        FareBasis: 'APXVNF',
+        Flight: null,
+      },
+    ],
+  }));
 
   const booking: BookingRealm = {
     Id: bookingId,
@@ -8446,25 +8405,7 @@ async function fakeBookFlight(
       },
     ],
     FareInfos: [],
-    Flights: [
-      {
-        Id: 10596,
-        BookingId: '7FFD58E8-A49F-44E0-B92C-3850417AC58A',
-        Leg: 0,
-        FlightId: '2',
-        Airline: 'VN',
-        Operator: 'BL',
-        StartPoint: routes[0].StartPoint.Code,
-        EndPoint: routes[0].EndPoint.Code,
-        DepartDate: dayjs(routes[0].DepartDate).format(),
-        ArriveDate: dayjs(routes[routes.length - 1].DepartDate).format(),
-        FlightNumber: '6129',
-        StopNum: 0,
-        Duration: 140,
-        Booking: null,
-        Segments: segments,
-      },
-    ],
+    Flights,
   };
 
   realmRef.current?.write(() => {

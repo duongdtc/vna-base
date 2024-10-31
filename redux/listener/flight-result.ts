@@ -501,8 +501,14 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
 
   const ListFlightFare = routes.map(
     ({ StartPoint, EndPoint, DepartDate: dp }, idx) => {
-      const DepartDate = dayjs(dp).format('DDMMYYYY');
-      const StartDate = dayjs(dp).format('YYYY-MM-DD');
+      const DepartDate = dayjs(dp).format('DDMMYYYY HHmm');
+      const ArriveDate = dayjs(dp)
+        .add(2, 'hours')
+        .add(20, 'minutes')
+        .format('DDMMYYYY HHmm');
+
+      const StartDate = dayjs(dp).format();
+      const EndDate = dayjs(dp).add(2, 'hours').add(20, 'minutes').format();
 
       return {
         Leg: idx,
@@ -569,13 +575,13 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
             Leg: 0,
             FlightId: '2',
             Airline: 'VN',
-            Operator: 'BL',
+            Operator: 'VN',
             StartPoint: StartPoint.Code,
             EndPoint: EndPoint.Code,
-            StartDate: `${StartDate}T21:10:00`,
-            EndDate: `${StartDate}T23:30:00`,
-            DepartDate: `${DepartDate} 2110`,
-            ArriveDate: `${DepartDate} 2330`,
+            StartDate,
+            EndDate,
+            DepartDate,
+            ArriveDate,
             FlightNumber: '6021',
             StopNum: 0,
             Duration: 140,
@@ -584,13 +590,13 @@ async function fakeVerifyFlight({ routes }: { routes: Array<Route> }) {
                 Leg: 0,
                 SegmentId: '1',
                 Airline: 'VN',
-                Operator: 'BL',
+                Operator: 'VN',
                 StartPoint: StartPoint.Code,
                 EndPoint: EndPoint.Code,
-                StartDate: `${StartDate}T21:10:00`,
-                EndDate: `${StartDate}T23:30:00`,
-                DepartDate: `${DepartDate} 2110`,
-                ArriveDate: `${DepartDate} 2330`,
+                StartDate,
+                EndDate,
+                DepartDate,
+                ArriveDate,
                 StartTerminal: '1',
                 EndTerminal: '1',
                 FlightNumber: '6021',

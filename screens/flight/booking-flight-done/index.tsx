@@ -22,7 +22,7 @@ import {
   Text,
 } from '@vna-base/components';
 import { translate } from '@vna-base/translations/translate';
-import { HitSlop, resetSearchFlight, scale } from '@vna-base/utils';
+import { resetSearchFlight, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import {
@@ -88,6 +88,20 @@ export const BookingFlightDone = ({
         item.Airline!,
       );
 
+      const listAirport = item.Flights?.reduce((total, curr, currIdx, arr) => {
+        if (currIdx === 0) {
+          total.push(curr.StartPoint);
+          total.push(curr.EndPoint);
+        } else {
+          if (arr[currIdx - 1].EndPoint !== curr.StartPoint) {
+            total.push(curr.StartPoint);
+          }
+          total.push(curr.EndPoint);
+        }
+
+        return total;
+      }, []);
+
       return (
         <Block
           padding={16}
@@ -119,17 +133,22 @@ export const BookingFlightDone = ({
               alignItems="center"
               paddingVertical={2}
               columnGap={2}>
-              <Text
-                fontStyle="Body12Bold"
-                text={item.StartPoint as string}
-                colorTheme="primary900"
-              />
-              <Icon icon="arrow_right_fill" size={12} colorTheme="neutral900" />
-              <Text
-                fontStyle="Body12Bold"
-                text={item.EndPoint as string}
-                colorTheme="primary900"
-              />
+              {listAirport?.map((ap, idx) => (
+                <>
+                  {idx !== 0 && (
+                    <Icon
+                      icon="arrow_right_fill"
+                      size={12}
+                      colorTheme="neutral900"
+                    />
+                  )}
+                  <Text
+                    fontStyle="Body12Bold"
+                    text={ap}
+                    colorTheme="primary900"
+                  />
+                </>
+              ))}
             </Block>
           </Block>
           <Separator type="horizontal" size={2} />

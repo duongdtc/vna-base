@@ -235,9 +235,9 @@ export const generateInitialPassengerFormData = (
     //@ts-ignore
     ContactInfo: {
       ...passengersForm?.ContactInfo,
-      PhoneNumber: '393072749',
+      PhoneNumber: Phone,
       Email,
-      Address: 'Số 2, Lê Văn Thiêm',
+      Address: 'Số 1, Đại Cồ Việt',
       Note: 'Ghi chú mẫu',
     },
   };
