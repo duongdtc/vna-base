@@ -70,6 +70,11 @@ export const Footer = ({
     name: 'Insurance',
   });
 
+  const cars = useWatch({
+    control,
+    name: 'ShuttleCars',
+  });
+
   const totalPrice = useMemo(
     () =>
       calculateTotalPrice(
@@ -79,9 +84,14 @@ export const Footer = ({
       ) +
       (insurance
         ? ListInsurance.find(it => it.value === insurance)?.price ?? 0
-        : 0),
+        : 0) +
+      (cars?.reduce(
+        (total, flight) =>
+          total + flight.reduce((sub, seg) => sub + seg.price, 0),
+        0,
+      ) ?? 0),
 
-    [TotalFareFlight, arrKeyListener.passengerCount, services, insurance],
+    [TotalFareFlight, arrKeyListener.passengerCount, services, insurance, cars],
   );
 
   const onPressFare = () => {

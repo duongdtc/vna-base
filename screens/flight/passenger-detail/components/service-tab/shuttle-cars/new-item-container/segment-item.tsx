@@ -105,27 +105,31 @@ export const SegmentItem = memo(
             <Icon icon="arrow_ios_right_fill" size={16} />
           </Block>
         </Pressable>
-        <Pressable
-          onPress={() => {
-            setRound(pre => !pre);
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: 8,
-            }}>
-            <Text
-              text="Gồm đưa và đón"
-              fontStyle="Body12Reg"
-              colorTheme="neutral900"
-            />
-            <CheckBox disable value={round} />
-          </View>
-        </Pressable>
-        <Separator type="horizontal" />
-        {renderServiceItem()}
+        {selected && (
+          <>
+            <Pressable
+              onPress={() => {
+                setRound(pre => !pre);
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: 8,
+                }}>
+                <Text
+                  text="Gồm đưa và đón"
+                  fontStyle="Body12Reg"
+                  colorTheme="neutral900"
+                />
+                <CheckBox disable value={round} />
+              </View>
+            </Pressable>
+            <Separator type="horizontal" />
+            {renderServiceItem()}
+          </>
+        )}
 
         <ModalCustomPicker
           hasDescription
