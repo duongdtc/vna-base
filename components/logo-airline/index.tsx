@@ -1,9 +1,9 @@
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import { View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
+import { Image } from '../image';
 
 export type LogoAirlineProps = {
   size: number;
@@ -21,10 +21,9 @@ export const LogoAirline = memo(
           borderRadius: radius ? scale(radius) : undefined,
           overflow: 'hidden',
         }}>
-        <SvgUri
-          width={scale(size)}
-          height={scale(size)}
-          uri={LOGO_URL + airline + '.svg'}
+        <Image
+          source={images.logo_vna}
+          style={{ width: scale(size), height: scale(size) }}
         />
       </View>
     );

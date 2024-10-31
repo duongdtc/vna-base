@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { navigate } from '@navigation/navigation-service';
 import { FlightFare } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { bs, useStyles } from '@theme';
 import { APP_SCREEN } from '@utils';
-import { Block, Button, Icon, Separator, Text } from '@vna-base/components';
+import {
+  Block,
+  Button,
+  Icon,
+  Image,
+  Separator,
+  Text,
+} from '@vna-base/components';
 import {
   ActiveOpacity,
   HitSlop,
@@ -16,7 +23,7 @@ import {
 import dayjs from 'dayjs';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Line, Svg, SvgUri } from 'react-native-svg';
+import { Line, Svg } from 'react-native-svg';
 
 type Props = {
   index: number;
@@ -192,10 +199,9 @@ const MultiFlightItem = ({
               columnGap={8}
               flex={1}>
               <Block width={36} height={36} borderRadius={8} overflow="hidden">
-                <SvgUri
-                  width={36}
-                  height={36}
-                  uri={LOGO_URL + fl.Airline + '.svg'}
+                <Image
+                  source={images.logo_vna}
+                  style={{ width: scale(36), height: scale(36) }}
                 />
               </Block>
               <Block rowGap={4} flex={1}>

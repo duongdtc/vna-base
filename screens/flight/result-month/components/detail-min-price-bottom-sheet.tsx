@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, BottomSheet, Button, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { MinPrice } from '@services/axios/axios-ibe';
-import { HitSlop, getDateTimeOfFlightOption } from '@vna-base/utils';
+import { Block, BottomSheet, Button, Image, Text } from '@vna-base/components';
+import { HitSlop, getDateTimeOfFlightOption, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, {
   forwardRef,
@@ -12,7 +12,6 @@ import React, {
   useState,
 } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useStyles } from './styles';
 
 export type DetailMinPriceBottomSheetRef = {
@@ -105,10 +104,9 @@ export const DetailMinPriceBottomSheet = forwardRef<
                     height={24}
                     borderRadius={4}
                     overflow="hidden">
-                    <SvgUri
-                      width={24}
-                      height={24}
-                      uri={LOGO_URL + item.Airline + '.svg'}
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(24), height: scale(24) }}
                     />
                   </Block>
                   <Block

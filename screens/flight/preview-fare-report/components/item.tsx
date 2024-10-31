@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectCustomFeeTotal } from '@vna-base/redux/selector';
+import { images } from '@assets/image';
 import { AirOption, Flight } from '@services/axios/axios-ibe';
-import { getFlightNumber } from '@vna-base/utils';
+import { Block, Image, Text } from '@vna-base/components';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
+import { getFlightNumber, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React from 'react';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
 export const Item = (data: AirOption & { index: number }) => {
@@ -20,7 +19,10 @@ export const Item = (data: AirOption & { index: number }) => {
         columnGap={4}
         key={`${fl.FlightId}${fl.FlightNumber}`}>
         <Block width={20} height={20} borderRadius={4} overflow="hidden">
-          <SvgUri width={20} height={20} uri={LOGO_URL + fl.Airline + '.svg'} />
+          <Image
+            source={images.logo_vna}
+            style={{ width: scale(20), height: scale(20) }}
+          />
         </Block>
         <Block
           flexDirection="row"

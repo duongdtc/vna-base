@@ -1,14 +1,14 @@
-import { Block, Icon, Separator, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectLanguage } from '@vna-base/redux/selector';
+import { images } from '@assets/image';
 import { Segment } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
+import { Block, Icon, Image, Separator, Text } from '@vna-base/components';
+import { selectLanguage } from '@vna-base/redux/selector';
+import { scale } from '@vna-base/utils';
 import React, { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { FlatList, Pressable } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { SeatMapUpdateForm } from '../type';
 import { useStyles } from './styles';
@@ -49,10 +49,9 @@ export const SegmentItem = memo(
         <Pressable onPress={onPressSegmentPreSeat} style={styles.segmentHeader}>
           <Block flexDirection="row" alignItems="center" columnGap={4}>
             <Block width={20} height={20} borderRadius={4} overflow="hidden">
-              <SvgUri
-                width={20}
-                height={20}
-                uri={LOGO_URL + Airline + '.svg'}
+              <Image
+                source={images.logo_vna}
+                style={{ width: scale(24), height: scale(24) }}
               />
             </Block>
             <Text

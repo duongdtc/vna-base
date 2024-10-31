@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Icon, Text } from '@vna-base/components';
-import { BlockProps } from '@vna-base/components/block/type';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { Segment } from '@services/axios/axios-ibe';
 import { AirlineRealm } from '@services/realm/models';
 import { useObject } from '@services/realm/provider';
+import { Block, Icon, Image, Text } from '@vna-base/components';
+import { BlockProps } from '@vna-base/components/block/type';
+import { scale } from '@vna-base/utils';
 import React, { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import { SvgUri } from 'react-native-svg';
 
 export const HeaderInfoFlightWithPrice = memo(
   (props: { segment: Segment } & BlockProps) => {
@@ -36,10 +36,9 @@ export const HeaderInfoFlightWithPrice = memo(
           justifyContent="space-between">
           <Block flexDirection="row" alignItems="center" columnGap={4}>
             <Block width={20} height={20} borderRadius={4} overflow="hidden">
-              <SvgUri
-                width={20}
-                height={20}
-                uri={LOGO_URL + segment.Airline + '.svg'}
+              <Image
+                source={images.logo_vna}
+                style={{ width: scale(20), height: scale(20) }}
               />
             </Block>
             <Text

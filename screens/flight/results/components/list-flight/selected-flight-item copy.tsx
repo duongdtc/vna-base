@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Icon, Separator, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
+import { FareOption } from '@services/axios/axios-ibe';
+import { AircraftRealm, AirlineRealm } from '@services/realm/models';
+import { useRealm } from '@services/realm/provider';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { Icon, Image, Separator, Text } from '@vna-base/components';
 import {
   selectCustomFeeTotal,
   selectFareType,
@@ -8,10 +12,6 @@ import {
   selectMultiFlights,
 } from '@vna-base/redux/selector';
 import { SelectedFlightItemProps } from '@vna-base/screens/flight/type';
-import { FareOption } from '@services/axios/axios-ibe';
-import { AircraftRealm, AirlineRealm } from '@services/realm/models';
-import { useRealm } from '@services/realm/provider';
-import { bs, createStyleSheet, useStyles } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
@@ -25,7 +25,6 @@ import dayjs from 'dayjs';
 import React, { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import { TouchableOpacity, View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
 export const SelectedFlightItem = memo(
@@ -146,10 +145,9 @@ export const SelectedFlightItem = memo(
             style={(styles.flexRowCenter, { justifyContent: 'space-between' })}>
             <View style={[bs.columnGap_8, styles.flexRowCenter]}>
               <View style={styles.imgContainer}>
-                <SvgUri
-                  width={32}
-                  height={32}
-                  uri={LOGO_URL + item?.Airline + '.svg'}
+                <Image
+                  source={images.logo_vna}
+                  style={{ width: scale(32), height: scale(32) }}
                 />
               </View>
               <View style={[bs.flex, bs.rowGap_4]}>

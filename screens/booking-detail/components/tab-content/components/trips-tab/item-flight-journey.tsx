@@ -159,11 +159,6 @@ export const ItemFlightJourney = ({ item }: { item: Flight }) => {
                       source={images.logo_vna}
                       style={{ width: 36, height: 36 }}
                     />
-                    {/* <SvgUri
-                      width={36}
-                      height={36}
-                      uri={LOGO_URL + segment.Operator + '.svg'}
-                    /> */}
                   </Block>
                 </Block>
                 {/* //cmt: right content */}

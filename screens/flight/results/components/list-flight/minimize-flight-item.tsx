@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Icon, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import { Icon, Image, Text } from '@vna-base/components';
 import { selectCustomFeeTotal, selectFareType } from '@vna-base/redux/selector';
 import { FlightItemProps } from '@vna-base/screens/flight/type';
 import {
@@ -14,9 +15,7 @@ import {
 } from '@vna-base/utils';
 import React, { useCallback, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
-import { bs, createStyleSheet, useStyles } from '@theme';
 
 export const MinimizeFlightItem = ({
   item,
@@ -54,10 +53,9 @@ export const MinimizeFlightItem = ({
       style={style}>
       <View style={styles.imgContainer}>
         <View style={styles.img}>
-          <SvgUri
-            width={24}
-            height={24}
-            uri={LOGO_URL + item.Airline + '.svg'}
+          <Image
+            source={images.logo_vna}
+            style={{ width: scale(24), height: scale(24) }}
           />
         </View>
         <View style={styles.dateTimeFlContainer}>

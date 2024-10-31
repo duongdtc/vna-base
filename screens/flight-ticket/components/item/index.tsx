@@ -1,17 +1,22 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, Icon, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectAccount, selectLanguage } from '@vna-base/redux/selector';
+import { images } from '@assets/image';
 import { Ticket } from '@services/axios/axios-data';
 import { AirlineRealm, FlightTicketInList } from '@services/realm/models';
 import { realmRef } from '@services/realm/provider';
 import { useTheme } from '@theme';
+import { Block, Icon, Image, Text } from '@vna-base/components';
+import { selectAccount, selectLanguage } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
-import { TicketType, TicketTypeDetails, WindowWidth, scale } from '@vna-base/utils';
+import {
+  TicketType,
+  TicketTypeDetails,
+  WindowWidth,
+  scale,
+} from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Pressable } from 'react-native';
-import { Circle, Line, Svg, SvgUri } from 'react-native-svg';
+import { Circle, Line, Svg } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 
@@ -48,16 +53,14 @@ export const Item = (props: Props) => {
 
   const onPress = () => {};
 
-
   return (
     <Pressable style={styles.container} onPress={onPress}>
       <Block rowGap={12} paddingHorizontal={12}>
         <Block flexDirection="row" alignItems="center" columnGap={12}>
           <Block width={36} height={36} borderRadius={8} overflow="hidden">
-            <SvgUri
-              width={36}
-              height={36}
-              uri={LOGO_URL + TicketDetail!.Airline + '.svg'}
+            <Image
+              source={images.logo_vna}
+              style={{ width: scale(36), height: scale(36) }}
             />
           </Block>
           <Block rowGap={2} flex={1}>

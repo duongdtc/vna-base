@@ -4,6 +4,7 @@ import {
   Icon,
   Text,
   LinearGradient as LinearGradientCustom,
+  Image,
 } from '@vna-base/components';
 import { LOGO_URL } from '@env';
 import { FlightItemProps } from '@vna-base/screens/flight/type';
@@ -24,6 +25,7 @@ import isEqual from 'react-fast-compare';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Circle, Line, Svg, SvgUri } from 'react-native-svg';
+import { images } from '@assets/image';
 
 export const SingleFlightItem = memo(
   ({ item, onPressItem, showFareOption }: FlightItemProps) => {
@@ -188,10 +190,9 @@ export const SingleFlightItem = memo(
               fontStyle="Body12Bold"
               colorTheme="neutral70"
             />
-            <SvgUri
-              width={16}
-              height={16}
-              uri={LOGO_URL + item.Airline + '.svg'}
+            <Image
+              source={images.logo_vna}
+              style={{ width: scale(16), height: scale(16) }}
             />
             <Text
               numberOfLines={1}

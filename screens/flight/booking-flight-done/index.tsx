@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { images } from '@assets/image';
-import { LOGO_URL } from '@env';
 import { reset } from '@navigation/navigation-service';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MoreActionButton } from '@screens/flight/booking-flight-done/more-action';
@@ -32,7 +31,6 @@ import {
   ListRenderItem,
   ScrollView,
 } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const BookingFlightDone = ({
@@ -116,10 +114,9 @@ export const BookingFlightDone = ({
             justifyContent="space-between">
             <Block flexDirection="row" alignItems="center" columnGap={4}>
               <Block width={20} height={20} borderRadius={4} overflow="hidden">
-                <SvgUri
-                  width={20}
-                  height={20}
-                  uri={LOGO_URL + item.Airline + '.svg'}
+                <Image
+                  source={images.logo_vna}
+                  style={{ width: scale(20), height: scale(20) }}
                 />
               </Block>
               <Text

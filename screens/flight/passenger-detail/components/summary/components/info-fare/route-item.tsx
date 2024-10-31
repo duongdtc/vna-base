@@ -1,19 +1,21 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IconTypes } from '@assets/icon';
-import { Block, Icon, Separator, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { navigate } from '@navigation/navigation-service';
+import { FlightFare } from '@services/axios/axios-ibe';
+import { AirlineRealm } from '@services/realm/models';
+import { useRealm } from '@services/realm/provider';
+import { createStyleSheet, useStyles } from '@theme';
+import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN } from '@utils';
+import { Block, Icon, Image, Separator, Text } from '@vna-base/components';
 import {
   selectCustomFeeTotal,
   selectListRoute,
   selectVerifiedFlights,
 } from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
-import { FlightFare } from '@services/axios/axios-ibe';
-import { AirlineRealm } from '@services/realm/models';
-import { useRealm } from '@services/realm/provider';
-import { I18nKeys } from '@translations/locales';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
@@ -21,15 +23,13 @@ import {
   getState,
   HitSlop,
   PassengerType,
+  scale,
 } from '@vna-base/utils';
 import React, { memo, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 import { useFormContext } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
-import { createStyleSheet, useStyles } from '@theme';
-import { APP_SCREEN } from '@utils';
 
 export const RouteItem = memo(({ item }: { item: FlightFare }) => {
   const { styles } = useStyles(styleSheet);
@@ -168,10 +168,9 @@ export const RouteItem = memo(({ item }: { item: FlightFare }) => {
         alignItems="center">
         <Block flexDirection="row" columnGap={4} alignItems="center">
           <Block width={20} height={20} borderRadius={8} overflow="hidden">
-            <SvgUri
-              width={20}
-              height={20}
-              uri={LOGO_URL + item.Airline + '.svg'}
+            <Image
+              source={images.logo_vna}
+              style={{ width: scale(20), height: scale(20) }}
             />
           </Block>
           <Text

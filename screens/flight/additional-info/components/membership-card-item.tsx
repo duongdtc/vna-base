@@ -1,16 +1,15 @@
-import { Block, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { AdditionalPassengerInfoForm } from '@vna-base/screens/flight/type';
+import { images } from '@assets/image';
 import { AirlineRealm } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { useTheme } from '@theme';
 import { FontStyle } from '@theme/typography';
-import { HairlineWidth } from '@vna-base/utils';
+import { Block, Image, Text } from '@vna-base/components';
+import { AdditionalPassengerInfoForm } from '@vna-base/screens/flight/type';
+import { HairlineWidth, scale } from '@vna-base/utils';
 import React, { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Pressable, TextInput } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 
 export const AddMembershipCardNumb = ({
   airline,
@@ -57,10 +56,9 @@ export const AddMembershipCardNumb = ({
               alignItems="center"
               maxWidth={140}>
               <Block width={24} height={24} borderRadius={8} overflow="hidden">
-                <SvgUri
-                  width={24}
-                  height={24}
-                  uri={LOGO_URL + airline + '.svg'}
+                <Image
+                  source={images.logo_vna}
+                  style={{ width: scale(24), height: scale(24) }}
                 />
               </Block>
               <Block flex={1}>

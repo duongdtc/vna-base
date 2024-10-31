@@ -9,6 +9,7 @@ import { I18nKeys } from '@translations/locales';
 import {
   Block,
   Icon,
+  Image,
   LinearGradient,
   Text,
   showToast,
@@ -26,6 +27,7 @@ import { TouchableOpacity } from 'react-native';
 // import LinearGradient from 'react-native-linear-gradient';
 import { Circle, Line, Svg, SvgUri } from 'react-native-svg';
 import { useStyles } from './style';
+import { images } from '@assets/image';
 
 type Props = Pick<
   Booking,
@@ -72,10 +74,9 @@ export const BookingInfo = memo((props: Props) => {
           <Block colorTheme="neutral200" style={styles.blockSvgUri}>
             <Block style={styles.svgUriContainer}>
               {Airline && (
-                <SvgUri
-                  width={'100%'}
-                  height={'100%'}
-                  uri={LOGO_URL + Airline + '.svg'}
+                <Image
+                  source={images.logo_vna}
+                  style={{ width: '100%', height: '100%' }}
                 />
               )}
             </Block>

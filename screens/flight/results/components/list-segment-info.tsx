@@ -1,6 +1,3 @@
-import { Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectLanguage } from '@vna-base/redux/selector';
 import { Segment } from '@services/axios/axios-ibe';
 import {
   AircraftRealm,
@@ -8,9 +5,12 @@ import {
   AirportRealm,
 } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
-import { createStyleSheet, useStyles, bs } from '@theme';
+import { bs, createStyleSheet, useStyles } from '@theme';
 import { Opacity } from '@theme/color';
+import { Image, Text } from '@vna-base/components';
+import { selectLanguage } from '@vna-base/redux/selector';
 
+import { images } from '@assets/image';
 import {
   convertMin2Hour,
   getDateTimeOfFlightOption,
@@ -20,7 +20,6 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
 type Props = {
@@ -193,10 +192,9 @@ export const ListSegmentInfo = ({ listSegments }: Props) => {
                         overflow: 'hidden',
                       },
                     ]}>
-                    <SvgUri
-                      width={36}
-                      height={36}
-                      uri={LOGO_URL + item.Airline + '.svg'}
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(36), height: scale(36) }}
                     />
                   </View>
                 </View>
@@ -294,14 +292,13 @@ export const ListSegmentInfo = ({ listSegments }: Props) => {
                             overflow: 'hidden',
                           },
                         ]}>
-                        <SvgUri
-                          width={20}
-                          height={20}
-                          uri={LOGO_URL + item.Operator + '.svg'}
+                        <Image
+                          source={images.logo_vna}
+                          style={{ width: scale(20), height: scale(20) }}
                         />
                       </View>
                       <Text
-                        text={item.Operator as string}
+                        text={'VN' as string}
                         fontStyle="Body12Reg"
                         colorTheme="neutral100"
                       />

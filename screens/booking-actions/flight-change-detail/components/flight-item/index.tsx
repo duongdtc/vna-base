@@ -1,20 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Block, CheckBox, Icon, Text, RadioButton } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { AirlineRealm } from '@services/realm/models';
 import { useObject } from '@services/realm/provider';
 import { useTheme } from '@theme';
+import {
+  Block,
+  CheckBox,
+  Icon,
+  Image,
+  RadioButton,
+  Text,
+} from '@vna-base/components';
+import { selectCustomFeeTotal } from '@vna-base/redux/selector';
 import { ActiveOpacity, HitSlop } from '@vna-base/utils';
+import dayjs from 'dayjs';
 import React from 'react';
 import { FieldPath, useController } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { Flight, FlightChangeForm } from '../../type';
 import { useStyles } from './styles';
-import dayjs from 'dayjs';
 
 type Props = {
   index: number;
@@ -69,10 +74,9 @@ export const FlightItem = ({
       <Block flex={1} rowGap={8}>
         <Block flexDirection="row" alignItems="center" columnGap={4}>
           <Block width={20} height={20} borderRadius={4} overflow="hidden">
-            <SvgUri
-              width={20}
-              height={20}
-              uri={LOGO_URL + (value?.Airline ?? '') + '.svg'}
+            <Image
+              source={images.logo_vna}
+              style={{ width: scale(20), height: scale(20) }}
             />
           </Block>
           <Text

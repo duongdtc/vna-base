@@ -1,8 +1,19 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BottomSheet, Button, Icon, Separator, Text } from '@vna-base/components';
-import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { Flight, FlightOption } from '@services/axios/axios-ibe';
+import { AircraftRealm, AirlineRealm } from '@services/realm/models';
+import { useRealm } from '@services/realm/provider';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import {
+  BottomSheet,
+  Button,
+  Icon,
+  Image,
+  Separator,
+  Text,
+} from '@vna-base/components';
+import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import {
   selectCustomFeeTotal,
   selectFareType,
@@ -12,10 +23,6 @@ import {
   BottomSheetContentFlightRef,
   FlightItemProps,
 } from '@vna-base/screens/flight/type';
-import { Flight, FlightOption } from '@services/axios/axios-ibe';
-import { AircraftRealm, AirlineRealm } from '@services/realm/models';
-import { useRealm } from '@services/realm/provider';
-import { createStyleSheet, useStyles, bs } from '@theme';
 import {
   ActiveOpacity,
   HitSlop,
@@ -32,7 +39,6 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { FlatList, ListRenderItem, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { BottomSheetContentFlight } from '../content-flight-bottom-sheet';
 
@@ -87,8 +93,6 @@ export const MinimizeMultiFlightItem = memo(
 
     const renderItem = useCallback<ListRenderItem<Flight>>(
       ({ item: flight }) => {
-        const linkLogo = LOGO_URL + flight.Airline + '.svg';
-
         return (
           <View key={flight.FlightId}>
             <View style={styles.flightContainer}>
@@ -102,7 +106,10 @@ export const MinimizeMultiFlightItem = memo(
                 ]}>
                 <View style={[bs.columnGap_8, styles.flexRowCenter]}>
                   <View style={styles.imgContainer24}>
-                    <SvgUri width={24} height={24} uri={linkLogo} />
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(24), height: scale(24) }}
+                    />
                   </View>
                   <View
                     style={
@@ -128,7 +135,11 @@ export const MinimizeMultiFlightItem = memo(
                       text={getDateTimeOfFlightOption(flight.ArriveDate)?.time}
                     />
                   </View>
-                  <Icon icon="info_outline" size={12} colorTheme="primaryColor" />
+                  <Icon
+                    icon="info_outline"
+                    size={12}
+                    colorTheme="primaryColor"
+                  />
                 </View>
               </View>
             </View>
@@ -149,8 +160,6 @@ export const MinimizeMultiFlightItem = memo(
           AircraftRealm.schema.name,
           flight.ListSegment![0].Equipment!,
         );
-
-        const linkLogo = LOGO_URL + flight.Airline + '.svg';
 
         const stopPoints = flight.ListSegment?.flatMap(segment => {
           return segment.StopPoint ? [segment.StopPoint] : [];
@@ -174,7 +183,10 @@ export const MinimizeMultiFlightItem = memo(
                 ]}>
                 <View style={[bs.columnGap_8, styles.flexRowCenter]}>
                   <View style={styles.imgContainer32}>
-                    <SvgUri width={32} height={32} uri={linkLogo} />
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(32), height: scale(32) }}
+                    />
                   </View>
                   <View style={[bs.flex, bs.rowGap_4]}>
                     <Text

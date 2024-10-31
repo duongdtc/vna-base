@@ -1,9 +1,19 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { BottomSheet, Button, Icon, Separator, Text } from '@vna-base/components';
-import { NormalRef } from '@vna-base/components/bottom-sheet/type';
-import { LOGO_URL } from '@env';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { Flight, FlightOption } from '@services/axios/axios-ibe';
+import { AircraftRealm, AirlineRealm } from '@services/realm/models';
+import { useRealm } from '@services/realm/provider';
+import { bs, createStyleSheet, useStyles } from '@theme';
+import {
+  BottomSheet,
+  Button,
+  Icon,
+  Image,
+  Separator,
+  Text,
+} from '@vna-base/components';
+import { NormalRef } from '@vna-base/components/bottom-sheet/type';
 import {
   selectCustomFeeTotal,
   selectFareType,
@@ -13,10 +23,6 @@ import {
   BottomSheetContentFlightRef,
   FlightItemProps,
 } from '@vna-base/screens/flight/type';
-import { Flight, FlightOption } from '@services/axios/axios-ibe';
-import { AircraftRealm, AirlineRealm } from '@services/realm/models';
-import { useRealm } from '@services/realm/provider';
-import { createStyleSheet, useStyles, bs } from '@theme';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
@@ -35,9 +41,9 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { FlatList, ListRenderItem, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { BottomSheetContentFlight } from '../content-flight-bottom-sheet';
+import { images } from '@assets/image';
 
 export const MultiFlightItem = memo(
   ({ item, onPressItem, onSelectItem }: FlightItemProps) => {
@@ -100,8 +106,6 @@ export const MultiFlightItem = memo(
           flight.ListSegment![0].Equipment!,
         );
 
-        const linkLogo = LOGO_URL + flight.Airline + '.svg';
-
         const stopPoints = flight.ListSegment?.flatMap(segment => {
           return segment.StopPoint ? [segment.StopPoint] : [];
         });
@@ -117,7 +121,10 @@ export const MultiFlightItem = memo(
               <View style={[bs.cg_8, styles.flexRowCenter]}>
                 <View style={[bs.fl, bs.cg_8, styles.flexRowCenter]}>
                   <View style={styles.imgContainer}>
-                    <SvgUri width={32} height={32} uri={linkLogo} />
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(32), height: scale(32) }}
+                    />
                   </View>
                   <View style={[bs.fl, bs.rg_4]}>
                     <Text

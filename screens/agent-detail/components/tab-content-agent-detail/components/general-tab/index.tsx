@@ -156,7 +156,7 @@ export const GeneralTab = () => {
             pattern={rxEmail}
             isRequire
           />
-          <Separator type="horizontal" size={3} />
+          {/* <Separator type="horizontal" size={3} />
           <RowOfForm<FormAgentDetail>
             t18n="OfficeId"
             name="GeneralTab.OfficeId"
@@ -173,7 +173,7 @@ export const GeneralTab = () => {
             control={control}
             maxLength={80}
             styleInput={{ color: colors.neutral700 }}
-          />
+          /> */}
           <Separator type="horizontal" size={3} />
 
           <RowOfForm<FormAgentDetail>

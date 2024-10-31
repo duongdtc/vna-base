@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
-import { selectLanguage } from '@vna-base/redux/selector';
+import { images } from '@assets/image';
 import { Flight } from '@services/axios/axios-data';
 import {
   AircraftRealm,
@@ -10,13 +8,14 @@ import {
 } from '@services/realm/models';
 import { useRealm } from '@services/realm/provider';
 import { Spacing } from '@theme/type';
+import { Block, Icon, Image, Text } from '@vna-base/components';
+import { selectLanguage } from '@vna-base/redux/selector';
 import { translate } from '@vna-base/translations/translate';
 import { convertMin2Hour, getFlightNumber, scale } from '@vna-base/utils';
 import dayjs from 'dayjs';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { useStyles } from './style';
 
@@ -156,10 +155,9 @@ export const ItemFlightJourney = ({ item }: { item: Flight }) => {
                     height={36}
                     borderRadius={8}
                     overflow="hidden">
-                    <SvgUri
-                      width={36}
-                      height={36}
-                      uri={LOGO_URL + segment.Operator + '.svg'}
+                    <Image
+                      source={images.logo_vna}
+                      style={{ width: scale(36), height: scale(36) }}
                     />
                   </Block>
                 </Block>

@@ -1,20 +1,28 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IconTypes } from '@assets/icon';
-import { Block, Button, Icon, showToast, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
 import { navigate } from '@navigation/navigation-service';
 import Clipboard from '@react-native-clipboard/clipboard';
-import {
-  selectLoadingBooking,
-  selectLoadingFlightAction,
-} from '@vna-base/redux/selector';
-import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { AirlineRealm } from '@services/realm/models';
 import { BookingRealm } from '@services/realm/models/booking';
 import { useObject, useRealm } from '@services/realm/provider';
 import { useTheme } from '@theme';
 import { Opacity } from '@theme/color';
 import { I18nKeys } from '@translations/locales';
+import { APP_SCREEN } from '@utils';
+import {
+  Block,
+  Button,
+  Icon,
+  Image,
+  showToast,
+  Text,
+} from '@vna-base/components';
+import {
+  selectLoadingBooking,
+  selectLoadingFlightAction,
+} from '@vna-base/redux/selector';
+import { FlightActionExpandParams } from '@vna-base/screens/booking-detail/type';
 import { translate } from '@vna-base/translations/translate';
 import {
   ActiveOpacity,
@@ -30,9 +38,7 @@ import isEmpty from 'lodash.isempty';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
-import { APP_SCREEN } from '@utils';
 
 export type FlightBookingContent = {
   bookingCode: string;
@@ -101,10 +107,9 @@ export const ItemBooking = ({
           <Block flexDirection="row" alignItems="center" columnGap={8}>
             {/* //cmt:  image airline */}
             <Block width={33} height={33} borderRadius={8} overflow="hidden">
-              <SvgUri
-                width={33}
-                height={33}
-                uri={LOGO_URL + bookingDetail?.Airline + '.svg'}
+              <Image
+                source={images.logo_vna}
+                style={{ width: scale(33), height: scale(33) }}
               />
             </Block>
             {/* //cmt:  booking code + name airline */}

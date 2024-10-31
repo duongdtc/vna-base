@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Block, Icon, Text } from '@vna-base/components';
-import { LOGO_URL } from '@env';
+import { images } from '@assets/image';
+import { Ancillary, Seat } from '@services/axios/axios-ibe';
+import { AirlineRealm } from '@services/realm/models';
+import { useRealm } from '@services/realm/provider';
+import { Block, Icon, Image, Text } from '@vna-base/components';
 import { selectLanguage } from '@vna-base/redux/selector';
 import {
   FlightOfPassengerForm,
   PassengerForm,
 } from '@vna-base/screens/flight/type';
-import { Ancillary, Seat } from '@services/axios/axios-ibe';
-import { AirlineRealm } from '@services/realm/models';
-import { useRealm } from '@services/realm/provider';
+import { scale } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
 import React, { useCallback, useMemo } from 'react';
 import {
@@ -18,7 +19,6 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { FlatList, ListRenderItem } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
 export const FlightContainerItem = ({
@@ -111,10 +111,9 @@ export const FlightContainerItem = ({
         <Block flexDirection="row" columnGap={4} alignItems="center">
           <Block borderRadius={4} overflow="hidden">
             <Block width={20} height={20} borderRadius={4} overflow="hidden">
-              <SvgUri
-                width={20}
-                height={20}
-                uri={LOGO_URL + item.Airline + '.svg'}
+              <Image
+                source={images.logo_vna}
+                style={{ width: scale(20), height: scale(20) }}
               />
             </Block>
           </Block>

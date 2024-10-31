@@ -1,4 +1,4 @@
-import { Block, Icon, Separator, Text } from '@vna-base/components';
+import { Block, Icon, Image, Separator, Text } from '@vna-base/components';
 import { LOGO_URL } from '@env';
 import { selectLanguage } from '@vna-base/redux/selector';
 import { Segment } from '@services/axios/axios-ibe';
@@ -12,6 +12,8 @@ import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 import { AddPreSeatForm } from '../type';
 import { useStyles } from './styles';
+import { images } from '@assets/image';
+import { scale } from '@vna-base/utils';
 
 export const SegmentItem = memo(
   ({
@@ -49,10 +51,9 @@ export const SegmentItem = memo(
         <Pressable onPress={onPressSegmentPreSeat} style={styles.segmentHeader}>
           <Block flexDirection="row" alignItems="center" columnGap={4}>
             <Block width={20} height={20} borderRadius={4} overflow="hidden">
-              <SvgUri
-                width={20}
-                height={20}
-                uri={LOGO_URL + Airline + '.svg'}
+              <Image
+                source={images.logo_vna}
+                style={{ width: scale(20), height: scale(20) }}
               />
             </Block>
             <Text
