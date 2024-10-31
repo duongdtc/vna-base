@@ -63,9 +63,17 @@ export const SegmentItem = memo(
     StartPoint,
     renderServiceItem,
     index: segmentIndex,
+    onCheckRound,
   }: Segment & {
     index: number;
     renderServiceItem: () => JSX.Element;
+    onCheckRound: ({
+      round,
+      airportIdx,
+    }: {
+      round: boolean;
+      airportIdx: number;
+    }) => void;
   }) => {
     const { styles } = useStyles(styleSheet);
 
@@ -109,6 +117,7 @@ export const SegmentItem = memo(
           <>
             <Pressable
               onPress={() => {
+                onCheckRound({ airportIdx: segmentIndex, round: !round });
                 setRound(pre => !pre);
               }}>
               <View

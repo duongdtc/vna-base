@@ -57,6 +57,18 @@ export const ShuttleCars = ({
     );
   };
 
+  const onCheckRound = ({
+    round,
+    flightIndex,
+    airportIdx,
+  }: {
+    round: boolean;
+    flightIndex: number;
+    airportIdx: number;
+  }) => {
+    setValue(`ShuttleCars.${flightIndex}.${airportIdx}.round`, round);
+  };
+
   const onPickDone = ({
     shuttleCar,
     flightIndex,
@@ -74,6 +86,7 @@ export const ShuttleCars = ({
         renderServiceItem={renderItem}
         t18nTitle={t18nTitle}
         disabled={false}
+        onCheckRound={onCheckRound}
         services={ShuttleCarsFake}
         loading={false}
         icon={icon}

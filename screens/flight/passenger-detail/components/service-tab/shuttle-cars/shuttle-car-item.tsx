@@ -20,7 +20,7 @@ export const ShuttleCarItem = (props: ShuttleCarItemProps) => {
   });
 
   const _exist = useMemo(() => {
-    if (typeof car === 'object' && !isEmpty(car)) {
+    if (typeof car === 'object' && !isEmpty(car) && car.price !== undefined) {
       return true;
     }
 

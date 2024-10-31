@@ -87,7 +87,11 @@ export const Footer = ({
         : 0) +
       (cars?.reduce(
         (total, flight) =>
-          total + flight.reduce((sub, seg) => sub + seg.price, 0),
+          total +
+          flight.reduce(
+            (sub, seg) => sub + (seg.round ? 2 : 1) * (seg.price ?? 0),
+            0,
+          ),
         0,
       ) ?? 0),
 

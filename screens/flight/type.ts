@@ -567,6 +567,7 @@ export type ShuttleCar = {
   capacity: number;
   description: string;
   price: number;
+  round?: boolean;
 };
 
 export type Hotel = {

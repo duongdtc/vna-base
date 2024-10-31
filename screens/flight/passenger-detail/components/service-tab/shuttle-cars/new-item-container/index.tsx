@@ -17,7 +17,19 @@ import {
 import { NewItemContainerProps } from '../../type';
 import { FlightItem } from './flight-item';
 
-export const NewItemContainer = (props: NewItemContainerProps) => {
+export const NewItemContainer = (
+  props: NewItemContainerProps & {
+    onCheckRound: ({
+      round,
+      flightIndex,
+      airportIdx,
+    }: {
+      round: boolean;
+      flightIndex: number;
+      airportIdx: number;
+    }) => void;
+  },
+) => {
   const {
     t18nTitle,
     defaultClose = true,
@@ -25,6 +37,7 @@ export const NewItemContainer = (props: NewItemContainerProps) => {
     renderServiceItem,
     renderEndpoint,
     icon,
+    onCheckRound,
   } = props;
 
   const { styles } = useStyles(styleSheet);
@@ -68,10 +81,11 @@ export const NewItemContainer = (props: NewItemContainerProps) => {
       <FlightItem
         {...item}
         index={index}
+        onCheckRound={onCheckRound}
         renderServiceItem={_renderServiceItem}
       />
     ),
-    [_renderServiceItem],
+    [_renderServiceItem, onCheckRound],
   );
 
   const _flight = useMemo(() => {
