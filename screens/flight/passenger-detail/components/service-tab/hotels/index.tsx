@@ -4,7 +4,7 @@ import { Block } from '@vna-base/components';
 import { PassengerForm } from '@vna-base/screens/flight/type';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Service } from '.';
+import { Service } from '..';
 import { HotelItem } from './hotel-item';
 import { NewItemContainer } from './new-item-container';
 

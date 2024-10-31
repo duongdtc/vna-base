@@ -4,7 +4,7 @@ import { ActiveOpacity } from '@vna-base/utils';
 import React from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
-import { HotelItemProps } from './type';
+import { HotelItemProps } from '../type';
 
 export const HotelItem = (props: HotelItemProps) => {
   const { flightIndex, onPress, airportIdx } = props;
