@@ -1,9 +1,7 @@
 import {
   AnimatedBg,
   AnimatedHeader,
-  Balance,
   CustomScreen,
-  ProcessingTask,
 } from '@screens/home/components';
 import { useStyles } from '@theme';
 import { scale } from '@vna-base/utils';
@@ -79,7 +77,7 @@ export const Home = () => {
         onMomentumScrollBegin={() => {}}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}>
-        <Balance />
+        {/* <Balance /> */}
         {/* <ProcessingTask /> */}
         <Banner />
         <SpecializedNews />
