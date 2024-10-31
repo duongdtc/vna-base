@@ -1,3 +1,4 @@
+import { bs, createStyleSheet, useStyles } from '@theme';
 import { Block, Icon, Separator, Text } from '@vna-base/components';
 import { selectLanguage } from '@vna-base/redux/selector';
 import { PassengerForm } from '@vna-base/screens/flight/type';
@@ -7,12 +8,11 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useWatchName } from '../../hooks';
-import { bs, createStyleSheet, useStyles } from '@theme';
 import { ServiceItemProps } from './type';
 
 export const ServiceItem = (props: ServiceItemProps) => {
   const { styles } = useStyles(styleSheet);
-  const { passengerIndex, flightIndex, segmentIndex, isOneway, onPress } =
+  const { passengerIndex, flightIndex, segmentIndex, isOneway, onPress, type } =
     props;
 
   const { control, getValues } = useFormContext<PassengerForm>();
@@ -29,6 +29,8 @@ export const ServiceItem = (props: ServiceItemProps) => {
     control,
     name: `Passengers.${passengerIndex}.Services.${flightIndex}.${segmentIndex}`,
   });
+
+  const _services = services?.filter(it => it.type === type);
 
   const _onPress = () => {
     onPress({
@@ -58,7 +60,7 @@ export const ServiceItem = (props: ServiceItemProps) => {
         justifyContent="space-between"
         alignItems="center">
         <Text text={fullName} fontStyle="Body12Med" colorTheme="neutral100" />
-        {!services || services.length === 0 ? (
+        {!_services || _services.length === 0 ? (
           <Block flexDirection="row" columnGap={4} alignItems="center">
             <Text
               t18n="input_info_passenger:select_service"
@@ -79,9 +81,9 @@ export const ServiceItem = (props: ServiceItemProps) => {
           />
         )}
       </Block>
-      {services && services.length > 0 && (
+      {_services && _services.length > 0 && (
         <Block marginTop={4}>
-          {services.map((service, index) => (
+          {_services.map((service, index) => (
             <Block key={service.Value}>
               {index !== 0 && (
                 <View style={[bs.marginVertical_4, bs.paddingHorizontal_4]}>

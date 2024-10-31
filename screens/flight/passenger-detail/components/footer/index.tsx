@@ -14,6 +14,7 @@ import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import { UnistylesRuntime } from 'react-native-unistyles';
 import { useSelector } from 'react-redux';
 import { calculateTotalPrice } from '../../utils';
+import { ListInsurance } from '../service-tab/insurances';
 
 export const Footer = ({
   summaryBottomSheetRef,
@@ -64,14 +65,23 @@ export const Footer = ({
     name: arrKeyListener.listKey,
   }) as Array<any>;
 
+  const insurance = useWatch({
+    control,
+    name: 'Insurance',
+  });
+
   const totalPrice = useMemo(
     () =>
       calculateTotalPrice(
         services,
         arrKeyListener.passengerCount,
         TotalFareFlight,
-      ),
-    [TotalFareFlight, arrKeyListener.passengerCount, services],
+      ) +
+      (insurance
+        ? ListInsurance.find(it => it.value === insurance)?.price ?? 0
+        : 0),
+
+    [TotalFareFlight, arrKeyListener.passengerCount, services, insurance],
   );
 
   const onPressFare = () => {

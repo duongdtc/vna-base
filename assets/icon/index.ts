@@ -1,4 +1,5 @@
 export const icons = {
+  cup_fill: require('./source/fill/cup.png'),
   dat_ve: require('./source/fill/dat_ve.png'),
   dat_ve_doan: require('./source/fill/dat_ve_doan.png'),
   yeu_cau_ho_tro: require('./source/fill/yeu_cau_ho_tro.png'),

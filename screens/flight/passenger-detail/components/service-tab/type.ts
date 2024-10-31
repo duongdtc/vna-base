@@ -80,6 +80,7 @@ export type SeatItemProps = {
 };
 
 export type ServiceItemProps = {
+  type: 'OthersService' | 'Food' | 'Drink' | 'Entertainment' | 'Beauty';
   passengerIndex: number;
   segmentIndex: number;
   flightIndex: number;

@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { IconTypes } from '@assets/icon';
 import { createStyleSheet, useStyles } from '@theme';
 import { I18nKeys } from '@translations/locales';
 import { Block } from '@vna-base/components';
@@ -9,23 +10,30 @@ import React, { useCallback, useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { FlatList } from 'react-native';
 import { Baggages } from './baggages';
+import { Beauty } from './beauty';
+import { Drink } from './drink';
+import { Entertainment } from './entertainment';
+import { Food } from './food';
 import { Hotels } from './hotels';
 import { Insurances } from './insurances';
 import { Seats } from './seats';
 import { Services } from './services';
 import { ShuttleCars } from './shuttle-cars';
 import { WaitingRooms } from './waiting-rooms';
-import { IconTypes } from '@assets/icon';
 
 export interface Service {
   key:
     | 'SeatService'
     | 'BaggageService'
-    | 'OthersService'
     | 'ShuttleCar'
     | 'Hotel'
     | 'WaitingRooms'
-    | 'Insurance';
+    | 'Insurance'
+    | 'OthersService'
+    | 'Food'
+    | 'Drink'
+    | 'Entertainment'
+    | 'Beauty';
   t18nTitle: I18nKeys;
   icon?: IconTypes;
 }
@@ -61,9 +69,29 @@ export const serviceNames: Array<Service> = [
     t18nTitle: 'Bảo hiểm du lịch',
   },
   {
-    key: 'OthersService',
-    t18nTitle: 'choose_services:others_services',
+    key: 'Food',
+    t18nTitle: 'Suất ăn',
     icon: 'eat_fill',
+  },
+  {
+    key: 'Drink',
+    t18nTitle: 'Đồ uống',
+    icon: 'cup_fill',
+  },
+  {
+    key: 'Beauty',
+    t18nTitle: 'Làm đẹp',
+    icon: 'brush_fill',
+  },
+  {
+    key: 'Entertainment',
+    t18nTitle: 'Giải trí',
+    icon: 'music_fill',
+  },
+  {
+    key: 'OthersService',
+    t18nTitle: 'Dịch vụ khác',
+    icon: 'grid_fill',
   },
 ];
 
@@ -105,6 +133,18 @@ export const ServiceTab = () => {
 
       case 'Insurance':
         return <Insurances />;
+
+      case 'Food':
+        return <Food t18nTitle={item.t18nTitle} icon={item.icon} />;
+
+      case 'Drink':
+        return <Drink t18nTitle={item.t18nTitle} icon={item.icon} />;
+
+      case 'Beauty':
+        return <Beauty t18nTitle={item.t18nTitle} icon={item.icon} />;
+
+      case 'Entertainment':
+        return <Entertainment t18nTitle={item.t18nTitle} icon={item.icon} />;
     }
   }, []);
 

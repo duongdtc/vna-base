@@ -15,7 +15,7 @@ import { Service } from '.';
 import { ItemContainer } from './item-container';
 import { ServiceItem } from './service-item';
 
-export const Services = ({
+export const Beauty = ({
   t18nTitle,
   icon,
 }: Pick<Service, 't18nTitle' | 'icon'>) => {
@@ -38,11 +38,11 @@ export const Services = ({
     }) => {
       return (
         <ServiceItem
-          type="OthersService"
+          type="Beauty"
           {...data}
           onPress={args => {
             navigate(APP_SCREEN.SELECT_SERVICES, {
-              type: 'OthersService',
+              type: 'Beauty',
               onDone: onPickDone,
               initData: args,
             });

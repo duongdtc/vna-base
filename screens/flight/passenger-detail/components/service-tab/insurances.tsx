@@ -21,8 +21,7 @@ type Insurance = {
   benefit?: string;
 };
 
-const ListInsurance: Array<Insurance> = [
-  { title: 'Không chọn', value: null },
+export const ListInsurance: Array<Insurance> = [
   {
     title: 'Bảo hiểm du lịch TripCare',
     value: 'TripCare',
@@ -65,7 +64,7 @@ export const Insurances = memo(() => {
       return (
         <Pressable
           onPress={() => {
-            onChange(item.value);
+            onChange(isSelected ? null : item.value);
           }}>
           <Block
             borderWidth={5}
