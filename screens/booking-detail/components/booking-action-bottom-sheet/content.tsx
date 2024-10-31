@@ -7,7 +7,13 @@ import { BookingRealm } from '@services/realm/models/booking';
 import { realmRef } from '@services/realm/provider';
 import { I18nKeys } from '@translations/locales';
 import { APP_SCREEN } from '@utils';
-import { Block, Icon, showToast, Text } from '@vna-base/components';
+import {
+  Block,
+  Icon,
+  LinearGradient,
+  showToast,
+  Text,
+} from '@vna-base/components';
 import { bookingActionActions } from '@vna-base/redux/action-slice';
 import {
   selectFlightActionsByBookingId,
@@ -19,6 +25,7 @@ import {
   BookingStatus,
   CheckInOnlineSystem,
   dispatch,
+  HairlineWidth,
   scale,
 } from '@vna-base/utils';
 import isEmpty from 'lodash.isempty';
@@ -27,17 +34,19 @@ import {
   RefreshControl,
   SectionListData,
   SectionListRenderItem,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { MapActionIcon, MapTitleSection } from './constants';
-import { useStyles } from './styles';
+import { Colors, createStyleSheet, useStyles } from '@theme';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 export const Content = ({
   bookingId,
   closeBottomSheet,
 }: FlightActionExpandParams) => {
-  const styles = useStyles();
+  const { styles } = useStyles(styleSheet);
   const Lng = useSelector(selectLanguage);
   const actions = useSelector(selectFlightActionsByBookingId(bookingId));
 
@@ -163,6 +172,28 @@ export const Content = ({
     [],
   );
 
+  const renderColorBtn = useCallback((item: Action) => {
+    let colorTheme: Colors;
+    switch (item?.FeatureId) {
+      case 'BookingCancel':
+      case 'TicketVoid':
+        colorTheme = 'errorCol';
+        break;
+
+      case 'TicketIssue':
+      case 'EMDIssue':
+      case 'TicketRfnd':
+        colorTheme = 'graSuc';
+        break;
+
+      default:
+        colorTheme = 'gra1';
+        break;
+    }
+
+    return colorTheme;
+  }, []);
+
   const renderItem = useCallback<
     SectionListRenderItem<
       Action,
@@ -188,18 +219,23 @@ export const Content = ({
               onPressItem(item);
             }}
             style={[styles.itemContainer, styles.itemPressable]}>
+            {/* <RenderColorBtn featureId={item.FeatureId} /> */}
+            <LinearGradient
+              type={renderColorBtn(item)}
+              style={[StyleSheet.absoluteFillObject, styles.linear]}
+            />
             <Icon
               icon={getActionIcon(item.FeatureId)}
               size={20}
-              colorTheme="neutral900"
+              colorTheme="neutral10"
             />
             <Text
               text={
                 (Lng === 'en' ? item.Feature?.NameEn : item.Feature?.NameVi) ??
                 ''
               }
-              fontStyle="Body12Reg"
-              colorTheme="neutral900"
+              fontStyle="Body14Semi"
+              colorTheme="neutral10"
             />
           </TouchableOpacity>
           {isEmpty(nextItem) ? (
@@ -211,10 +247,14 @@ export const Content = ({
                 onPressItem(nextItem);
               }}
               style={[styles.itemContainer, styles.itemPressable]}>
+              <LinearGradient
+                type={renderColorBtn(nextItem)}
+                style={[StyleSheet.absoluteFillObject, styles.linear]}
+              />
               <Icon
                 icon={getActionIcon(nextItem.FeatureId)}
                 size={20}
-                colorTheme="neutral900"
+                colorTheme="neutral10"
               />
               <Text
                 text={
@@ -222,8 +262,8 @@ export const Content = ({
                     ? nextItem.Feature?.NameEn
                     : nextItem.Feature?.NameVi) ?? ''
                 }
-                fontStyle="Body12Reg"
-                colorTheme="neutral900"
+                fontStyle="Body14Semi"
+                colorTheme="neutral10"
               />
             </TouchableOpacity>
           )}
@@ -234,9 +274,11 @@ export const Content = ({
       Lng,
       getActionIcon,
       onPressItem,
+      renderColorBtn,
       styles.itemContainer,
       styles.itemPressable,
       styles.itemSection,
+      styles.linear,
     ],
   );
 
@@ -255,9 +297,9 @@ export const Content = ({
     }) => (
       <Text
         t18n={section.t18n}
-        fontStyle="Title16Semi"
+        fontStyle="Title20Semi"
         colorTheme="neutral900"
-        style={{ marginBottom: scale(8) }}
+        style={{ marginBottom: scale(12) }}
       />
     ),
     [],
@@ -280,3 +322,33 @@ export const Content = ({
     </Block>
   );
 };
+
+const styleSheet = createStyleSheet(({ shadows, colors }) => ({
+  contentContainer: {
+    paddingHorizontal: scale(16),
+    paddingBottom: UnistylesRuntime.insets.bottom,
+    paddingTop: scale(12),
+  },
+  itemContainer: {
+    flex: 1,
+    padding: scale(12),
+    rowGap: scale(4),
+    borderRadius: scale(4),
+    flexDirection: 'row',
+    columnGap: scale(6),
+  },
+  itemPressable: {
+    borderWidth: HairlineWidth * 3,
+    borderColor: colors.neutral200,
+    backgroundColor: 'white',
+    ...shadows.medium,
+  },
+  itemSection: {
+    flexDirection: 'row',
+    columnGap: scale(16),
+    marginBottom: scale(16),
+  },
+  linear: {
+    borderRadius: scale(4),
+  },
+}));
